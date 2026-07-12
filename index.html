@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Flop Corn - Discover movies, rate them and share your reviews."
+    >
+
+    <title>Flop Corn | Watch. Rate. Roast.</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="yellow-glow"></div>
+        <div class="red-glow"></div>
+    </div>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo-icon">
+                🍿
+            </div>
+
+            <div class="logo-text">
+                FLOP<span>CORN</span>
+            </div>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#home" class="active">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="#trending">
+                <i class="fa-solid fa-fire"></i>
+                Trending
+            </a>
+
+            <a href="#new-movies">
+                <i class="fa-solid fa-clapperboard"></i>
+                New Movies
+            </a>
+
+            <a href="#reviews">
+                <i class="fa-solid fa-star"></i>
+                Reviews
+            </a>
+
+        </nav>
+
+
+        <div class="navbar-right">
+
+            <button
+                class="search-button"
+                id="openSearch"
+                aria-label="Open movie search"
+            >
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </button>
+
+
+            <button class="login-button" id="signInButton">
+
+                <i class="fa-brands fa-google"></i>
+
+                <span>
+                    Sign in
+                </span>
+
+            </button>
+
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Open menu"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= MOBILE MENU ================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="#home">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+
+        <a href="#trending">
+            <i class="fa-solid fa-fire"></i>
+            Trending
+        </a>
+
+        <a href="#new-movies">
+            <i class="fa-solid fa-clapperboard"></i>
+            New Movies
+        </a>
+
+        <a href="#reviews">
+            <i class="fa-solid fa-star"></i>
+            Reviews
+        </a>
+
+    </div>
+
+
+
+    <!-- ================= SEARCH WINDOW ================= -->
+
+    <section class="search-overlay" id="searchOverlay">
+
+        <div class="search-container">
+
+            <button
+                class="close-search"
+                id="closeSearch"
+                aria-label="Close search"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <div class="search-heading">
+
+                <p>
+                    FIND YOUR NEXT MOVIE
+                </p>
+
+                <h2>
+                    Search movies
+                </h2>
+
+            </div>
+
+
+            <div class="large-search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="movieSearchInput"
+                    placeholder="Search any movie..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div
+                class="search-results"
+                id="searchResults"
+            >
+
+                <p class="search-message">
+
+                    Search for a movie to view its
+                    details, ratings and reviews.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero" id="home">
+
+            <div class="hero-backdrop"></div>
+
+            <div class="hero-dark-overlay"></div>
+
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+
+                    <i class="fa-solid fa-fire"></i>
+
+                    MOVIES. REVIEWS. REAL OPINIONS.
+
+                </div>
+
+
+                <h1>
+
+                    Watch it.
+
+                    <span>
+                        Rate it.
+                    </span>
+
+                    <strong>
+                        Roast it.
+                    </strong>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Discover new movies, share what you
+                    really think and connect with people
+                    who love cinema as much as you do.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#trending"
+                        class="primary-button"
+                    >
+
+                        <i class="fa-solid fa-play"></i>
+
+                        Explore Movies
+
+                    </a>
+
+
+                    <button
+                        class="secondary-button"
+                        id="writeReviewButton"
+                    >
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Write a Review
+
+                    </button>
+
+                </div>
+
+
+                <div class="hero-stats">
+
+                    <div class="stat">
+
+                        <strong>
+                            10K+
+                        </strong>
+
+                        <span>
+                            Movies
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-line"></div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            Public
+                        </strong>
+
+                        <span>
+                            Reviews
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-line"></div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            Free
+                        </strong>
+
+                        <span>
+                            To Join
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="scroll-message">
+
+                <span>
+                    Scroll to explore
+                </span>
+
+                <i class="fa-solid fa-arrow-down"></i>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= TRENDING MOVIES ================= -->
+
+        <section
+            class="movie-section"
+            id="trending"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="small-heading">
+
+                        <i class="fa-solid fa-fire"></i>
+
+                        WHAT EVERYONE IS WATCHING
+
+                    </p>
+
+
+                    <h2>
+                        Trending Movies
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="view-all-button"
+                    data-category="trending"
+                >
+
+                    View all
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="movie-grid"
+                id="trendingMovies"
+            >
+
+                <!-- Movies will automatically load here -->
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= NEW MOVIES ================= -->
+
+        <section
+            class="movie-section"
+            id="new-movies"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="small-heading">
+
+                        <i class="fa-solid fa-clapperboard"></i>
+
+                        FRESH ON THE BIG SCREEN
+
+                    </p>
+
+
+                    <h2>
+                        New Releases
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="view-all-button"
+                    data-category="new"
+                >
+
+                    View all
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="movie-grid"
+                id="newMovies"
+            >
+
+                <!-- New movies automatically load here -->
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= REVIEW COMMUNITY ================= -->
+
+        <section
+            class="review-section"
+            id="reviews"
+        >
+
+            <div class="review-banner">
+
+                <div class="review-banner-content">
+
+                    <p class="small-heading">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        JOIN THE COMMUNITY
+
+                    </p>
+
+
+                    <h2>
+
+                        Your opinion deserves
+
+                        <span>
+                            the spotlight.
+                        </span>
+
+                    </h2>
+
+
+                    <p>
+
+                        Loved it? Hated it? Thought it was
+                        just okay? Rate movies and share
+                        your reviews with everyone.
+
+                    </p>
+
+
+                    <button
+                        class="primary-button"
+                        id="joinCommunityButton"
+                    >
+
+                        <i class="fa-brands fa-google"></i>
+
+                        Join with Google
+
+                    </button>
+
+                </div>
+
+
+                <div class="review-preview">
+
+                    <div class="review-card">
+
+                        <div class="review-user">
+
+                            <div class="profile-placeholder">
+
+                                <i class="fa-solid fa-user"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    Movie Fan
+                                </strong>
+
+                                <span>
+                                    Just now
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="review-stars">
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <i class="fa-regular fa-star"></i>
+
+                        </div>
+
+
+                        <p>
+
+                            “A beautiful movie with amazing
+                            performances. Definitely worth
+                            watching on the big screen!”
+
+                        </p>
+
+
+                        <div class="review-actions">
+
+                            <span>
+
+                                <i class="fa-regular fa-heart"></i>
+
+                                Like
+
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-regular fa-comment"></i>
+
+                                Reply
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+
+            <div class="footer-logo">
+
+                🍿
+
+                <strong>
+
+                    FLOP<span>CORN</span>
+
+                </strong>
+
+            </div>
+
+
+            <p>
+
+                Discover movies. Share reviews.
+                Speak your mind.
+
+            </p>
+
+
+            <div class="footer-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#trending">
+                    Trending
+                </a>
+
+                <a href="#new-movies">
+                    New Movies
+                </a>
+
+                <a href="#reviews">
+                    Reviews
+                </a>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+
+                    © 2026 Flop Corn.
+                    Made for movie lovers 🍿
+
+                </span>
+
+                <span>
+
+                    Movie information will be provided
+                    using TMDB.
+
+                </span>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="app.js"></script>
+
+</body>
+</html>

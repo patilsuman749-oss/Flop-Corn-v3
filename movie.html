@@ -1,0 +1,2246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Movie Details | Flop Corn</title>
+
+    <!-- GOOGLE FONT -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- FONT AWESOME ICONS -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        /* ===============================
+           BASIC DESIGN
+        =============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            min-height: 100vh;
+
+            color: white;
+
+            background: #070707;
+
+            font-family:
+                "Inter",
+                sans-serif;
+        }
+
+
+        button {
+            font-family: inherit;
+
+            cursor: pointer;
+        }
+
+
+        /* ===============================
+           NAVBAR
+        =============================== */
+
+        .movie-navbar {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            width: 100%;
+
+            padding: 18px 6%;
+
+            border-bottom:
+
+                1px solid
+
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
+            background:
+
+                rgba(
+                    5,
+                    5,
+                    5,
+                    0.86
+                );
+
+            backdrop-filter:
+
+                blur(18px);
+
+        }
+
+
+        .movie-logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            color: white;
+
+            font-size: 25px;
+
+            font-weight: 900;
+
+            text-decoration: none;
+
+        }
+
+
+        .logo-icon {
+
+            display: grid;
+
+            width: 45px;
+
+            height: 45px;
+
+            place-items: center;
+
+            border:
+
+                1px solid
+
+                rgba(
+                    255,
+                    210,
+                    28,
+                    0.4
+                );
+
+            border-radius: 14px;
+
+            background:
+
+                rgba(
+                    255,
+                    210,
+                    28,
+                    0.1
+                );
+
+        }
+
+
+        .movie-logo span {
+
+            color: #ffd21c;
+
+        }
+
+
+        .back-home {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+
+                12px 19px;
+
+            border:
+
+                1px solid
+
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.15
+                );
+
+            border-radius: 13px;
+
+            color: white;
+
+            background: #151515;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            transition: 0.25s;
+
+        }
+
+
+        .back-home:hover {
+
+            color: #080808;
+
+            border-color:
+                #ffd21c;
+
+            background:
+                #ffd21c;
+
+        }
+
+
+        /* ===============================
+           LOADING SCREEN
+        =============================== */
+
+        .movie-loading {
+
+            display: grid;
+
+            min-height: 100vh;
+
+            place-items: center;
+
+            text-align: center;
+
+        }
+
+
+        .loader {
+
+            width: 55px;
+
+            height: 55px;
+
+            margin:
+
+                0 auto 22px;
+
+            border:
+
+                5px solid
+
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.1
+                );
+
+            border-top-color:
+                #ffd21c;
+
+            border-radius: 50%;
+
+            animation:
+
+                spin 0.8s linear infinite;
+
+        }
+
+
+        @keyframes spin {
+
+            to {
+
+                transform:
+
+                    rotate(360deg);
+
+            }
+
+        }
+
+
+        .movie-loading p {
+
+            color: #aaaaaa;
+
+        }
+
+
+        /* ===============================
+           MOVIE HERO
+        =============================== */
+
+        .movie-page {
+
+            display: none;
+
+        }
+
+
+        .movie-hero {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            min-height: 760px;
+
+            padding:
+
+                145px 7% 80px;
+
+            overflow: hidden;
+
+        }
+
+
+        .movie-backdrop {
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: -3;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .backdrop-dark {
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: -2;
+
+            background:
+
+                linear-gradient(
+
+                    90deg,
+
+                    rgba(
+                        5,
+                        5,
+                        5,
+                        0.98
+                    ) 5%,
+
+                    rgba(
+                        5,
+                        5,
+                        5,
+                        0.84
+                    ) 43%,
+
+                    rgba(
+                        5,
+                        5,
+                        5,
+                        0.35
+                    ) 75%
+
+                );
+
+        }
+
+
+        .backdrop-bottom {
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: -1;
+
+            background:
+
+                linear-gradient(
+
+                    to top,
+
+                    #070707 0%,
+
+                    transparent 55%
+
+                );
+
+        }
+
+
+        .movie-content {
+
+            display: grid;
+
+            grid-template-columns:
+
+                280px 1fr;
+
+            gap: 55px;
+
+            width: 100%;
+
+            max-width: 1250px;
+
+            margin: auto;
+
+        }
+
+
+        .details-poster {
+
+            width: 100%;
+
+            border:
+
+                1px solid
+
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.14
+                );
+
+            border-radius: 24px;
+
+            box-shadow:
+
+                0 25px 70px
+
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.7
+                );
+
+        }
+
+
+        .movie-text {
+
+            align-self: center;
+
+        }
+
+
+        .movie-tag {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 20px;
+
+            padding:
+
+                9px 14px;
+
+            border:
+
+                1px solid
+
+                rgba(
+                    255,
+                    210,
+                    28,
+                    0.3
+                );
+
+            border-radius: 100px;
+
+            color: #ffd21c;
+
+            background:
+
+                rgba(
+                    255,
+                    210,
+                    28,
+                    0.08
+                );
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .movie-title {
+
+            max-width: 850px;
+
+            margin-bottom: 18px;
+
+            font-size:
+
+                clamp(
+                    45px,
+                    7vw,
+                    92px
+                );
+
+            font-weight: 900;
+
+            line-height: 0.95;
+
+        }
+
+
+        .movie-tagline {
+
+            max-width: 760px;
+
+            margin-bottom: 25px;
+
+            color: #bbbbbb;
+
+            font-size: 19px;
+
+            font-style: italic;
+
+        }
+
+
+        .movie-meta {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-bottom: 26px;
+
+        }
+
+
+        .meta-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+
+                9px 13px;
+
+            border:
+
+                1px solid
+
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.11
+                );
+
+            border-radius: 10px;
+
+            color: #dddddd;
+
+            background:
+
+                rgba(
+                    15,
+                    15,
+                    15,
+                    0.7
+                );
+
+        }
+
+
+        .rating-item {
+
+            color: #ffd21c;
+
+        }
+
+
+        .movie-genres {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .genre {
+
+            padding:
+
+                8px 13px;
+
+            border-radius: 100px;
+
+            color: #111111;
+
+            background:
+                #ffd21c;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+        }
+
+
+        .movie-overview {
+
+            max-width: 800px;
+
+            margin-bottom: 30px;
+
+            color: #cccccc;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+        }
+
+
+        .movie-actions {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 13px;
+
+        }
+
+
+        .review-button {
+
+            padding:
+
+                15px 22px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            color: #090909;
+
+            background:
+                #ffd21c;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            transition: 0.25s;
+
+        }
+
+
+        .review-button:hover {
+
+            transform:
+
+                translateY(-3px);
+
+            box-shadow:
+
+                0 15px 35px
+
+                rgba(
+                    255,
+                    210,
+                    28,
+                    0.2
+                );
+
+        }
+
+
+        .watchlist-button {
+
+            padding:
+
+                15px 22px;
+
+            border:
+
+                1px solid
+
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.17
+                );
+
+            border-radius: 13px;
+
+            color: white;
+
+            background:
+                #171717;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* ===============================
+           CAST SECTION
+        =============================== */
+
+        .cast-section {
+
+            padding:
+
+                75px 7%;
+
+        }
+
+
+        .section-small {
+
+            margin-bottom: 9px;
+
+            color: #ffd21c;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+
+        }
+
+
+        .section-title {
+
+            margin-bottom: 32px;
+
+            font-size:
+
+                clamp(
+                    32px,
+                    5vw,
+                    52px
+                );
+
+            font-weight: 900;
+
+        }
+
+
+        .cast-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(
+                    auto-fit,
+                    minmax(
+                        150px,
+                        1fr
+                    )
+                );
+
+            gap: 22px;
+
+            max-width: 1200px;
+
+        }
+
+
+        .cast-card {
+
+            padding: 12px;
+
+            border:
+
+                1px solid
+
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
+            border-radius: 18px;
+
+            background:
+                #101010;
+
+        }
+
+
+        .cast-card img {
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1;
+
+            border-radius: 13px;
+
+            object-fit: cover;
+
+        }
+
+
+        .cast-card h3 {
+
+            margin:
+
+                13px 4px 5px;
+
+            font-size: 15px;
+
+        }
+
+
+        .cast-card p {
+
+            margin:
+
+                0 4px 8px;
+
+            color: #888888;
+
+            font-size: 13px;
+
+        }
+
+
+        /* ===============================
+           REVIEW SECTION
+        =============================== */
+
+        .review-section {
+
+            padding:
+
+                40px 7% 100px;
+
+        }
+
+
+        .review-box {
+
+            max-width: 900px;
+
+            padding:
+
+                35px;
+
+            border:
+
+                1px solid
+
+                rgba(
+                    255,
+                    210,
+                    28,
+                    0.15
+                );
+
+            border-radius: 25px;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #121212,
+
+                    #0b0b0b
+
+                );
+
+        }
+
+
+        .review-box h2 {
+
+            margin-bottom: 12px;
+
+            font-size: 30px;
+
+        }
+
+
+        .review-box p {
+
+            margin-bottom: 23px;
+
+            color: #999999;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* ===============================
+           ERROR
+        =============================== */
+
+        .movie-error-page {
+
+            display: none;
+
+            min-height: 100vh;
+
+            place-items: center;
+
+            padding: 30px;
+
+            text-align: center;
+
+        }
+
+
+        .movie-error-page i {
+
+            margin-bottom: 20px;
+
+            color: #ffd21c;
+
+            font-size: 55px;
+
+        }
+
+
+        .movie-error-page h1 {
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .movie-error-page p {
+
+            margin-bottom: 25px;
+
+            color: #999999;
+
+        }
+
+
+        /* ===============================
+           MOBILE
+        =============================== */
+
+        @media (
+            max-width: 850px
+        ) {
+
+            .movie-content {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .details-poster {
+
+                width: 220px;
+
+            }
+
+
+            .movie-hero {
+
+                min-height: auto;
+
+                padding-top: 135px;
+
+            }
+
+
+            .movie-title {
+
+                font-size: 50px;
+
+            }
+
+        }
+
+
+        @media (
+            max-width: 550px
+        ) {
+
+            .movie-navbar {
+
+                padding:
+
+                    13px 4%;
+
+            }
+
+
+            .movie-logo {
+
+                font-size: 20px;
+
+            }
+
+
+            .logo-icon {
+
+                width: 39px;
+
+                height: 39px;
+
+            }
+
+
+            .back-home span {
+
+                display: none;
+
+            }
+
+
+            .movie-hero {
+
+                padding:
+
+                    120px 5% 55px;
+
+            }
+
+
+            .details-poster {
+
+                width: 180px;
+
+            }
+
+
+            .movie-title {
+
+                font-size: 41px;
+
+            }
+
+
+            .movie-tagline {
+
+                font-size: 16px;
+
+            }
+
+
+            .movie-overview {
+
+                font-size: 15px;
+
+            }
+
+
+            .cast-section,
+
+            .review-section {
+
+                padding-left: 5%;
+
+                padding-right: 5%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="movie-navbar">
+
+        <a
+            href="index.html"
+            class="movie-logo"
+        >
+
+            <div class="logo-icon">
+
+                🍿
+
+            </div>
+
+            FLOP<span>CORN</span>
+
+        </a>
+
+
+        <a
+            href="index.html"
+            class="back-home"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            <span>
+
+                Back to Movies
+
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <!-- LOADING -->
+
+    <section
+        class="movie-loading"
+        id="movieLoading"
+    >
+
+        <div>
+
+            <div class="loader"></div>
+
+            <h2>
+
+                Loading Movie
+
+            </h2>
+
+            <p>
+
+                Getting movie information...
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MOVIE PAGE -->
+
+    <main
+        class="movie-page"
+        id="moviePage"
+    >
+
+
+        <section class="movie-hero">
+
+
+            <img
+
+                id="movieBackdrop"
+
+                class="movie-backdrop"
+
+                alt="Movie backdrop"
+
+            >
+
+
+            <div class="backdrop-dark"></div>
+
+            <div class="backdrop-bottom"></div>
+
+
+            <div class="movie-content">
+
+
+                <img
+
+                    id="moviePoster"
+
+                    class="details-poster"
+
+                    alt="Movie poster"
+
+                >
+
+
+                <div class="movie-text">
+
+
+                    <div class="movie-tag">
+
+                        <i class="fa-solid fa-fire"></i>
+
+                        FLOP CORN MOVIE
+
+                    </div>
+
+
+                    <h1
+
+                        class="movie-title"
+
+                        id="movieTitle"
+
+                    >
+
+                    </h1>
+
+
+                    <p
+
+                        class="movie-tagline"
+
+                        id="movieTagline"
+
+                    >
+
+                    </p>
+
+
+                    <div class="movie-meta">
+
+
+                        <div
+                            class="
+                                meta-item
+                                rating-item
+                            "
+                        >
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <span id="movieRating">
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="meta-item">
+
+                            <i class="fa-solid fa-calendar"></i>
+
+                            <span id="movieYear">
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="meta-item">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                            <span id="movieRuntime">
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div
+
+                        class="movie-genres"
+
+                        id="movieGenres"
+
+                    >
+
+                    </div>
+
+
+                    <p
+
+                        class="movie-overview"
+
+                        id="movieOverview"
+
+                    >
+
+                    </p>
+
+
+                    <div class="movie-actions">
+
+
+                        <button
+    class="review-button"
+    id="writeMovieReview">
+
+    <i class="fa-solid fa-pen"></i>
+
+    Write a Review
+
+
+</button>
+                            <!-- REVIEW POPUP -->
+
+<div id="reviewModal" class="review-modal">
+
+    <div class="review-box">
+
+        <h2>Write a Review 🍿</h2>
+
+        <label>Your Rating (1-10)</label>
+
+        <input
+            type="number"
+            id="userRating"
+            min="1"
+            max="10"
+            placeholder="Give your rating">
+
+        <label>Your Review</label>
+
+        <textarea
+            id="userReview"
+            rows="5"
+            placeholder="Tell everyone what you think..."></textarea>
+
+        <div class="review-buttons">
+
+            <button id="cancelReview">
+                Cancel
+            </button>
+
+            <button id="submitReview">
+                Submit Review
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+                        </button>
+
+
+                        <button
+
+                            class="watchlist-button"
+
+                            id="watchlistButton"
+
+                        >
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                            Add to Watchlist
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- CAST -->
+
+        <section class="cast-section">
+
+
+            <p class="section-small">
+
+                MEET THE STARS
+
+            </p>
+
+
+            <h2 class="section-title">
+
+                Top Cast
+
+            </h2>
+
+
+            <div
+
+                class="cast-grid"
+
+                id="castGrid"
+
+            >
+
+            </div>
+
+
+        </section>
+
+
+        <!-- REVIEWS -->
+
+        <section class="review-section">
+
+
+            <div class="review-box">
+
+
+                <h2>
+
+                    What did you think? 🍿
+
+                </h2>
+
+
+                <p>
+
+                    Sign in with Google to rate
+                    this movie and share your
+                    review with the Flop Corn
+                    community.
+
+                </p>
+
+
+                <button
+
+                    class="review-button"
+
+                    id="reviewLoginButton"
+
+                >
+
+                    <i class="fa-brands fa-google"></i>
+
+                    Sign in to Review
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ERROR PAGE -->
+
+    <section
+
+        class="movie-error-page"
+
+        id="movieErrorPage"
+
+    >
+
+
+        <div>
+
+
+            <i class="fa-solid fa-film"></i>
+
+
+            <h1>
+
+                Movie could not load
+
+            </h1>
+
+
+            <p>
+
+                Return to Flop Corn and
+                select another movie.
+
+            </p>
+
+
+            <a
+
+                href="index.html"
+
+                class="back-home"
+
+            >
+
+                Back to Flop Corn
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+    <script type="module">
+
+        let currentMovie = null;
+
+import { auth, db } from "./firebase.js";
+
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+        /* ===============================
+           TMDB SETTINGS
+        =============================== */
+
+
+        const API_KEY =
+
+            
+"dd2ac99e60038c2254b111f850b49461";
+
+
+       const BASE_URL =
+    "https://flop-corn-tmdb.patilsuman749.workers.dev";
+
+        const IMAGE_URL =
+
+            "https://image.tmdb.org/t/p/w500";
+
+
+        const BACKDROP_URL =
+
+            "https://image.tmdb.org/t/p/original";
+
+
+        /* ===============================
+           GET MOVIE ID
+        =============================== */
+
+
+        const pageParameters =
+
+            new URLSearchParams(
+
+                window.location.search
+
+            );
+
+
+        const movieId =
+
+            pageParameters.get(
+
+                "id"
+
+            );
+
+
+        /* ===============================
+           HTML ELEMENTS
+        =============================== */
+
+
+        const movieLoading =
+
+            document.getElementById(
+
+                "movieLoading"
+
+            );
+
+
+        const moviePage =
+
+            document.getElementById(
+
+                "moviePage"
+
+            );
+
+
+        const movieErrorPage =
+
+            document.getElementById(
+
+                "movieErrorPage"
+
+            );
+
+
+        /* ===============================
+           LOAD MOVIE
+        =============================== */
+
+
+        async function loadMovie() {
+
+
+            if (!movieId) {
+
+
+                showMovieError();
+
+
+                return;
+
+
+            }
+
+
+            try {
+
+
+                const movieResponse =
+
+                    await fetch(
+
+                        `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=en-US`
+
+                    );
+
+
+                const castResponse =
+
+                    await fetch(
+
+                        `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
+
+                    );
+
+
+                if (
+
+                    !movieResponse.ok
+
+                    ||
+
+                    !castResponse.ok
+
+                ) {
+
+
+                    throw new Error(
+
+                        "Movie request failed"
+
+                    );
+
+
+                }
+
+
+                const movie =
+
+                    await movieResponse.json();
+currentMovie = movie;
+
+                const castInformation =
+
+                    await castResponse.json();
+
+
+                displayMovie(
+
+                    movie
+
+                );
+
+
+                displayCast(
+
+                    castInformation.cast
+
+                );
+
+
+                movieLoading.style.display =
+
+                    "none";
+
+
+                moviePage.style.display =
+
+                    "block";
+
+
+            }
+
+
+            catch (error) {
+
+
+                console.error(
+
+                    error
+
+                );
+
+
+                showMovieError();
+
+
+            }
+
+
+        }
+
+
+        /* ===============================
+           DISPLAY MOVIE
+        =============================== */
+
+
+        function displayMovie(
+
+            movie
+
+        ) {
+
+
+            document.title =
+
+                `${movie.title} | Flop Corn`;
+
+
+            document.getElementById(
+
+                "movieTitle"
+
+            ).textContent =
+
+                movie.title;
+
+
+            document.getElementById(
+
+                "movieTagline"
+
+            ).textContent =
+
+                movie.tagline
+
+                ||
+
+                "Watch it. Rate it. Roast it.";
+
+
+            document.getElementById(
+
+                "movieRating"
+
+            ).textContent =
+
+                `${movie.vote_average.toFixed(1)} / 10`;
+
+
+            document.getElementById(
+
+                "movieYear"
+
+            ).textContent =
+
+                movie.release_date
+
+                ?
+
+                movie.release_date.slice(
+
+                    0,
+
+                    4
+
+                )
+
+                :
+
+                "Coming Soon";
+
+
+            document.getElementById(
+
+                "movieRuntime"
+
+            ).textContent =
+
+                movie.runtime
+
+                ?
+
+                `${Math.floor(
+
+                    movie.runtime / 60
+
+                )}h ${
+
+                    movie.runtime % 60
+
+                }m`
+
+                :
+
+                "Runtime unavailable";
+
+
+            document.getElementById(
+
+                "movieOverview"
+
+            ).textContent =
+
+                movie.overview
+
+                ||
+
+                "No movie description is available.";
+
+
+            document.getElementById(
+
+                "moviePoster"
+
+            ).src =
+
+                movie.poster_path
+
+                ?
+
+                `${IMAGE_URL}${movie.poster_path}`
+
+                :
+
+                "";
+
+
+            document.getElementById(
+
+                "movieBackdrop"
+
+            ).src =
+
+                movie.backdrop_path
+
+                ?
+
+                `${BACKDROP_URL}${movie.backdrop_path}`
+
+                :
+
+                `${IMAGE_URL}${movie.poster_path}`;
+
+
+            const genresContainer =
+
+                document.getElementById(
+
+                    "movieGenres"
+
+                );
+
+
+            genresContainer.innerHTML = "";
+
+
+            movie.genres.forEach(
+
+                function (
+
+                    genre
+
+                ) {
+
+
+                    const genreElement =
+
+                        document.createElement(
+
+                            "span"
+
+                        );
+
+
+                    genreElement.className =
+
+                        "genre";
+
+
+                    genreElement.textContent =
+
+                        genre.name;
+
+
+                    genresContainer.appendChild(
+
+                        genreElement
+
+                    );
+
+
+                }
+
+            );
+
+
+        }
+
+
+        /* ===============================
+           DISPLAY CAST
+        =============================== */
+
+
+        function displayCast(
+
+            cast
+
+        ) {
+
+
+            const castGrid =
+
+                document.getElementById(
+
+                    "castGrid"
+
+                );
+
+
+            castGrid.innerHTML = "";
+
+
+            const castWithPhotos =
+
+                cast.filter(
+
+                    person =>
+
+                        person.profile_path
+
+                );
+
+
+            castWithPhotos
+
+                .slice(
+
+                    0,
+
+                    6
+
+                )
+
+                .forEach(
+
+
+                    function (
+
+                        person
+
+                    ) {
+
+
+                        const castCard =
+
+                            document.createElement(
+
+                                "article"
+
+                            );
+
+
+                        castCard.className =
+
+                            "cast-card";
+
+
+                        castCard.innerHTML = `
+
+
+                            <img
+
+                                src="${IMAGE_URL}${person.profile_path}"
+
+                                alt="${person.name}"
+
+                                loading="lazy"
+
+                            >
+
+
+                            <h3>
+
+                                ${person.name}
+
+                            </h3>
+
+
+                            <p>
+
+                                ${person.character}
+
+                            </p>
+
+
+                        `;
+
+
+                        castGrid.appendChild(
+
+                            castCard
+
+                        );
+
+
+                    }
+
+
+                );
+
+
+        }
+
+
+        /* ===============================
+           ERROR
+        =============================== */
+
+
+        function showMovieError() {
+
+
+            movieLoading.style.display =
+
+                "none";
+
+
+            moviePage.style.display =
+
+                "none";
+
+
+            movieErrorPage.style.display =
+
+                "grid";
+
+
+        }
+
+
+        /* ===============================
+           BUTTONS
+        =============================== */
+
+
+        
+
+
+        document.getElementById(
+
+            "reviewLoginButton"
+
+        ).addEventListener(
+
+            "click",
+
+            function () {
+
+
+                alert(
+
+                    "Google login will be connected in the next Firebase step 🍿"
+
+                );
+
+
+            }
+
+        );
+
+
+        document.getElementById(
+
+            "watchlistButton"
+
+        ).addEventListener(
+
+            "click",
+
+            function () {
+
+
+                alert(
+
+                    "Watchlists will be connected after Google login 🍿"
+
+                );
+
+
+            }
+
+        );
+
+
+        /* ===============================
+           START
+        =============================== */
+
+
+        loadMovie();
+
+// ===============================
+// REVIEW POPUP
+// ===============================
+
+const reviewModal = document.getElementById("reviewModal");
+
+const reviewButton = document.getElementById("writeMovieReview");
+
+const cancelReview = document.getElementById("cancelReview");
+
+const submitReview = document.getElementById("submitReview");
+
+reviewButton.addEventListener("click", () => {
+
+    if (!auth.currentUser) {
+        alert("Please sign in with Google first 🍿");
+        return;
+    }
+
+    reviewModal.style.display = "flex";
+
+});
+
+cancelReview.addEventListener("click", () => {
+
+    reviewModal.style.display = "none";
+
+});
+
+submitReview.addEventListener("click", async () => {
+
+    const rating = document.getElementById("userRating").value;
+    const review = document.getElementById("userReview").value;
+
+    if (!rating || !review) {
+        alert("Please fill all fields.");
+        return;
+    }
+    if (!currentMovie) {
+    alert("Movie data not loaded yet");
+    return;
+}
+
+    try {
+
+        await addDoc(collection(db, "reviews"), {
+
+            movieId: currentMovie.id,
+movieTitle: currentMovie.title,
+            userName: auth.currentUser.displayName,
+            userPhoto: auth.currentUser.photoURL,
+            userEmail: auth.currentUser.email,
+            rating: Number(rating),
+            review: review,
+            createdAt: serverTimestamp()
+
+        });
+
+        alert("Review submitted successfully! 🍿");
+
+        document.getElementById("userRating").value = "";
+        document.getElementById("userReview").value = "";
+
+        reviewModal.style.display = "none";
+
+    }  catch (error) {
+
+    console.error(error);
+
+    alert(
+        error.code + "\n\n" +
+        error.message
+    );
+
+}
+
+});
+    </script>
+</body>
+
+</html>
