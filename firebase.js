@@ -8,11 +8,18 @@ import {
     signInWithPopup,
     signOut,
     onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 import {
-    getFirestore
+    getFirestore,
+    collection,
+    addDoc,
+    query,
+    where,
+    orderBy,
+    onSnapshot,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
 /* Firebase Config */
 
 const firebaseConfig = {
@@ -115,6 +122,208 @@ if (reviewButton) {
         }
 
         alert("Welcome " + auth.currentUser.displayName + " ⭐");
+
+    });
+
+}
+
+/* =====================================
+   PUBLIC MOVIE REVIEWS 🍿
+===================================== */
+
+const submitReviewButton = document.getElementById("submitReview");
+
+if (submitReviewButton) {
+
+    submitReviewButton.addEventListener("click", async () => {
+
+        if (!auth.currentUser) {
+            alert("Please sign in with Google first 🍿");
+            return;
+        }
+
+        const ratingInput = document.getElementById("userRating");
+        const reviewInput = document.getElementById("userReview");
+
+        const rating = Number(ratingInput.value);
+        const reviewText = reviewInput.value.trim();
+
+        if (rating < 1 || rating > 10) {
+            alert("Please give a rating from 1 to 10 ⭐");
+            return;
+        }
+
+        if (reviewText === "") {
+            alert("Please write your review 🍿");
+            return;
+        }
+
+        const movieId =
+            new URLSearchParams(window.location.search).get("id");
+
+        try {
+
+            await addDoc(collection(db, "reviews"), {
+
+                movieId: movieId,
+
+                rating: rating,
+
+                review: reviewText,
+
+                userName:
+                    auth.currentUser.displayName || "Movie Fan",
+
+                userPhoto:
+                    auth.currentUser.photoURL || "",
+
+                userId:
+                    auth.currentUser.uid,
+
+                createdAt:
+                    serverTimestamp()
+
+            });
+
+            alert("Your review is now public! 🍿🔥");
+
+            ratingInput.value = "";
+            reviewInput.value = "";
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Review could not be saved.\n\n" +
+                error.message
+            );
+
+        }
+
+    });
+
+}
+
+/* =====================================
+   SHOW PUBLIC REVIEWS 🍿
+===================================== */
+
+const publicReviews = document.getElementById("publicReviews");
+
+if (publicReviews) {
+
+    const movieId =
+        new URLSearchParams(window.location.search).get("id");
+
+    const reviewsQuery = query(
+        collection(db, "reviews"),
+        where("movieId", "==", movieId)
+    );
+
+    onSnapshot(reviewsQuery, (snapshot) => {
+
+        publicReviews.innerHTML = "";
+
+        let totalRating = 0;
+        let reviewCount = 0;
+
+        if (snapshot.empty) {
+
+            publicReviews.innerHTML = `
+                <p>No reviews yet. Be the first to review!</p>
+            `;
+
+        } else {
+
+            snapshot.forEach((reviewDocument) => {
+
+                const review = reviewDocument.data();
+
+                totalRating += Number(review.rating);
+                reviewCount++;
+
+                publicReviews.innerHTML += `
+                    <div class="public-review-card">
+
+                        <div class="public-review-user">
+
+                            ${
+                                review.userPhoto
+                                ? `<img src="${review.userPhoto}"
+                                     alt="User">`
+                                : "👤"
+                            }
+
+                            <strong>
+                                ${review.userName}
+                            </strong>
+
+                        </div>
+
+                        <div class="public-review-rating">
+                            ⭐ ${review.rating}/10
+                        </div>
+
+                        <p>
+                            ${review.review}
+                        </p>
+
+                    </div>
+                `;
+
+            });
+
+        }
+
+        /* UPDATE FLOP CORN METER */
+
+        const meterScore =
+            document.getElementById("meterScore");
+
+        const meterFill =
+            document.getElementById("meterFill");
+
+        const meterVerdict =
+            document.getElementById("meterVerdict");
+
+        if (reviewCount > 0) {
+
+            const average =
+                totalRating / reviewCount;
+
+            meterScore.textContent =
+                average.toFixed(1);
+
+            meterFill.style.width =
+                (average * 10) + "%";
+
+            if (average >= 7) {
+
+                meterVerdict.textContent =
+                    "🔥 GO FOR IT";
+
+            } else if (average >= 5) {
+
+                meterVerdict.textContent =
+                    "🍿 TIMEPASS";
+
+            } else {
+
+                meterVerdict.textContent =
+                    "❌ SKIP IT";
+
+            }
+
+        } else {
+
+            meterScore.textContent = "0.0";
+            meterFill.style.width = "0%";
+
+            meterVerdict.textContent =
+                "No reviews yet";
+
+        }
 
     });
 
