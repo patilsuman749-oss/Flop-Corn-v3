@@ -1,13 +1,19 @@
 import {
     auth,
     db,
-    signOut
+    signOut,
+    onAuthStateChanged
 } from "./firebase.js";
-import {
+
+import {  
     collection,
     onSnapshot,
     query,
-    where
+    where,
+    doc,
+    getDoc,
+    setDoc,
+    deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 /* =========================================
@@ -1031,8 +1037,7 @@ if (myProfileButton && fullProfileOverlay) {
         fullProfilePhoto.src =
             user.photoURL || "flopcorn-logo.jpeg.jpeg";
 
-        fullProfileName.textContent =
-            user.displayName || "Flop Corn User";
+        
 
         fullProfileEmail.textContent =
             user.email || "Email not available";
@@ -1658,3 +1663,514 @@ document.querySelectorAll(".language-button").forEach(
     }
 
 );
+
+/* =========================================
+   FLOP CORN USERNAME SYSTEM 🍿
+========================================= */
+
+const usernameOverlay =
+    document.getElementById("usernameOverlay");
+
+const usernameInput =
+    document.getElementById("usernameInput");
+
+const usernameMessage =
+    document.getElementById("usernameMessage");
+
+const saveUsernameButton =
+    document.getElementById("saveUsernameButton");
+
+
+/* CHECK WHETHER USER HAS A USERNAME */
+
+async function checkUserUsername() {
+
+    const user = auth.currentUser;
+
+    if (!user) {
+        return;
+    }
+
+
+    try {
+
+        const userReference =
+            doc(db, "users", user.uid);
+
+        const userSnapshot =
+            await getDoc(userReference);
+
+
+        /* OPEN POPUP FOR NEW USER */
+
+        if (
+            !userSnapshot.exists() ||
+            !userSnapshot.data().username
+        ) {
+
+            usernameOverlay.classList.add(
+                "show"
+            );
+
+            document.body.style.overflow =
+                "hidden";
+
+            setTimeout(() => {
+
+                usernameInput.focus();
+
+            }, 300);
+
+        }
+
+
+        /* SHOW SAVED USERNAME */
+
+        else {
+
+            const savedUsername =
+                userSnapshot.data().username;
+
+            profileMenuName.textContent =
+                `@${savedUsername}`;
+
+            fullProfileName.textContent =
+                `@${savedUsername}`;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Username checking error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* SAVE NEW USERNAME */
+
+saveUsernameButton.addEventListener(
+
+    "click",
+
+    async () => {
+
+
+        const user =
+            auth.currentUser;
+
+
+        if (!user) {
+
+            usernameMessage.textContent =
+                "Please sign in first.";
+
+            return;
+
+        }
+
+
+        const username =
+
+            usernameInput
+            .value
+            .trim();
+
+
+        /* USERNAME RULES */
+
+        if (username.length < 3) {
+
+            usernameMessage.textContent =
+
+                "Username must contain at least 3 characters.";
+
+            return;
+
+        }
+
+
+        if (username.length > 20) {
+
+            usernameMessage.textContent =
+
+                "Username cannot be longer than 20 characters.";
+
+            return;
+
+        }
+
+
+        if (
+            !/^[a-zA-Z0-9_]+$/
+            .test(username)
+        ) {
+
+            usernameMessage.textContent =
+
+                "Use only letters, numbers and underscores.";
+
+            return;
+
+        }
+
+
+        try {
+
+            saveUsernameButton.disabled =
+                true;
+
+            saveUsernameButton.textContent =
+                "Creating username...";
+
+
+            const usernameId =
+
+                username.toLowerCase();
+
+
+            const usernameReference =
+
+                doc(
+                    db,
+                    "usernames",
+                    usernameId
+                );
+
+
+            const usernameSnapshot =
+
+                await getDoc(
+                    usernameReference
+                );
+
+
+            /* USERNAME ALREADY EXISTS */
+
+            if (
+                usernameSnapshot.exists()
+            ) {
+
+                usernameMessage.textContent =
+
+                    "This username is already taken. Try another one.";
+
+                saveUsernameButton.disabled =
+                    false;
+
+                saveUsernameButton.innerHTML =
+
+                    `<i class="fa-solid fa-check"></i>
+                    Create Username`;
+
+                return;
+
+            }
+
+            /* GET OLD USERNAME */
+
+const userProfileReference =
+
+    doc(
+        db,
+        "users",
+        user.uid
+    );
+
+
+const oldUserSnapshot =
+
+    await getDoc(
+        userProfileReference
+    );
+
+
+let oldUsernameId = "";
+
+
+if (
+    oldUserSnapshot.exists() &&
+    oldUserSnapshot.data().usernameLower
+) {
+
+    oldUsernameId =
+
+        oldUserSnapshot
+        .data()
+        .usernameLower;
+
+}
+
+
+/* REMOVE OLD USERNAME */
+
+if (
+    oldUsernameId &&
+    oldUsernameId !== usernameId
+) {
+
+    await deleteDoc(
+
+        doc(
+            db,
+            "usernames",
+            oldUsernameId
+        )
+
+    );
+
+}
+
+            /* SAVE USER PROFILE */
+
+            await setDoc(
+                userProfileReference,
+
+                {
+
+                    username:
+                        username,
+
+                    usernameLower:
+                        usernameId,
+
+                    email:
+                        user.email || "",
+
+                    photoURL:
+                        user.photoURL || "",
+
+                    userId:
+                        user.uid
+
+                },
+
+                {
+                    merge: true
+                }
+
+            );
+
+
+            /* RESERVE UNIQUE USERNAME */
+
+            await setDoc(
+
+                usernameReference,
+
+                {
+
+                    userId:
+                        user.uid,
+
+                    username:
+                        username
+
+                }
+
+            );
+
+
+            /* SHOW USERNAME */
+
+            profileMenuName.textContent =
+                `@${username}`;
+
+            fullProfileName.textContent =
+                `@${username}`;
+
+
+            usernameOverlay.classList.remove(
+                "show"
+            );
+
+            document.body.style.overflow =
+                "";
+
+
+            usernameInput.value =
+                "";
+
+            usernameMessage.textContent =
+                "";
+
+
+            alert(
+                `Welcome @${username}! 🍿`
+            );
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+
+                "Username saving error:",
+
+                error
+
+            );
+
+
+            usernameMessage.textContent =
+
+                "Username could not be saved. Please try again.";
+
+
+            saveUsernameButton.disabled =
+                false;
+
+
+            saveUsernameButton.innerHTML =
+
+                `<i class="fa-solid fa-check"></i>
+                Create Username`;
+
+        }
+
+    }
+
+);
+
+/* =========================================
+   CHECK USERNAME AFTER LOGIN 🍿
+========================================= */
+
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+
+        checkUserUsername();
+
+    } else {
+
+        usernameOverlay.classList.remove(
+            "show"
+        );
+
+        document.body.style.overflow = "";
+
+    }
+
+});
+/* =========================================
+   OPEN CHANGE USERNAME POPUP ✏️
+========================================= */
+
+const changeUsernameButton =
+    document.getElementById(
+        "changeUsernameButton"
+    );
+
+
+if (changeUsernameButton) {
+
+    changeUsernameButton.addEventListener(
+
+        "click",
+
+        async () => {
+
+            const user =
+                auth.currentUser;
+
+
+            if (!user) {
+
+                alert(
+                    "Please sign in first 🍿"
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const userSnapshot =
+
+                    await getDoc(
+
+                        doc(
+                            db,
+                            "users",
+                            user.uid
+                        )
+
+                    );
+
+
+                if (
+                    userSnapshot.exists()
+                ) {
+
+                    usernameInput.value =
+
+                        userSnapshot
+                        .data()
+                        .username || "";
+
+                }
+
+
+                usernameMessage.textContent =
+                    "";
+
+
+                usernameOverlay.classList.add(
+                    "show"
+                );
+
+
+                fullProfileOverlay.classList.remove(
+                    "show"
+                );
+
+
+                document.body.style.overflow =
+                    "hidden";
+
+
+                setTimeout(() => {
+
+                    usernameInput.focus();
+
+                    usernameInput.select();
+
+                }, 300);
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+
+                    "Change username error:",
+
+                    error
+
+                );
+
+
+                alert(
+
+                    "Could not open the username editor."
+
+                );
+
+            }
+
+        }
+
+    );
+
+}
