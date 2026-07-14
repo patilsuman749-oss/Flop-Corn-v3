@@ -2255,79 +2255,329 @@ themeLamp.addEventListener(
 
     }
 );
-
 /* =====================================
-   CHANGING MARVEL DIALOGUES ⚡
+   CHANGING ICONIC MOVIE DIALOGUES 🍿
 ===================================== */
 
 const marvelQuotes = [
 
     {
-        quote:
-            "“I can do this all day.”",
-
-        character:
-            "— Captain America"
+        quote: "“May the Force be with you.”",
+        character: "— Star Wars"
     },
 
     {
-        quote:
-            "“We are Groot.”",
-
-        character:
-            "— Groot"
+        quote: "“I'll be back.”",
+        character: "— The Terminator"
     },
 
     {
-        quote:
-            "“Wakanda Forever!”",
-
-        character:
-            "— Black Panther"
+        quote: "“Why so serious?”",
+        character: "— The Dark Knight"
     },
 
     {
-        quote:
-            "“Higher, further, faster.”",
-
-        character:
-            "— Captain Marvel"
+        quote: "“I'm the king of the world!”",
+        character: "— Titanic"
     },
 
     {
-        quote:
-            "“Part of the journey is the end.”",
+        quote: "“Life is like a box of chocolates.”",
+        character: "— Forrest Gump"
+    },
 
-        character:
-            "— Tony Stark"
+    {
+        quote: "“You can't handle the truth!”",
+        character: "— A Few Good Men"
+    },
+
+    {
+        quote: "“Keep your friends close, but your enemies closer.”",
+        character: "— The Godfather Part II"
+    },
+
+    {
+        quote: "“Say hello to my little friend!”",
+        character: "— Scarface"
+    },
+
+    {
+        quote: "“To infinity and beyond!”",
+        character: "— Toy Story"
+    },
+
+    {
+        quote: "“There's no place like home.”",
+        character: "— The Wizard of Oz"
+    },
+
+    {
+        quote: "“Houston, we have a problem.”",
+        character: "— Apollo 13"
+    },
+
+    {
+        quote: "“I see dead people.”",
+        character: "— The Sixth Sense"
+    },
+
+    {
+        quote: "“Carpe diem. Seize the day.”",
+        character: "— Dead Poets Society"
+    },
+
+    {
+        quote: "“Roads? Where we're going, we don't need roads.”",
+        character: "— Back to the Future"
+    },
+
+    {
+        quote: "“You shall not pass!”",
+        character: "— The Lord of the Rings"
+    },
+
+    {
+        quote: "“My precious.”",
+        character: "— The Lord of the Rings"
+    },
+
+    {
+        quote: "“After all this time?”",
+        character: "— Harry Potter and the Deathly Hallows"
+    },
+
+    {
+        quote: "“Always.”",
+        character: "— Harry Potter and the Deathly Hallows"
+    },
+
+    {
+        quote: "“I am Iron Man.”",
+        character: "— Iron Man"
+    },
+
+    {
+        quote: "“Avengers... Assemble!”",
+        character: "— Avengers: Endgame"
+    },
+
+    {
+        quote: "“I can do this all day.”",
+        character: "— Captain America: The First Avenger"
+    },
+
+    {
+        quote: "“Whatever it takes.”",
+        character: "— Avengers: Endgame"
+    },
+
+    {
+        quote: "“Wakanda Forever!”",
+        character: "— Black Panther"
+    },
+
+    {
+        quote: "“With great power comes great responsibility.”",
+        character: "— Spider-Man"
+    },
+
+    {
+        quote: "“I'm Batman.”",
+        character: "— Batman"
+    },
+
+    {
+        quote: "“I am vengeance.”",
+        character: "— The Batman"
+    },
+
+    {
+        quote: "“Why do we fall? So we can learn to pick ourselves up.”",
+        character: "— Batman Begins"
+    },
+
+    {
+        quote: "“Some men just want to watch the world burn.”",
+        character: "— The Dark Knight"
+    },
+
+    {
+        quote: "“You either die a hero or live long enough to become the villain.”",
+        character: "— The Dark Knight"
+    },
+
+    {
+        quote: "“Maximum effort.”",
+        character: "— Deadpool"
+    },
+
+    {
+        quote: "“We are Groot.”",
+        character: "— Guardians of the Galaxy"
+    },
+
+    {
+        quote: "“I am Groot.”",
+        character: "— Guardians of the Galaxy"
+    },
+
+    {
+        quote: "“Dormammu, I've come to bargain.”",
+        character: "— Doctor Strange"
+    },
+
+    {
+        quote: "“We have a Hulk.”",
+        character: "— The Avengers"
+    },
+
+    {
+        quote: "“Puny God.”",
+        character: "— The Avengers"
+    },
+
+    {
+        quote: "“I'm always angry.”",
+        character: "— The Avengers"
+    },
+
+    {
+        quote: "“I am inevitable.”",
+        character: "— Avengers: Endgame"
+    },
+
+    {
+        quote: "“Just keep swimming.”",
+        character: "— Finding Nemo"
+    },
+
+    {
+        quote: "“Ohana means family.”",
+        character: "— Lilo & Stitch"
+    },
+
+    {
+        quote: "“Hakuna Matata.”",
+        character: "— The Lion King"
+    },
+
+    {
+        quote: "“You're gonna need a bigger boat.”",
+        character: "— Jaws"
+    },
+
+    {
+        quote: "“E.T. phone home.”",
+        character: "— E.T. the Extra-Terrestrial"
+    },
+
+    {
+        quote: "“Mogambo khush hua!”",
+        character: "— Mr. India"
+    },
+
+    {
+        quote: "“Kitne aadmi the?”",
+        character: "— Sholay"
+    },
+
+    {
+        quote: "“Jo darr gaya, samjho marr gaya.”",
+        character: "— Sholay"
+    },
+
+    {
+        quote: "“Basanti, in kutton ke saamne mat nachna.”",
+        character: "— Sholay"
+    },
+
+    {
+        quote: "“Bade bade deshon mein aisi chhoti chhoti baatein hoti rehti hain.”",
+        character: "— Dilwale Dulhania Le Jayenge"
+    },
+
+    {
+        quote: "“Palat... Palat... Palat!”",
+        character: "— Dilwale Dulhania Le Jayenge"
+    },
+
+    {
+        quote: "“Don ko pakadna mushkil hi nahi, namumkin hai.”",
+        character: "— Don"
+    },
+
+    {
+        quote: "“Picture abhi baaki hai mere dost.”",
+        character: "— Om Shanti Om"
+    },
+
+    {
+        quote: "“All is well.”",
+        character: "— 3 Idiots"
+    },
+
+    {
+        quote: "“Jaa Simran, jee le apni zindagi.”",
+        character: "— Dilwale Dulhania Le Jayenge"
+    },
+
+    {
+        quote: "“Mere Karan Arjun aayenge.”",
+        character: "— Karan Arjun"
+    },
+
+    {
+        quote: "“Tension lene ka nahi, sirf dene ka.”",
+        character: "— Munna Bhai M.B.B.S."
+    },
+
+    {
+        quote: "“How's the josh?”",
+        character: "— Uri: The Surgical Strike"
+    },
+
+    {
+        quote: "“Main apni favorite hoon.”",
+        character: "— Jab We Met"
+    },
+
+    {
+        quote: "“Zindagi badi honi chahiye, lambi nahi.”",
+        character: "— Anand"
     }
 
 ];
 
 
-/* GET THE QUOTE ELEMENTS */
+/* GET THE DIALOGUE ELEMENTS */
 
 const marvelQuote =
-    document.getElementById(
-        "marvelQuote"
-    );
+    document.getElementById("marvelQuote");
 
 const marvelCharacter =
-    document.getElementById(
-        "marvelCharacter"
+    document.getElementById("marvelCharacter");
+
+
+/* START WITH A RANDOM DIALOGUE */
+
+let currentMarvelQuote =
+    Math.floor(
+        Math.random() * marvelQuotes.length
     );
 
 
-/* CURRENT QUOTE NUMBER */
+/* SHOW RANDOM DIALOGUE WHEN WEBSITE OPENS */
 
-let currentMarvelQuote = 0;
+marvelQuote.textContent =
+    marvelQuotes[currentMarvelQuote].quote;
+
+marvelCharacter.textContent =
+    marvelQuotes[currentMarvelQuote].character;
 
 
-/* CHANGE DIALOGUE */
+/* CHANGE THE DIALOGUE */
 
 function changeMarvelQuote() {
-
-    /* FADE OUT */
 
     marvelQuote.classList.add(
         "quote-changing"
@@ -2339,30 +2589,55 @@ function changeMarvelQuote() {
 
 
     setTimeout(
+
         function () {
 
+            let newQuote;
+
+
+            /* AVOID SHOWING THE SAME DIALOGUE TWICE */
+
+            do {
+
+                newQuote =
+
+                    Math.floor(
+
+                        Math.random()
+
+                        *
+
+                        marvelQuotes.length
+
+                    );
+
+            }
+
+            while (
+
+                newQuote ===
+                currentMarvelQuote
+
+            );
+
+
             currentMarvelQuote =
-                (
-                    currentMarvelQuote
-                    + 1
-                )
-                %
-                marvelQuotes.length;
+                newQuote;
 
 
             marvelQuote.textContent =
+
                 marvelQuotes[
                     currentMarvelQuote
                 ].quote;
 
 
             marvelCharacter.textContent =
+
                 marvelQuotes[
                     currentMarvelQuote
                 ].character;
 
-
-            /* FADE BACK IN */
 
             marvelQuote.classList.remove(
                 "quote-changing"
