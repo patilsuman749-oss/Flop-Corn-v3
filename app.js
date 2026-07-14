@@ -1,4 +1,4 @@
-import { auth } from "./firebase.js";
+import { auth, signOut } from "./firebase.js";
 /* =========================================
    FLOP CORN 🍿
    PART 3 — COMPLETE APP.JS
@@ -757,11 +757,8 @@ document.querySelectorAll(
 ========================================= */
 
 const loginButton =
-
     document.getElementById(
-
-        "loginButton"
-
+        "signInButton"
     );
 
 
@@ -792,8 +789,16 @@ writeReviewButton.addEventListener("click", () => {
         return;
     }
 
-    alert("Welcome " + user.displayName + "! Review feature coming soon ⭐");
+window.location.href = "#trending";
 
+});
+
+joinCommunityButton.addEventListener("click", () => {
+    if (auth.currentUser) {
+        alert("You are already part of the Flop Corn community 🍿");
+    } else {
+        loginButton.click();
+    }
 });
 
 
@@ -871,3 +876,148 @@ getMovies(
     newMovies
 
 );
+document.querySelectorAll(".view-all-button").forEach((button) => {
+    button.addEventListener("click", () => {
+        const category = button.dataset.category;
+
+        if (category === "trending") {
+            window.location.href =
+                "https://www.themoviedb.org/trending/movie/day";
+        }
+
+        if (category === "new") {
+            window.location.href =
+                "https://www.themoviedb.org/movie/now-playing";
+        }
+    });
+});
+/* =========================
+   USER PROFILE MENU
+========================= */
+
+const profileMenu = document.getElementById("profileMenu");
+const profileMenuPhoto = document.getElementById("profileMenuPhoto");
+const profileMenuName = document.getElementById("profileMenuName");
+const profileMenuEmail = document.getElementById("profileMenuEmail");
+const profileSignOutButton = document.getElementById("profileSignOutButton");
+
+/* Open and close profile menu */
+loginButton.addEventListener("click", (event) => {
+    event.stopImmediatePropagation();
+
+    const user = auth.currentUser;
+
+    if (user) {
+
+        profileMenuName.textContent =
+            user.displayName || "Flop Corn User";
+
+        profileMenuEmail.textContent =
+            user.email || "";
+
+        profileMenuPhoto.src =
+            user.photoURL || "flopcorn-logo.jpeg.jpeg";
+
+        profileMenu.classList.toggle("show");
+    }
+});
+
+/* Close menu when clicking outside */
+document.addEventListener("click", (event) => {
+
+    if (
+        !profileMenu.contains(event.target) &&
+        !loginButton.contains(event.target)
+    ) {
+        profileMenu.classList.remove("show");
+    }
+
+});
+
+/* Sign out */
+profileSignOutButton.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+    profileMenu.classList.remove("show");
+
+});
+/* =====================================
+   FULL USER PROFILE POPUP
+===================================== */
+
+const myProfileButton =
+    document.getElementById("myProfileButton");
+
+const fullProfileOverlay =
+    document.getElementById("fullProfileOverlay");
+
+const closeProfileButton =
+    document.getElementById("closeProfileButton");
+
+const fullProfilePhoto =
+    document.getElementById("fullProfilePhoto");
+
+const fullProfileName =
+    document.getElementById("fullProfileName");
+
+const fullProfileEmail =
+    document.getElementById("fullProfileEmail");
+
+
+/* OPEN FULL PROFILE */
+
+if (myProfileButton && fullProfileOverlay) {
+
+    myProfileButton.addEventListener("click", () => {
+
+        const user = auth.currentUser;
+
+        if (!user) return;
+
+        fullProfilePhoto.src =
+            user.photoURL || "flopcorn-logo.jpeg.jpeg";
+
+        fullProfileName.textContent =
+            user.displayName || "Flop Corn User";
+
+        fullProfileEmail.textContent =
+            user.email || "Email not available";
+
+        fullProfileOverlay.classList.add("show");
+
+        profileMenu.classList.remove("show");
+
+    });
+
+}
+
+
+/* CLOSE USING X BUTTON */
+
+if (closeProfileButton) {
+
+    closeProfileButton.addEventListener("click", () => {
+
+        fullProfileOverlay.classList.remove("show");
+
+    });
+
+}
+
+
+/* CLOSE BY CLICKING OUTSIDE */
+
+if (fullProfileOverlay) {
+
+    fullProfileOverlay.addEventListener("click", (event) => {
+
+        if (event.target === fullProfileOverlay) {
+
+            fullProfileOverlay.classList.remove("show");
+
+        }
+
+    });
+
+}

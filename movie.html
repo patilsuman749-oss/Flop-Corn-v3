@@ -949,6 +949,277 @@
 
         }
 
+        /* ===============================
+   MODERN AUDIENCE REVIEWS
+=============================== */
+
+.public-reviews-section {
+    width: 100%;
+    max-width: 950px;
+    margin: 45px auto;
+    padding: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 25px;
+    background: rgba(10, 10, 10, 0.92);
+}
+
+.public-reviews-section h2 {
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+#publicReviews {
+    display: grid;
+    gap: 18px;
+}
+
+#publicReviews .review-card {
+    padding: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #181818,
+            #101010
+        );
+
+    transition: 0.25s;
+}
+
+#publicReviews .review-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 210, 28, 0.35);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.35);
+}
+
+#publicReviews .review-card h3 {
+    margin-bottom: 9px;
+    color: white;
+    font-size: 18px;
+}
+
+#publicReviews .review-card strong {
+    display: inline-block;
+
+    padding: 7px 11px;
+    border-radius: 9px;
+
+    color: #ffd21c;
+    background: rgba(255, 210, 28, 0.1);
+
+    font-size: 14px;
+}
+
+#publicReviews .review-card p {
+    margin: 15px 0 0;
+
+    color: #d2d2d2;
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* ===============================
+   VIEW ALL REVIEWS BUTTON
+=============================== */
+
+.extra-review {
+    display: none;
+}
+
+.view-all-reviews {
+    width: 100%;
+
+    margin-top: 10px;
+    padding: 14px 20px;
+
+    border: 1px solid rgba(255, 210, 28, 0.35);
+    border-radius: 12px;
+
+    color: #ffd21c;
+    background: rgba(255, 210, 28, 0.08);
+
+    font-size: 15px;
+    font-weight: 800;
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.view-all-reviews:hover {
+    color: #111;
+    background: #ffd21c;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(255, 210, 28, 0.2);
+}
+
+/* ===============================
+   MODERN WRITE REVIEW FORM
+=============================== */
+
+.review-modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    margin-top: 25px;
+}
+
+.review-modal .review-box {
+    width: 100%;
+    max-width: 650px;
+
+    padding: 35px;
+
+    border: 1px solid rgba(255, 210, 28, 0.25);
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #181818,
+            #0d0d0d
+        );
+
+    box-shadow:
+        0 25px 60px
+        rgba(0, 0, 0, 0.5);
+}
+
+.review-modal .review-box h2 {
+    margin-bottom: 28px;
+
+    color: white;
+
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.review-modal label {
+    display: block;
+
+    margin: 18px 0 9px;
+
+    color: #eeeeee;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+#userRating,
+#userReview {
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 12px;
+
+    color: white;
+    background: #101010;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.25s;
+}
+
+#userRating:focus,
+#userReview:focus {
+    border-color: #ffd21c;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255, 210, 28, 0.1);
+}
+
+#userReview {
+    min-height: 130px;
+
+    resize: vertical;
+}
+
+.review-buttons {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 24px;
+}
+
+#cancelReview,
+#submitReview {
+    padding: 13px 20px;
+
+    border-radius: 11px;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    transition: 0.25s;
+}
+
+#cancelReview {
+    border: 1px solid
+        rgba(255, 255, 255, 0.15);
+
+    color: #dddddd;
+    background: #1b1b1b;
+}
+
+#cancelReview:hover {
+    color: white;
+
+    background: #292929;
+}
+
+#submitReview {
+    border: none;
+
+    color: #090909;
+    background: #ffd21c;
+}
+
+#submitReview:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(255, 210, 28, 0.25);
+}
+
+@media (max-width: 550px) {
+
+    .review-modal .review-box {
+        padding: 24px;
+    }
+
+    .review-buttons {
+        flex-direction: column;
+    }
+
+    #cancelReview,
+    #submitReview {
+        width: 100%;
+    }
+}
+
 
         /* ===============================
            ERROR
@@ -1121,7 +1392,57 @@
             }
 
         }
+/* ===============================
+   DELETE REVIEW BUTTON
+=============================== */
 
+.delete-review {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-top: 12px;
+    padding: 10px 16px;
+
+    border: 1px solid rgba(255, 70, 70, 0.4);
+    border-radius: 10px;
+
+    color: #ff6262;
+    background: rgba(255, 50, 50, 0.1);
+
+    font-size: 13px;
+    font-weight: 800;
+
+    transition: 0.25s;
+}
+
+.delete-review:hover {
+    color: white;
+    background: #e53935;
+    border-color: #e53935;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(229, 57, 53, 0.3);
+}
+
+.flopcorn-logo-img {
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+.logo-icon {
+    width: 46px;
+    height: 46px;
+    overflow: hidden;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
     </style>
 
 </head>
@@ -1141,7 +1462,7 @@
 
             <div class="logo-icon">
 
-                🍿
+                <img src="flopcorn-logo.jpeg.jpeg" class="flopcorn-logo-img" alt="Flop Corn Logo">
 
             </div>
 
@@ -1356,7 +1677,7 @@
 
     <div class="review-box">
 
-        <h2>Write a Review 🍿</h2>
+        <h2>Write a Review</h2>
 
         <label>Your Rating (1-10)</label>
 
@@ -1424,11 +1745,6 @@
     </div>
 
 </section>
-
-
-</button>
-
-                        </button>
 
 
                         <button
@@ -1501,7 +1817,7 @@
 
                 <h2>
 
-                    What did you think? 🍿
+                    What did you think?
 
                 </h2>
 
@@ -1599,7 +1915,13 @@ import { auth, db } from "./firebase.js";
 import {
     collection,
     addDoc,
-    serverTimestamp
+    serverTimestamp,
+    query,
+    where,
+    orderBy,
+    onSnapshot,
+    deleteDoc,
+    doc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
@@ -2276,6 +2598,187 @@ movieTitle: currentMovie.title,
     );
 
 }
+
+});
+
+// ===============================
+// LOAD PUBLIC REVIEWS
+// ===============================
+
+const publicReviews =
+    document.getElementById("publicReviews");
+
+const reviewsQuery = query(
+    collection(db, "reviews"),
+    where("movieId", "==", Number(movieId))
+);
+
+onSnapshot(reviewsQuery, (snapshot) => {
+
+    publicReviews.innerHTML = "";
+
+    if (snapshot.empty) {
+
+        publicReviews.innerHTML =
+            "<p>No reviews yet. Be the first to review!</p>";
+
+        return;
+    }
+
+    snapshot.forEach((reviewDocument) => {
+
+        const reviewData = reviewDocument.data();
+
+        const reviewCard =
+            document.createElement("div");
+
+        reviewCard.className = "review-card";
+
+        const isMyReview =
+            auth.currentUser &&
+            auth.currentUser.email === reviewData.userEmail;
+
+        reviewCard.innerHTML = `
+
+            <h3>
+                ${reviewData.userName}
+            </h3>
+
+            <strong>
+                ⭐ ${reviewData.rating}/10
+            </strong>
+
+            <p>
+                ${reviewData.review}
+            </p>
+
+            ${
+                isMyReview
+
+                ?
+
+                `<button
+                    class="delete-review"
+                    data-id="${reviewDocument.id}">
+                    🗑️ Delete Review
+                </button>`
+
+                :
+
+                ""
+            }
+
+        `;
+
+        const reviewNumber = publicReviews.children.length;
+
+if (reviewNumber >= 3) {
+    reviewCard.classList.add("extra-review");
+}
+
+publicReviews.appendChild(reviewCard);
+
+    });
+
+
+// ===============================
+// VIEW ALL / SHOW LESS REVIEWS
+// ===============================
+
+if (snapshot.size > 3) {
+
+    const viewAllButton =
+        document.createElement("button");
+
+    viewAllButton.className =
+        "view-all-reviews";
+
+    viewAllButton.textContent =
+        `View All Reviews (${snapshot.size})`;
+
+    viewAllButton.addEventListener(
+        "click",
+        () => {
+
+            const extraReviews =
+                document.querySelectorAll(
+                    ".extra-review"
+                );
+
+            const reviewsAreOpen =
+                viewAllButton.classList.contains(
+                    "open"
+                );
+
+            extraReviews.forEach((review) => {
+
+                review.style.display =
+                    reviewsAreOpen
+                    ? "none"
+                    : "block";
+
+            });
+
+            viewAllButton.textContent =
+                reviewsAreOpen
+                ? `View All Reviews (${snapshot.size})`
+                : "Show Less";
+
+            viewAllButton.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+    publicReviews.appendChild(
+        viewAllButton
+    );
+
+}
+});
+
+// ===============================
+// DELETE REVIEW
+// ===============================
+
+publicReviews.addEventListener("click", async (event) => {
+
+    const deleteButton =
+        event.target.closest(".delete-review");
+
+    if (!deleteButton) {
+        return;
+    }
+
+    const confirmDelete = confirm(
+        "Are you sure you want to delete your review? 🗑️"
+    );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    try {
+
+        const reviewId =
+            deleteButton.dataset.id;
+
+        await deleteDoc(
+            doc(db, "reviews", reviewId)
+        );
+
+        alert("Review deleted successfully 🍿");
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Could not delete the review. Please try again."
+        );
+
+    }
 
 });
     </script>

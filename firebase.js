@@ -36,6 +36,7 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export { signOut };
 
 const provider = new GoogleAuthProvider();
 
@@ -55,15 +56,12 @@ if (signInButton) {
 
     signInButton.addEventListener("click", async () => {
 
+        // If already logged in, app.js will open the profile menu
         if (auth.currentUser) {
-
-            if (confirm("Sign out?")) {
-                await signOut(auth);
-            }
-
             return;
         }
 
+        // If not logged in, open Google login
         try {
 
             await signInWithPopup(auth, provider);
@@ -72,10 +70,10 @@ if (signInButton) {
 
             console.error(error);
 
-alert(
-    error.code + "\n\n" +
-    error.message
-);
+            alert(
+                error.code + "\n\n" +
+                error.message
+            );
 
         }
 

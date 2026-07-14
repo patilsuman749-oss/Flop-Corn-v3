@@ -53,7 +53,7 @@
         <a href="index.html" class="logo">
 
             <div class="logo-icon">
-                🍿
+            <img src="flopcorn-logo.jpeg.jpeg" class="flopcorn-logo-img" alt="Flop Corn Logo">
             </div>
 
             <div class="logo-text">
@@ -110,6 +110,31 @@
                 </span>
 
             </button>
+
+            <div class="profile-menu" id="profileMenu">
+
+    <img
+        id="profileMenuPhoto"
+        class="profile-menu-photo"
+        src=""
+        alt="Profile"
+    >
+
+    <h3 id="profileMenuName">Flop Corn User</h3>
+
+    <p id="profileMenuEmail"></p>
+
+    <button id="myProfileButton">
+        <i class="fa-solid fa-user"></i>
+        My Profile
+    </button>
+
+    <button id="profileSignOutButton">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Sign Out
+    </button>
+
+</div>
 
 
             <button
@@ -271,29 +296,10 @@
 
                 <div class="hero-buttons">
 
-                    <a
-                        href="#trending"
-                        class="primary-button"
-                    >
-
-                        <i class="fa-solid fa-play"></i>
-
-                        Explore Movies
-
-                    </a>
-
-
-                    <button
-                        class="secondary-button"
-                        id="writeReviewButton"
-                    >
-
-                        <i class="fa-solid fa-pen"></i>
-
-                        Write a Review
-
-                    </button>
-
+        <a href="#trending"button" id="writeReviewButton">
+    <i class="fa-solid fa-star"></i>
+    Write a Review
+</a>
                 </div>
 
 
@@ -494,8 +500,8 @@
 
         <section
             class="review-section"
-            id="reviews"
-        >
+           id="reviews"
+            >
 
             <div class="review-banner">
 
@@ -548,7 +554,7 @@
 
                     <!-- FLOP CORN METER -->
 <div class="flopcorn-meter">
-    <h3>🍿 FLOP CORN METER</h3>
+   <img src="flopcorn-logo.jpeg.jpeg" class="small-flopcorn-logo" alt="Flop Corn Logo">
 
     <div class="meter-track">
         <div class="meter-fill" id="meterFill"></div>
@@ -652,7 +658,7 @@
 
             <div class="footer-logo">
 
-                🍿
+                <img src="flopcorn-logo.jpeg.jpeg" class="small-flopcorn-logo" alt="Flop Corn Logo">
 
                 <strong>
 
@@ -692,12 +698,12 @@
             </div>
 
 
-            <div class="footer-bottom">
+            <img src="flopcorn-logo.jpeg.jpeg" class="small-flopcorn-logo" alt="Flop Corn Logo">
 
                 <span>
 
-                    © 2026 Flop Corn.
-                    Made for movie lovers 🍿
+                    © 2026 Flop Corn. Created by Suman Patil.
+                    Made for movie lovers
 
                 </span>
 
@@ -714,8 +720,50 @@
 
     </main>
 
-<script type="module" src="firebase.js"></script>
 <script type="module" src="app.js"></script>
+<!-- FLOP CORN FULL PROFILE POPUP -->
 
+<div class="full-profile-overlay" id="fullProfileOverlay">
+
+    <div class="full-profile-card">
+
+        <button class="close-profile-button" id="closeProfileButton">
+            ×
+        </button>
+
+        <img
+            id="fullProfilePhoto"
+            class="full-profile-photo"
+            src=""
+            alt="User Profile"
+        >
+
+        <h2 id="fullProfileName">Flop Corn User</h2>
+
+        <p id="fullProfileEmail"></p>
+
+        <div class="profile-divider"></div>
+
+        <div class="profile-details">
+
+            <div>
+                <strong>🍿 Flop Corn</strong>
+                <span>Movie Reviewer</span>
+            </div>
+
+            <div>
+                <strong>⭐ Reviews</strong>
+                <span>More details coming soon</span>
+            </div>
+
+        </div>
+
+        <p class="profile-member-text">
+            🎬 Member of the Flop Corn community
+        </p>
+
+    </div>
+
+</div>
 </body>
 </html>
