@@ -2174,3 +2174,219 @@ if (changeUsernameButton) {
     );
 
 }
+/* =====================================
+   FLOP CORN LIGHT & DARK MODE 💡
+===================================== */
+
+const themeLamp =
+    document.getElementById("themeLamp");
+
+
+/* LOAD THE SAVED THEME */
+
+const savedTheme =
+    localStorage.getItem("flopCornTheme");
+
+
+if (savedTheme === "light") {
+
+    document.body.classList.add(
+        "light-mode"
+    );
+
+    themeLamp.classList.add(
+        "lamp-on"
+    );
+
+    themeLamp.title =
+        "Turn the lights off";
+
+}
+
+
+/* SWITCH THE THEME */
+
+themeLamp.addEventListener(
+    "click",
+    function () {
+
+        document.body.classList.toggle(
+            "light-mode"
+        );
+
+
+        const lightModeIsOn =
+            document.body.classList.contains(
+                "light-mode"
+            );
+
+
+        if (lightModeIsOn) {
+
+            themeLamp.classList.add(
+                "lamp-on"
+            );
+
+            themeLamp.title =
+                "Turn the lights off";
+
+            localStorage.setItem(
+                "flopCornTheme",
+                "light"
+            );
+
+        }
+
+        else {
+
+            themeLamp.classList.remove(
+                "lamp-on"
+            );
+
+            themeLamp.title =
+                "Turn the lights on";
+
+            localStorage.setItem(
+                "flopCornTheme",
+                "dark"
+            );
+
+        }
+
+    }
+);
+
+/* =====================================
+   CHANGING MARVEL DIALOGUES ⚡
+===================================== */
+
+const marvelQuotes = [
+
+    {
+        quote:
+            "“I can do this all day.”",
+
+        character:
+            "— Captain America"
+    },
+
+    {
+        quote:
+            "“We are Groot.”",
+
+        character:
+            "— Groot"
+    },
+
+    {
+        quote:
+            "“Wakanda Forever!”",
+
+        character:
+            "— Black Panther"
+    },
+
+    {
+        quote:
+            "“Higher, further, faster.”",
+
+        character:
+            "— Captain Marvel"
+    },
+
+    {
+        quote:
+            "“Part of the journey is the end.”",
+
+        character:
+            "— Tony Stark"
+    }
+
+];
+
+
+/* GET THE QUOTE ELEMENTS */
+
+const marvelQuote =
+    document.getElementById(
+        "marvelQuote"
+    );
+
+const marvelCharacter =
+    document.getElementById(
+        "marvelCharacter"
+    );
+
+
+/* CURRENT QUOTE NUMBER */
+
+let currentMarvelQuote = 0;
+
+
+/* CHANGE DIALOGUE */
+
+function changeMarvelQuote() {
+
+    /* FADE OUT */
+
+    marvelQuote.classList.add(
+        "quote-changing"
+    );
+
+    marvelCharacter.classList.add(
+        "quote-changing"
+    );
+
+
+    setTimeout(
+        function () {
+
+            currentMarvelQuote =
+                (
+                    currentMarvelQuote
+                    + 1
+                )
+                %
+                marvelQuotes.length;
+
+
+            marvelQuote.textContent =
+                marvelQuotes[
+                    currentMarvelQuote
+                ].quote;
+
+
+            marvelCharacter.textContent =
+                marvelQuotes[
+                    currentMarvelQuote
+                ].character;
+
+
+            /* FADE BACK IN */
+
+            marvelQuote.classList.remove(
+                "quote-changing"
+            );
+
+            marvelCharacter.classList.remove(
+                "quote-changing"
+            );
+
+        },
+
+        400
+
+    );
+
+}
+
+
+/* CHANGE EVERY 5 SECONDS */
+
+setInterval(
+
+    changeMarvelQuote,
+
+    5000
+
+);
