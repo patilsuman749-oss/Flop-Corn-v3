@@ -2818,47 +2818,32 @@ footer > p {
     font-size: 14px;
 }
 
-.flopcorn-logo-img {
-    width: 46px;
-    height: 46px;
-    object-fit: cover;
-    border-radius: 12px;
-    display: block;
-}
-
-.logo-icon {
-    width: 46px;
-    height: 46px;
-    overflow: hidden;
-    border-radius: 12px;
-    flex-shrink: 0;
-}
-
-.small-flopcorn-logo {
-    width: 35px;
-    height: 35px;
-    object-fit: cover;
-    border-radius: 9px;
-    vertical-align: middle;
-    margin-right: 8px;
-}
-/* =========================
-   USER PROFILE MENU
-========================= */
+/* =================================
+   FIX PROFILE DROPDOWN
+================================= */
 
 .profile-menu {
-    display: none;
     position: absolute;
-    top: 80px;
-    right: 70px;
+    top: 78px;
+    right: 5%;
+
+    display: none;
+
     width: 280px;
-    padding: 25px;
-    background: #111;
-    border: 1px solid #ffd000;
-    border-radius: 18px;
+    padding: 24px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+
+    background: #151515;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.7);
+
     text-align: center;
+
     z-index: 9999;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
 }
 
 .profile-menu.show {
@@ -2868,87 +2853,121 @@ footer > p {
 .profile-menu-photo {
     width: 75px;
     height: 75px;
+
+    margin-bottom: 12px;
+
+    border: 3px solid #ffd21c;
     border-radius: 50%;
+
     object-fit: cover;
-    border: 3px solid #ffd000;
-    margin-bottom: 10px;
 }
 
 .profile-menu h3 {
+    margin-bottom: 5px;
+
     color: white;
-    margin: 5px 0;
+
+    font-size: 20px;
 }
 
 .profile-menu p {
-    color: #aaa;
-    font-size: 13px;
     margin-bottom: 20px;
+
+    color: #aaaaaa;
+
+    font-size: 13px;
+
     overflow-wrap: anywhere;
 }
 
 .profile-menu button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
     width: 100%;
-    padding: 12px;
-    margin-top: 8px;
+
+    margin-top: 10px;
+    padding: 13px;
+
     border: none;
-    border-radius: 10px;
-    background: #222;
+    border-radius: 11px;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+#myProfileButton {
+    color: #111111;
+    background: #ffd21c;
+}
+
+#profileSignOutButton {
     color: white;
-    cursor: pointer;
-    font-weight: bold;
+    background: #292929;
 }
 
-.profile-menu button:hover {
-    background: #ffd000;
-    color: black;
+#profileSignOutButton:hover {
+    background: #e53935;
 }
-
-@media (max-width: 768px) {
-    .profile-menu {
-        top: 70px;
-        right: 15px;
-        width: 250px;
-    }
-}
-
-/* =====================================
-   FULL USER PROFILE POPUP
-===================================== */
+/* FIX FULL PROFILE POPUP */
 
 .full-profile-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
+
     display: none;
     align-items: center;
     justify-content: center;
-    z-index: 99999;
+
+    width: 100%;
+    height: 100%;
+
     padding: 20px;
+
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+
+    z-index: 99999;
 }
 
 .full-profile-overlay.show {
     display: flex;
 }
 
+/* =================================
+   FULL PROFILE POPUP DESIGN 🍿
+================================= */
+
 .full-profile-card {
     position: relative;
+
     width: 100%;
     max-width: 430px;
-    padding: 42px 32px 30px;
-    text-align: center;
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(255, 204, 0, 0.16),
-            transparent 42%
-        ),
-        #111111;
-    border: 1px solid #ffcc00;
+
+    padding: 38px 32px 32px;
+
+    border: 1px solid rgba(255, 210, 28, 0.25);
     border-radius: 26px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b1b1b,
+            #0d0d0d
+        );
+
     box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.8),
-        0 0 35px rgba(255, 204, 0, 0.12);
+        0 30px 90px
+        rgba(0, 0, 0, 0.8);
+
+    text-align: center;
+
     animation: profilePopup 0.3s ease;
 }
 
@@ -2956,111 +2975,184 @@ footer > p {
 
     from {
         opacity: 0;
-        transform: translateY(25px) scale(0.94);
+
+        transform:
+            translateY(25px)
+            scale(0.94);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
-    }
 
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
+
+
+/* CLOSE BUTTON */
 
 .close-profile-button {
     position: absolute;
-    top: 15px;
-    right: 17px;
+
+    top: 16px;
+    right: 16px;
+
+    display: grid;
+
     width: 38px;
     height: 38px;
-    border: 1px solid #444;
+
+    place-items: center;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.12);
+
     border-radius: 50%;
-    background: #202020;
+
     color: white;
-    font-size: 25px;
-    cursor: pointer;
-    transition: 0.2s;
+    background: #292929;
+
+    font-size: 24px;
+
+    transition: 0.25s;
 }
 
 .close-profile-button:hover {
-    color: black;
-    background: #ffcc00;
-    border-color: #ffcc00;
+    color: #111111;
+    background: #ffd21c;
+
     transform: rotate(90deg);
 }
+
+
+/* PROFILE PHOTO */
 
 .full-profile-photo {
     width: 105px;
     height: 105px;
-    object-fit: cover;
+
+    margin-bottom: 17px;
+
+    border: 4px solid #ffd21c;
     border-radius: 50%;
-    border: 4px solid #ffcc00;
-    padding: 3px;
-    background: #111;
-    box-shadow: 0 0 25px rgba(255, 204, 0, 0.3);
+
+    object-fit: cover;
+
+    box-shadow:
+        0 0 35px
+        rgba(255, 210, 28, 0.25);
 }
+
+
+/* USER NAME */
 
 .full-profile-card h2 {
+    margin-bottom: 7px;
+
     color: white;
+
     font-size: 27px;
-    margin: 18px 0 5px;
-    text-transform: capitalize;
+    font-weight: 900;
 }
 
+
+/* EMAIL */
+
 .full-profile-card > p {
-    color: #aaa;
-    margin: 0;
-    word-break: break-word;
+    color: #aaaaaa;
+
+    font-size: 14px;
+
+    overflow-wrap: anywhere;
 }
+
+
+/* DIVIDER */
 
 .profile-divider {
     width: 100%;
     height: 1px;
+
     margin: 25px 0;
-    background: linear-gradient(
-        to right,
-        transparent,
-        #ffcc00,
-        transparent
-    );
+
+    background:
+        rgba(255, 255, 255, 0.1);
 }
+
+
+/* PROFILE INFORMATION */
 
 .profile-details {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 13px;
 }
 
 .profile-details div {
-    padding: 17px 10px;
-    background: #191919;
-    border: 1px solid #2d2d2d;
+    padding: 18px 10px;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.08);
+
     border-radius: 15px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
 }
 
 .profile-details strong {
     display: block;
-    color: #ffcc00;
+
     margin-bottom: 7px;
+
+    color: #ffd21c;
+
+    font-size: 15px;
 }
 
 .profile-details span {
-    color: #aaa;
-    font-size: 13px;
+    color: #aaaaaa;
+
+    font-size: 12px;
 }
 
+
+/* MEMBER MESSAGE */
+
+.full-profile-card
 .profile-member-text {
-    margin-top: 24px !important;
-    padding: 12px;
-    color: white !important;
-    background: rgba(255, 204, 0, 0.08);
+
+    margin-top: 22px;
+
+    padding: 13px;
+
+    border: 1px solid
+        rgba(255, 210, 28, 0.18);
+
     border-radius: 12px;
-    font-size: 14px;
+
+    color: #ffd21c;
+
+    background:
+        rgba(255, 210, 28, 0.07);
+
+    font-size: 13px;
+    font-weight: 700;
 }
+
+
+/* MOBILE */
 
 @media (max-width: 500px) {
 
     .full-profile-card {
-        padding: 38px 20px 25px;
+        padding:
+            34px 20px 25px;
     }
 
     .profile-details {
@@ -3068,18 +3160,157 @@ footer > p {
     }
 
 }
-/* FIX PROFILE DROPDOWN POSITION */
 
-.navbar-right {
-    position: relative;
+/* FIX FOOTER LOGO SIZE */
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.profile-menu {
-    top: 58px;
-    right: 0;
+.footer-logo .small-flopcorn-logo {
+    width: 45px;
+    height: 45px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    flex-shrink: 0;
 }
 
-.profile-menu-photo {
-    display: block;
-    margin: 0 auto 12px;
+.footer-logo strong {
+    font-size: 22px;
+}
+
+.footer-logo strong span {
+    color: #ffd21c;
+}
+
+/* =================================
+   MY WATCHLIST ❤️
+================================= */
+
+.watchlist-heading {
+    width: 100%;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.watchlist-heading h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.watchlist-heading h3 i {
+    color: #ffd21c;
+    margin-right: 7px;
+}
+
+.watchlist-heading p {
+    margin: 5px 0 15px;
+    color: #9b9b9b;
+    font-size: 14px;
+}
+
+.profile-watchlist {
+    width: 100%;
+    max-height: 280px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding-right: 4px;
+}
+
+.watchlist-movie-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px;
+    background: #202020;
+    border: 1px solid #333333;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.watchlist-movie-card:hover {
+    border-color: #ffd21c;
+    transform: translateY(-2px);
+}
+
+.watchlist-movie-card img {
+    width: 52px;
+    height: 76px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.watchlist-movie-card div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    text-align: left;
+}
+
+.watchlist-movie-card strong {
+    color: white;
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+.watchlist-movie-card span {
+    color: #ffd21c;
+    font-size: 13px;
+}
+
+.watchlist-message {
+    grid-column: 1 / -1;
+    color: #aaaaaa;
+    text-align: center;
+    padding: 20px 10px;
+    line-height: 1.7;
+}
+
+.profile-watchlist::-webkit-scrollbar {
+    width: 5px;
+}
+
+.profile-watchlist::-webkit-scrollbar-thumb {
+    background: #ffd21c;
+    border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+
+    .profile-watchlist {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* FIX PROFILE POPUP SCROLL */
+
+.full-profile-overlay {
+    overflow-y: auto;
+    padding: 30px 15px;
+}
+
+.full-profile-card {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.full-profile-card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.full-profile-card::-webkit-scrollbar-thumb {
+    background: #ffd21c;
+    border-radius: 10px;
 }
