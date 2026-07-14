@@ -4883,3 +4883,1618 @@ button.delete-review-button:active {
     }
 
 }
+/* =====================================
+   FLOP CORN LIGHT & DARK MODE 💡
+===================================== */
+
+
+/* ---------- LAMP BUTTON ---------- */
+
+.theme-lamp {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    color: #777777;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.1);
+
+    border-radius: 13px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    font-size: 19px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.35s ease,
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+/* LAMP HOVER */
+
+.theme-lamp:hover {
+
+    color:
+        #ffd21c;
+
+    border-color:
+        rgba(255, 210, 28, 0.4);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* LAMP TURNING ON */
+
+.theme-lamp.lamp-on {
+
+    color:
+        #ffd21c;
+
+    border-color:
+        rgba(255, 210, 28, 0.65);
+
+    background:
+        rgba(255, 210, 28, 0.13);
+
+    box-shadow:
+
+        0 0 12px
+        rgba(255, 210, 28, 0.5),
+
+        0 0 30px
+        rgba(255, 210, 28, 0.25);
+
+}
+
+
+/* LIGHT BULB GLOW */
+
+.theme-lamp.lamp-on i {
+
+    animation:
+        lampGlow
+        1.8s ease-in-out
+        infinite alternate;
+
+}
+
+
+@keyframes lampGlow {
+
+    from {
+
+        filter:
+            drop-shadow(
+                0 0 3px
+                rgba(
+                    255,
+                    210,
+                    28,
+                    0.5
+                )
+            );
+
+    }
+
+    to {
+
+        filter:
+            drop-shadow(
+                0 0 9px
+                rgba(
+                    255,
+                    210,
+                    28,
+                    1
+                )
+            );
+
+    }
+
+}
+
+
+/* LAMP CLICK ANIMATION */
+
+.theme-lamp:active {
+
+    transform:
+        scale(0.88);
+
+}
+
+
+/* =====================================
+   LIGHT MODE ☀️
+===================================== */
+
+body.light-mode {
+
+    color:
+        #181818;
+
+    background:
+        #f5f3ed;
+
+}
+
+
+/* NAVBAR */
+
+body.light-mode
+.navbar {
+
+    border-bottom:
+        1px solid
+        rgba(0, 0, 0, 0.09);
+
+    background:
+        rgba(255, 255, 255, 0.88);
+
+}
+
+
+/* LOGO */
+
+body.light-mode
+.logo-text {
+
+    color:
+        #151515;
+
+}
+
+
+/* NAVIGATION LINKS */
+
+body.light-mode
+.nav-links a {
+
+    color:
+        #555555;
+
+}
+
+
+body.light-mode
+.nav-links a:hover {
+
+    color:
+        #111111;
+
+    background:
+        rgba(0, 0, 0, 0.06);
+
+}
+
+
+body.light-mode
+.nav-links a.active {
+
+    color:
+        #b88900;
+
+    background:
+        rgba(255, 210, 28, 0.18);
+
+}
+
+
+/* SEARCH AND MENU BUTTONS */
+
+body.light-mode
+.search-button,
+
+body.light-mode
+.mobile-menu-button {
+
+    color:
+        #222222;
+
+    border-color:
+        rgba(0, 0, 0, 0.12);
+
+    background:
+        rgba(0, 0, 0, 0.04);
+
+}
+
+
+/* LAMP IN LIGHT MODE */
+
+body.light-mode
+.theme-lamp {
+
+    background:
+        #fff8d8;
+
+}
+
+
+/* MOVIE SECTIONS */
+
+body.light-mode
+.movie-section {
+
+    background:
+        #f5f3ed;
+
+}
+
+
+/* SECTION TITLES */
+
+body.light-mode
+.section-heading h2,
+
+body.light-mode
+.language-heading h2 {
+
+    color:
+        #181818;
+
+}
+
+
+/* MOVIE CARDS */
+
+body.light-mode
+.movie-card {
+
+    color:
+        #181818;
+
+    border-color:
+        rgba(0, 0, 0, 0.1);
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.08);
+
+}
+
+
+body.light-mode
+.movie-card:hover {
+
+    border-color:
+        rgba(210, 165, 0, 0.55);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.15);
+
+}
+
+
+/* MOVIE INFORMATION */
+
+body.light-mode
+.movie-info h3 {
+
+    color:
+        #181818;
+
+}
+
+
+body.light-mode
+.movie-details {
+
+    color:
+        #707070;
+
+}
+
+
+/* LANGUAGE SECTION */
+
+body.light-mode
+.language-section {
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            rgba(
+                255,
+                210,
+                28,
+                0.18
+            ),
+
+            #f5f3ed
+
+        );
+
+}
+
+
+/* LANGUAGE BUTTONS */
+
+body.light-mode
+.language-button {
+
+    color:
+        #202020;
+
+    border-color:
+        rgba(180, 140, 0, 0.35);
+
+    background:
+        #ffffff;
+
+}
+
+
+/* REVIEWS */
+
+body.light-mode
+.review-section {
+
+    background:
+        #f5f3ed;
+
+}
+
+
+body.light-mode
+.public-review-card {
+
+    color:
+        #181818 !important;
+
+    border-color:
+        #dedede !important;
+
+    background:
+        #ffffff !important;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.07);
+
+}
+
+
+body.light-mode
+.public-review-card strong {
+
+    color:
+        #181818 !important;
+
+}
+
+
+body.light-mode
+.public-review-card p {
+
+    color:
+        #444444 !important;
+
+}
+
+
+/* REVIEW BANNER */
+
+body.light-mode
+.review-banner {
+
+    border-color:
+        rgba(190, 145, 0, 0.3);
+
+    background:
+
+        linear-gradient(
+
+            145deg,
+
+            #fff8d8,
+
+            #ffffff
+
+        );
+
+}
+
+
+body.light-mode
+.review-banner h2 {
+
+    color:
+        #181818;
+
+}
+
+
+body.light-mode
+.review-banner-content > p:not(
+.small-heading
+) {
+
+    color:
+        #606060;
+
+}
+
+
+/* FOOTER */
+
+body.light-mode
+footer {
+
+    color:
+        #181818;
+
+    border-color:
+        rgba(0, 0, 0, 0.1);
+
+    background:
+        #ebe8df;
+
+}
+
+
+body.light-mode
+.footer-logo strong {
+
+    color:
+        #181818;
+
+}
+
+
+body.light-mode
+.footer-links a {
+
+    color:
+        #444444;
+
+}
+
+
+body.light-mode
+footer > p {
+
+    color:
+        #666666;
+
+}
+
+
+/* MOBILE MENU */
+
+body.light-mode
+.mobile-menu {
+
+    border-color:
+        rgba(0, 0, 0, 0.1);
+
+    background:
+        rgba(255, 255, 255, 0.97);
+
+}
+
+
+body.light-mode
+.mobile-menu a {
+
+    color:
+        #333333;
+
+}
+
+
+/* SMOOTH THEME CHANGE */
+
+body,
+
+.navbar,
+
+.movie-section,
+
+.movie-card,
+
+.language-section,
+
+.review-section,
+
+.review-banner,
+
+footer {
+
+    transition:
+
+        color 0.45s ease,
+
+        background 0.45s ease,
+
+        border-color 0.45s ease,
+
+        box-shadow 0.45s ease;
+
+}
+
+
+/* MOBILE LAMP SIZE */
+
+@media (
+    max-width: 680px
+) {
+
+    .theme-lamp {
+
+        width:
+            41px;
+
+        height:
+            41px;
+
+        font-size:
+            17px;
+
+    }
+
+}
+/* =====================================
+   LAMP LIGHT SWITCH ANIMATION 💡
+===================================== */
+
+
+/* LIGHT WAVE */
+
+.theme-lamp::after {
+
+    position: fixed;
+
+    top: 50%;
+
+    left: 50%;
+
+    z-index: -1;
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: 50%;
+
+    content: "";
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(
+                255,
+                220,
+                90,
+                0.35
+            ),
+
+            rgba(
+                255,
+                220,
+                90,
+                0.12
+            )
+            35%,
+
+            transparent
+            70%
+
+        );
+
+    transform:
+
+        translate(
+            -50%,
+            -50%
+        )
+
+        scale(0);
+
+}
+
+
+/* PLAY WHEN LAMP IS ON */
+
+.theme-lamp.lamp-on::after {
+
+    animation:
+
+        lampLightWave
+
+        0.8s
+
+        ease-out;
+
+}
+
+
+@keyframes lampLightWave {
+
+    0% {
+
+        opacity:
+            0.8;
+
+        transform:
+
+            translate(
+                -50%,
+                -50%
+            )
+
+            scale(0);
+
+    }
+
+
+    60% {
+
+        opacity:
+            0.3;
+
+    }
+
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+
+            translate(
+                -50%,
+                -50%
+            )
+
+            scale(100);
+
+    }
+
+}
+
+
+/* BULB SWITCH EFFECT */
+
+.theme-lamp i {
+
+    transition:
+
+        transform
+        0.35s ease,
+
+        color
+        0.35s ease,
+
+        filter
+        0.35s ease;
+
+}
+
+
+.theme-lamp.lamp-on i {
+
+    transform:
+
+        scale(1.15)
+
+        rotate(
+            8deg
+        );
+
+}
+
+
+/* SMALL CLICK BOUNCE */
+
+.theme-lamp:active i {
+
+    transform:
+
+        scale(
+            0.75
+        );
+
+}
+/* =====================================
+   FLOP CORN LOGO POP ANIMATION 🍿
+===================================== */
+
+
+/* SMOOTH LOGO MOVEMENT */
+
+.logo-icon {
+
+    position: relative;
+
+    transition:
+
+        transform
+        0.35s
+        cubic-bezier(
+            0.34,
+            1.56,
+            0.64,
+            1
+        ),
+
+        box-shadow
+        0.35s ease,
+
+        border-color
+        0.35s ease;
+
+}
+
+
+/* POPCORN HOVER EFFECT */
+
+.logo:hover
+.logo-icon {
+
+    animation:
+
+        popcornLogoPop
+
+        0.65s
+
+        ease;
+
+    border-color:
+
+        rgba(
+            255,
+            210,
+            28,
+            0.7
+        );
+
+    box-shadow:
+
+        0 0 18px
+
+        rgba(
+            255,
+            210,
+            28,
+            0.3
+        ),
+
+        0 0 40px
+
+        rgba(
+            255,
+            210,
+            28,
+            0.12
+        );
+
+}
+
+
+/* POP ANIMATION */
+
+@keyframes popcornLogoPop {
+
+    0% {
+
+        transform:
+
+            translateY(0)
+
+            rotate(0deg)
+
+            scale(1);
+
+    }
+
+
+    30% {
+
+        transform:
+
+            translateY(-8px)
+
+            rotate(-7deg)
+
+            scale(1.12);
+
+    }
+
+
+    55% {
+
+        transform:
+
+            translateY(1px)
+
+            rotate(4deg)
+
+            scale(0.97);
+
+    }
+
+
+    75% {
+
+        transform:
+
+            translateY(-3px)
+
+            rotate(-2deg)
+
+            scale(1.04);
+
+    }
+
+
+    100% {
+
+        transform:
+
+            translateY(0)
+
+            rotate(0deg)
+
+            scale(1);
+
+    }
+
+}
+
+
+/* YELLOW GLOW BEHIND LOGO */
+
+.logo-icon::after {
+
+    position:
+
+        absolute;
+
+    inset:
+
+        -8px;
+
+    z-index:
+
+        -1;
+
+    border-radius:
+
+        18px;
+
+    content:
+
+        "";
+
+    opacity:
+
+        0;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(
+                255,
+                210,
+                28,
+                0.35
+            ),
+
+            transparent
+
+            70%
+
+        );
+
+    transform:
+
+        scale(0.6);
+
+    transition:
+
+        opacity
+        0.35s ease,
+
+        transform
+        0.35s ease;
+
+}
+
+
+/* SHOW GLOW */
+
+.logo:hover
+.logo-icon::after {
+
+    opacity:
+
+        1;
+
+    transform:
+
+        scale(1.25);
+
+}
+
+
+/* LOGO TEXT EFFECT */
+
+.logo-text {
+
+    transition:
+
+        letter-spacing
+        0.35s ease;
+
+}
+
+
+.logo:hover
+.logo-text {
+
+    letter-spacing:
+
+        1.8px;
+
+}
+/* =====================================
+   ICONIC MARVEL DIALOGUES ⚡
+===================================== */
+
+.marvel-quotes-section {
+    position: relative;
+
+    padding:
+        35px 6%
+        55px;
+
+    overflow: hidden;
+
+    background:
+        #070707;
+}
+
+
+/* QUOTE CARD */
+
+.marvel-quote-card {
+    position: relative;
+
+    width: 100%;
+    max-width: 1100px;
+
+    min-height: 270px;
+
+    margin: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding:
+        50px 70px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            210,
+            28,
+            0.2
+        );
+
+    border-radius:
+        28px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(
+                255,
+                210,
+                28,
+                0.12
+            ),
+            transparent 50%
+        ),
+
+        linear-gradient(
+            145deg,
+            #171717,
+            #0b0b0b
+        );
+
+    box-shadow:
+        0 25px 70px
+        rgba(
+            0,
+            0,
+            0,
+            0.45
+        );
+
+    text-align: center;
+
+    animation:
+        marvelCardEntrance
+        0.8s ease
+        both;
+}
+
+
+/* CARD ENTRANCE */
+
+@keyframes marvelCardEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* MOVING BACKGROUND GLOW */
+
+.quote-glow {
+    position: absolute;
+
+    top: -150px;
+
+    left: 50%;
+
+    width: 420px;
+
+    height: 420px;
+
+    border-radius:
+        50%;
+
+    opacity:
+        0.12;
+
+    filter:
+        blur(80px);
+
+    background:
+        #ffd21c;
+
+    transform:
+        translateX(-50%);
+
+    animation:
+        quoteGlowMove
+        5s ease-in-out
+        infinite alternate;
+
+    pointer-events:
+        none;
+}
+
+
+@keyframes quoteGlowMove {
+
+    from {
+
+        transform:
+            translateX(-65%);
+
+    }
+
+    to {
+
+        transform:
+            translateX(-35%);
+
+    }
+
+}
+
+
+/* SMALL HEADING */
+
+.quote-label {
+    position: relative;
+
+    z-index: 2;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    margin-bottom:
+        20px;
+
+    color:
+        #ffd21c;
+
+    font-size:
+        11px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
+}
+
+
+.quote-label i {
+
+    animation:
+        marvelBolt
+        1.3s ease-in-out
+        infinite alternate;
+
+}
+
+
+@keyframes marvelBolt {
+
+    from {
+
+        opacity:
+            0.65;
+
+        transform:
+            scale(1);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1.25);
+
+    }
+
+}
+
+
+/* LARGE QUOTATION ICON */
+
+.quote-icon {
+    position: absolute;
+
+    top: 25px;
+
+    left: 35px;
+
+    color:
+        rgba(
+            255,
+            210,
+            28,
+            0.11
+        );
+
+    font-size:
+        75px;
+}
+
+
+/* DIALOGUE */
+
+#marvelQuote {
+    position: relative;
+
+    z-index: 2;
+
+    max-width:
+        850px;
+
+    color:
+        #ffffff;
+
+    font-family:
+        "Outfit",
+        sans-serif;
+
+    font-size:
+        clamp(
+            27px,
+            4vw,
+            46px
+        );
+
+    font-weight:
+        800;
+
+    line-height:
+        1.25;
+
+    letter-spacing:
+        -1px;
+}
+
+
+/* CHARACTER NAME */
+
+#marvelCharacter {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top:
+        18px;
+
+    color:
+        #ffd21c;
+
+    font-size:
+        14px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1px;
+}
+
+
+/* QUOTE TIMER LINE */
+
+.quote-progress {
+    position: absolute;
+
+    right: 0;
+
+    bottom: 0;
+
+    left: 0;
+
+    height:
+        4px;
+
+    overflow:
+        hidden;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.05
+        );
+}
+
+
+.quote-progress-fill {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #d69d00,
+            #ffd21c,
+            #fff09a
+        );
+
+    transform-origin:
+        left;
+
+    animation:
+        quoteTimer
+        5s linear
+        infinite;
+
+}
+
+
+@keyframes quoteTimer {
+
+    from {
+
+        transform:
+            scaleX(0);
+
+    }
+
+    to {
+
+        transform:
+            scaleX(1);
+
+    }
+
+}
+
+
+/* LIGHT MODE */
+
+body.light-mode
+.marvel-quotes-section {
+
+    background:
+        #f5f3ed;
+
+}
+
+
+body.light-mode
+.marvel-quote-card {
+
+    border-color:
+        rgba(
+            180,
+            135,
+            0,
+            0.25
+        );
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(
+                255,
+                210,
+                28,
+                0.18
+            ),
+            transparent 50%
+        ),
+
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #fff9e5
+        );
+
+    box-shadow:
+        0 20px 50px
+        rgba(
+            0,
+            0,
+            0,
+            0.1
+        );
+
+}
+
+
+body.light-mode
+#marvelQuote {
+
+    color:
+        #181818;
+
+}
+
+
+/* MOBILE */
+
+@media (
+    max-width: 680px
+) {
+
+    .marvel-quotes-section {
+
+        padding:
+            25px 4%
+            40px;
+
+    }
+
+
+    .marvel-quote-card {
+
+        min-height:
+            245px;
+
+        padding:
+            45px 22px;
+
+        border-radius:
+            22px;
+
+    }
+
+
+    .quote-icon {
+
+        top:
+            18px;
+
+        left:
+            20px;
+
+        font-size:
+            52px;
+
+    }
+
+
+    #marvelQuote {
+
+        font-size:
+            27px;
+
+        line-height:
+            1.3;
+
+    }
+
+
+    #marvelCharacter {
+
+        font-size:
+            12px;
+
+    }
+
+}
+/* =====================================
+   SMALLER MARVEL DIALOGUE BOX ⚡
+===================================== */
+
+.marvel-quote-card {
+
+    max-width:
+        900px;
+
+    min-height:
+        210px;
+
+    padding:
+        35px 50px;
+
+}
+
+
+#marvelQuote {
+
+    max-width:
+        720px;
+
+    font-size:
+        clamp(
+            24px,
+            3vw,
+            37px
+        );
+
+}
+
+
+.quote-label {
+
+    margin-bottom:
+        14px;
+
+}
+
+
+#marvelCharacter {
+
+    margin-top:
+        13px;
+
+}
+
+
+/* MOBILE */
+
+@media (
+    max-width: 680px
+) {
+
+    .marvel-quote-card {
+
+        min-height:
+            200px;
+
+        padding:
+            35px 20px;
+
+    }
+
+
+    #marvelQuote {
+
+        font-size:
+            23px;
+
+    }
+
+}
+/* =====================================
+   MARVEL DIALOGUE CHANGE ANIMATION ⚡
+===================================== */
+
+#marvelQuote,
+#marvelCharacter {
+
+    transition:
+
+        opacity
+        0.4s ease,
+
+        transform
+        0.4s ease;
+
+}
+
+
+#marvelQuote.quote-changing,
+#marvelCharacter.quote-changing {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(
+            10px
+        );
+
+}
