@@ -1579,3 +1579,82 @@ function loadUserWatchlist() {
     );
 
 }
+
+/* =========================================
+   SHOW LANGUAGE MOVIES INSIDE FLOP CORN
+========================================= */
+
+const languageMovies =
+    document.getElementById("languageMovies");
+
+const selectedLanguageTitle =
+    document.getElementById("selectedLanguageTitle");
+
+
+const languageNames = {
+
+    hi: "🇮🇳 Hindi Movies",
+
+    te: "🔥 Telugu Movies",
+
+    ta: "🎭 Tamil Movies",
+
+    kn: "⭐ Kannada Movies",
+
+    ml: "🎞️ Malayalam Movies"
+
+};
+
+
+document.querySelectorAll(".language-button").forEach(
+
+    (button) => {
+
+        button.addEventListener("click", () => {
+
+            const selectedLanguage =
+                button.dataset.language;
+
+
+            selectedLanguageTitle.textContent =
+
+                languageNames[selectedLanguage];
+
+
+            languageMovies.innerHTML = `
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+            `;
+
+
+            getMovies(
+
+                `/discover/movie?with_original_language=${selectedLanguage}&sort_by=popularity.desc`,
+
+                languageMovies
+
+            );
+
+
+            selectedLanguageTitle.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+            });
+
+        });
+
+    }
+
+);
