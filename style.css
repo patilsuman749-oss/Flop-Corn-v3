@@ -3068,3 +3068,18 @@ footer > p {
     }
 
 }
+/* FIX PROFILE DROPDOWN POSITION */
+
+.navbar-right {
+    position: relative;
+}
+
+.profile-menu {
+    top: 58px;
+    right: 0;
+}
+
+.profile-menu-photo {
+    display: block;
+    margin: 0 auto 12px;
+}
