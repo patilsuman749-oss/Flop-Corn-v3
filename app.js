@@ -1,4 +1,15 @@
-import { auth, signOut } from "./firebase.js";
+import {
+    auth,
+    db,
+    signOut
+} from "./firebase.js";
+import {
+    collection,
+    onSnapshot,
+    query,
+    where
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
 /* =========================================
    FLOP CORN 🍿
    PART 3 — COMPLETE APP.JS
@@ -21,6 +32,9 @@ const trendingMovies =
 
 const newMovies =
     document.getElementById("newMovies");
+
+    const bollywoodMovies =
+    document.getElementById("bollywoodMovies");
 
 const openSearch =
     document.getElementById("openSearch");
@@ -100,7 +114,7 @@ async function getMovies(
 
             `${BASE_URL}${endpoint}` +
 
-            `?api_key=${API_KEY}` +
+        `${endpoint.includes("?") ? "&" : "?"}api_key=${API_KEY}` +
 
             `&language=en-US` +
 
@@ -784,6 +798,22 @@ writeReviewButton.addEventListener("click", () => {
 
     const user = auth.currentUser;
 
+if (!user) {
+
+    profileWatchlist.innerHTML = `
+
+        <p class="watchlist-message">
+
+            Please sign in to view your Watchlist 🍿
+
+        </p>
+
+    `;
+
+    return;
+
+}
+
     if (!user) {
         alert("Sign in with Google to write a movie review 🍿");
         return;
@@ -863,6 +893,16 @@ getMovies(
     "/trending/movie/week",
 
     trendingMovies
+
+);
+
+/* LOAD BOLLYWOOD MOVIES */
+
+getMovies(
+
+"/discover/movie?with_original_language=hi&sort_by=popularity.desc",
+
+    bollywoodMovies
 
 );
 
@@ -985,7 +1025,8 @@ if (myProfileButton && fullProfileOverlay) {
             user.email || "Email not available";
 
         fullProfileOverlay.classList.add("show");
-
+        
+loadUserWatchlist();
         profileMenu.classList.remove("show");
 
     });
@@ -1019,5 +1060,509 @@ if (fullProfileOverlay) {
         }
 
     });
+    }
+
+    /* =========================================
+   TOP RATED ON FLOP CORN 🏆
+========================================= */
+
+const topRatedMovies =
+    document.getElementById("topRatedMovies");
+
+if (topRatedMovies) {
+
+    onSnapshot(
+        collection(db, "reviews"),
+
+        (snapshot) => {
+
+            const movieRatings = {};
+
+            snapshot.forEach((reviewDocument) => {
+
+                const review =
+                    reviewDocument.data();
+
+                if (
+                    !review.movieId ||
+                    !review.movieTitle ||
+                    !review.rating
+                ) {
+                    return;
+                }
+
+                const movieId =
+                    review.movieId;
+
+                if (!movieRatings[movieId]) {
+
+                    movieRatings[movieId] = {
+
+                        id: movieId,
+
+                        title:
+                            review.movieTitle,
+
+                        poster:
+                            review.moviePoster || "",
+
+                        totalRating: 0,
+
+                        reviewCount: 0
+
+                    };
+
+                }
+
+                movieRatings[movieId]
+                    .totalRating +=
+                    Number(review.rating);
+
+                movieRatings[movieId]
+                    .reviewCount++;
+
+            });
+
+
+            const rankedMovies =
+
+                Object.values(movieRatings)
+
+                .map((movie) => {
+
+                    movie.averageRating =
+
+                        movie.totalRating /
+
+                        movie.reviewCount;
+
+                    return movie;
+
+                })
+
+                .sort(
+
+                    (a, b) =>
+
+                        b.averageRating -
+
+                        a.averageRating
+
+                )
+
+                .slice(0, 10);
+
+
+            displayTopRatedMovies(
+                rankedMovies
+            );
+
+        },
+
+        (error) => {
+
+            console.error(
+                "Top-rated movies error:",
+                error
+            );
+
+            topRatedMovies.innerHTML = `
+
+                <p class="search-message">
+
+                    Top-rated movies could
+                    not load.
+
+                </p>
+
+            `;
+
+        }
+
+    );
+
+}
+
+
+/* DISPLAY TOP-RATED MOVIES */
+
+function displayTopRatedMovies(
+    movies
+) {
+
+    if (!topRatedMovies) {
+        return;
+    }
+
+
+    if (movies.length === 0) {
+
+        topRatedMovies.innerHTML = `
+
+            <p class="search-message">
+
+                No Flop Corn ratings yet 🍿
+
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    topRatedMovies.innerHTML = "";
+
+
+    movies.forEach(
+
+        (movie, index) => {
+
+
+            const movieCard =
+
+                document.createElement(
+                    "article"
+                );
+
+
+            movieCard.className =
+
+                "movie-card";
+
+
+            const posterImage =
+
+                movie.poster
+
+                ?
+
+                `${IMAGE_URL}${movie.poster}`
+
+                :
+
+                "flopcorn-logo.jpeg.jpeg";
+
+
+            movieCard.innerHTML = `
+
+                <div class="movie-poster">
+
+                    <img
+
+                        src="${posterImage}"
+
+                        alt="${movie.title}"
+
+                        loading="lazy"
+
+                    >
+
+
+                    <div class="movie-rating">
+
+                        🏆
+
+                        ${movie.averageRating
+                            .toFixed(1)}
+
+                    </div>
+
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="poster-play-button"
+                        >
+
+                            <i class=
+                            "fa-solid fa-arrow-right">
+                            </i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="movie-info">
+
+                    <h3>
+
+                        ${index + 1}.
+                        ${movie.title}
+
+                    </h3>
+
+
+                    <div class="movie-details">
+
+                        <span>
+
+                            ⭐
+                            ${movie.averageRating
+                                .toFixed(1)}/10
+
+                        </span>
+
+
+                        <span class="movie-genre">
+
+                            ${movie.reviewCount}
+
+                            ${
+                                movie.reviewCount === 1
+
+                                ?
+
+                                "Review"
+
+                                :
+
+                                "Reviews"
+                            }
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            movieCard.addEventListener(
+
+                "click",
+
+                () => {
+
+                    openMoviePage(
+                        movie.id
+                    );
+
+                }
+
+            );
+
+
+            topRatedMovies.appendChild(
+
+                movieCard
+
+            );
+
+        }
+
+    );
+
+}
+
+/* =========================================
+   MY WATCHLIST ❤️
+========================================= */
+
+const profileWatchlist =
+    document.getElementById("profileWatchlist");
+
+
+function loadUserWatchlist() {
+
+    const user = auth.currentUser;
+
+
+    if (!user || !profileWatchlist) {
+
+        return;
+
+    }
+
+
+    profileWatchlist.innerHTML = `
+
+        <p class="watchlist-message">
+
+            Loading your Watchlist... 🍿
+
+        </p>
+
+    `;
+
+
+    const userWatchlistQuery =
+
+        query(
+
+            collection(
+                db,
+                "watchlists"
+            ),
+
+            where(
+                "userId",
+                "==",
+                user.uid
+            )
+
+        );
+
+
+    onSnapshot(
+
+        userWatchlistQuery,
+
+        (snapshot) => {
+
+
+            if (snapshot.empty) {
+
+                profileWatchlist.innerHTML = `
+
+                    <p class="watchlist-message">
+
+                        Your Watchlist is empty. ❤️
+
+                        <br>
+
+                        Save a movie to watch it later!
+
+                    </p>
+
+                `;
+
+                return;
+
+            }
+
+
+            profileWatchlist.innerHTML = "";
+
+
+            snapshot.forEach(
+
+                (movieDocument) => {
+
+
+                    const movie =
+
+                        movieDocument.data();
+
+
+                    const watchlistMovie =
+
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    watchlistMovie.className =
+
+                        "watchlist-movie-card";
+
+
+                    const posterImage =
+
+                        movie.moviePoster
+
+                        ?
+
+                        `${IMAGE_URL}${movie.moviePoster}`
+
+                        :
+
+                        "flopcorn-logo.jpeg.jpeg";
+
+
+                    watchlistMovie.innerHTML = `
+
+                        <img
+
+                            src="${posterImage}"
+
+                            alt="${movie.movieTitle}"
+
+                        >
+
+
+                        <div>
+
+                            <strong>
+
+                                ${movie.movieTitle}
+
+                            </strong>
+
+
+                            <span>
+
+                                ⭐
+
+                                ${Number(
+                                    movie.movieRating
+                                ).toFixed(1)}
+
+                            </span>
+
+                        </div>
+
+                    `;
+
+
+                    watchlistMovie.addEventListener(
+
+                        "click",
+
+                        () => {
+
+                            openMoviePage(
+
+                                movie.movieId
+
+                            );
+
+                        }
+
+                    );
+
+
+                    profileWatchlist.appendChild(
+
+                        watchlistMovie
+
+                    );
+
+                }
+
+            );
+
+        },
+
+
+        (error) => {
+
+            console.error(
+
+                "Watchlist loading error:",
+
+                error
+
+            );
+
+
+            profileWatchlist.innerHTML = `
+
+                <p class="watchlist-message">
+
+                    Your Watchlist could not load.
+
+                </p>
+
+            `;
+
+        }
+
+    );
 
 }
