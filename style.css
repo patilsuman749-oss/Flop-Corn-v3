@@ -3314,3 +3314,151 @@ footer > p {
     background: #ffd21c;
     border-radius: 10px;
 }
+
+/* =========================================
+   BROWSE MOVIES BY LANGUAGE
+========================================= */
+
+.language-section {
+    padding: 70px 6%;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 204, 0, 0.08),
+            rgba(0, 0, 0, 0.95)
+        );
+}
+
+.language-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.language-heading h2 {
+    margin-top: 10px;
+    font-family: "Outfit", sans-serif;
+    font-size: 42px;
+    color: white;
+}
+
+.language-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.language-button {
+    padding: 16px 27px;
+    border: 1px solid rgba(255, 204, 0, 0.35);
+    border-radius: 50px;
+
+    background: rgba(20, 20, 20, 0.9);
+
+    color: white;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.language-button:hover {
+    color: black;
+
+    background: #ffd000;
+
+    border-color: #ffd000;
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(255, 208, 0, 0.25);
+}
+
+
+/* MOBILE DESIGN */
+
+@media (max-width: 768px) {
+
+    .language-section {
+        padding: 50px 20px;
+    }
+
+    .language-heading h2 {
+        font-size: 31px;
+    }
+
+    .language-buttons {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .language-button {
+        width: 100%;
+
+        padding: 14px 10px;
+
+        font-size: 14px;
+    }
+
+}
+
+/* FIX LANGUAGE MOVIES ON MOBILE */
+
+.language-results {
+    width: 100%;
+    margin-top: 40px;
+}
+
+#selectedLanguageTitle {
+    width: 100%;
+    margin-bottom: 25px;
+    color: white;
+    text-align: left;
+}
+
+#languageMovies {
+    width: 100%;
+}
+
+
+@media (max-width: 768px) {
+
+    .language-results {
+        display: block;
+        width: 100%;
+    }
+
+    #selectedLanguageTitle {
+        display: block;
+        width: 100%;
+
+        margin: 30px 0 20px;
+
+        font-size: 25px;
+        text-align: center;
+
+        color: white;
+    }
+
+    #languageMovies {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        width: 100%;
+
+        gap: 14px;
+    }
+
+}
