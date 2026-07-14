@@ -4045,3 +4045,841 @@ button.delete-review-button:active {
     flex-grow: 0 !important;
     flex-shrink: 0 !important;
 }
+/* =====================================
+   SMOOTH MOVIE CARD ANIMATION 🍿
+===================================== */
+
+.movie-card {
+    animation:
+        movieCardAppear
+        0.6s ease
+        both;
+}
+
+
+/* CARDS APPEAR ONE AFTER ANOTHER */
+
+.movie-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.movie-card:nth-child(2) {
+    animation-delay: 0.10s;
+}
+
+.movie-card:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.movie-card:nth-child(4) {
+    animation-delay: 0.20s;
+}
+
+.movie-card:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+
+/* CARD ENTRANCE */
+
+@keyframes movieCardAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* SMOOTHER HOVER EFFECT */
+
+.movie-card:hover {
+    transform:
+        translateY(-10px)
+        scale(1.02);
+
+    border-color:
+        rgba(255, 210, 28, 0.55);
+
+    box-shadow:
+        0 25px 55px
+        rgba(0, 0, 0, 0.55),
+
+        0 0 25px
+        rgba(255, 210, 28, 0.12);
+}
+
+
+/* POSTER SHINE EFFECT */
+
+.movie-poster::after {
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 60%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.18),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left 0.7s ease;
+
+    content: "";
+
+    pointer-events: none;
+}
+
+
+.movie-card:hover
+.movie-poster::after {
+
+    left: 150%;
+
+}
+
+
+/* MOBILE TAP EFFECT */
+
+.movie-card:active {
+
+    transform:
+        scale(0.97);
+
+}
+/* =====================================
+   EXTRA PROFESSIONAL ANIMATIONS 🍿
+===================================== */
+
+
+/* ---------- NAVBAR ENTRANCE ---------- */
+
+.navbar {
+    animation:
+        navbarEntrance
+        0.7s ease
+        both;
+}
+
+
+@keyframes navbarEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ---------- LOGO POPCORN FLOAT ---------- */
+
+.logo-icon {
+
+    animation:
+        logoFloat
+        3s ease-in-out
+        infinite;
+
+}
+
+
+@keyframes logoFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-4px);
+
+    }
+
+}
+
+
+/* KEEP LOGO HOVER EFFECT */
+
+.logo:hover
+.logo-icon {
+
+    animation-play-state:
+        paused;
+
+    transform:
+        rotate(-7deg)
+        scale(1.08);
+
+}
+
+
+/* ---------- HERO TITLE ENTRANCE ---------- */
+
+.hero h1 {
+
+    animation:
+        titleEntrance
+        0.9s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        both;
+
+}
+
+
+@keyframes titleEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(-35px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+/* ---------- HERO DESCRIPTION ---------- */
+
+.hero-description {
+
+    animation:
+        descriptionEntrance
+        0.8s ease
+        0.25s
+        both;
+
+}
+
+
+@keyframes descriptionEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(18px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ---------- HERO BUTTON ENTRANCE ---------- */
+
+.hero-buttons {
+
+    animation:
+        buttonEntrance
+        0.8s ease
+        0.4s
+        both;
+
+}
+
+
+@keyframes buttonEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(18px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ---------- BUTTON ICON MOVEMENT ---------- */
+
+.primary-button i,
+.secondary-button i {
+
+    transition:
+        transform
+        0.3s ease;
+
+}
+
+
+.primary-button:hover i,
+.secondary-button:hover i {
+
+    transform:
+        translateX(4px);
+
+}
+
+
+/* ---------- SECTION HEADING ---------- */
+
+.section-heading {
+
+    animation:
+        sectionHeadingEntrance
+        0.7s ease
+        both;
+
+}
+
+
+@keyframes sectionHeadingEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ---------- YELLOW HEADING ICON ---------- */
+
+.small-heading i {
+
+    animation:
+        headingIconPulse
+        1.8s ease-in-out
+        infinite;
+
+}
+
+
+@keyframes headingIconPulse {
+
+    0%,
+    100% {
+
+        opacity: 0.7;
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.15);
+
+    }
+
+}
+
+
+/* ---------- LANGUAGE BUTTONS ---------- */
+
+.language-button {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+}
+
+
+.language-button::before {
+
+    position:
+        absolute;
+
+    top: 0;
+
+    left: -110%;
+
+    width: 70%;
+
+    height: 100%;
+
+    content: "";
+
+    pointer-events:
+        none;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent,
+
+            rgba(
+                255,
+                255,
+                255,
+                0.18
+            ),
+
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left
+        0.6s ease;
+
+}
+
+
+.language-button:hover::before {
+
+    left:
+        140%;
+
+}
+
+
+/* ---------- REVIEW BANNER ---------- */
+
+.review-banner {
+
+    animation:
+        reviewBannerEntrance
+        0.8s ease
+        both;
+
+}
+
+
+@keyframes reviewBannerEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* ---------- PUBLIC REVIEW ENTRANCE ---------- */
+
+.public-review-card {
+
+    animation:
+        reviewCardEntrance
+        0.55s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        both;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+
+@keyframes reviewCardEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+/* REVIEW HOVER */
+
+.public-review-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(
+            255,
+            210,
+            28,
+            0.32
+        ) !important;
+
+    box-shadow:
+        0 15px 35px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+
+}
+
+
+/* ---------- FLOP CORN METER GLOW ---------- */
+
+.flopcorn-meter {
+
+    animation:
+        meterGlow
+        3s ease-in-out
+        infinite;
+
+}
+
+
+@keyframes meterGlow {
+
+    0%,
+    100% {
+
+        box-shadow:
+            0 0 20px
+            rgba(
+                255,
+                204,
+                0,
+                0.16
+            );
+
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 30px
+            rgba(
+                255,
+                204,
+                0,
+                0.3
+            );
+
+    }
+
+}
+
+
+/* METER FILL ANIMATION */
+
+.meter-fill {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+}
+
+
+.meter-fill::after {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    content:
+        "";
+
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent,
+
+            rgba(
+                255,
+                255,
+                255,
+                0.35
+            ),
+
+            transparent
+        );
+
+    transform:
+        translateX(-100%);
+
+    animation:
+        meterLight
+        2.5s ease-in-out
+        infinite;
+
+}
+
+
+@keyframes meterLight {
+
+    0% {
+
+        transform:
+            translateX(-100%);
+
+    }
+
+    55%,
+    100% {
+
+        transform:
+            translateX(100%);
+
+    }
+
+}
+
+
+/* ---------- PROFILE MENU ENTRANCE ---------- */
+
+.profile-menu.show {
+
+    animation:
+        profileMenuEntrance
+        0.3s ease
+        both;
+
+}
+
+
+@keyframes profileMenuEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-10px)
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* ---------- BACKGROUND GLOW MOVEMENT ---------- */
+
+.yellow-glow {
+
+    animation:
+        yellowGlowMovement
+        10s ease-in-out
+        infinite alternate;
+
+}
+
+
+@keyframes yellowGlowMovement {
+
+    from {
+
+        transform:
+            translate(
+                0,
+                0
+            );
+
+    }
+
+    to {
+
+        transform:
+            translate(
+                80px,
+                50px
+            );
+
+    }
+
+}
+
+
+.red-glow {
+
+    animation:
+        redGlowMovement
+        12s ease-in-out
+        infinite alternate;
+
+}
+
+
+@keyframes redGlowMovement {
+
+    from {
+
+        transform:
+            translate(
+                0,
+                0
+            );
+
+    }
+
+    to {
+
+        transform:
+            translate(
+                -70px,
+                -40px
+            );
+
+    }
+
+}
+
+
+/* ---------- MOBILE PERFORMANCE ---------- */
+
+@media (
+    max-width: 768px
+) {
+
+    .yellow-glow,
+    .red-glow {
+
+        animation-duration:
+            16s;
+
+    }
+
+
+    .logo-icon {
+
+        animation:
+            none;
+
+    }
+
+
+    .flopcorn-meter {
+
+        animation-duration:
+            4s;
+
+    }
+
+}
