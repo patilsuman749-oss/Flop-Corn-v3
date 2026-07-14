@@ -3462,3 +3462,586 @@ footer > p {
     }
 
 }
+/* =========================================
+   FLOP CORN USERNAME POPUP 🍿
+========================================= */
+
+.username-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.88);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 99999;
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* SHOW USERNAME POPUP */
+
+.username-overlay.show {
+    display: flex;
+}
+
+
+/* USERNAME CARD */
+
+.username-card {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 38px 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b1b1b,
+            #0d0d0d
+        );
+
+    border: 1px solid
+        rgba(255, 193, 7, 0.35);
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.7);
+
+    animation:
+        usernamePopup 0.35s ease;
+}
+
+
+/* POPUP ANIMATION */
+
+@keyframes usernamePopup {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* POPCORN ICON */
+
+.username-icon {
+    width: 75px;
+    height: 75px;
+
+    margin:
+        0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(255, 193, 7, 0.12);
+
+    border:
+        1px solid
+        rgba(255, 193, 7, 0.35);
+
+    border-radius: 50%;
+
+    font-size: 38px;
+}
+
+
+/* HEADING */
+
+.username-card h2 {
+    margin-bottom: 12px;
+
+    color: #ffffff;
+
+    font-family:
+        "Outfit",
+        sans-serif;
+
+    font-size: 27px;
+}
+
+
+/* DESCRIPTION */
+
+.username-card > p {
+    margin-bottom: 24px;
+
+    color: #aaaaaa;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* USERNAME INPUT */
+
+#usernameInput {
+    width: 100%;
+
+    padding: 15px 17px;
+
+    color: #ffffff;
+
+    background: #080808;
+
+    border:
+        1px solid
+        #333333;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 16px;
+
+    transition: 0.25s;
+}
+
+
+#usernameInput:focus {
+    border-color:
+        #ffc107;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255, 193, 7, 0.12);
+}
+
+
+/* MESSAGE */
+
+.username-card
+.username-message {
+
+    min-height: 22px;
+
+    margin:
+        10px 0;
+
+    color:
+        #ff5252;
+
+    font-size:
+        13px;
+}
+
+
+/* CREATE USERNAME BUTTON */
+
+#saveUsernameButton {
+    width: 100%;
+
+    padding: 15px;
+
+    color: #111111;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd54f,
+            #ffb300
+        );
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+#saveUsernameButton:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(255, 193, 7, 0.22);
+}
+
+
+/* MOBILE */
+
+@media (
+    max-width: 500px
+) {
+
+    .username-card {
+        padding:
+            32px 21px;
+
+        border-radius:
+            20px;
+    }
+
+
+    .username-card h2 {
+        font-size:
+            23px;
+    }
+
+}
+/* =========================================
+   CHANGE USERNAME BUTTON ✏️
+========================================= */
+
+.change-username-button {
+    margin-top: 14px;
+
+    padding: 11px 18px;
+
+    color: #ffc107;
+
+    background:
+        rgba(255, 193, 7, 0.1);
+
+    border:
+        1px solid
+        rgba(255, 193, 7, 0.35);
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.change-username-button:hover {
+
+    color: #111111;
+
+    background: #ffc107;
+
+    transform:
+        translateY(-2px);
+
+}
+/* PROFESSIONAL DELETE REVIEW BUTTON 🗑️ */
+
+.delete-review-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    background: rgba(255, 59, 59, 0.08);
+    color: #ff5c5c;
+
+    border: 1px solid rgba(255, 82, 82, 0.45);
+    border-radius: 9px;
+
+    padding: 9px 14px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.delete-review-button:hover {
+    background: rgba(255, 59, 59, 0.18);
+    border-color: #ff5252;
+
+    transform: translateY(-1px);
+}
+
+.delete-review-button:active {
+    transform: scale(0.97);
+}
+/* =====================================
+   FINAL REVIEW DESIGN FIX 🍿
+===================================== */
+
+#publicReviews {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+}
+
+.public-review-card {
+    display: block !important;
+
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    padding: 22px !important;
+
+    background: linear-gradient(
+        145deg,
+        #181818,
+        #101010
+    ) !important;
+
+    border: 1px solid #303030 !important;
+    border-radius: 18px !important;
+
+    color: white !important;
+}
+
+.public-review-card strong {
+    display: block !important;
+
+    margin-bottom: 10px !important;
+
+    color: white !important;
+
+    font-size: 18px !important;
+    font-weight: 700 !important;
+}
+
+.public-review-rating {
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    margin-bottom: 12px !important;
+
+    padding: 7px 11px !important;
+
+    color: #ffd000 !important;
+
+    background: rgba(
+        255,
+        204,
+        0,
+        0.14
+    ) !important;
+
+    border-radius: 9px !important;
+
+    font-weight: 700 !important;
+}
+
+.public-review-card p {
+    display: block !important;
+
+    margin: 5px 0 17px !important;
+
+    color: #eeeeee !important;
+
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+}
+
+
+/* PROFESSIONAL DELETE BUTTON */
+
+button.delete-review-button {
+    appearance: none !important;
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: rgba(
+        255,
+        65,
+        65,
+        0.1
+    ) !important;
+
+    color: #ff5d5d !important;
+
+    border: 1px solid
+        rgba(
+            255,
+            82,
+            82,
+            0.55
+        ) !important;
+
+    border-radius: 9px !important;
+
+    padding: 9px 15px !important;
+
+    font-family: inherit !important;
+
+    font-size: 13px !important;
+
+    font-weight: 700 !important;
+
+    cursor: pointer !important;
+
+    transition: 0.2s ease !important;
+}
+
+
+button.delete-review-button:hover {
+
+    color: white !important;
+
+    background:
+        #e53935 !important;
+
+    border-color:
+        #e53935 !important;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+button.delete-review-button:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+/* MOBILE */
+
+@media (
+    max-width: 600px
+) {
+
+    .public-review-card {
+
+        padding:
+            17px !important;
+
+        border-radius:
+            14px !important;
+
+    }
+
+}
+/* =====================================
+   REVIEWS SCROLL FIX 🍿
+===================================== */
+
+#publicReviews {
+    max-height: 600px !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    padding-right: 10px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+}
+
+
+/* CUSTOM REVIEW SCROLLBAR */
+
+#publicReviews::-webkit-scrollbar {
+    width: 7px;
+}
+
+#publicReviews::-webkit-scrollbar-track {
+    background: #171717;
+
+    border-radius: 10px;
+}
+
+#publicReviews::-webkit-scrollbar-thumb {
+    background: #ffd000;
+
+    border-radius: 10px;
+}
+
+#publicReviews::-webkit-scrollbar-thumb:hover {
+    background: #ffea70;
+}
+
+
+/* KEEP FLOP CORN METER SHORT */
+
+.flop-meter,
+.flop-corn-meter,
+.meter-card {
+    height: fit-content !important;
+    align-self: flex-start !important;
+}
+/* KEEP FLOP CORN METER ORIGINAL SIZE 🍿 */
+
+.flop-meter,
+.flop-corn-meter,
+.meter-card,
+#flopCornMeter {
+    height: fit-content !important;
+    min-height: 0 !important;
+
+    align-self: flex-start !important;
+
+    position: sticky !important;
+    top: 20px !important;
+}
+/* FIX FLOP CORN METER STRETCHING 🍿 */
+
+.movie-content,
+.movie-details-grid,
+.reviews-layout {
+    align-items: flex-start !important;
+}
+
+/* Left Flop Corn Meter box */
+
+.meter-container,
+.flop-meter,
+.flop-corn-meter,
+.meter-card,
+#flopCornMeter {
+    height: auto !important;
+    min-height: unset !important;
+    max-height: 320px !important;
+
+    align-self: flex-start !important;
+
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+}
