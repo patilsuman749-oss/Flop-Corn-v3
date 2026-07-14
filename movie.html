@@ -1921,7 +1921,9 @@ import {
     orderBy,
     onSnapshot,
     deleteDoc,
-    doc
+    doc,
+    setDoc,
+    getDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
@@ -2070,7 +2072,7 @@ import {
 
                     await movieResponse.json();
 currentMovie = movie;
-
+updateWatchlistButton();
                 const castInformation =
 
                     await castResponse.json();
@@ -2492,28 +2494,249 @@ currentMovie = movie;
 
         );
 
+        /* ===============================
+   CHECK SAVED WATCHLIST MOVIE
+=============================== */
 
-        document.getElementById(
+async function updateWatchlistButton() {
 
-            "watchlistButton"
+    if (!auth.currentUser || !currentMovie) {
 
-        ).addEventListener(
+        return;
 
-            "click",
+    }
 
-            function () {
+
+    const watchlistId =
+
+        `${auth.currentUser.uid}_${currentMovie.id}`;
+
+
+    const watchlistReference =
+
+        doc(
+
+            db,
+
+            "watchlists",
+
+            watchlistId
+
+        );
+
+
+    try {
+
+        const savedMovie =
+
+            await getDoc(
+
+                watchlistReference
+
+            );
+
+
+        if (savedMovie.exists()) {
+
+            watchlistButton.innerHTML = `
+
+                <i class="fa-solid fa-bookmark"></i>
+
+                ✓ Added to Watchlist
+
+            `;
+
+        }
+
+        else {
+
+            watchlistButton.innerHTML = `
+
+                <i class="fa-regular fa-bookmark"></i>
+
+                Add to Watchlist
+
+            `;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Could not check Watchlist:",
+
+            error
+
+        );
+
+    }
+
+}
+
+
+        /* ===============================
+   FIREBASE WATCHLIST
+=============================== */
+
+const watchlistButton =
+    document.getElementById("watchlistButton");
+
+
+watchlistButton.addEventListener(
+    "click",
+    async () => {
+
+        if (!auth.currentUser) {
+
+            alert(
+                "Please sign in with Google to use your Watchlist 🍿"
+            );
+
+            return;
+
+        }
+
+
+        if (!currentMovie) {
+
+            alert(
+                "Please wait for the movie to finish loading."
+            );
+
+            return;
+
+        }
+
+
+        const watchlistId =
+
+            `${auth.currentUser.uid}_${currentMovie.id}`;
+
+
+        const watchlistReference =
+
+            doc(
+                db,
+                "watchlists",
+                watchlistId
+            );
+
+
+        try {
+
+            const savedMovie =
+
+                await getDoc(
+                    watchlistReference
+                );
+
+
+            if (savedMovie.exists()) {
+
+                await deleteDoc(
+                    watchlistReference
+                );
+
+
+                watchlistButton.innerHTML = `
+
+                    <i class=
+                    "fa-regular fa-bookmark">
+                    </i>
+
+                    Add to Watchlist
+
+                `;
 
 
                 alert(
+                    "Movie removed from your Watchlist 🍿"
+                );
 
-                    "Watchlists will be connected after Google login 🍿"
+            }
+
+            else {
+
+                await setDoc(
+
+                    watchlistReference,
+
+                    {
+
+                        userId:
+                            auth.currentUser.uid,
+
+                        userName:
+                            auth.currentUser.displayName,
+
+                        userEmail:
+                            auth.currentUser.email,
+
+                        movieId:
+                            currentMovie.id,
+
+                        movieTitle:
+                            currentMovie.title,
+
+                        moviePoster:
+                            currentMovie.poster_path,
+
+                        movieRating:
+                            currentMovie.vote_average,
+
+                        addedAt:
+                            serverTimestamp()
+
+                    }
 
                 );
 
 
+                watchlistButton.innerHTML = `
+
+                    <i class=
+                    "fa-solid fa-bookmark">
+                    </i>
+
+                    ✓ Added to Watchlist
+
+                `;
+
+
+                alert(
+                    "Movie added to your Watchlist! ❤️🍿"
+                );
+
             }
 
-        );
+        }
+
+        catch (error) {
+
+            console.error(
+                "Watchlist error:",
+                error
+            );
+
+
+            alert(
+
+                error.code +
+
+                "\n\n" +
+
+                error.message
+
+            );
+
+        }
+
+    }
+
+);
 
 
         /* ===============================
@@ -2572,6 +2795,7 @@ submitReview.addEventListener("click", async () => {
 
             movieId: currentMovie.id,
 movieTitle: currentMovie.title,
+moviePoster: currentMovie.poster_path,
             userName: auth.currentUser.displayName,
             userPhoto: auth.currentUser.photoURL,
             userEmail: auth.currentUser.email,
