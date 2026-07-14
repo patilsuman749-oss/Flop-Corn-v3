@@ -934,6 +934,14 @@
 
         <p id="fullProfileEmail"></p>
 
+        <button
+    class="change-username-button"
+    id="changeUsernameButton"
+>
+    <i class="fa-solid fa-pen"></i>
+    Change Username
+</button>
+
         <div class="profile-divider"></div>
 
         <div class="profile-details">
@@ -993,5 +1001,50 @@
     </div>
 
 </div>
+
+<!-- ================= USERNAME POPUP ================= -->
+
+<div class="username-overlay" id="usernameOverlay">
+
+    <div class="username-card">
+
+        <div class="username-icon">
+            🍿
+        </div>
+
+        <h2>
+            Create Your Flop Corn Username
+        </h2>
+
+        <p>
+            Choose a unique username that will appear
+            on your profile and movie reviews.
+        </p>
+
+        <input
+            type="text"
+            id="usernameInput"
+            placeholder="Example: SumanMovies"
+            maxlength="20"
+            autocomplete="off"
+        >
+
+        <p
+            class="username-message"
+            id="usernameMessage"
+        ></p>
+
+        <button id="saveUsernameButton">
+
+            <i class="fa-solid fa-check"></i>
+
+            Create Username
+
+        </button>
+
+    </div>
+
+</div>
+
 </body>
 </html>
