@@ -36,6 +36,9 @@ const newMovies =
     const bollywoodMovies =
     document.getElementById("bollywoodMovies");
 
+    const southIndianMovies =
+    document.getElementById("southIndianMovies");
+
 const openSearch =
     document.getElementById("openSearch");
 
@@ -903,6 +906,16 @@ getMovies(
 "/discover/movie?with_original_language=hi&sort_by=popularity.desc",
 
     bollywoodMovies
+
+);
+
+/* LOAD SOUTH INDIAN MOVIES */
+
+getMovies(
+
+    "/discover/movie?with_original_language=te|ta|kn|ml&sort_by=popularity.desc",
+
+    southIndianMovies
 
 );
 
