@@ -11698,3 +11698,35 @@ div > span {
         z-index: 2147483647 !important;
     }
 }
+/* MOBILE PROFILE X BUTTON — FIXED ON SCREEN */
+
+@media screen and (max-width: 600px) {
+
+    #closeProfileButton {
+        position: fixed !important;
+
+        top: 85px !important;
+        right: 20px !important;
+
+        width: 46px !important;
+        height: 46px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        color: #111111 !important;
+        background: #ffd21c !important;
+
+        border: 2px solid #ffffff !important;
+        border-radius: 50% !important;
+
+        font-size: 30px !important;
+        font-weight: 900 !important;
+
+        z-index: 2147483647 !important;
+    }
+}
