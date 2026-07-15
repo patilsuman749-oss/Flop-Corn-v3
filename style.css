@@ -11508,6 +11508,131 @@ div > span {
     border-radius: 4px;
     transition: transform 0.35s ease;
 }
+
 .explore-category-card:hover .marvel-logo-box img {
     transform: scale(1.12);
+}
+/* FINAL PROFILE MENU POSITION FIX */
+
+.navbar-right {
+    position: relative !important;
+}
+
+.profile-menu {
+    position: absolute !important;
+
+    top: 58px !important;
+    right: 0 !important;
+
+    display: none !important;
+
+    visibility: hidden !important;
+    opacity: 0 !important;
+
+    z-index: 999999 !important;
+}
+
+.profile-menu.show {
+    display: block !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+/* FINAL PROFILE DROPDOWN VISIBILITY FIX */
+
+.navbar {
+    overflow: visible !important;
+}
+
+.navbar-right {
+    position: static !important;
+}
+
+.profile-menu {
+    position: fixed !important;
+
+    top: 75px !important;
+    right: 20px !important;
+
+    width: 280px !important;
+    height: auto !important;
+
+    overflow: visible !important;
+
+    background: #151515 !important;
+
+    z-index: 9999999 !important;
+}
+
+.profile-menu.show {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+/* PROFILE MENU — ALWAYS ABOVE THE PAGE */
+
+.navbar {
+    z-index: 999999 !important;
+    overflow: visible !important;
+}
+
+.navbar-right {
+    position: relative !important;
+    z-index: 999999 !important;
+}
+
+.profile-menu {
+    position: fixed !important;
+
+    top: 75px !important;
+    right: 20px !important;
+
+    width: 280px !important;
+    height: auto !important;
+
+    overflow: visible !important;
+
+    background: #151515 !important;
+
+    z-index: 2147483647 !important;
+}
+
+.profile-menu.show {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    transform: none !important;
+}
+/* FIX PROFILE CLOSE BUTTON ON MOBILE */
+
+@media screen and (max-width: 600px) {
+
+    .full-profile-overlay {
+        padding-top: 90px !important;
+        align-items: flex-start !important;
+    }
+
+    .full-profile-card {
+        max-height: calc(100vh - 110px) !important;
+        overflow-y: auto !important;
+    }
+
+    .close-profile-button {
+        position: sticky !important;
+
+        top: 0 !important;
+
+        margin-left: auto !important;
+        margin-bottom: 5px !important;
+
+        z-index: 99999999 !important;
+
+        display: grid !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        background: #292929 !important;
+        color: white !important;
+    }
 }
