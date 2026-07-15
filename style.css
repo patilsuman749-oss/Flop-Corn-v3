@@ -11636,3 +11636,36 @@ div > span {
         color: white !important;
     }
 }
+/* FINAL MOBILE PROFILE CLOSE BUTTON FIX */
+
+@media screen and (max-width: 600px) {
+
+    .full-profile-overlay {
+        padding: 85px 10px 20px !important;
+        align-items: flex-start !important;
+        overflow-y: auto !important;
+    }
+
+    .full-profile-card {
+        position: relative !important;
+        max-height: none !important;
+        padding-top: 65px !important;
+        overflow: visible !important;
+    }
+
+    .close-profile-button {
+        position: absolute !important;
+        top: 15px !important;
+        right: 15px !important;
+        width: 42px !important;
+        height: 42px !important;
+        display: grid !important;
+        place-items: center !important;
+        color: #fff !important;
+        background: #333 !important;
+        border: 2px solid #ffd21c !important;
+        border-radius: 50% !important;
+        font-size: 28px !important;
+        z-index: 2147483647 !important;
+    }
+}
