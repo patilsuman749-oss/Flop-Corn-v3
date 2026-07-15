@@ -2665,3 +2665,761 @@ setInterval(
     5000
 
 );
+/* =========================================
+   FLOP CORN MOVIE RELEASE CALENDAR 📅
+========================================= */
+
+const calendarGrid =
+    document.getElementById("calendarGrid");
+
+const calendarMonth =
+    document.getElementById("calendarMonth");
+
+const previousMonth =
+    document.getElementById("previousMonth");
+
+const nextMonth =
+    document.getElementById("nextMonth");
+
+const calendarMovies =
+    document.getElementById("calendarMovies");
+
+const calendarMoviesTitle =
+    document.getElementById("calendarMoviesTitle");
+
+
+/* CURRENT CALENDAR MONTH */
+
+let calendarDate =
+    new Date();
+
+
+/* STORE MOVIES BY RELEASE DATE */
+
+let releaseMoviesByDate = {};
+
+
+/* =========================================
+   CREATE CALENDAR
+========================================= */
+
+async function createMovieCalendar() {
+
+    if (
+        !calendarGrid ||
+        !calendarMonth
+    ) {
+        return;
+    }
+
+
+    const year =
+        calendarDate.getFullYear();
+
+    const month =
+        calendarDate.getMonth();
+
+
+    calendarMonth.textContent =
+
+        new Intl.DateTimeFormat(
+
+            "en-US",
+
+            {
+                month: "long",
+                year: "numeric"
+            }
+
+        ).format(calendarDate);
+
+
+    calendarGrid.innerHTML = `
+
+        <p class="search-message">
+
+            <i class="fa-solid fa-spinner fa-spin"></i>
+
+            Loading movie releases...
+
+        </p>
+
+    `;
+
+
+    await getCalendarMovieReleases(
+
+        year,
+
+        month
+
+    );
+
+
+    displayCalendar(
+
+        year,
+
+        month
+
+    );
+
+}
+
+
+/* =========================================
+   GET MOVIE RELEASES FROM TMDB
+========================================= */
+
+async function getCalendarMovieReleases(
+    year,
+    month
+) {
+
+    releaseMoviesByDate = {};
+
+    const firstDate =
+        `${year}-${String(month + 1).padStart(2, "0")}-01`;
+
+    const finalDay =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+    const lastDate =
+        `${year}-${String(month + 1).padStart(2, "0")}-${String(finalDay).padStart(2, "0")}`;
+
+
+    try {
+
+        const allMovies = [];
+
+
+        /*
+        GET MOVIES RELEASING
+        DURING THIS MONTH
+        */
+
+        for (
+            let page = 1;
+            page <= 5;
+            page++
+        ) {
+
+            const calendarURL =
+
+                `${BASE_URL}/discover/movie`
+
+                +
+
+                `?api_key=${API_KEY}`
+
+                +
+
+                `&language=en-US`
+
+                +
+
+                `&region=IN`
+
+                +
+
+                `&release_date.gte=${firstDate}`
+
+                +
+
+                `&release_date.lte=${lastDate}`
+
+                +
+
+                `&sort_by=popularity.desc`
+
+                +
+
+                `&include_adult=false`
+
+                +
+
+                `&page=${page}`;
+
+
+            const response =
+
+                await fetch(
+                    calendarURL
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+
+                    "India movie releases could not load"
+
+                );
+
+            }
+
+
+            const movieData =
+
+                await response.json();
+
+
+            allMovies.push(
+
+                ...movieData.results
+
+            );
+
+
+            if (
+
+                page >=
+                movieData.total_pages
+
+            ) {
+
+                break;
+
+            }
+
+        }
+
+
+        /*
+        REMOVE DUPLICATE MOVIES
+        */
+
+        const uniqueMovies =
+
+            Array.from(
+
+                new Map(
+
+                    allMovies.map(
+
+                        movie => [
+
+                            movie.id,
+
+                            movie
+
+                        ]
+
+                    )
+
+                ).values()
+
+            );
+
+
+        /*
+        ADD MOVIES TO THEIR
+        INDIA RELEASE DATE
+        */
+
+        uniqueMovies.forEach(
+
+            movie => {
+
+
+                if (
+
+                    !movie.release_date
+
+                ) {
+
+                    return;
+
+                }
+
+
+                const movieDate =
+
+                    movie.release_date;
+
+
+                if (
+
+                    movieDate < firstDate
+
+                    ||
+
+                    movieDate > lastDate
+
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+
+                    !releaseMoviesByDate[
+
+                        movieDate
+
+                    ]
+
+                ) {
+
+                    releaseMoviesByDate[
+
+                        movieDate
+
+                    ] = [];
+
+                }
+
+
+                releaseMoviesByDate[
+
+                    movieDate
+
+                ].push(movie);
+
+            }
+
+        );
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+
+            "India movie calendar error:",
+
+            error
+
+        );
+
+    }
+
+}
+/* =========================================
+   DISPLAY CALENDAR DATES
+========================================= */
+
+function displayCalendar(
+
+    year,
+
+    month
+
+) {
+
+    calendarGrid.innerHTML = "";
+
+
+    const firstDay =
+
+        new Date(
+
+            year,
+
+            month,
+
+            1
+
+        ).getDay();
+
+
+    const totalDays =
+
+        new Date(
+
+            year,
+
+            month + 1,
+
+            0
+
+        ).getDate();
+
+
+    /* EMPTY BOXES BEFORE FIRST DATE */
+
+    for (
+
+        let emptyDay = 0;
+
+        emptyDay < firstDay;
+
+        emptyDay++
+
+    ) {
+
+        const emptyBox =
+
+            document.createElement(
+
+                "div"
+
+            );
+
+
+        emptyBox.className =
+
+            "calendar-day empty";
+
+
+        calendarGrid.appendChild(
+
+            emptyBox
+
+        );
+
+    }
+
+
+    /* CREATE MONTH DATES */
+
+    for (
+
+        let day = 1;
+
+        day <= totalDays;
+
+        day++
+
+    ) {
+
+
+        const fullDate =
+
+            `${year}-${String(
+
+                month + 1
+
+            ).padStart(2, "0")}-${String(
+
+                day
+
+            ).padStart(2, "0")}`;
+
+
+        const dateButton =
+
+            document.createElement(
+
+                "button"
+
+            );
+
+
+        dateButton.className =
+
+            "calendar-day";
+
+
+        dateButton.textContent =
+
+            day;
+            dateButton.style.setProperty(
+
+    "--calendar-position",
+
+    day
+
+);
+
+
+        /* HIGHLIGHT TODAY */
+
+        const today =
+
+            new Date();
+
+
+        if (
+
+            day === today.getDate()
+
+            &&
+
+            month === today.getMonth()
+
+            &&
+
+            year === today.getFullYear()
+
+        ) {
+
+            dateButton.classList.add(
+
+                "today"
+
+            );
+
+        }
+
+
+        /* SHOW DOT IF MOVIES EXIST */
+
+        if (
+
+            releaseMoviesByDate[
+
+                fullDate
+
+            ]
+
+        ) {
+
+            dateButton.classList.add(
+
+                "has-movie"
+
+            );
+
+        }
+
+
+        /* OPEN MOVIES WHEN DATE IS CLICKED */
+
+        dateButton.addEventListener(
+
+            "click",
+
+            function () {
+
+
+                document
+
+                    .querySelectorAll(
+
+                        ".calendar-day"
+
+                    )
+
+                    .forEach(
+
+                        calendarDay =>
+
+                            calendarDay
+
+                            .classList
+
+                            .remove(
+
+                                "selected"
+
+                            )
+
+                    );
+
+
+                dateButton.classList.add(
+
+                    "selected"
+
+                );
+
+
+                showCalendarMovies(
+
+                    fullDate
+
+                );
+
+            }
+
+        );
+
+
+        calendarGrid.appendChild(
+
+            dateButton
+
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   SHOW MOVIES FOR SELECTED DATE
+========================================= */
+
+function showCalendarMovies(
+
+    selectedDate
+
+) {
+
+    const movies =
+
+        releaseMoviesByDate[
+
+            selectedDate
+
+        ]
+
+        || [];
+
+
+    const readableDate =
+
+        new Date(
+
+            selectedDate
+
+            +
+
+            "T00:00:00"
+
+        ).toLocaleDateString(
+
+            "en-IN",
+
+            {
+
+                day: "numeric",
+
+                month: "long",
+
+                year: "numeric"
+
+            }
+
+        );
+
+
+    calendarMoviesTitle.textContent =
+
+        `Movies releasing on ${readableDate} 🍿`;
+
+
+    if (
+
+        movies.length === 0
+
+    ) {
+
+        calendarMovies.innerHTML = `
+
+            <p class="search-message">
+
+                No movie releases found
+
+                for this date. 🎬
+
+            </p>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    displayMovies(
+
+        movies,
+
+        calendarMovies
+
+    );
+
+}
+
+
+/* =========================================
+   PREVIOUS MONTH
+========================================= */
+
+previousMonth.addEventListener(
+
+    "click",
+
+    function () {
+
+
+        calendarDate.setMonth(
+
+            calendarDate.getMonth()
+
+            -
+
+            1
+
+        );
+
+
+        createMovieCalendar();
+
+    }
+
+);
+
+
+/* =========================================
+   NEXT MONTH
+========================================= */
+
+nextMonth.addEventListener(
+
+    "click",
+
+    function () {
+
+
+        calendarDate.setMonth(
+
+            calendarDate.getMonth()
+
+            +
+
+            1
+
+        );
+
+
+        createMovieCalendar();
+
+    }
+
+);
+
+
+/* START CALENDAR */
+
+createMovieCalendar();
+/* =========================================
+   LIVE CURSOR SPOTLIGHT ✨
+========================================= */
+
+document.addEventListener(
+
+    "mousemove",
+
+    function (event) {
+
+        document.body.style.setProperty(
+
+            "--mouse-x",
+
+            `${event.clientX}px`
+
+        );
+
+
+        document.body.style.setProperty(
+
+            "--mouse-y",
+
+            `${event.clientY}px`
+
+        );
+
+    }
+
+);
