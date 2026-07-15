@@ -38,6 +38,22 @@
 </head>
 
 <body>
+    <!-- LIVE FLOP CORN BACKGROUND ANIMATION -->
+
+<div class="live-background" aria-hidden="true">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
 
     <!-- Background Effects -->
     <div class="background-effects">
@@ -79,6 +95,10 @@
                 <i class="fa-solid fa-clapperboard"></i>
                 New Movies
             </a>
+            <a href="#release-calendar">
+    <i class="fa-solid fa-calendar-days"></i>
+    Calendar
+</a>
             <a href="#bollywood">
     <i class="fa-solid fa-film"></i>
     Bollywood
@@ -187,7 +207,10 @@
             <i class="fa-solid fa-clapperboard"></i>
             New Movies
         </a>
-
+<a href="#release-calendar">
+    <i class="fa-solid fa-calendar-days"></i>
+    <span>Calendar</span>
+</a>
         <a href="#bollywood">
     <i class="fa-solid fa-film"></i>
     Bollywood
@@ -665,7 +688,85 @@
     </div>
 
 </section>
+<!-- ================= MOVIE RELEASE CALENDAR ================= -->
 
+<section class="movie-section release-calendar-section" id="release-calendar">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="small-heading">
+                <i class="fa-solid fa-calendar-days"></i>
+                PLAN YOUR NEXT MOVIE
+            </p>
+
+            <h2>
+                📅 Movie Release Calendar
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="calendar-container">
+
+        <div class="calendar-header">
+
+            <button id="previousMonth">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <h3 id="calendarMonth">
+                Loading Calendar...
+            </h3>
+
+            <button id="nextMonth">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+        </div>
+
+
+        <div class="calendar-weekdays">
+
+            <span>Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+
+        </div>
+
+
+        <div
+            class="calendar-grid"
+            id="calendarGrid"
+        >
+            <!-- Calendar dates will load here -->
+        </div>
+
+    </div>
+
+
+    <div class="calendar-movies">
+
+        <h3 id="calendarMoviesTitle">
+            Select a date to view movie releases 🍿
+        </h3>
+
+        <div
+            class="movie-grid"
+            id="calendarMovies"
+        >
+        </div>
+
+    </div>
+
+</section>
         <!-- ================= NEW MOVIES ================= -->
 
         <section
