@@ -11508,7 +11508,6 @@ div > span {
     border-radius: 4px;
     transition: transform 0.35s ease;
 }
-
 .explore-category-card:hover .marvel-logo-box img {
     transform: scale(1.12);
 }
