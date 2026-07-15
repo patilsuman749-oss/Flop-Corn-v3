@@ -6498,3 +6498,1958 @@ body.light-mode
         );
 
 }
+/* =========================================
+   MOVIE RELEASE CALENDAR 📅
+========================================= */
+
+.release-calendar-section {
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255, 210, 28, 0.08),
+            transparent 35%
+        );
+}
+
+
+/* CALENDAR BOX */
+
+.calendar-container {
+    max-width: 1000px;
+
+    margin:
+        0 auto
+        45px;
+
+    padding:
+        30px;
+
+    border:
+        1px solid
+        rgba(255, 210, 28, 0.2);
+
+    border-radius:
+        25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171717,
+            #0d0d0d
+        );
+
+    box-shadow:
+        0 25px 60px
+        rgba(0, 0, 0, 0.4);
+}
+
+
+/* MONTH HEADER */
+
+.calendar-header {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        28px;
+}
+
+
+.calendar-header h3 {
+    color:
+        var(--yellow);
+
+    font-family:
+        "Outfit",
+        sans-serif;
+
+    font-size:
+        28px;
+
+    text-align:
+        center;
+}
+
+
+.calendar-header button {
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    width:
+        45px;
+
+    height:
+        45px;
+
+    border:
+        1px solid
+        rgba(255, 210, 28, 0.25);
+
+    border-radius:
+        13px;
+
+    color:
+        var(--yellow);
+
+    background:
+        rgba(255, 210, 28, 0.08);
+
+    transition:
+        0.3s ease;
+}
+
+
+.calendar-header button:hover {
+    color:
+        #111;
+
+    background:
+        var(--yellow);
+
+    transform:
+        scale(1.08);
+}
+
+
+/* WEEK NAMES */
+
+.calendar-weekdays {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap:
+        10px;
+
+    margin-bottom:
+        12px;
+}
+
+
+.calendar-weekdays span {
+    color:
+        var(--yellow);
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    text-align:
+        center;
+}
+
+
+/* CALENDAR DATES */
+
+.calendar-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap:
+        10px;
+}
+
+
+.calendar-day {
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        85px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius:
+        15px;
+
+    color:
+        white;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    font-size:
+        16px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.3s ease;
+}
+
+
+.calendar-day:hover {
+    color:
+        #111;
+
+    border-color:
+        var(--yellow);
+
+    background:
+        var(--yellow);
+
+    transform:
+        translateY(-4px);
+}
+
+
+/* EMPTY CALENDAR BOX */
+
+.calendar-day.empty {
+    border:
+        none;
+
+    background:
+        transparent;
+
+    cursor:
+        default;
+}
+
+
+.calendar-day.empty:hover {
+    transform:
+        none;
+}
+
+
+/* TODAY DATE */
+
+.calendar-day.today {
+    color:
+        var(--yellow);
+
+    border:
+        2px solid
+        var(--yellow);
+
+    background:
+        rgba(255, 210, 28, 0.1);
+}
+
+
+/* MOVIE RELEASE DOT */
+
+.calendar-day.has-movie::after {
+    position:
+        absolute;
+
+    bottom:
+        10px;
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--yellow);
+
+    content:
+        "";
+}
+
+
+.calendar-day.has-movie:hover::after {
+    background:
+        #111;
+}
+
+
+/* SELECTED DATE */
+
+.calendar-day.selected {
+    color:
+        #111;
+
+    background:
+        var(--yellow);
+
+    box-shadow:
+        0 0 25px
+        rgba(255, 210, 28, 0.3);
+}
+
+
+/* RELEASE MOVIES */
+
+.calendar-movies {
+    margin-top:
+        50px;
+}
+
+
+.calendar-movies > h3 {
+    margin-bottom:
+        28px;
+
+    color:
+        var(--yellow);
+
+    font-family:
+        "Outfit",
+        sans-serif;
+
+    font-size:
+        25px;
+}
+
+
+/* MOBILE CALENDAR */
+
+@media (max-width: 680px) {
+
+    .calendar-container {
+        padding:
+            18px 10px;
+
+        border-radius:
+            18px;
+    }
+
+
+    .calendar-header h3 {
+        font-size:
+            20px;
+    }
+
+
+    .calendar-header button {
+        width:
+            38px;
+
+        height:
+            38px;
+    }
+
+
+    .calendar-weekdays {
+        gap:
+            4px;
+    }
+
+
+    .calendar-weekdays span {
+        font-size:
+            10px;
+    }
+
+
+    .calendar-grid {
+        gap:
+            5px;
+    }
+
+
+    .calendar-day {
+        min-height:
+            48px;
+
+        border-radius:
+            9px;
+
+        font-size:
+            12px;
+    }
+
+
+    .calendar-day.has-movie::after {
+        bottom:
+            5px;
+
+        width:
+            5px;
+
+        height:
+            5px;
+    }
+
+
+    .calendar-movies > h3 {
+        font-size:
+            19px;
+    }
+
+}
+/* =========================================
+   RELEASE CALENDAR ANIMATIONS 📅✨
+========================================= */
+
+
+/* CALENDAR ENTER ANIMATION */
+
+.calendar-container {
+    animation:
+        calendarEntrance
+        0.8s ease
+        both;
+}
+
+
+@keyframes calendarEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(35px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* MONTH TITLE ANIMATION */
+
+.calendar-header h3 {
+    animation:
+        monthTitleGlow
+        2.5s ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes monthTitleGlow {
+
+    from {
+        text-shadow:
+            0 0 5px
+            rgba(255, 210, 28, 0.15);
+    }
+
+    to {
+        text-shadow:
+            0 0 22px
+            rgba(255, 210, 28, 0.65);
+    }
+
+}
+
+
+/* CALENDAR DATE ENTRANCE */
+
+.calendar-day {
+    opacity: 0;
+
+    animation:
+        calendarDateEntrance
+        0.45s ease
+        forwards;
+
+    animation-delay:
+        calc(
+            var(--calendar-position)
+            *
+            0.025s
+        );
+}
+
+
+@keyframes calendarDateEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px)
+            scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* MOVIE RELEASE DOT PULSE */
+
+.calendar-day.has-movie::after {
+    animation:
+        releaseDotPulse
+        1.2s ease-in-out
+        infinite;
+}
+
+
+@keyframes releaseDotPulse {
+
+    0%,
+    100% {
+        transform:
+            scale(1);
+
+        box-shadow:
+            0 0 4px
+            rgba(255, 210, 28, 0.5);
+    }
+
+    50% {
+        transform:
+            scale(1.6);
+
+        box-shadow:
+            0 0 15px
+            rgba(255, 210, 28, 1);
+    }
+
+}
+
+
+/* TODAY DATE GLOW */
+
+.calendar-day.today {
+    animation:
+        calendarDateEntrance
+        0.45s ease
+        forwards,
+
+        todayCalendarGlow
+        1.8s ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes todayCalendarGlow {
+
+    from {
+        box-shadow:
+            0 0 5px
+            rgba(255, 210, 28, 0.2);
+    }
+
+    to {
+        box-shadow:
+            0 0 25px
+            rgba(255, 210, 28, 0.65);
+    }
+
+}
+
+
+/* SELECTED DATE POP */
+
+.calendar-day.selected {
+    animation:
+        selectedDatePop
+        0.35s ease;
+}
+
+
+@keyframes selectedDatePop {
+
+    0% {
+        transform:
+            scale(0.85);
+    }
+
+    60% {
+        transform:
+            scale(1.15);
+    }
+
+    100% {
+        transform:
+            scale(1);
+    }
+
+}
+
+
+/* MOVIES BELOW CALENDAR */
+
+.calendar-movies {
+    animation:
+        calendarMoviesEntrance
+        0.65s ease
+        both;
+}
+
+
+@keyframes calendarMoviesEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* RESPECT REDUCED-MOTION SETTINGS */
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+
+    .calendar-container,
+    .calendar-day,
+    .calendar-day.today,
+    .calendar-day.selected,
+    .calendar-day.has-movie::after,
+    .calendar-header h3,
+    .calendar-movies {
+
+        animation:
+            none !important;
+
+    }
+
+}
+/* =========================================
+   PREMIUM FLOP CORN NAVBAR 🍿
+========================================= */
+
+
+/* MAIN NAVBAR */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background:
+        rgba(5, 5, 5, 0.88);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid
+        rgba(255, 210, 28, 0.16);
+
+    box-shadow:
+        0 8px 35px
+        rgba(0, 0, 0, 0.55);
+
+    transition:
+        all 0.35s ease;
+}
+
+
+/* SOFT YELLOW LIGHT BELOW NAVBAR */
+
+.navbar::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -1px;
+
+    width: 55%;
+    height: 1px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 210, 28, 0.7),
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(255, 210, 28, 0.35);
+
+    pointer-events: none;
+}
+
+
+/* FLOP CORN LOGO */
+
+.logo {
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+
+.logo:hover {
+    transform:
+        scale(1.04);
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(255, 210, 28, 0.45)
+        );
+}
+
+
+/* NAVIGATION LINKS */
+
+.nav-links a {
+    position: relative;
+
+    border-radius: 12px;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.nav-links a:hover {
+    color:
+        #ffd21c;
+
+    background:
+        rgba(255, 210, 28, 0.08);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* ANIMATED LINE BELOW LINKS */
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 5px;
+
+    width: 0;
+    height: 2px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:
+        50px;
+
+    background:
+        #ffd21c;
+
+    box-shadow:
+        0 0 9px
+        rgba(255, 210, 28, 0.75);
+
+    transition:
+        width 0.3s ease;
+}
+
+
+.nav-links a:hover::after {
+    width: 45%;
+}
+
+
+/* ACTIVE NAVIGATION BUTTON */
+
+.nav-links a.active {
+    color:
+        #ffd21c;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 210, 28, 0.18),
+            rgba(255, 210, 28, 0.07)
+        );
+
+    border:
+        1px solid
+        rgba(255, 210, 28, 0.18);
+
+    box-shadow:
+        inset 0 0 18px
+        rgba(255, 210, 28, 0.05);
+}
+
+
+.nav-links a.active::after {
+    width:
+        45%;
+}
+
+
+/* NAVBAR ICON BUTTONS */
+
+.nav-actions button {
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.nav-actions button:hover {
+    transform:
+        translateY(-3px)
+        scale(1.05);
+
+    border-color:
+        rgba(255, 210, 28, 0.55);
+
+    box-shadow:
+        0 6px 20px
+        rgba(255, 210, 28, 0.13);
+}
+
+
+/* PROFILE BUTTON */
+
+.profile-btn {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.profile-btn:hover {
+    transform:
+        scale(1.08);
+
+    box-shadow:
+        0 0 22px
+        rgba(255, 210, 28, 0.5);
+}
+/* =========================================
+   NAVBAR SPACING FIX
+========================================= */
+
+.navbar {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    flex: 1;
+
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.nav-links a {
+    padding: 12px 10px;
+
+    white-space: nowrap;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+}
+
+.nav-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+/* MOBILE HAMBURGER MENU FIX */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        width: 44px;
+        height: 44px;
+
+        margin-left: 4px;
+    }
+
+    .nav-actions {
+        gap: 8px;
+
+        margin-left: auto;
+    }
+
+}
+/* =========================================
+   MOBILE THREE-LINE MENU FIX
+========================================= */
+
+@media (max-width: 768px) {
+
+    .mobile-menu-button {
+        display: flex !important;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 44px;
+        height: 44px;
+
+        padding: 0;
+
+        flex-shrink: 0;
+
+        color: white;
+
+        background:
+            rgba(255, 255, 255, 0.06);
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.13);
+
+        border-radius: 12px;
+
+        font-size: 20px;
+
+        cursor: pointer;
+    }
+
+    .navbar-right {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        margin-left: auto;
+
+        flex-shrink: 0;
+    }
+
+}
+/* FORCE MOBILE HAMBURGER BUTTON TO SHOW */
+
+@media screen and (max-width: 900px) {
+
+    #mobileMenuButton {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        position: relative !important;
+
+        width: 44px !important;
+        min-width: 44px !important;
+        height: 44px !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        color: #ffffff !important;
+
+        background:
+            rgba(255, 255, 255, 0.07) !important;
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.15) !important;
+
+        border-radius:
+            12px !important;
+
+        font-size:
+            20px !important;
+
+        flex-shrink:
+            0 !important;
+    }
+
+
+    #mobileMenuButton i {
+        display: block !important;
+
+        visibility: visible !important;
+
+        opacity: 1 !important;
+
+        color: #ffffff !important;
+
+        font-size: 20px !important;
+    }
+
+
+    .navbar-right {
+        display: flex !important;
+
+        align-items: center !important;
+
+        gap: 8px !important;
+
+        flex-shrink: 0 !important;
+    }
+
+}
+/* SHOW THREE-LINE MENU ON LAPTOP ALSO */
+
+#mobileMenuButton {
+    display: flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    border-radius: 12px;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+#mobileMenuButton:hover {
+    transform:
+        translateY(-2px);
+
+    color:
+        #ffd21c;
+
+    border-color:
+        rgba(255, 210, 28, 0.55);
+
+    box-shadow:
+        0 5px 18px
+        rgba(255, 210, 28, 0.15);
+} 
+/* =========================================
+   FLOP CORN — WEBSITE-WIDE ANIMATIONS 🍿✨
+========================================= */
+
+
+/* SMOOTH PAGE */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* MAIN SECTIONS ENTER */
+
+section {
+    animation:
+        sectionCinematicEntry
+        0.9s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        both;
+}
+
+
+@keyframes sectionCinematicEntry {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(45px);
+
+        filter:
+            blur(5px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+        filter:
+            blur(0);
+    }
+
+}
+
+
+/* MOVIE CARDS */
+
+.movie-card {
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.4s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
+
+        box-shadow 0.4s ease,
+
+        border-color 0.4s ease;
+}
+
+
+.movie-card:hover {
+    transform:
+        translateY(-14px)
+        scale(1.035);
+
+    border-color:
+        rgba(
+            255,
+            210,
+            28,
+            0.7
+        );
+
+    box-shadow:
+        0 20px 45px
+        rgba(
+            0,
+            0,
+            0,
+            0.75
+        ),
+
+        0 0 25px
+        rgba(
+            255,
+            210,
+            28,
+            0.22
+        );
+}
+
+
+/* POSTER ZOOM */
+
+.movie-card img {
+    transition:
+        transform 0.65s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
+
+        filter 0.5s ease;
+}
+
+
+.movie-card:hover img {
+    transform:
+        scale(1.09);
+
+    filter:
+        brightness(1.08)
+        contrast(1.05);
+}
+
+
+/* MOVIE CARD SHINE */
+
+.movie-card::after {
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: -70%;
+
+    width: 45%;
+    height: 300%;
+
+    transform:
+        rotate(25deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(
+                255,
+                255,
+                255,
+                0.2
+            ),
+            transparent
+        );
+
+    transition:
+        left 0.7s ease;
+
+    pointer-events: none;
+}
+
+
+.movie-card:hover::after {
+    left:
+        140%;
+}
+
+
+/* SECTION TITLES */
+
+.section-title,
+.section-header h2 {
+    animation:
+        titleEntrance
+        0.8s ease
+        both;
+
+    transition:
+        transform 0.35s ease,
+
+        text-shadow 0.35s ease;
+}
+
+
+.section-title:hover,
+.section-header h2:hover {
+    transform:
+        translateX(8px);
+
+    text-shadow:
+        0 0 20px
+        rgba(
+            255,
+            210,
+            28,
+            0.55
+        );
+}
+
+
+@keyframes titleEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+
+}
+
+
+/* BUTTON SHINE */
+
+button,
+.btn,
+.hero-btn {
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+
+        box-shadow 0.3s ease;
+}
+
+
+button:hover,
+.btn:hover,
+.hero-btn:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(
+            255,
+            210,
+            28,
+            0.2
+        );
+}
+
+
+button::after,
+.btn::after,
+.hero-btn::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 60%;
+    height: 100%;
+
+    transform:
+        skewX(-25deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(
+                255,
+                255,
+                255,
+                0.3
+            ),
+            transparent
+        );
+
+    transition:
+        left 0.65s ease;
+
+    pointer-events: none;
+}
+
+
+button:hover::after,
+.btn:hover::after,
+.hero-btn:hover::after {
+    left:
+        150%;
+}
+
+
+/* NAVBAR ENTER */
+
+.navbar {
+    animation:
+        navbarDrop
+        0.75s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        )
+        both;
+}
+
+
+@keyframes navbarDrop {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-70px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* LOGO GLOW */
+
+.logo {
+    animation:
+        logoSoftGlow
+        2.2s
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes logoSoftGlow {
+
+    from {
+        filter:
+            drop-shadow(
+                0 0 2px
+                rgba(
+                    255,
+                    210,
+                    28,
+                    0.15
+                )
+            );
+    }
+
+    to {
+        filter:
+            drop-shadow(
+                0 0 13px
+                rgba(
+                    255,
+                    210,
+                    28,
+                    0.55
+                )
+            );
+    }
+
+}
+
+
+/* MOBILE: KEEP ANIMATIONS SMOOTH */
+
+@media (
+    max-width: 768px
+) {
+
+    .movie-card:hover {
+        transform:
+            translateY(-7px)
+            scale(1.015);
+    }
+
+}
+
+
+/* ACCESSIBILITY */
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        scroll-behavior:
+            auto !important;
+
+    }
+
+}
+/* =========================================
+   KEEP CALENDAR RELEASE YELLOW DOT 🟡
+========================================= */
+
+.calendar-day.has-movie::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 10px;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #ffd21c;
+
+    transform:
+        translateX(-50%);
+
+    box-shadow:
+        0 0 10px
+        rgba(255, 210, 28, 0.9);
+
+    animation:
+        releaseDotPulse
+        1.2s
+        ease-in-out
+        infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes releaseDotPulse {
+
+    0%,
+    100% {
+
+        transform:
+            translateX(-50%)
+            scale(1);
+
+        box-shadow:
+            0 0 6px
+            rgba(255, 210, 28, 0.7);
+
+    }
+
+    50% {
+
+        transform:
+            translateX(-50%)
+            scale(1.6);
+
+        box-shadow:
+            0 0 18px
+            rgba(255, 210, 28, 1);
+
+    }
+
+}
+/* =========================================
+   CALENDAR YELLOW DOT BELOW DATE 🟡
+========================================= */
+
+.calendar-day.has-movie::after {
+    content: "" !important;
+
+    position: absolute !important;
+
+    top: auto !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: 9px !important;
+
+    width: 7px !important;
+    height: 7px !important;
+
+    border-radius: 50% !important;
+
+    background: #ffd21c !important;
+
+    transform:
+        translateX(-50%)
+        scale(1);
+
+    box-shadow:
+        0 0 9px
+        rgba(255, 210, 28, 0.9);
+
+    animation:
+        releaseDotBelowPulse
+        1.2s
+        ease-in-out
+        infinite !important;
+
+    pointer-events: none !important;
+}
+
+
+@keyframes releaseDotBelowPulse {
+
+    0%,
+    100% {
+
+        transform:
+            translateX(-50%)
+            scale(1);
+
+        box-shadow:
+            0 0 6px
+            rgba(255, 210, 28, 0.7);
+
+    }
+
+    50% {
+
+        transform:
+            translateX(-50%)
+            scale(1.5);
+
+        box-shadow:
+            0 0 16px
+            rgba(255, 210, 28, 1);
+
+    }
+
+}
+
+
+/* MOBILE DOT POSITION */
+
+@media (max-width: 680px) {
+
+    .calendar-day.has-movie::after {
+
+        bottom: 5px !important;
+
+        width: 5px !important;
+        height: 5px !important;
+
+    }
+
+}
+/* =========================================
+   LIVE FLOP CORN BACKGROUND ✨🍿
+========================================= */
+
+.live-background {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+/* FLOATING CINEMA LIGHTS */
+
+.live-background span {
+    position: absolute;
+
+    bottom: -80px;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 210, 28, 0.7);
+
+    box-shadow:
+        0 0 12px
+        rgba(255, 210, 28, 0.8),
+
+        0 0 30px
+        rgba(255, 210, 28, 0.3);
+
+    animation:
+        flopCornParticle
+        12s linear
+        infinite;
+}
+
+
+/* DIFFERENT PARTICLE POSITIONS */
+
+.live-background span:nth-child(1) {
+    left: 5%;
+
+    animation-delay: 0s;
+}
+
+
+.live-background span:nth-child(2) {
+    left: 15%;
+
+    width: 6px;
+    height: 6px;
+
+    animation-delay: 3s;
+
+    animation-duration: 15s;
+}
+
+
+.live-background span:nth-child(3) {
+    left: 25%;
+
+    animation-delay: 6s;
+}
+
+
+.live-background span:nth-child(4) {
+    left: 36%;
+
+    width: 7px;
+    height: 7px;
+
+    animation-delay: 1s;
+
+    animation-duration: 17s;
+}
+
+
+.live-background span:nth-child(5) {
+    left: 47%;
+
+    animation-delay: 8s;
+}
+
+
+.live-background span:nth-child(6) {
+    left: 58%;
+
+    width: 6px;
+    height: 6px;
+
+    animation-delay: 4s;
+
+    animation-duration: 14s;
+}
+
+
+.live-background span:nth-child(7) {
+    left: 68%;
+
+    animation-delay: 10s;
+}
+
+
+.live-background span:nth-child(8) {
+    left: 78%;
+
+    width: 8px;
+    height: 8px;
+
+    animation-delay: 2s;
+
+    animation-duration: 16s;
+}
+
+
+.live-background span:nth-child(9) {
+    left: 88%;
+
+    animation-delay: 7s;
+}
+
+
+.live-background span:nth-child(10) {
+    left: 96%;
+
+    width: 6px;
+    height: 6px;
+
+    animation-delay: 5s;
+
+    animation-duration: 18s;
+}
+
+
+/* PARTICLE MOVEMENT */
+
+@keyframes flopCornParticle {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(0.4);
+    }
+
+
+    15% {
+        opacity: 0.8;
+    }
+
+
+    50% {
+        transform:
+            translateY(-55vh)
+            translateX(35px)
+            scale(1.2);
+    }
+
+
+    85% {
+        opacity: 0.7;
+    }
+
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-115vh)
+            translateX(-30px)
+            scale(0.5);
+    }
+
+}
+
+
+/* KEEP WEBSITE CONTENT ABOVE PARTICLES */
+
+.navbar,
+main,
+section,
+footer {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* MOBILE PERFORMANCE */
+
+@media (max-width: 768px) {
+
+    .live-background span:nth-child(even) {
+        display: none;
+    }
+
+}
+/* =========================================
+   FLOP CORN CURSOR SPOTLIGHT ✨
+========================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    top: var(--mouse-y, 50%);
+    left: var(--mouse-x, 50%);
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 210, 28, 0.09),
+            rgba(255, 210, 28, 0.025) 35%,
+            transparent 70%
+        );
+
+    transform:
+        translate(-50%, -50%);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    transition:
+        top 0.08s linear,
+        left 0.08s linear;
+}
+
+
+/* KEEP WEBSITE CONTENT ABOVE THE LIGHT */
+
+.navbar,
+main,
+section,
+footer {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* HIDE CURSOR LIGHT ON TOUCH PHONES */
+
+@media (
+    hover: none
+) {
+
+    body::before {
+        display: none;
+    }
+
+}
