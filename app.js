@@ -960,26 +960,32 @@ const profileMenuName = document.getElementById("profileMenuName");
 const profileMenuEmail = document.getElementById("profileMenuEmail");
 const profileSignOutButton = document.getElementById("profileSignOutButton");
 
-/* Open and close profile menu */
-loginButton.addEventListener("click", (event) => {
-    event.stopImmediatePropagation();
+/* OPEN AND CLOSE PROFILE MENU */
+
+loginButton.onclick = function (event) {
 
     const user = auth.currentUser;
 
-    if (user) {
-
-        profileMenuName.textContent =
-            user.displayName || "Flop Corn User";
-
-        profileMenuEmail.textContent =
-            user.email || "";
-
-        profileMenuPhoto.src =
-            user.photoURL || "flopcorn-logo.jpeg.jpeg";
-
-        profileMenu.classList.toggle("show");
+    /* Allow normal Google login if signed out */
+    if (!user) {
+        return;
     }
-});
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    profileMenuName.textContent =
+        user.displayName || "Flop Corn User";
+
+    profileMenuEmail.textContent =
+        user.email || "";
+
+    profileMenuPhoto.src =
+        user.photoURL || "flopcorn-logo.jpeg.jpeg";
+
+    profileMenu.classList.toggle("show");
+
+};
 
 /* Close menu when clicking outside */
 document.addEventListener("click", (event) => {
