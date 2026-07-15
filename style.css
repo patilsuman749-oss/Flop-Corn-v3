@@ -11669,3 +11669,32 @@ div > span {
         z-index: 2147483647 !important;
     }
 }
+/* MOVE FULL PROFILE BELOW NAVBAR ON MOBILE */
+
+@media screen and (max-width: 600px) {
+
+    .full-profile-overlay {
+        padding: 95px 12px 25px !important;
+        align-items: flex-start !important;
+        overflow-y: auto !important;
+    }
+
+    .full-profile-card {
+        margin-top: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    #closeProfileButton {
+        position: absolute !important;
+
+        top: 15px !important;
+        right: 15px !important;
+
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        z-index: 2147483647 !important;
+    }
+}
