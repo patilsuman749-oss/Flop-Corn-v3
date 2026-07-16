@@ -3435,16 +3435,11 @@ const appPopup = document.getElementById("appPopup");
 const closeAppPopup = document.getElementById("closeAppPopup");
 const continueWebsite = document.getElementById("continueWebsite");
 
-// Show popup only once per browser
-if (!localStorage.getItem("flopcornAppPopup")) {
-    appPopup.style.display = "flex";
-} else {
-    appPopup.style.display = "none";
-}
+// Always show popup
+appPopup.style.display = "flex";
 
 function closePopup() {
     appPopup.style.display = "none";
-    localStorage.setItem("flopcornAppPopup", "true");
 }
 
 closeAppPopup.addEventListener("click", closePopup);
