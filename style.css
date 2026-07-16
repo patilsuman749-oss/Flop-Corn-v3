@@ -11986,3 +11986,58 @@ div > span {
     }
 
 }
+/* ===============================
+   HOME DOWNLOAD APP BUTTON
+================================ */
+
+.download-app-home{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    margin-top:18px;
+
+    padding:15px 28px;
+
+    background:linear-gradient(135deg,#ff3b30,#ff6b3d);
+
+    color:#fff;
+    text-decoration:none;
+
+    font-size:16px;
+    font-weight:700;
+
+    border-radius:50px;
+
+    box-shadow:0 10px 25px rgba(255,59,48,.35);
+
+    transition:all .3s ease;
+}
+
+.download-app-home:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 35px rgba(255,59,48,.45);
+
+    background:linear-gradient(135deg,#ff5648,#ff7b4d);
+}
+
+.download-app-home i{
+
+    font-size:20px;
+
+}
+
+@media(max-width:768px){
+
+    .download-app-home{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
