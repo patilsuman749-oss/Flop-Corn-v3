@@ -519,3 +519,105 @@ a {
         height: 50px;
     }
 }
+/* =========================================
+   AI MOVIE RECOMMENDATION CARDS 🍿
+========================================= */
+
+.ai-movie-result {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    max-width: 520px;
+    margin: 0 0 15px 54px;
+    padding: 12px;
+
+    border: 1px solid rgba(255, 210, 28, 0.18);
+    border-radius: 16px;
+
+    background: #1c1c1c;
+
+    transition: 0.3s ease;
+}
+
+.ai-movie-result:hover {
+    border-color: #ffd21c;
+    transform: translateY(-2px);
+}
+
+.ai-movie-result img {
+    width: 75px;
+    height: 110px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    object-fit: cover;
+}
+
+.ai-movie-info {
+    min-width: 0;
+}
+
+.ai-movie-info h3 {
+    margin-bottom: 7px;
+
+    color: #ffffff;
+
+    font-family: "Outfit", sans-serif;
+    font-size: 17px;
+}
+
+.ai-movie-info p {
+    margin-bottom: 12px;
+
+    color: #aaaaaa;
+
+    font-size: 13px;
+}
+
+.ai-movie-info button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 9px 13px;
+
+    border-radius: 9px;
+
+    color: #111111;
+    background: #ffd21c;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition: 0.25s ease;
+}
+
+.ai-movie-info button:hover {
+    background: #ffe66b;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .ai-movie-result {
+        max-width: calc(100% - 15px);
+
+        margin-left: 0;
+
+        gap: 12px;
+    }
+
+    .ai-movie-result img {
+        width: 65px;
+        height: 95px;
+    }
+
+    .ai-movie-info h3 {
+        font-size: 15px;
+    }
+}
