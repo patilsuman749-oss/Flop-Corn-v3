@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Movie Quiz | Flop Corn</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Quiz CSS -->
+    <link rel="stylesheet" href="quiz.css">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="quiz-navbar">
+
+        <a href="index.html" class="quiz-logo">
+
+            <img src="flopcorn-logo.jpeg.jpeg"
+                 alt="Flop Corn Logo">
+
+            <span>
+                FLOP<strong>CORN</strong>
+            </span>
+
+        </a>
+
+        <a href="index.html"
+           class="back-home">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+    </header>
+
+
+    <!-- MAIN QUIZ AREA -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="quiz-hero">
+
+            <div class="quiz-badge">
+                🎮 FLOP CORN GAMES
+            </div>
+
+            <h1>
+                How well do you know
+                <span>movies?</span>
+            </h1>
+
+            <p>
+                Test your cinema knowledge, answer questions,
+                earn points and become a Flop Corn Movie Master.
+            </p>
+
+        </section>
+
+
+        <!-- GAME MODE SELECTION -->
+
+        <section class="game-section">
+
+            <h2>
+                Choose Your Challenge 🍿
+            </h2>
+
+            <p class="game-subtitle">
+                Pick a quiz mode and start playing.
+            </p>
+
+
+            <div class="game-grid">
+
+
+                <!-- GUESS MOVIE -->
+
+                <button class="game-card"
+                        data-mode="movie">
+
+                    <div class="game-icon">
+                        🎬
+                    </div>
+
+                    <h3>
+                        Guess the Movie
+                    </h3>
+
+                    <p>
+                        Guess the movie from clues and hints.
+                    </p>
+
+                    <span>
+                        Play Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </button>
+
+
+                <!-- ACTOR -->
+
+                <button class="game-card"
+                        data-mode="actor">
+
+                    <div class="game-icon">
+                        🎭
+                    </div>
+
+                    <h3>
+                        Guess the Actor
+                    </h3>
+
+                    <p>
+                        Test how well you know famous movie stars.
+                    </p>
+
+                    <span>
+                        Play Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </button>
+
+
+                <!-- EMOJI -->
+
+                <button class="game-card"
+                        data-mode="emoji">
+
+                    <div class="game-icon">
+                        😂
+                    </div>
+
+                    <h3>
+                        Guess by Emoji
+                    </h3>
+
+                    <p>
+                        Decode emojis and guess the movie.
+                    </p>
+
+                    <span>
+                        Play Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </button>
+
+
+                <!-- DIALOGUE -->
+
+                <button class="game-card"
+                        data-mode="dialogue">
+
+                    <div class="game-icon">
+                        💬
+                    </div>
+
+                    <h3>
+                        Guess the Dialogue
+                    </h3>
+
+                    <p>
+                        Identify the movie from an iconic dialogue.
+                    </p>
+
+                    <span>
+                        Play Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ GAME -->
+
+        <section class="quiz-game hidden"
+                 id="quizGame">
+
+            <div class="quiz-top">
+
+                <button id="exitQuiz"
+                        class="exit-button">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Exit
+
+                </button>
+
+
+                <div class="quiz-progress">
+
+                    Question
+
+                    <strong id="questionNumber">
+                        1
+                    </strong>
+
+                    / 10
+
+                </div>
+
+
+                <div class="quiz-score">
+
+                    ⭐
+
+                    <span id="score">
+                        0
+                    </span>
+
+                    Points
+
+                </div>
+
+            </div>
+
+
+            <!-- PROGRESS BAR -->
+
+            <div class="progress-bar">
+
+                <div class="progress-fill"
+                     id="progressFill">
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION -->
+
+            <div class="question-card">
+
+                <div class="question-icon"
+                     id="questionIcon">
+
+                    🎬
+
+                </div>
+
+
+                <p class="question-category"
+                   id="questionCategory">
+
+                    GUESS THE MOVIE
+
+                </p>
+
+
+                <h2 id="questionText">
+
+                    Loading question...
+
+                </h2>
+
+
+                <div class="answer-grid"
+                     id="answerGrid">
+
+                    <!-- Answers added by JavaScript -->
+
+                </div>
+
+
+                <p class="answer-message"
+                   id="answerMessage">
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULTS -->
+
+        <section class="quiz-results hidden"
+                 id="quizResults">
+
+            <div class="result-icon">
+                🏆
+            </div>
+
+            <h2>
+                Quiz Complete!
+            </h2>
+
+            <p>
+                Your final score
+            </p>
+
+            <div class="final-score">
+
+                <span id="finalScore">
+                    0
+                </span>
+
+                / 100
+
+            </div>
+
+            <h3 id="resultTitle">
+                Movie Rookie 🍿
+            </h3>
+
+            <button id="playAgain"
+                    class="play-again">
+
+                <i class="fa-solid fa-rotate-right"></i>
+
+                Play Again
+
+            </button>
+
+            <a href="index.html"
+               class="result-home">
+
+                Back to Flop Corn
+
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            🍿 FLOP CORN Movie Quiz
+        </p>
+
+        <span>
+            Created by Suman Patil
+        </span>
+
+    </footer>
+
+
+    <!-- QUIZ JAVASCRIPT -->
+
+    <script src="quiz.js"></script>
+
+</body>
+
+</html>
