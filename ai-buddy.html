@@ -1,1 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Movie Buddy | FLOP CORN</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- AI Buddy CSS -->
+    <link rel="stylesheet" href="ai-buddy.css">
+
+</head>
+
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="ai-background"></div>
+
+
+    <!-- NAVBAR -->
+
+    <header class="ai-navbar">
+
+        <a href="index.html" class="ai-logo">
+
+            <img
+                src="flopcorn-logo.jpeg.jpeg"
+                alt="Flop Corn Logo"
+            >
+
+            <strong>
+                FLOP<span>CORN</span>
+            </strong>
+
+        </a>
+
+
+        <a href="index.html" class="back-home">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            <span>
+                Back to Home
+            </span>
+
+        </a>
+
+    </header>
+
+
+    <!-- MAIN AI BUDDY -->
+
+    <main class="ai-page">
+
+        <section class="ai-container">
+
+
+            <!-- AI HEADER -->
+
+            <div class="ai-heading">
+
+                <div class="ai-bot-icon">
+                    🤖
+                </div>
+
+                <p class="ai-small-title">
+                    YOUR PERSONAL MOVIE ASSISTANT
+                </p>
+
+                <h1>
+                    AI Movie
+                    <span>Buddy</span>
+                </h1>
+
+                <p class="ai-description">
+
+                    Tell me what kind of movie you're
+                    in the mood for and I'll help you
+                    find something to watch. 🍿
+
+                </p>
+
+            </div>
+
+
+            <!-- CHAT BOX -->
+
+            <div class="ai-chat-card">
+
+
+                <!-- CHAT MESSAGES -->
+
+                <div
+                    class="ai-messages"
+                    id="aiMessages"
+                >
+
+                    <!-- AI WELCOME MESSAGE -->
+
+                    <div class="message ai-message">
+
+                        <div class="message-avatar">
+                            🤖
+                        </div>
+
+                        <div class="message-bubble">
+
+                            <strong>
+                                Flop Corn Buddy
+                            </strong>
+
+                            <p>
+                                Hey! 🍿 I'm your AI Movie Buddy.
+                                Tell me what you're in the mood
+                                to watch today!
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK SUGGESTIONS -->
+
+                <div class="quick-prompts">
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="Suggest a funny Telugu movie"
+                    >
+                        😂 Funny Telugu
+                    </button>
+
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="Suggest an action movie"
+                    >
+                        🔥 Action
+                    </button>
+
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="Suggest a horror movie"
+                    >
+                        👻 Horror
+                    </button>
+
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="Suggest a romantic movie"
+                    >
+                        ❤️ Romance
+                    </button>
+
+                </div>
+
+
+                <!-- CHAT INPUT -->
+
+                <div class="ai-input-area">
+
+                    <input
+                        type="text"
+                        id="aiInput"
+                        placeholder="Ask your Movie Buddy..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        id="sendAiMessage"
+                        aria-label="Send message"
+                    >
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXAMPLE TEXT -->
+
+            <p class="ai-example">
+
+                Try:
+                "I want a funny Kannada movie"
+                or
+                "Suggest a good thriller for tonight"
+
+            </p>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- AI BUDDY JAVASCRIPT -->
+
+    <script
+        type="module"
+        src="ai-buddy.js"
+    ></script>
+
+
+</body>
+
+</html>
