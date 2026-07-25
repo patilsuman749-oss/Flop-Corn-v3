@@ -36,6 +36,7 @@ document.getElementById("adminPanel").style.display = "block";
 
 await loadUsers();
     await loadReviewCount();
+    await loadMovieCount();
 });
 async function loadUsers() {
 
@@ -70,4 +71,23 @@ async function loadUsers() {
 
     });
 
+}
+async function loadMovieCount() {
+
+    const reviewsSnapshot = await getDocs(
+        collection(db, "reviews")
+    );
+
+    const movieIds = new Set();
+
+    reviewsSnapshot.forEach((doc) => {
+        const review = doc.data();
+
+        if (review.movieId) {
+            movieIds.add(review.movieId);
+        }
+    });
+
+    document.getElementById("movieCount").textContent =
+        movieIds.size;
 }
