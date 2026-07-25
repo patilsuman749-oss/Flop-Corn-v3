@@ -118,3 +118,10 @@ async function loadReviewCount() {
         reviewsSnapshot.size;
 
 }
+function updateTime() {
+    document.getElementById("currentTime").textContent =
+        new Date().toLocaleTimeString();
+}
+
+updateTime();
+setInterval(updateTime, 1000);
