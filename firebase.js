@@ -26,9 +26,9 @@ import {
     serverTimestamp,
     doc,
     getDoc,
+    getDocs,
     deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
 
 /* =====================================
    FIREBASE CONFIG
@@ -74,9 +74,14 @@ export const db =
 
 export {
     signOut,
-    onAuthStateChanged
+    onAuthStateChanged,
+    collection,
+    getDocs,
+    query,
+    where,
+    doc,
+    getDoc
 };
-
 
 const provider =
     new GoogleAuthProvider();
