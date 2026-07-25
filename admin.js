@@ -109,8 +109,6 @@ async function loadMovieCount() {
 
 }
 
-
-}
 function updateTime() {
     document.getElementById("currentTime").textContent =
         new Date().toLocaleTimeString();
