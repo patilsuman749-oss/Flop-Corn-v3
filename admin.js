@@ -74,18 +74,22 @@ async function loadUsers() {
 }
 async function loadMovieCount() {
 
-    const reviewsSnapshot = await getDocs(
-        collection(db, "reviews")
-    );
+    const reviewsSnapshot = await getDocs(collection(db, "reviews"));
 
-    const movieIds = new Set();
+    const uniqueMovies = new Set();
 
-    reviewsSnapshot.forEach((doc) => {
-        const review = doc.data();
+    reviewsSnapshot.forEach((reviewDoc) => {
+        const review = reviewDoc.data();
 
         if (review.movieId) {
-            movieIds.add(review.movieId);
+            uniqueMovies.add(String(review.movieId));
         }
+    });
+
+    document.getElementById("movieCount").textContent =
+        uniqueMovies.size;
+
+}
     });
 
     document.getElementById("movieCount").textContent =
