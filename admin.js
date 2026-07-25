@@ -90,8 +90,6 @@ async function loadMovieCount() {
         uniqueMovies.size;
 
 }
-    });
+    
 
-    document.getElementById("movieCount").textContent =
-        movieIds.size;
-}
+
