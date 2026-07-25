@@ -959,7 +959,12 @@ const profileMenuPhoto = document.getElementById("profileMenuPhoto");
 const profileMenuName = document.getElementById("profileMenuName");
 const profileMenuEmail = document.getElementById("profileMenuEmail");
 const profileSignOutButton = document.getElementById("profileSignOutButton");
-
+const adminButton = document.getElementById("adminButton");
+if (adminButton) {
+    adminButton.addEventListener("click", () => {
+        window.location.href = "admin.html";
+    });
+}
 /* OPEN AND CLOSE PROFILE MENU */
 
 loginButton.onclick = function (event) {
@@ -2049,18 +2054,21 @@ if (
    CHECK USERNAME AFTER LOGIN 🍿
 ========================================= */
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
 
     if (user) {
 
         checkUserUsername();
 
+        const userSnap = await getDoc(doc(db, "users", user.uid));
+
+        if (userSnap.exists() && userSnap.data().isAdmin) {
+            adminButton.style.display = "flex";
+        }
+
     } else {
 
-        usernameOverlay.classList.remove(
-            "show"
-        );
-
+        usernameOverlay.classList.remove("show");
         document.body.style.overflow = "";
 
     }
