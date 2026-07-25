@@ -7,7 +7,7 @@ import {
     collection,
     getDocs
 } from "./firebase.js";
-
+console.log("NEW ADMIN.JS LOADED");
 onAuthStateChanged(auth, async (user) => {
 
     console.log("Step 1: Auth changed");
