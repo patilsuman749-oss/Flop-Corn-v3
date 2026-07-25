@@ -19,6 +19,7 @@ import {
 import {
     getFirestore,
     collection,
+   getCountFromServer,
     addDoc,
     query,
     where,
@@ -77,6 +78,7 @@ export {
     onAuthStateChanged,
     collection,
     getDocs,
+    getCountFromServer,
     query,
     where,
     doc,
