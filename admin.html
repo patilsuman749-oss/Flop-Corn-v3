@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Flop Corn Admin</title>
+
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div id="loading">
+Checking Admin...
+</div>
+
+<div id="adminPanel" style="display:none;">
+
+<header>
+
+<h1>🍿 FLOP CORN ADMIN</h1>
+
+</header>
+
+<div class="cards">
+
+<div class="card">
+<h2 id="userCount">0</h2>
+<p>Total Users</p>
+</div>
+
+<div class="card">
+<h2 id="reviewCount">0</h2>
+<p>Total Reviews</p>
+</div>
+
+<div class="card">
+<h2 id="movieCount">0</h2>
+<p>Movies Reviewed</p>
+</div>
+
+</div>
+
+<input
+type="text"
+id="search"
+placeholder="Search users...">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Photo</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Joined</th>
+
+</tr>
+
+</thead>
+
+<tbody id="usersTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
