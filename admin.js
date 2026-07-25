@@ -1,4 +1,3 @@
-
 import {
     auth,
     db,
@@ -6,9 +5,9 @@ import {
     doc,
     getDoc,
     collection,
-    getDocs,
-    getCountFromServer
+    getDocs
 } from "./firebase.js";
+
 onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
@@ -31,13 +30,15 @@ onAuthStateChanged(auth, async (user) => {
         return;
     }
 
-  document.getElementById("loading").style.display = "none";
-document.getElementById("adminPanel").style.display = "block";
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("adminPanel").style.display = "block";
 
-await loadUsers();
+    await loadUsers();
     await loadReviewCount();
     await loadMovieCount();
+
 });
+
 async function loadUsers() {
 
     const usersSnapshot = await getDocs(collection(db, "users"));
@@ -66,30 +67,44 @@ async function loadUsers() {
                 <td>${user.email || "-"}</td>
 
                 <td>-</td>
+
             </tr>
         `;
 
     });
 
 }
+
+async function loadReviewCount() {
+
+    const reviewsSnapshot = await getDocs(
+        collection(db, "reviews")
+    );
+
+    document.getElementById("reviewCount").textContent =
+        reviewsSnapshot.size;
+
+}
+
 async function loadMovieCount() {
 
-    const reviewsSnapshot = await getDocs(collection(db, "reviews"));
+    const reviewsSnapshot = await getDocs(
+        collection(db, "reviews")
+    );
 
     const uniqueMovies = new Set();
 
     reviewsSnapshot.forEach((reviewDoc) => {
+
         const review = reviewDoc.data();
 
         if (review.movieId) {
             uniqueMovies.add(String(review.movieId));
         }
+
     });
 
     document.getElementById("movieCount").textContent =
         uniqueMovies.size;
 
 }
-    
-
-
