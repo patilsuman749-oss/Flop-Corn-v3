@@ -6,9 +6,9 @@ import {
     doc,
     getDoc,
     collection,
-    getDocs
+    getDocs,
+    getCountFromServer
 } from "./firebase.js";
-
 onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
@@ -35,6 +35,7 @@ onAuthStateChanged(auth, async (user) => {
 document.getElementById("adminPanel").style.display = "block";
 
 await loadUsers();
+    await loadReviewCount();
 });
 async function loadUsers() {
 
@@ -68,5 +69,15 @@ async function loadUsers() {
         `;
 
     });
+
+}
+async function loadReviewCount() {
+
+    const snapshot = await getCountFromServer(
+        collection(db, "reviews")
+    );
+
+    document.getElementById("reviewCount").textContent =
+        snapshot.data().count;
 
 }
