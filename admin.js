@@ -71,13 +71,3 @@ async function loadUsers() {
     });
 
 }
-async function loadReviewCount() {
-
-    const snapshot = await getCountFromServer(
-        collection(db, "reviews")
-    );
-
-    document.getElementById("reviewCount").textContent =
-        snapshot.data().count;
-
-}
