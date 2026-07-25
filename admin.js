@@ -49,34 +49,9 @@ onAuthStateChanged(auth, async (user) => {
     await loadMovieCount();
 
 });
-    if (!user) {
-        window.location.href = "index.html";
-        return;
-    }
+   
+  
 
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
-
-    if (!userSnap.exists()) {
-        window.location.href = "index.html";
-        return;
-    }
-
-    const userData = userSnap.data();
-
-    if (!userData.isAdmin) {
-        window.location.href = "index.html";
-        return;
-    }
-
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("adminPanel").style.display = "block";
-
-    await loadUsers();
-    await loadReviewCount();
-    await loadMovieCount();
-
-});
 
 async function loadUsers() {
 
