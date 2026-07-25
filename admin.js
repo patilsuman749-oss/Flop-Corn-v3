@@ -108,3 +108,13 @@ async function loadMovieCount() {
         uniqueMovies.size;
 
 }
+async function loadReviewCount() {
+
+    const reviewsSnapshot = await getDocs(
+        collection(db, "reviews")
+    );
+
+    document.getElementById("reviewCount").textContent =
+        reviewsSnapshot.size;
+
+}
