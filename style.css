@@ -12457,3 +12457,14 @@ section{
 #curtain.hide{
     display:none;
 }
+@media (max-width:768px){
+
+    .curtain-text h1{
+        font-size:38px;
+    }
+
+    .curtain-text p{
+        font-size:18px;
+    }
+
+}
