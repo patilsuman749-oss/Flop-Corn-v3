@@ -1279,15 +1279,22 @@ Made for movie lovers
 
     <script>
 window.addEventListener("load", () => {
+
     const curtain = document.getElementById("curtain");
+
+    const isMobile = window.innerWidth <= 768;
+
+    const openDelay = isMobile ? 1500 : 800;
+    const hideDelay = isMobile ? 4500 : 3000;
 
     setTimeout(() => {
         curtain.classList.add("open");
-    }, 800);
+    }, openDelay);
 
     setTimeout(() => {
         curtain.classList.add("hide");
-    }, 3000);
+    }, hideDelay);
+
 });
 </script>
 </body>
