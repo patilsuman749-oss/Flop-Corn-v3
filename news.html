@@ -1,34 +1,90 @@
 <main class="news-page">
 
+    <!-- HERO -->
     <section class="news-hero">
 
-        <h1>🍿 FLOP CORN NEWS</h1>
+        <div class="news-hero-overlay"></div>
 
-        <p>
-            Latest Hollywood, Bollywood, South Indian & OTT Movie News
-        </p>
+        <div class="news-hero-content">
+
+            <span class="news-badge">
+                🍿 FLOP CORN NEWS
+            </span>
+
+            <h1>Latest Movie News</h1>
+
+            <p>
+                Hollywood • Bollywood • South Indian • OTT • Box Office Updates
+            </p>
+
+        </div>
 
     </section>
 
-    <div class="news-filter">
 
-        <button class="active" data-category="All">🍿 All</button>
+    <!-- FILTERS -->
 
-        <button data-category="Hollywood">🎬 Hollywood</button>
+    <section class="news-filter">
 
-        <button data-category="Bollywood">🎥 Bollywood</button>
+        <button class="active" data-category="All">
+            🍿 All
+        </button>
 
-        <button data-category="South">🔥 South</button>
+        <button data-category="Hollywood">
+            🎬 Hollywood
+        </button>
 
-        <button data-category="OTT">📺 OTT</button>
+        <button data-category="Bollywood">
+            🎥 Bollywood
+        </button>
 
-    </div>
+        <button data-category="South">
+            🔥 South
+        </button>
 
-    <div id="featuredNews"></div>
+        <button data-category="OTT">
+            📺 OTT
+        </button>
 
-    <div id="newsContainer" class="news-grid">
-        Loading latest news...
-    </div>
+    </section>
+
+
+    <!-- FEATURED NEWS -->
+
+    <section class="featured-section">
+
+        <h2 class="news-title">
+            🔥 Breaking News
+        </h2>
+
+        <div id="featuredNews">
+
+            <div class="loading-news">
+                Loading Breaking News...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LATEST NEWS -->
+
+    <section class="latest-news">
+
+        <h2 class="news-title">
+            📰 Latest Updates
+        </h2>
+
+        <div id="newsContainer" class="news-grid">
+
+            <div class="loading-news">
+                Loading Latest News...
+            </div>
+`
+        </div>
+
+    </section>
 
 </main>
 
