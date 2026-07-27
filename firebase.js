@@ -19,10 +19,12 @@ import {
 import {
     getFirestore,
     collection,
-   getCountFromServer,
+    getCountFromServer,
     addDoc,
     query,
     where,
+    orderBy,
+    limit,
     onSnapshot,
     serverTimestamp,
     doc,
@@ -81,6 +83,8 @@ export {
     getCountFromServer,
     query,
     where,
+    orderBy,
+    limit,
     doc,
     getDoc
 };
