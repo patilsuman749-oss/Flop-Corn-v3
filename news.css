@@ -50,121 +50,86 @@ body::after{
 /* ================= NAVBAR ================= */
 
 .navbar{
-
     position:sticky;
     top:0;
     z-index:999;
 
     display:flex;
     align-items:center;
-    justify-content:space-between;
 
     padding:18px 60px;
 
     background:rgba(8,8,8,.92);
-
     backdrop-filter:blur(15px);
 
     border-bottom:1px solid rgba(255,208,0,.15);
-
 }
 
 .logo{
-
     display:flex;
     align-items:center;
     gap:14px;
-
     text-decoration:none;
-
 }
 
 .flopcorn-logo-img{
-
     width:48px;
     height:48px;
-
     border-radius:12px;
-
     object-fit:cover;
-
     box-shadow:0 0 20px rgba(255,208,0,.35);
-
 }
 
 .logo-text{
-
     font-size:34px;
-
     font-weight:900;
-
     letter-spacing:1px;
-
-    color:white;
-
+    color:#fff;
 }
 
 .logo-text span{
-
     color:#ffd000;
-
 }
 
-.nav-links{
+/* Navigation beside logo */
 
+.nav-links{
     display:flex;
     align-items:center;
     gap:38px;
 
+    margin-left:45px;   /* closer to logo */
+    margin-right:auto;  /* keeps links on left */
 }
 
 .nav-links a{
-
     text-decoration:none;
-
     color:#ddd;
-
     font-weight:700;
-
     transition:.3s;
-
     position:relative;
-
 }
 
 .nav-links a::after{
-
     content:"";
-
     position:absolute;
-
-    bottom:-8px;
     left:50%;
-
-    width:0;
-
-    height:3px;
-
-    background:#ffd000;
-
-    transition:.35s;
-
+    bottom:-8px;
     transform:translateX(-50%);
-
+    width:0;
+    height:3px;
+    background:#ffd000;
+    transition:.35s;
 }
 
 .nav-links a:hover::after,
 .nav-links a.active::after{
-
     width:100%;
-
 }
 
 .nav-links a:hover,
 .nav-links a.active{
-
     color:#ffd000;
-
 }
 
 /* ================= HERO ================= */
