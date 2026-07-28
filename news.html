@@ -1,91 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FLOP CORN News</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css?v=4">
+
+    <link rel="stylesheet" href="news.css?v=1">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+
+        <img src="flopcorn-logo.jpeg.jpeg" class="flopcorn-logo-img">
+
+        <div class="logo-text">
+            FLOP<span>CORN</span>
+        </div>
+
+    </a>
+
+    <nav class="nav-links">
+
+        <a href="index.html">🏠 Home</a>
+
+        <a href="explore.html">🧭 Explore</a>
+
+        <a href="quiz.html">🎮 Quiz</a>
+
+        <a href="news.html" class="active">📰 News</a>
+
+    </nav>
+
+</header>
+
+
 <main class="news-page">
 
-    <!-- HERO -->
-    <section class="news-hero">
+<section class="news-hero">
 
-        <div class="news-hero-overlay"></div>
+<div class="news-hero-content">
 
-        <div class="news-hero-content">
+<span class="news-badge">
 
-            <span class="news-badge">
-                🍿 FLOP CORN NEWS
-            </span>
+📰 FLOP CORN NEWS
 
-            <h1>Latest Movie News</h1>
+</span>
 
-            <p>
-                Hollywood • Bollywood • South Indian • OTT • Box Office Updates
-            </p>
+<h1>
 
-        </div>
+Latest Movie News
 
-    </section>
+</h1>
 
+<p>
 
-    <!-- FILTERS -->
+Hollywood • Bollywood • South • OTT • Box Office
 
-    <section class="news-filter">
+</p>
 
-        <button class="active" data-category="All">
-            🍿 All
-        </button>
+</div>
 
-        <button data-category="Hollywood">
-            🎬 Hollywood
-        </button>
-
-        <button data-category="Bollywood">
-            🎥 Bollywood
-        </button>
-
-        <button data-category="South">
-            🔥 South
-        </button>
-
-        <button data-category="OTT">
-            📺 OTT
-        </button>
-
-    </section>
+</section>
 
 
-    <!-- FEATURED NEWS -->
+<section class="news-filter">
 
-    <section class="featured-section">
+<button class="active" data-category="All">🍿 All</button>
 
-        <h2 class="news-title">
-            🔥 Breaking News
-        </h2>
+<button data-category="Hollywood">🎬 Hollywood</button>
 
-        <div id="featuredNews">
+<button data-category="Bollywood">🎥 Bollywood</button>
 
-            <div class="loading-news">
-                Loading Breaking News...
-            </div>
+<button data-category="South">🔥 South</button>
 
-        </div>
+<button data-category="OTT">📺 OTT</button>
 
-    </section>
+</section>
 
 
-    <!-- LATEST NEWS -->
+<section class="featured-section">
 
-    <section class="latest-news">
+<h2 class="news-title">
 
-        <h2 class="news-title">
-            📰 Latest Updates
-        </h2>
+🔥 Breaking News
 
-        <div id="newsContainer" class="news-grid">
+</h2>
 
-            <div class="loading-news">
-                Loading Latest News...
-            </div>
-`
-        </div>
+<div id="featuredNews">
 
-    </section>
+Loading Breaking News...
+
+</div>
+
+</section>
+
+
+<section class="latest-news">
+
+<h2 class="news-title">
+
+📰 Latest News
+
+</h2>
+
+<div id="newsContainer" class="news-grid">
+
+Loading latest news...
+
+</div>
+
+</section>
 
 </main>
 
+
+<footer>
+
+<p>
+
+© 2026 FLOP CORN • Created by Suman Patil
+
+</p>
+
+</footer>
+
+
 <script type="module" src="news.js"></script>
+
+</body>
+
+</html>
