@@ -33,11 +33,17 @@ onAuthStateChanged(auth, async (user) => {
     const userData = userSnap.data();
     console.log(userData);
 
-    if (!userData.isAdmin) {
-        console.log("Not admin");
-        window.location.href = "index.html";
-        return;
-    }
+   const adminEmails = [
+    "patilsuman749@gmail.com",
+    "fcbayernmunich2010@gmail.com"
+];
+
+if (!adminEmails.includes(user.email)) {
+    console.log("Not admin");
+    window.location.href = "index.html";
+    return;
+}
+    
 
     console.log("Admin verified");
 
