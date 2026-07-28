@@ -168,40 +168,23 @@ HERO
 =========================*/
 
 .news-hero{
-
     width:92%;
+    max-width:1400px;
+    margin:40px auto;
 
-    max-width:1450px;
+    min-height:380px;
 
-    margin:35px auto;
+    display:grid;
+    grid-template-columns:40% 60%;
+    align-items:center;
 
-    min-height:560px;
+    background:#111;
 
+    border:1px solid rgba(255,208,0,.15);
     border-radius:28px;
 
     overflow:hidden;
-
-    position:relative;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    background:
-    linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.78)),
-    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1800");
-
-    background-size:cover;
-    background-position:center;
-
-    border:1px solid rgba(255,208,0,.15);
-
 }
-
 .news-hero::before{
 
     content:"";
@@ -1053,3 +1036,20 @@ footer p{
 /* ===============================
    END OF FILE
 ================================= */
+.news-hero::before{
+    display:none;
+}
+
+.news-hero-content{
+    padding:50px;
+    text-align:left;
+}
+
+.news-hero{
+    background-image:
+        linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200");
+    background-size:40% 100%,40% 100%;
+    background-repeat:no-repeat;
+    background-position:left center;
+}
