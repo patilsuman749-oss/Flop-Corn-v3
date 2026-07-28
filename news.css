@@ -56,18 +56,20 @@ NAVBAR
 =========================*/
 
 .navbar{
-    position:sticky;
+    position:fixed;
     top:0;
-    z-index:1000;
+    left:0;
+    width:100%;
+    z-index:9999;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
 
-    padding:18px 60px;
+    padding:18px 40px;
 
-    background:rgba(8,8,8,.90);
-    backdrop-filter:blur(18px);
+    background:rgba(10,10,10,.95);
+    backdrop-filter:blur(20px);
 
     border-bottom:1px solid rgba(255,208,0,.15);
 }
@@ -1178,4 +1180,7 @@ footer p{
     justify-content:center;
 }
 
+}
+body{
+    padding-top:90px;
 }
