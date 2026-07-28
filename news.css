@@ -1135,3 +1135,47 @@ footer p{
     padding:60px;
     text-align:left;
 }
+/* ===== MOBILE HERO FIX ===== */
+
+@media (max-width:768px){
+
+.news-hero{
+    display:flex !important;
+    flex-direction:column !important;
+
+    width:95%;
+    min-height:auto !important;
+
+    background:none !important;
+    padding:0 !important;
+}
+
+.news-hero::before{
+    display:none !important;
+}
+
+.news-hero-content{
+    width:100% !important;
+    padding:25px !important;
+    text-align:center !important;
+}
+
+.news-hero h1{
+    font-size:44px !important;
+    line-height:1.15 !important;
+}
+
+.news-hero p{
+    font-size:17px !important;
+}
+
+.news-badge{
+    margin:auto auto 20px;
+}
+
+.hero-news-btn{
+    width:100%;
+    justify-content:center;
+}
+
+}
