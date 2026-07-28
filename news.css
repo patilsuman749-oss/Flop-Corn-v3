@@ -187,3 +187,27 @@ grid-template-columns:1fr;
 }
 
 }
+/* Navbar logo */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.flopcorn-logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+}
+
+.logo-text span {
+    color: #ffd000;
+}
