@@ -49,21 +49,70 @@ body::after{
 
 /* ================= NAVBAR ================= */
 
-.navbar{
-    position:sticky;
-    top:0;
-    z-index:999;
+/* ================= MOBILE NAVBAR ================= */
 
+@media (max-width:1000px){
+
+.navbar{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    gap:15px;
+}
+
+.logo{
     display:flex;
     align-items:center;
-
-    padding:18px 60px;
-
-    background:rgba(8,8,8,.92);
-    backdrop-filter:blur(15px);
-
-    border-bottom:1px solid rgba(255,208,0,.15);
+    justify-content:center;
+    gap:12px;
 }
+
+.flopcorn-logo-img{
+    width:48px;
+    height:48px;
+    border-radius:10px;
+}
+
+.logo-text{
+    font-size:30px;
+    font-weight:900;
+}
+
+.nav-links{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin:0;
+}
+
+.nav-links a{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#121212;
+
+    border:1px solid rgba(255,208,0,.15);
+
+    border-radius:12px;
+
+    padding:12px;
+
+    font-size:15px;
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    background:#ffd000;
+    color:#111;
+}
+
 
 .logo{
     display:flex;
