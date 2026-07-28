@@ -12,14 +12,10 @@ body{
 /* HERO */
 
 .news-hero{
-    height:330px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:
-        linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
-        linear-gradient(135deg,#ffd000,#111);
+    width:min(1200px,92%);
+    margin:30px auto 50px;
+    border-radius:20px;
+    padding:80px 20px;
 }
 
 .news-badge{
@@ -210,4 +206,56 @@ grid-template-columns:1fr;
 
 .logo-text span {
     color: #ffd000;
+}
+/* NAVBAR */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 50px;
+    background:#0b0b0b;
+    border-bottom:1px solid rgba(255,208,0,.25);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+}
+
+.flopcorn-logo-img{
+    width:42px !important;
+    height:42px !important;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.logo-text{
+    font-size:24px;
+    font-weight:800;
+    color:#fff;
+}
+
+.logo-text span{
+    color:#ffd000;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:35px;
+}
+
+.nav-links a{
+    color:#ddd;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:#ffd000;
 }
