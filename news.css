@@ -581,3 +581,27 @@ footer{
 }
 
 }
+.hero-news-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    margin-top:30px;
+    padding:16px 34px;
+    background:linear-gradient(135deg,#ffd000,#ffb800);
+    color:#111;
+    font-size:18px;
+    font-weight:800;
+    border-radius:50px;
+    text-decoration:none;
+    transition:.35s ease;
+    box-shadow:0 10px 30px rgba(255,208,0,.35);
+}
+
+.hero-news-btn:hover{
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:0 15px 40px rgba(255,208,0,.5);
+}
+
+.hero-news-btn i{
+    font-size:20px;
+}
