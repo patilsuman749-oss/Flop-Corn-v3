@@ -1097,3 +1097,41 @@ footer p{
 }
 
 }
+/* ===== DESKTOP HERO ===== */
+
+.news-hero{
+    width:92%;
+    max-width:1400px;
+    margin:40px auto;
+
+    display:grid;
+    grid-template-columns:50% 50%;
+
+    min-height:520px;
+
+    background:#111;
+
+    border:1px solid rgba(255,208,0,.15);
+    border-radius:28px;
+    overflow:hidden;
+}
+
+.news-hero::before{
+    display:none;
+}
+
+.news-hero{
+    background-image:
+        linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1800");
+
+    background-size:50% 100%;
+    background-repeat:no-repeat;
+    background-position:left center;
+}
+
+.news-hero-content{
+    grid-column:2;
+    padding:60px;
+    text-align:left;
+}
