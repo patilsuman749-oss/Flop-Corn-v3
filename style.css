@@ -12604,3 +12604,26 @@ section{
         text-shadow:0 0 25px #FFD000;
     }
 }
+.movie-news-home-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:14px 24px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#ffd000,#ffb700);
+    color:#111;
+    font-weight:700;
+    text-decoration:none;
+    transition:0.3s ease;
+    box-shadow:0 8px 20px rgba(255,208,0,0.35);
+}
+
+.movie-news-home-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(255,208,0,0.5);
+}
+
+.movie-news-home-button i{
+    font-size:18px;
+}
