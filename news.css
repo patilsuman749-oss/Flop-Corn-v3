@@ -1,11 +1,15 @@
-/* ===========================================================
-   FLOP CORN NEWS - PREMIUM YELLOW & BLACK
-=========================================================== */
+/* ===================================================
+   FLOP CORN NEWS - PREMIUM UI (PART 1)
+=================================================== */
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -15,10 +19,32 @@ body{
     overflow-x:hidden;
 }
 
-/* Smooth Scroll */
+/* Background Glow */
 
-html{
-    scroll-behavior:smooth;
+body::before{
+    content:"";
+    position:fixed;
+    top:-250px;
+    right:-250px;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(255,208,0,.08);
+    filter:blur(120px);
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    bottom:-250px;
+    left:-250px;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(255,208,0,.05);
+    filter:blur(120px);
+    z-index:-1;
 }
 
 /* ================= NAVBAR ================= */
@@ -30,16 +56,16 @@ html{
     z-index:999;
 
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
 
     padding:18px 60px;
 
-    background:rgba(8,8,8,.96);
+    background:rgba(8,8,8,.92);
 
     backdrop-filter:blur(15px);
 
-    border-bottom:1px solid rgba(255,208,0,.12);
+    border-bottom:1px solid rgba(255,208,0,.15);
 
 }
 
@@ -55,20 +81,26 @@ html{
 
 .flopcorn-logo-img{
 
-    width:46px;
-    height:46px;
+    width:48px;
+    height:48px;
 
     border-radius:12px;
 
     object-fit:cover;
+
+    box-shadow:0 0 20px rgba(255,208,0,.35);
 
 }
 
 .logo-text{
 
     font-size:34px;
+
     font-weight:900;
-    color:#fff;
+
+    letter-spacing:1px;
+
+    color:white;
 
 }
 
@@ -81,16 +113,50 @@ html{
 .nav-links{
 
     display:flex;
-    gap:35px;
+    align-items:center;
+    gap:38px;
 
 }
 
 .nav-links a{
 
-    color:#ddd;
     text-decoration:none;
+
+    color:#ddd;
+
     font-weight:700;
+
     transition:.3s;
+
+    position:relative;
+
+}
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-8px;
+    left:50%;
+
+    width:0;
+
+    height:3px;
+
+    background:#ffd000;
+
+    transition:.35s;
+
+    transform:translateX(-50%);
+
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after{
+
+    width:100%;
 
 }
 
@@ -108,11 +174,11 @@ html{
     width:92%;
     max-width:1400px;
 
-    margin:35px auto;
+    margin:40px auto;
 
-    min-height:420px;
+    min-height:520px;
 
-    border-radius:25px;
+    border-radius:28px;
 
     overflow:hidden;
 
@@ -120,20 +186,23 @@ html{
 
     display:flex;
     align-items:center;
+    justify-content:center;
 
-    padding:80px;
+    text-align:center;
 
     background:
 
     linear-gradient(
-    rgba(0,0,0,.45),
-    rgba(0,0,0,.80)
+    rgba(0,0,0,.70),
+    rgba(0,0,0,.75)
     ),
 
-    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1600");
+    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1800");
 
     background-size:cover;
     background-position:center;
+
+    border:1px solid rgba(255,208,0,.15);
 
 }
 
@@ -143,18 +212,14 @@ content:"";
 
 position:absolute;
 
-top:0;
-left:0;
-
-width:100%;
-height:100%;
+inset:0;
 
 background:
 
 linear-gradient(
-90deg,
-rgba(0,0,0,.85) 20%,
-rgba(0,0,0,.15)
+180deg,
+rgba(255,208,0,.08),
+transparent
 );
 
 }
@@ -162,21 +227,28 @@ rgba(0,0,0,.15)
 .news-hero-content{
 
 position:relative;
+
 z-index:2;
 
-max-width:620px;
+max-width:900px;
+
+padding:20px;
 
 }
 
 .news-badge{
 
-display:inline-block;
+display:inline-flex;
 
-padding:12px 28px;
+align-items:center;
+
+gap:10px;
+
+padding:12px 26px;
 
 background:#ffd000;
 
-color:#000;
+color:#111;
 
 font-weight:800;
 
@@ -190,15 +262,17 @@ box-shadow:0 0 30px rgba(255,208,0,.45);
 
 .news-hero h1{
 
-font-size:72px;
+font-size:76px;
+
+font-weight:900;
 
 line-height:1.05;
 
+margin-bottom:20px;
+
 color:#ffd000;
 
-margin-bottom:18px;
-
-text-shadow:0 0 20px rgba(255,208,0,.35);
+text-shadow:0 0 30px rgba(255,208,0,.45);
 
 }
 
@@ -210,39 +284,43 @@ line-height:1.8;
 
 color:#ececec;
 
-margin-bottom:35px;
+max-width:700px;
+
+margin:0 auto 35px;
 
 }
 
-.news-hero a{
+.hero-news-btn{
 
 display:inline-flex;
 
 align-items:center;
 
-gap:10px;
+gap:12px;
 
-padding:16px 30px;
+padding:16px 36px;
 
 border-radius:50px;
 
-background:#ffd000;
+background:linear-gradient(135deg,#ffd000,#ffb800);
 
 color:#111;
 
-text-decoration:none;
-
 font-weight:800;
+
+text-decoration:none;
 
 transition:.35s;
 
+box-shadow:0 10px 30px rgba(255,208,0,.35);
+
 }
 
-.news-hero a:hover{
+.hero-news-btn:hover{
 
-transform:translateY(-4px);
+transform:translateY(-5px);
 
-box-shadow:0 0 30px rgba(255,208,0,.45);
+box-shadow:0 15px 40px rgba(255,208,0,.5);
 
 }
 
@@ -268,27 +346,28 @@ gap:18px;
 
 .news-filter button{
 
-padding:15px 30px;
+padding:15px 28px;
 
 border:none;
 
 border-radius:50px;
 
-background:#1b1b1b;
+background:#181818;
 
 color:white;
 
 cursor:pointer;
 
-font-weight:700;
-
 font-size:16px;
 
-transition:.3s;
+font-weight:700;
+
+transition:.35s;
 
 }
 
 .news-filter button:hover,
+
 .news-filter button.active{
 
 background:#ffd000;
@@ -297,96 +376,154 @@ color:#111;
 
 transform:translateY(-4px);
 
-box-shadow:0 0 25px rgba(255,208,0,.4);
+box-shadow:0 0 20px rgba(255,208,0,.45);
 
 }
-/* ===========================================
-   BREAKING NEWS
-=========================================== */
+/* ===================================================
+   FLOP CORN NEWS - PREMIUM UI (PART 2)
+===================================================*/
+
+/* SECTION TITLE */
+
+.news-title{
+    width:92%;
+    max-width:1400px;
+    margin:60px auto 25px;
+    font-size:42px;
+    font-weight:900;
+    color:#ffd000;
+    text-align:center;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+/* ================= FEATURED NEWS ================= */
 
 .featured-section{
     width:92%;
     max-width:1400px;
-    margin:60px auto;
-}
-
-.news-title{
-    font-size:40px;
-    color:#ffd000;
-    margin-bottom:25px;
-    font-weight:800;
+    margin:20px auto 70px;
 }
 
 #featuredNews .news-card{
+
     display:grid;
-    grid-template-columns:1.2fr 1fr;
-    background:#111;
-    border-radius:25px;
+
+    grid-template-columns:55% 45%;
+
     overflow:hidden;
+
+    border-radius:28px;
+
+    background:#111;
+
     border:1px solid rgba(255,208,0,.12);
-    transition:.35s;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+
+    transition:.4s;
+
 }
 
 #featuredNews .news-card:hover{
+
     transform:translateY(-8px);
-    box-shadow:0 0 40px rgba(255,208,0,.25);
+
+    box-shadow:0 0 35px rgba(255,208,0,.30);
+
 }
 
 #featuredNews img{
+
     width:100%;
-    height:450px;
+
+    height:480px;
+
     object-fit:cover;
+
 }
 
 #featuredNews .news-content{
+
     padding:45px;
+
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
+
 }
 
 #featuredNews h2{
-    font-size:40px;
+
+    font-size:42px;
+
     color:#ffd000;
-    line-height:1.2;
+
     margin-bottom:20px;
+
+    line-height:1.2;
+
 }
 
 #featuredNews p{
-    color:#ddd;
+
+    color:#d8d8d8;
+
+    font-size:18px;
+
     line-height:1.8;
-    font-size:17px;
+
     margin-bottom:25px;
+
 }
 
 .news-source{
+
     color:#999;
+
     font-size:14px;
+
     margin-bottom:25px;
+
 }
 
 .news-content a{
+
     display:inline-flex;
-    align-items:center;
+
     justify-content:center;
-    width:220px;
+
+    align-items:center;
+
+    width:230px;
+
     padding:15px;
-    background:#ffd000;
-    color:#111;
-    font-weight:800;
+
     border-radius:50px;
+
+    background:#ffd000;
+
+    color:#111;
+
     text-decoration:none;
-    transition:.3s;
+
+    font-weight:800;
+
+    transition:.35s;
+
 }
 
 .news-content a:hover{
+
     background:#fff;
-    transform:translateY(-3px);
+
+    transform:translateY(-4px);
+
 }
 
-/* ===========================================
-   NEWS GRID
-=========================================== */
+/* ================= NEWS GRID ================= */
 
 .news-grid{
 
@@ -402,7 +539,7 @@ box-shadow:0 0 25px rgba(255,208,0,.4);
 
     gap:30px;
 
-    padding-bottom:80px;
+    padding-bottom:100px;
 
 }
 
@@ -410,7 +547,7 @@ box-shadow:0 0 25px rgba(255,208,0,.4);
 
     background:#111;
 
-    border-radius:22px;
+    border-radius:24px;
 
     overflow:hidden;
 
@@ -418,13 +555,17 @@ box-shadow:0 0 25px rgba(255,208,0,.4);
 
     transition:.35s;
 
+    display:flex;
+
+    flex-direction:column;
+
 }
 
 .news-grid .news-card:hover{
 
     transform:translateY(-8px);
 
-    box-shadow:0 0 30px rgba(255,208,0,.25);
+    box-shadow:0 0 25px rgba(255,208,0,.25);
 
 }
 
@@ -448,15 +589,21 @@ box-shadow:0 0 25px rgba(255,208,0,.4);
 
 .news-grid .news-content{
 
-    padding:25px;
+    padding:24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
 
 }
 
 .news-grid h3{
 
-    color:#ffd000;
-
     font-size:24px;
+
+    color:#ffd000;
 
     margin-bottom:15px;
 
@@ -470,7 +617,9 @@ box-shadow:0 0 25px rgba(255,208,0,.4);
 
     line-height:1.7;
 
-    margin-bottom:18px;
+    margin-bottom:20px;
+
+    flex:1;
 
 }
 
@@ -480,128 +629,425 @@ box-shadow:0 0 25px rgba(255,208,0,.4);
 
 }
 
-/* ===========================================
-   FOOTER
-=========================================== */
+/* ================= LOADING ================= */
 
-footer{
-
-    background:#0b0b0b;
-
-    border-top:1px solid rgba(255,208,0,.12);
-
-    padding:35px;
+.loading-news{
 
     text-align:center;
 
-    color:#999;
+    color:#ffd000;
+
+    font-size:22px;
+
+    padding:80px;
+
+    font-weight:700;
 
 }
 
-/* ===========================================
-   SCROLLBAR
-=========================================== */
+/* ================= CARD GLOW ================= */
+
+.news-card{
+
+    position:relative;
+
+}
+
+.news-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:5px;
+
+background:linear-gradient(90deg,#ffd000,#ffb800);
+
+opacity:0;
+
+transition:.35s;
+
+}
+
+.news-card:hover::before{
+
+opacity:1;
+
+}
+/* ===================================================
+   FLOP CORN NEWS - PREMIUM UI (PART 3)
+===================================================*/
+
+/* ================= FOOTER ================= */
+
+footer{
+    margin-top:60px;
+    background:#0a0a0a;
+    border-top:1px solid rgba(255,208,0,.12);
+    padding:60px 20px;
+    text-align:center;
+}
+
+footer h3{
+    color:#ffd000;
+    font-size:28px;
+    margin-bottom:12px;
+}
+
+footer p{
+    color:#999;
+    font-size:16px;
+    line-height:1.8;
+}
+
+footer a{
+    color:#ffd000;
+    text-decoration:none;
+    transition:.3s;
+}
+
+footer a:hover{
+    color:#fff;
+}
+
+/* ================= FADE ANIMATIONS ================= */
+
+.news-card,
+.news-title,
+.news-filter,
+.news-hero{
+
+    animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.hero-news-btn,
+.news-filter button{
+
+transition:all .35s ease;
+
+}
+
+/* ================= IMAGE EFFECTS ================= */
+
+.news-grid img,
+#featuredNews img{
+
+transition:.5s ease;
+
+}
+
+.news-grid .news-card:hover img,
+#featuredNews .news-card:hover img{
+
+transform:scale(1.08);
+
+filter:brightness(1.05);
+
+}
+
+/* ================= SCROLLBAR ================= */
 
 ::-webkit-scrollbar{
-    width:10px;
+
+width:10px;
+
 }
 
 ::-webkit-scrollbar-track{
-    background:#111;
+
+background:#0b0b0b;
+
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#ffd000;
-    border-radius:50px;
+
+background:#ffd000;
+
+border-radius:50px;
+
 }
 
-/* ===========================================
-   MOBILE
-=========================================== */
+::-webkit-scrollbar-thumb:hover{
 
-@media(max-width:900px){
+background:#ffbf00;
+
+}
+
+/* ================= SELECTION ================= */
+
+::selection{
+
+background:#ffd000;
+
+color:#111;
+
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px){
 
 .navbar{
-    padding:16px 20px;
+
+padding:16px 20px;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.logo{
+
+justify-content:center;
+
+}
+
+.logo-text{
+
+font-size:28px;
+
 }
 
 .nav-links{
-    gap:18px;
-    font-size:14px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:18px;
+
 }
 
 .news-hero{
-    padding:40px 25px;
-    min-height:300px;
+
+min-height:380px;
+
+padding:50px 25px;
+
 }
 
 .news-hero h1{
-    font-size:42px;
+
+font-size:52px;
+
 }
 
 .news-hero p{
-    font-size:17px;
+
+font-size:18px;
+
+}
+
+.hero-news-btn{
+
+padding:14px 30px;
+
+font-size:16px;
+
 }
 
 #featuredNews .news-card{
-    grid-template-columns:1fr;
+
+grid-template-columns:1fr;
+
 }
 
 #featuredNews img{
-    height:260px;
+
+height:280px;
+
 }
 
 #featuredNews .news-content{
-    padding:25px;
+
+padding:30px;
+
 }
 
 #featuredNews h2{
-    font-size:28px;
-}
 
-.news-title{
-    font-size:30px;
+font-size:30px;
+
 }
 
 .news-grid{
-    grid-template-columns:1fr;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
 }
 
 .news-grid h3{
-    font-size:22px;
+
+font-size:22px;
+
+}
+
+.news-title{
+
+font-size:34px;
+
 }
 
 .news-filter{
-    gap:12px;
+
+gap:12px;
+
 }
 
 .news-filter button{
-    padding:12px 18px;
-    font-size:14px;
+
+padding:12px 18px;
+
+font-size:14px;
+
 }
 
 }
+
+@media(max-width:600px){
+
+.navbar{
+
+padding:15px;
+
+}
+
+.logo-text{
+
+font-size:24px;
+
+}
+
+.flopcorn-logo-img{
+
+width:42px;
+
+height:42px;
+
+}
+
+.news-hero{
+
+margin:20px auto;
+
+border-radius:20px;
+
+}
+
+.news-hero h1{
+
+font-size:38px;
+
+}
+
+.news-hero p{
+
+font-size:16px;
+
+}
+
+.news-badge{
+
+font-size:13px;
+
+padding:10px 18px;
+
+}
+
 .hero-news-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:12px;
-    margin-top:30px;
-    padding:16px 34px;
-    background:linear-gradient(135deg,#ffd000,#ffb800);
-    color:#111;
-    font-size:18px;
-    font-weight:800;
-    border-radius:50px;
-    text-decoration:none;
-    transition:.35s ease;
-    box-shadow:0 10px 30px rgba(255,208,0,.35);
+
+width:100%;
+
+justify-content:center;
+
 }
 
-.hero-news-btn:hover{
-    transform:translateY(-4px) scale(1.03);
-    box-shadow:0 15px 40px rgba(255,208,0,.5);
+.news-title{
+
+font-size:28px;
+
 }
 
-.hero-news-btn i{
-    font-size:20px;
+.news-grid{
+
+grid-template-columns:1fr;
+
+gap:24px;
+
 }
+
+.news-grid img{
+
+height:210px;
+
+}
+
+footer{
+
+padding:45px 20px;
+
+}
+
+footer h3{
+
+font-size:22px;
+
+}
+
+}
+
+/* ================= PREMIUM HOVER ================= */
+
+.news-card:hover{
+
+border-color:rgba(255,208,0,.35);
+
+}
+
+.news-grid .news-card{
+
+backdrop-filter:blur(12px);
+
+}
+
+.news-grid .news-content{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.news-grid .news-content a{
+
+margin-top:auto;
+
+}
+
+/* ================= END ================= */
