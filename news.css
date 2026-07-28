@@ -1053,3 +1053,47 @@ footer p{
     background-repeat:no-repeat;
     background-position:left center;
 }
+/* ================= MOBILE FEATURED NEWS FIX ================= */
+
+@media (max-width:768px){
+
+#featuredNews .news-card{
+    display:flex !important;
+    flex-direction:column !important;
+    overflow:hidden;
+    border-radius:20px;
+}
+
+#featuredNews img{
+    width:100% !important;
+    height:170px !important;
+    object-fit:cover !important;
+}
+
+#featuredNews .news-content{
+    width:100% !important;
+    padding:18px !important;
+}
+
+#featuredNews h2{
+    font-size:24px !important;
+    line-height:1.3 !important;
+    margin-bottom:12px !important;
+}
+
+#featuredNews p{
+    font-size:15px !important;
+    line-height:1.6 !important;
+}
+
+.news-source{
+    font-size:13px !important;
+}
+
+.news-content a{
+    width:100% !important;
+    padding:12px !important;
+    font-size:15px !important;
+}
+
+}
