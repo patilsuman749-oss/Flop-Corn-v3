@@ -855,9 +855,8 @@ footer p{
 }
 
 #featuredNews img{
-
-    height:380px;
-
+    height:180px;
+    object-fit:cover;
 }
 
 }
@@ -938,7 +937,9 @@ body{
 }
 
 .news-hero h1{
-    font-size:42px;
+    font-size:30px;
+    line-height:1.2;
+    margin-bottom:15px;
 }
 
 .hero-news-btn{
