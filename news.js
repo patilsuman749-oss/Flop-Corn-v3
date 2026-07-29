@@ -148,3 +148,20 @@ document.querySelectorAll(".news-filter button").forEach(button => {
 });
 
 loadNews();
+/* ==========================
+   SCROLL ANIMATION
+========================== */
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, {
+    threshold: 0.15
+});
+
+document.querySelectorAll(".news-card").forEach(card => {
+    observer.observe(card);
+});
