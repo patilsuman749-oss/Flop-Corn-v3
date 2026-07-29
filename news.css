@@ -1254,3 +1254,28 @@ body{
 .news-section{
     margin-top:10px;
 }
+/* ===== FIX NAVBAR OVERLAP ===== */
+
+/* Keep navbar fixed */
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+/* Push ALL page content below navbar */
+.news-page{
+    padding-top: 130px;
+}
+
+/* Make anchor links stop below navbar */
+html{
+    scroll-padding-top:130px;
+}
+
+/* Hero section spacing */
+.news-hero{
+    margin-top:20px;
+}
