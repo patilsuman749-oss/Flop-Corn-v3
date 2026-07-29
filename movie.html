@@ -1679,6 +1679,14 @@
 
 
 </button>
+
+<button
+    class="watchlist-button"
+    id="watchTrailerButton">
+    <i class="fa-solid fa-play"></i>
+    Watch Trailer
+</button>
+
                             <!-- REVIEW POPUP -->
 
 <div id="reviewModal" class="review-modal">
@@ -3012,49 +3020,46 @@ publicReviews.addEventListener("click", async (event) => {
 
     }
 
+
 });
-    </script>
 
-<!-- OFFICIAL TRAILER POPUP -->
-<div id="trailerModal" class="trailer-modal">
-  <div class="trailer-box">
-    <button id="closeTrailer" class="close-trailer">&times;</button>
-    <iframe id="trailerFrame"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-  </div>
-</div>
-
-<script>
-
-// ===== TRAILER POPUP =====
+// ===============================
+// TRAILER
+// ===============================
 const trailerModal=document.getElementById("trailerModal");
 const trailerFrame=document.getElementById("trailerFrame");
+const trailerUnavailable=document.getElementById("trailerUnavailable");
 const closeTrailer=document.getElementById("closeTrailer");
+const watchTrailerButton=document.getElementById("watchTrailerButton");
 
 async function openTrailer(movieId){
  try{
+   trailerUnavailable.style.display="none";
+   trailerFrame.style.display="block";
    const res=await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`);
    const data=await res.json();
-   const trailer=data.results.find(v=>v.site==="YouTube"&&v.type==="Trailer");
-   if(!trailer){alert("Trailer not available.");return;}
+   const trailer=(data.results||[]).find(v=>v.site==="YouTube" && v.type==="Trailer");
+   if(!trailer){
+      trailerFrame.removeAttribute("src");
+      trailerFrame.style.display="none";
+      trailerUnavailable.style.display="block";
+      trailerModal.style.display="flex";
+      return;
+   }
    trailerFrame.src=`https://www.youtube.com/embed/${trailer.key}?autoplay=1`;
    trailerModal.style.display="flex";
- }catch(e){console.error(e);}
-}
-document.getElementById("moviePoster").addEventListener("click",()=>openTrailer(currentMovie.id));
-closeTrailer.onclick=()=>{
- trailerFrame.src="";
- trailerModal.style.display="none";
-};
-trailerModal.onclick=(e)=>{
- if(e.target===trailerModal){
-   trailerFrame.src="";
-   trailerModal.style.display="none";
+ }catch(e){
+   console.error(e);
+   trailerFrame.removeAttribute("src");
+   trailerFrame.style.display="none";
+   trailerUnavailable.style.display="block";
+   trailerModal.style.display="flex";
  }
-};
+}
+watchTrailerButton.addEventListener("click",()=>{ if(currentMovie) openTrailer(currentMovie.id);});
+closeTrailer.onclick=()=>{trailerFrame.src=""; trailerModal.style.display="none";};
+trailerModal.onclick=(e)=>{if(e.target===trailerModal){trailerFrame.src=""; trailerModal.style.display="none";}};
 
-</script>
-</body>
+    </script></body>
 
 </html>
