@@ -869,166 +869,82 @@ footer p{
 @media (max-width:768px){
 
 body{
-
-    padding-top:145px;
-
+    padding-top:85px;
 }
 
-/* Navbar */
-
+/* Fixed navbar */
 .navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:70px;
 
-    flex-direction:column;
-    justify-content:center;
-    gap:14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    height:auto;
-
-    padding:18px;
-
+    padding:0 12px;
 }
 
+/* Logo */
 .logo{
-
-    justify-content:center;
-
+    display:flex;
+    align-items:center;
 }
 
 .logo-text{
-
-    font-size:28px;
-
+    display:none;
 }
 
 .flopcorn-logo-img{
-
-    width:52px;
-    height:52px;
-
+    width:42px;
+    height:42px;
 }
 
-/* Navigation */
-
+/* Navigation in one row */
 .nav-links{
+    display:flex !important;
+    flex-wrap:nowrap;
+    gap:8px;
 
-    display:grid;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
 
-    grid-template-columns:repeat(2,1fr);
-
-    gap:10px;
-
-    width:100%;
-
+.nav-links::-webkit-scrollbar{
+    display:none;
 }
 
 .nav-links a{
+    flex:0 0 auto;
+    white-space:nowrap;
 
-    justify-content:center;
-
-    display:flex;
-
-    padding:13px;
-
+    padding:10px 12px;
+    font-size:13px;
+    border-radius:10px;
 }
 
 /* Hero */
-
 .news-hero{
-
-    width:95%;
-
+    grid-template-columns:1fr;
     min-height:auto;
-
-    border-radius:22px;
-
 }
 
 .news-hero-content{
-
-    padding:30px 22px;
-
+    grid-column:1;
+    padding:25px;
     text-align:center;
-
-}
-
-.news-badge{
-
-    margin:auto auto 20px;
-
 }
 
 .news-hero h1{
-
     font-size:42px;
-
-}
-
-.news-hero p{
-
-    font-size:17px;
-
 }
 
 .hero-news-btn{
-
     width:100%;
-
 }
-
-/* Featured */
-
-#featuredNews .news-card{
-
-    display:flex;
-    flex-direction:column;
-
 }
-
-#featuredNews img{
-
-    width:100%;
-    height:220px;
-
-}
-
-#featuredNews .news-content{
-
-    padding:22px;
-
-}
-
-#featuredNews h2{
-
-    font-size:28px;
-
-}
-
-/* Grid */
-
-.news-grid{
-
-    grid-template-columns:1fr;
-    gap:22px;
-
-}
-
-.news-grid img{
-
-    height:210px;
-
-}
-
-.news-title{
-
-    font-size:30px;
-
-}
-
-}
-
-/* ==========================
-   SMALL MOBILE
-========================== */
 
 @media (max-width:480px){
 
