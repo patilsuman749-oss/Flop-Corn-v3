@@ -1921,7 +1921,28 @@
 
 
     </section>
+<!-- Trailer Modal -->
+<div id="trailerModal" class="trailer-modal">
 
+    <div class="trailer-box">
+
+        <button id="closeTrailer" class="close-trailer">&times;</button>
+
+        <iframe
+            id="trailerFrame"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+        </iframe>
+
+        <p
+            id="trailerUnavailable"
+            style="display:none;text-align:center;color:#fff;padding:30px;font-size:20px;">
+            Trailer not available.
+        </p>
+
+    </div>
+
+</div>
     <script type="module">
 
         let currentMovie = null;
@@ -3038,7 +3059,13 @@ async function openTrailer(movieId){
    trailerFrame.style.display="block";
    const res=await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`);
    const data=await res.json();
-   const trailer=(data.results||[]).find(v=>v.site==="YouTube" && v.type==="Trailer");
+ const trailer = (data.results || []).find(video =>
+    video.site === "YouTube" &&
+    (
+        video.type === "Trailer" ||
+        video.type === "Teaser"
+    )
+) || (data.results || []).find(video => video.site === "YouTube");
    if(!trailer){
       trailerFrame.removeAttribute("src");
       trailerFrame.style.display="none";
