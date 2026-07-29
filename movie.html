@@ -2865,7 +2865,194 @@ moviePoster: currentMovie.poster_path,
 // ===============================
 // LOAD PUBLIC REVIEWS
 // ===============================
+/* =========================================
+   FLOP CORN STARTER REVIEWS
+========================================= */
 
+const reviewerNames = [
+
+"🍿 FlopCorn Editorial",
+"🎬 CinemaSage",
+"🎥 ReelRanger",
+"⭐ PixelCritic",
+"🎞️ SilverLens",
+"🍿 PopcornPilot",
+"🎬 StoryScope",
+"🎥 FrameFusion",
+"⭐ FilmOracle",
+"🎞️ ScreenWhiz",
+"🍿 CineNomad",
+"🎬 EpicFrames",
+"🎥 MotionMuse",
+"⭐ BlockbusterBuff",
+"🎞️ SceneSeeker",
+"🎬 MovieMonk",
+"🍿 CinemaVerse",
+"⭐ ReviewRadar",
+"🎥 PlotHunter",
+"🎞️ StoryHunter",
+"🎬 ReelVision",
+"🍿 CinemaPilot",
+"⭐ MovieMechanic",
+"🎥 FrameMaster",
+"🎞️ SilverScreener",
+"🍿 MotionCritic",
+"🎬 CinemaPulse",
+"⭐ FlickVoyager",
+"🎥 StoryCritic",
+"🎞️ PopcornKing",
+"🍿 ScreenLegend",
+"🎬 CriticCraft",
+"⭐ FilmExplorer",
+"🎥 MovieWizard",
+"🎞️ CinemaExplorer"
+
+];
+
+const reviewTemplates = {
+
+Action: [
+
+"Explosive action scenes with excellent stunt choreography. A thrilling experience from start to finish.",
+
+"The action never slows down and the visuals are absolutely stunning.",
+
+"A perfect entertainer with memorable fight sequences and powerful performances.",
+
+"Packed with excitement, stylish direction and breathtaking moments.",
+
+"An adrenaline-filled blockbuster that delivers exactly what fans expect."
+
+],
+
+Adventure: [
+
+"A fun adventure filled with memorable moments and breathtaking locations.",
+
+"The journey is engaging and keeps you invested throughout.",
+
+"Beautiful world-building with an exciting sense of exploration.",
+
+"An entertaining ride suitable for all audiences.",
+
+"Adventure lovers will definitely enjoy this one."
+
+],
+
+Comedy: [
+
+"Funny from beginning to end with excellent comic timing.",
+
+"Plenty of laughs and entertaining performances.",
+
+"A light-hearted film that never feels boring.",
+
+"The humour lands perfectly and keeps the audience smiling.",
+
+"One of the most enjoyable comedy films in recent times."
+
+],
+
+Drama: [
+
+"Powerful acting and emotional storytelling make this unforgettable.",
+
+"A beautifully written screenplay with outstanding performances.",
+
+"Emotionally engaging and handled with great maturity.",
+
+"A touching story that stays with you after the credits.",
+
+"Excellent character development throughout."
+
+],
+
+Horror: [
+
+"Excellent suspense and creepy atmosphere from beginning to end.",
+
+"Delivers genuine scares without relying only on jump scares.",
+
+"A dark and intense horror experience.",
+
+"The tension builds perfectly throughout the film.",
+
+"Horror fans won't be disappointed."
+
+],
+
+Romance: [
+
+"Wonderful chemistry between the lead actors.",
+
+"A heartwarming love story with emotional depth.",
+
+"Beautifully written romantic moments.",
+
+"The emotional connection feels genuine.",
+
+"A satisfying romance with memorable performances."
+
+],
+
+Thriller: [
+
+"Full of suspense with unexpected twists.",
+
+"Keeps you guessing until the very end.",
+
+"Excellent pacing and strong direction.",
+
+"A gripping thriller that rarely slows down.",
+
+"One twist after another makes this highly entertaining."
+
+],
+
+default: [
+
+"A highly entertaining movie with impressive performances and excellent production quality.",
+
+"A well-made film that's worth watching on the big screen.",
+
+"Strong storytelling combined with beautiful cinematography.",
+
+"An enjoyable experience that delivers on expectations.",
+
+"Definitely worth adding to your watchlist."
+
+]
+
+};
+
+function getStarterReviews(movie){
+
+const genre = movie.genres?.[0]?.name || "default";
+
+const templates =
+reviewTemplates[genre] || reviewTemplates.default;
+
+const starter = [];
+
+for(let i=0;i<6;i++){
+
+starter.push({
+
+userName: reviewerNames[(movie.id+i)%reviewerNames.length],
+
+rating:(7.6+(((movie.id*(i+3))%23)/10)).toFixed(1),
+
+review:templates[i%templates.length],
+
+starter:true
+
+});
+
+}
+
+return starter;
+
+}
 const publicReviews =
     document.getElementById("publicReviews");
 
@@ -2873,130 +3060,146 @@ const reviewsQuery = query(
     collection(db, "reviews"),
     where("movieId", "==", Number(movieId))
 );
-
 onSnapshot(reviewsQuery, (snapshot) => {
 
     publicReviews.innerHTML = "";
 
-    if (snapshot.empty) {
+    // Show starter reviews
+    if (currentMovie) {
 
-        publicReviews.innerHTML =
-            "<p>No reviews yet. Be the first to review!</p>";
+        const starterReviews = getStarterReviews(currentMovie);
 
-        return;
+        starterReviews.forEach((reviewData) => {
+
+            const reviewCard = document.createElement("div");
+
+            reviewCard.className = "review-card";
+
+            reviewCard.innerHTML = `
+                <h3>${reviewData.userName}</h3>
+                <strong>⭐ ${reviewData.rating}/10</strong>
+                <p>${reviewData.review}</p>
+                <small style="display:block;margin-top:10px;color:#ffd21c;font-weight:bold;">
+                    🍿 FLOP CORN Editorial Review
+                </small>
+            `;
+
+            publicReviews.appendChild(reviewCard);
+
+        });
+
     }
+
+    // Heading for real reviews
+    if (!snapshot.empty) {
+
+        const heading = document.createElement("h3");
+
+        heading.innerHTML = "👥 Community Reviews";
+
+        heading.style.margin = "30px 0 15px";
+
+        heading.style.color = "#ffd21c";
+
+        publicReviews.appendChild(heading);
+
+    }
+
+    let count = 0;
 
     snapshot.forEach((reviewDocument) => {
 
+        count++;
+
         const reviewData = reviewDocument.data();
 
-        const reviewCard =
-            document.createElement("div");
+        const reviewCard = document.createElement("div");
 
         reviewCard.className = "review-card";
+
+        if (count > 3) {
+
+            reviewCard.classList.add("extra-review");
+
+        }
 
         const isMyReview =
             auth.currentUser &&
             auth.currentUser.email === reviewData.userEmail;
 
         reviewCard.innerHTML = `
+            <h3>${reviewData.userName}</h3>
 
-            <h3>
-                ${reviewData.userName}
-            </h3>
+            <strong>⭐ ${reviewData.rating}/10</strong>
 
-            <strong>
-                ⭐ ${reviewData.rating}/10
-            </strong>
-
-            <p>
-                ${reviewData.review}
-            </p>
+            <p>${reviewData.review}</p>
 
             ${
                 isMyReview
-
                 ?
-
-                `<button
-                    class="delete-review"
-                    data-id="${reviewDocument.id}">
+                `<button class="delete-review" data-id="${reviewDocument.id}">
                     🗑️ Delete Review
                 </button>`
-
                 :
-
                 ""
             }
-
         `;
 
-        const reviewNumber = publicReviews.children.length;
-
-if (reviewNumber >= 3) {
-    reviewCard.classList.add("extra-review");
-}
-
-publicReviews.appendChild(reviewCard);
+        publicReviews.appendChild(reviewCard);
 
     });
 
+    if (snapshot.empty) {
 
-// ===============================
-// VIEW ALL / SHOW LESS REVIEWS
-// ===============================
+        const p = document.createElement("p");
 
-if (snapshot.size > 3) {
+        p.style.marginTop = "20px";
 
-    const viewAllButton =
-        document.createElement("button");
+        p.style.color = "#888";
 
-    viewAllButton.className =
-        "view-all-reviews";
+        p.textContent =
+            "No community reviews yet. Be the first to review! 🍿";
 
-    viewAllButton.textContent =
-        `View All Reviews (${snapshot.size})`;
+        publicReviews.appendChild(p);
 
-    viewAllButton.addEventListener(
-        "click",
-        () => {
+    }
 
-            const extraReviews =
-                document.querySelectorAll(
-                    ".extra-review"
-                );
+    if (snapshot.size > 3) {
 
-            const reviewsAreOpen =
-                viewAllButton.classList.contains(
-                    "open"
-                );
+        const button = document.createElement("button");
 
-            extraReviews.forEach((review) => {
+        button.className = "view-all-reviews";
 
-                review.style.display =
-                    reviewsAreOpen
-                    ? "none"
-                    : "block";
+        button.textContent = `View All Reviews (${snapshot.size})`;
+
+        button.onclick = () => {
+
+            const hidden =
+                document.querySelectorAll(".extra-review");
+
+            const open =
+                button.classList.contains("open");
+
+            hidden.forEach(card => {
+
+                card.style.display =
+                    open ? "none" : "block";
 
             });
 
-            viewAllButton.textContent =
-                reviewsAreOpen
-                ? `View All Reviews (${snapshot.size})`
-                : "Show Less";
+            button.classList.toggle("open");
 
-            viewAllButton.classList.toggle(
-                "open"
-            );
+            button.textContent =
+                open
+                    ? `View All Reviews (${snapshot.size})`
+                    : "Show Less";
 
-        }
-    );
+        };
 
-    publicReviews.appendChild(
-        viewAllButton
-    );
+        publicReviews.appendChild(button);
 
-}
+    }
+
 });
 
 // ===============================
