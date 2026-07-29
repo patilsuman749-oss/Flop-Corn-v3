@@ -3064,41 +3064,15 @@ onSnapshot(reviewsQuery, (snapshot) => {
 
     publicReviews.innerHTML = "";
 
-    // Show starter reviews
-    if (currentMovie) {
+    // ==========================
+    // COMMUNITY REVIEWS
+    // ==========================
 
-        const starterReviews = getStarterReviews(currentMovie);
-
-        starterReviews.forEach((reviewData) => {
-
-            const reviewCard = document.createElement("div");
-
-            reviewCard.className = "review-card";
-
-            reviewCard.innerHTML = `
-                <h3>${reviewData.userName}</h3>
-                <strong>⭐ ${reviewData.rating}/10</strong>
-                <p>${reviewData.review}</p>
-                <small style="display:block;margin-top:10px;color:#ffd21c;font-weight:bold;">
-                    🍿 FLOP CORN Editorial Review
-                </small>
-            `;
-
-            publicReviews.appendChild(reviewCard);
-
-        });
-
-    }
-
-    // Heading for real reviews
     if (!snapshot.empty) {
 
         const heading = document.createElement("h3");
-
         heading.innerHTML = "👥 Community Reviews";
-
         heading.style.margin = "30px 0 15px";
-
         heading.style.color = "#ffd21c";
 
         publicReviews.appendChild(heading);
@@ -3118,9 +3092,7 @@ onSnapshot(reviewsQuery, (snapshot) => {
         reviewCard.className = "review-card";
 
         if (count > 3) {
-
             reviewCard.classList.add("extra-review");
-
         }
 
         const isMyReview =
@@ -3129,19 +3101,15 @@ onSnapshot(reviewsQuery, (snapshot) => {
 
         reviewCard.innerHTML = `
             <h3>${reviewData.userName}</h3>
-
             <strong>⭐ ${reviewData.rating}/10</strong>
-
             <p>${reviewData.review}</p>
 
             ${
                 isMyReview
-                ?
-                `<button class="delete-review" data-id="${reviewDocument.id}">
-                    🗑️ Delete Review
-                </button>`
-                :
-                ""
+                ? `<button class="delete-review" data-id="${reviewDocument.id}">
+                        🗑️ Delete Review
+                   </button>`
+                : ""
             }
         `;
 
@@ -3200,7 +3168,50 @@ onSnapshot(reviewsQuery, (snapshot) => {
 
     }
 
+    // ==========================
+    // FLOP CORN EDITORIAL REVIEWS
+    // ==========================
+
+    const editorialHeading = document.createElement("h3");
+
+    editorialHeading.innerHTML = "🍿 FLOP CORN Editorial Reviews";
+
+    editorialHeading.style.margin = "30px 0 15px";
+
+    editorialHeading.style.color = "#ffd21c";
+
+    publicReviews.appendChild(editorialHeading);
+
+    if (currentMovie) {
+
+        const starterReviews = getStarterReviews(currentMovie);
+
+        starterReviews.forEach((reviewData) => {
+
+            const reviewCard = document.createElement("div");
+
+            reviewCard.className = "review-card";
+
+            reviewCard.innerHTML = `
+                <h3>${reviewData.userName}</h3>
+                <strong>⭐ ${reviewData.rating}/10</strong>
+                <p>${reviewData.review}</p>
+                <small style="display:block;margin-top:10px;color:#ffd21c;font-weight:bold;">
+                    🍿 FLOP CORN Editorial Review
+                </small>
+            `;
+
+            publicReviews.appendChild(reviewCard);
+
+        });
+
+    }
+
 });
+
+
+  
+
 
 // ===============================
 // DELETE REVIEW
