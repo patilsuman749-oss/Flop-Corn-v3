@@ -1082,6 +1082,310 @@ body{
     font-size:22px;
     line-height:1.4;
 }
+   /* ==========================================================
+   FLOP CORN PREMIUM ANIMATIONS
+   Paste at the END of news.css
+========================================================== */
+
+/* ==========================
+   HERO ENTRY ANIMATION
+========================== */
+
+.news-badge,
+.news-hero h1,
+.news-hero p,
+.hero-news-btn{
+    opacity:0;
+    transform:translateY(35px);
+    animation:heroFade .8s forwards;
+}
+
+.news-badge{
+    animation-delay:.1s;
+}
+
+.news-hero h1{
+    animation-delay:.3s;
+}
+
+.news-hero p{
+    animation-delay:.5s;
+}
+
+.hero-news-btn{
+    animation-delay:.7s;
+}
+
+@keyframes heroFade{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ==========================
+   HERO FLOATING EFFECT
+========================== */
+
+.news-hero{
+    animation:
+        heroFloat 8s ease-in-out infinite,
+        heroFadeIn 1s ease;
+}
+
+@keyframes heroFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+@keyframes heroFadeIn{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ==========================
+   PREMIUM NEWS CARD
+========================== */
+
+.news-card{
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+
+    overflow:hidden;
+}
+
+.news-card:hover{
+
+    transform:
+        translateY(-10px)
+        scale(1.02);
+
+    border-color:#FFD000;
+
+    box-shadow:
+        0 0 25px rgba(255,208,0,.22),
+        0 25px 55px rgba(0,0,0,.45);
+
+}
+
+/* ==========================
+   IMAGE ZOOM
+========================== */
+
+.news-card img{
+
+    transition:
+        transform .7s ease,
+        filter .5s ease;
+
+}
+
+.news-card:hover img{
+
+    transform:scale(1.1);
+
+    filter:brightness(1.08);
+
+}
+
+/* ==========================
+   GOLD SHINE EFFECT
+========================== */
+
+.news-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:60%;
+    height:100%;
+
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.45),
+        transparent
+    );
+
+    transform:skewX(-20deg);
+
+}
+
+.news-card:hover::after{
+
+    animation:shine .8s;
+
+}
+
+@keyframes shine{
+
+    to{
+        left:170%;
+    }
+
+}
+
+/* ==========================
+   BUTTON SHINE
+========================== */
+
+.hero-news-btn,
+.news-content a{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.hero-news-btn::before,
+.news-content a::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:60%;
+    height:100%;
+
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.6),
+        transparent
+    );
+
+}
+
+.hero-news-btn:hover::before,
+.news-content a:hover::before{
+
+    left:180%;
+
+    transition:.8s;
+
+}
+
+.hero-news-btn:hover,
+.news-content a:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 10px 35px rgba(255,208,0,.45);
+
+}
+
+/* ==========================
+   TITLE GLOW
+========================== */
+
+.news-title{
+
+    animation:titleGlow 3s ease-in-out infinite;
+
+}
+
+@keyframes titleGlow{
+
+    0%,100%{
+
+        text-shadow:
+            0 0 8px rgba(255,208,0,.25);
+
+    }
+
+    50%{
+
+        text-shadow:
+            0 0 22px rgba(255,208,0,.55);
+
+    }
+
+}
+
+/* ==========================
+   FILTER BUTTONS
+========================== */
+
+.news-filter button{
+
+    transition:
+        transform .3s,
+        box-shadow .3s,
+        background .3s;
+
+}
+
+.news-filter button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(255,208,0,.35);
+
+}
+
+/* ==========================
+   PAGE FADE
+========================== */
+
+body{
+
+    animation:pageFade .8s ease;
+
+}
+
+@keyframes pageFade{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/* ==========================
+   SCROLLBAR GLOW
+========================== */
+
+::-webkit-scrollbar-thumb{
+
+    background:#FFD000;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 0 15px rgba(255,208,0,.45);
+
+}
 
 .news-grid p{
     font-size:15px;
