@@ -1443,7 +1443,15 @@
     border-radius: 12px;
     flex-shrink: 0;
 }
-    </style>
+    
+/* TRAILER POPUP */
+.trailer-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;align-items:center;justify-content:center;padding:20px}
+.trailer-box{width:min(1100px,95vw);position:relative}
+.trailer-box iframe{width:100%;aspect-ratio:16/9;border:none;border-radius:16px;background:#000}
+.close-trailer{position:absolute;right:-10px;top:-45px;background:#ffd21c;border:none;border-radius:50%;width:40px;height:40px;font-size:28px;font-weight:bold;cursor:pointer}
+.details-poster{cursor:pointer}
+
+</style>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -3006,6 +3014,47 @@ publicReviews.addEventListener("click", async (event) => {
 
 });
     </script>
+
+<!-- OFFICIAL TRAILER POPUP -->
+<div id="trailerModal" class="trailer-modal">
+  <div class="trailer-box">
+    <button id="closeTrailer" class="close-trailer">&times;</button>
+    <iframe id="trailerFrame"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+
+// ===== TRAILER POPUP =====
+const trailerModal=document.getElementById("trailerModal");
+const trailerFrame=document.getElementById("trailerFrame");
+const closeTrailer=document.getElementById("closeTrailer");
+
+async function openTrailer(movieId){
+ try{
+   const res=await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`);
+   const data=await res.json();
+   const trailer=data.results.find(v=>v.site==="YouTube"&&v.type==="Trailer");
+   if(!trailer){alert("Trailer not available.");return;}
+   trailerFrame.src=`https://www.youtube.com/embed/${trailer.key}?autoplay=1`;
+   trailerModal.style.display="flex";
+ }catch(e){console.error(e);}
+}
+document.getElementById("moviePoster").addEventListener("click",()=>openTrailer(currentMovie.id));
+closeTrailer.onclick=()=>{
+ trailerFrame.src="";
+ trailerModal.style.display="none";
+};
+trailerModal.onclick=(e)=>{
+ if(e.target===trailerModal){
+   trailerFrame.src="";
+   trailerModal.style.display="none";
+ }
+};
+
+</script>
 </body>
 
 </html>
