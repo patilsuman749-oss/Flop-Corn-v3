@@ -12635,26 +12635,25 @@ section{
 
 .close-trailer{
     position:absolute;
-    left:50%;
-    bottom:-70px;
-    transform:translateX(-50%);
-    width:55px;
-    height:55px;
+    top:15px;
+    right:15px;
+    width:50px;
+    height:50px;
     border:none;
     border-radius:50%;
     background:#ffd21c;
     color:#111;
-    font-size:32px;
+    font-size:30px;
     font-weight:bold;
     cursor:pointer;
     display:flex;
     align-items:center;
     justify-content:center;
-    transition:0.25s;
-    z-index:10000;
+    z-index:10001;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
 }
 
 .close-trailer:hover{
-    transform:translateX(-50%) scale(1.1);
     background:#ffe45a;
+    transform:scale(1.08);
 }
