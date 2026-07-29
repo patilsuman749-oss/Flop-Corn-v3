@@ -12,8 +12,11 @@ const newsContainer = document.getElementById("newsContainer");
 
 async function loadNews(category = "All") {
 
-    featuredNews.innerHTML = "";
-    newsContainer.innerHTML = "<p>Loading latest news...</p>";
+    featuredNews.innerHTML =
+        `<div class="loading-news">Loading Breaking News...</div>`;
+
+    newsContainer.innerHTML =
+        `<div class="loading-news">Loading Latest News...</div>`;
 
     try {
 
@@ -26,8 +29,12 @@ async function loadNews(category = "All") {
         const snapshot = await getDocs(newsQuery);
 
         if (snapshot.empty) {
-            featuredNews.innerHTML = "<p>No movie news available.</p>";
+
+            featuredNews.innerHTML =
+                `<div class="loading-news">No News Available</div>`;
+
             newsContainer.innerHTML = "";
+
             return;
         }
 
@@ -51,38 +58,44 @@ async function loadNews(category = "All") {
 
         if (newsList.length === 0) {
 
-            featuredNews.innerHTML = "<p>No news found.</p>";
-            newsContainer.innerHTML = "";
-            return;
+            featuredNews.innerHTML =
+                `<div class="loading-news">No News Found</div>`;
 
+            newsContainer.innerHTML = "";
+
+            return;
         }
 
-        const first = newsList[0];
+        // FEATURED NEWS
+
+        const featured = newsList[0];
 
         featuredNews.innerHTML = `
-            <div class="news-card">
+        <div class="news-card featured-card">
 
-                <img src="${first.image || "https://via.placeholder.com/900x500"}">
+            <img src="${featured.image || 'https://via.placeholder.com/900x500'}">
 
-                <div class="news-content">
+            <div class="news-content">
 
-                    <h2>${first.title}</h2>
+                <h2>${featured.title}</h2>
 
-                    <p>${first.description || ""}</p>
+                <p>${featured.description || ""}</p>
 
-                    <div class="news-source">
-                        📰 ${first.source || "Unknown"} •
-                        ${new Date(first.publishedAt).toLocaleDateString()}
-                    </div>
-
-                    <a href="${first.url}" target="_blank">
-                        Read Full Story →
-                    </a>
-
+                <div class="news-source">
+                    📰 ${featured.source || "Unknown"} •
+                    ${new Date(featured.publishedAt).toLocaleDateString()}
                 </div>
 
+                <a href="${featured.url}" target="_blank">
+                    Read Full Story →
+                </a>
+
             </div>
+
+        </div>
         `;
+
+        // LATEST NEWS
 
         newsContainer.innerHTML = "";
 
@@ -92,7 +105,7 @@ async function loadNews(category = "All") {
 
             <div class="news-card">
 
-                <img src="${news.image || "https://via.placeholder.com/500x300"}">
+                <img src="${news.image || 'https://via.placeholder.com/500x300'}">
 
                 <div class="news-content">
 
@@ -101,11 +114,15 @@ async function loadNews(category = "All") {
                     <p>${news.description || ""}</p>
 
                     <div class="news-source">
+
                         📰 ${news.source || "Unknown"}
+
                     </div>
 
                     <a href="${news.url}" target="_blank">
+
                         Read More →
+
                     </a>
 
                 </div>
@@ -116,20 +133,25 @@ async function loadNews(category = "All") {
 
         });
 
+        startAnimations();
+
     }
 
     catch (error) {
 
         console.error(error);
 
-        featuredNews.innerHTML = "";
+        featuredNews.innerHTML =
+            `<div class="loading-news">Failed to load news.</div>`;
 
-        newsContainer.innerHTML =
-            "<p>Failed to load movie news.</p>";
+        newsContainer.innerHTML = "";
 
     }
 
 }
+
+
+// CATEGORY FILTER
 
 document.querySelectorAll(".news-filter button").forEach(button => {
 
@@ -147,21 +169,36 @@ document.querySelectorAll(".news-filter button").forEach(button => {
 
 });
 
-loadNews();
-/* ==========================
-   SCROLL ANIMATION
-========================== */
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-        }
+// CARD ANIMATIONS
+
+function startAnimations() {
+
+    const cards = document.querySelectorAll(".news-card");
+
+    const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("show");
+
+            }
+
+        });
+
+    }, {
+
+        threshold:0.15
+
     });
-}, {
-    threshold: 0.15
-});
 
-document.querySelectorAll(".news-card").forEach(card => {
-    observer.observe(card);
-});
+    cards.forEach(card => observer.observe(card));
+
+}
+
+
+// LOAD NEWS
+
+loadNews();
