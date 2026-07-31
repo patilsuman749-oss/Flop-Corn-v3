@@ -13222,3 +13222,71 @@ section{
     transform:translateY(-3px);
     box-shadow:0 10px 25px rgba(255,210,28,.25);
 }
+/* ===============================
+   SIMILAR MOVIES
+=============================== */
+
+.similar-movies-section{
+    padding:70px 7%;
+}
+
+.similar-movies-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(180px,1fr));
+
+    gap:22px;
+
+}
+
+.similar-card{
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#111;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.25s;
+
+}
+
+.similar-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.similar-card img{
+
+    width:100%;
+
+    aspect-ratio:2/3;
+
+    object-fit:cover;
+
+}
+
+.similar-card h3{
+
+    padding:12px 14px 4px;
+
+    font-size:17px;
+
+}
+
+.similar-card p{
+
+    padding:0 14px 16px;
+
+    color:#ffd21c;
+
+    font-weight:bold;
+
+}
