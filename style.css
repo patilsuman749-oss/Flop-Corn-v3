@@ -13231,14 +13231,16 @@ section{
 }
 
 .similar-movies-grid{
-
     display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:18px;
+}
 
-    grid-template-columns:
-        repeat(auto-fit,minmax(180px,1fr));
-
-    gap:22px;
-
+.similar-card img{
+    width:100%;
+    aspect-ratio:2/3;
+    object-fit:cover;
+    border-radius:14px;
 }
 
 .similar-card{
@@ -13288,5 +13290,35 @@ section{
     color:#ffd21c;
 
     font-weight:bold;
+
+}
+@media (max-width: 768px){
+
+    .similar-movies-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:14px;
+
+    }
+
+    .similar-card img{
+
+        height:220px;
+
+    }
+
+    .similar-card h3{
+
+        font-size:14px;
+
+    }
+
+    .similar-card p{
+
+        font-size:13px;
+
+    }
 
 }
