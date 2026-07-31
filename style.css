@@ -12657,3 +12657,102 @@ section{
     background:#ffe45a;
     transform:scale(1.08);
 }
+/* ===============================
+   WHERE TO WATCH
+=============================== */
+
+.watch-providers-section{
+
+    padding:60px 7%;
+
+}
+
+.watch-providers-section h2{
+
+    font-size:34px;
+
+    margin-bottom:25px;
+
+    color:#ffd21c;
+
+}
+
+#watchProviders{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+}
+
+.provider-card{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    background:#121212;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.25s;
+
+}
+
+.provider-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#ffd21c;
+
+}
+
+.provider-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.provider-info img{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:10px;
+
+}
+
+.provider-info h3{
+
+    font-size:16px;
+
+}
+
+.watch-now{
+
+    background:#ffd21c;
+
+    color:#111;
+
+    padding:10px 16px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:800;
+
+}
