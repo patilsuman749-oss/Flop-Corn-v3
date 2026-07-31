@@ -2143,7 +2143,7 @@ updateWatchlistButton();
                     castInformation.cast
 
                 );
-
+loadWatchProviders(movie.id);
 
                 movieLoading.style.display =
 
@@ -3273,6 +3273,86 @@ publicReviews.addEventListener("click", async (event) => {
 
 
 });
+        // ===============================
+// WHERE TO WATCH
+// ===============================
+
+async function loadWatchProviders(movieId){
+
+    try{
+
+        const response = await fetch(
+            `${BASE_URL}/movie/${movieId}/watch/providers?api_key=${API_KEY}`
+        );
+
+        const data = await response.json();
+
+        const container = document.getElementById("watchProviders");
+
+        container.innerHTML = "";
+
+        const india = data.results?.IN;
+
+        if(!india){
+
+            container.innerHTML = `
+                <p>❌ This movie is currently not available for streaming in India.</p>
+            `;
+
+            return;
+
+        }
+
+        const providers = india.flatrate || [];
+
+        if(providers.length === 0){
+
+            container.innerHTML = `
+                <p>❌ No streaming providers found.</p>
+            `;
+
+            return;
+
+        }
+
+        providers.forEach(provider=>{
+
+            container.innerHTML += `
+
+            <div class="provider-card">
+
+                <div class="provider-info">
+
+                    <img src="https://image.tmdb.org/t/p/w92${provider.logo_path}">
+
+                    <h3>${provider.provider_name}</h3>
+
+                </div>
+
+                <a
+                    class="watch-now"
+                    href="${india.link}"
+                    target="_blank">
+
+                    Watch
+
+                </a>
+
+            </div>
+
+            `;
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+}
 
 // ===============================
 // TRAILER
