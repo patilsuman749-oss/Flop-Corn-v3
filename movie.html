@@ -1818,6 +1818,23 @@
     </div>
 
 </section>
+        <section class="similar-movies-section">
+
+    <p class="section-small">
+        YOU MAY ALSO LIKE
+    </p>
+
+    <h2 class="section-title">
+        🎬 Similar Movies
+    </h2>
+
+    <div id="similarMovies" class="similar-movies-grid">
+
+        <p>Loading similar movies...</p>
+
+    </div>
+
+</section>
 <!-- CAST -->
 
 <section class="cast-section">
@@ -2161,6 +2178,7 @@ updateWatchlistButton();
 
                 );
 loadWatchProviders(movie.id);
+                loadSimilarMovies(movie.id);
 
                 movieLoading.style.display =
 
@@ -3409,6 +3427,56 @@ function getProviderSearchLink(provider, movieTitle){
 
     button.href =
         `https://in.bookmyshow.com/explore/movies?search=${encodeURIComponent(movieTitle)}`;
+
+}
+        // ===============================
+// SIMILAR MOVIES
+// ===============================
+
+async function loadSimilarMovies(movieId){
+
+    try{
+
+        const response = await fetch(
+            `${BASE_URL}/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US`
+        );
+
+        const data = await response.json();
+
+        const container =
+            document.getElementById("similarMovies");
+
+        container.innerHTML = "";
+
+        data.results.slice(0,8).forEach(movie=>{
+
+            container.innerHTML += `
+
+                <a
+                    class="similar-card"
+                    href="movie.html?id=${movie.id}">
+
+                    <img
+                        src="${IMAGE_URL}${movie.poster_path}"
+                        alt="${movie.title}">
+
+                    <h3>${movie.title}</h3>
+
+                    <p>⭐ ${movie.vote_average.toFixed(1)}</p>
+
+                </a>
+
+            `;
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
 
 }
 // ===============================
