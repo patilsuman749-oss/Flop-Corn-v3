@@ -1801,7 +1801,23 @@
     </div>
 
 </section>
+<section class="book-tickets-section">
 
+    <h2>🎟️ Book Tickets</h2>
+
+    <div class="ticket-card">
+
+        <p>Check the latest show timings and book tickets on BookMyShow.</p>
+
+        <a id="bookMyShowButton"
+           class="watch-now"
+           target="_blank">
+            🎟️ Book on BookMyShow
+        </a>
+
+    </div>
+
+</section>
 <!-- CAST -->
 
 <section class="cast-section">
@@ -2125,6 +2141,7 @@ import {
 
                     await movieResponse.json();
 currentMovie = movie;
+setupBookMyShow(movie.title);
 updateWatchlistButton();
                 const castInformation =
 
@@ -3384,6 +3401,14 @@ function getProviderSearchLink(provider, movieTitle){
             return `https://www.google.com/search?q=${encodeURIComponent(provider+" "+movieTitle)}`;
 
     }
+
+}
+        function setupBookMyShow(movieTitle){
+
+    const button = document.getElementById("bookMyShowButton");
+
+    button.href =
+        `https://in.bookmyshow.com/explore/movies?search=${encodeURIComponent(movieTitle)}`;
 
 }
 // ===============================
