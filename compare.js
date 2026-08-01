@@ -655,3 +655,136 @@ function calculateWinner(){
     }
 
 }
+/* =========================================================
+   FLOP CORN
+   Premium Compare Movies
+   Part 5 - Trailer, Watchlist & Celebration
+========================================================= */
+
+/* ---------- Trailer ---------- */
+
+function openTrailer(title){
+
+    const url =
+`https://www.youtube.com/results?search_query=${encodeURIComponent(title+" official trailer")}`;
+
+    window.open(url,"_blank");
+
+}
+
+/* ---------- Watchlist ---------- */
+
+function addCurrentWinnerToWatchlist(){
+
+    let winner=null;
+
+    const title=elements.winnerTitle.textContent
+        .replace("👑","")
+        .trim();
+
+    if(state.movie1 &&
+       state.movie1.title===title){
+
+        winner=state.movie1;
+
+    }
+
+    if(state.movie2 &&
+       state.movie2.title===title){
+
+        winner=state.movie2;
+
+    }
+
+    if(!winner){
+
+        alert("Compare two movies first.");
+
+        return;
+
+    }
+
+    const watchlist=
+JSON.parse(localStorage.getItem("flopcornWatchlist")||"[]");
+
+    if(watchlist.find(m=>m.id===winner.id)){
+
+        alert("Already in Watchlist ❤️");
+
+        return;
+
+    }
+
+    watchlist.push({
+
+        id:winner.id,
+
+        title:winner.title,
+
+        poster:winner.poster_path,
+
+        rating:winner.vote_average,
+
+        year:formatYear(winner.release_date)
+
+    });
+
+    localStorage.setItem(
+
+        "flopcornWatchlist",
+
+        JSON.stringify(watchlist)
+
+    );
+
+    alert("❤️ Added to Watchlist");
+
+}
+
+const watchlistBtn=document.getElementById("watchlistBtn");
+
+if(watchlistBtn){
+
+watchlistBtn.addEventListener(
+
+"click",
+
+addCurrentWinnerToWatchlist
+
+);
+
+}
+
+/* ---------- Celebration ---------- */
+
+function celebrateWinner(){
+
+    for(let i=0;i<35;i++){
+
+        const piece=document.createElement("div");
+
+        piece.className="confetti";
+
+        piece.style.left=Math.random()*100+"vw";
+
+        piece.style.animationDuration=
+
+        (Math.random()*2+2)+"s";
+
+        piece.style.background=
+
+        ["#FFD000","#ff4d4d","#00d4ff","#8cff66"]
+
+        [Math.floor(Math.random()*4)];
+
+        document.body.appendChild(piece);
+
+        setTimeout(()=>{
+
+            piece.remove();
+
+        },4000);
+
+    }
+
+}
