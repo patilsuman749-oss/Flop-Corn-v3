@@ -3,7 +3,7 @@
    Premium Compare Movies
    Part 1 - Core
 ========================================================= */
-
+alert("compare.js loaded");
 const CONFIG = {
 
     API_KEY: "dd2ac99e60038c2254b111f850b49461",
