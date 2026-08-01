@@ -806,3 +806,59 @@ opacity:0;
     border-radius: 18px;
     box-shadow: 0 8px 25px rgba(255,204,0,.25);
 }
+/* ===============================
+   Compare Features
+================================ */
+
+.compare-features{
+    padding:70px 20px;
+}
+
+.feature-box{
+    max-width:900px;
+    margin:auto;
+    background:#181818;
+    padding:40px;
+    border-radius:20px;
+    border:1px solid rgba(255,204,0,.15);
+}
+
+.feature-box h3{
+
+    font-size:30px;
+    color:#ffcc00;
+    font-weight:700;
+
+    margin-top:35px;
+    margin-bottom:12px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+}
+
+.feature-box p{
+
+    font-size:18px;
+    line-height:1.8;
+    color:#cfcfcf;
+
+    margin-bottom:28px;
+
+}
+
+.feature-box i{
+
+    color:#ffcc00;
+    font-size:26px;
+    width:34px;
+
+}
+
+.compare-action-button{
+
+    font-size:18px;
+    font-weight:700;
+
+}
