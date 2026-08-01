@@ -790,3 +790,11 @@ opacity:0;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,.08);
 }
+/* ===== FLOP CORN Image Resize ===== */
+
+.flopcorn-image{
+    width:220px;
+    height:auto;
+    display:block;
+    margin:30px auto;
+}
