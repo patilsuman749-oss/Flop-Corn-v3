@@ -1214,3 +1214,37 @@ opacity:0;
     font-weight: 700;
     box-shadow: 0 10px 25px rgba(255,204,0,.35);
 }
+/* ===============================
+   Compare Button Like Movie News
+=============================== */
+
+.nav-links a[href="compare.html"]{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    background: #ffcc00;
+    color: #111 !important;
+
+    padding: 12px 24px;
+
+    border-radius: 16px;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    box-shadow: 0 8px 25px rgba(255,204,0,.35);
+
+    transition: all .3s ease;
+}
+
+.nav-links a[href="compare.html"]:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255,204,0,.55);
+}
+
+.nav-links a[href="compare.html"] i{
+    font-size: 20px;
+}
