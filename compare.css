@@ -759,3 +759,34 @@ opacity:0;
 }
 
 }
+.comparePoster{
+    width: 280px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+    margin: 20px auto;
+}
+
+.movie-card-content h2{
+    font-size: 30px;
+    font-weight: 700;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.movie-card-content p{
+    font-size: 15px;
+    line-height: 1.7;
+    color: #bfbfbf;
+    margin-top: 15px;
+}
+
+.movie-card-premium{
+    max-width: 420px;
+    margin: auto;
+    background: #181818;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.08);
+}
