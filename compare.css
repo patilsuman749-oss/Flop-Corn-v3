@@ -692,3 +692,27 @@ display:block;
 }
 
 }
+.winnerValue{
+
+background:#14532d !important;
+
+color:#86efac !important;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+.winnerCard{
+
+border:3px solid #FFD000 !important;
+
+box-shadow:
+0 0 30px rgba(255,208,0,.5);
+
+transform:translateY(-8px);
+
+transition:.35s;
+
+}
