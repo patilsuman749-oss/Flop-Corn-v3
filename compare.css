@@ -798,3 +798,11 @@ opacity:0;
     display:block;
     margin:30px auto;
 }
+.small-flopcorn-logo{
+    width: 140px;
+    height: auto;
+    display: block;
+    margin: 0 auto 25px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(255,204,0,.25);
+}
