@@ -1,22 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FLOP CORN - Compare Movies</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Compare Movies • FLOP CORN</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="compare.css">
+
 </head>
+
 <body>
-<header><h1>⚔️ Compare Movies</h1></header>
-<main class="container">
-<div class="searches">
-<input id="movie1" placeholder="Search Movie 1">
-<input id="movie2" placeholder="Search Movie 2">
-<button id="compareBtn">Compare</button>
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<header class="navbar">
+
+<a href="index.html" class="logo">
+
+<div class="logo-icon">
+<img src="flopcorn-logo.jpeg.jpeg"
+class="flopcorn-logo-img">
 </div>
-<div id="results" class="results"></div>
-</main>
+
+<div class="logo-text">
+FLOP<span>CORN</span>
+</div>
+
+</a>
+
+<nav class="nav-links">
+
+<a href="index.html">
+<i class="fa-solid fa-house"></i>
+Home
+</a>
+
+<a href="explore.html">
+🧭 Explore
+</a>
+
+<a href="news.html">
+<i class="fa-solid fa-newspaper"></i>
+Movie News
+</a>
+
+<a href="compare.html" class="active">
+<i class="fa-solid fa-scale-balanced"></i>
+Compare
+</a>
+
+</nav>
+
+</header>
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="compare-hero">
+
+<div class="compare-overlay"></div>
+
+<div class="compare-content">
+
+<p class="compare-small">
+
+⚔️ FLOP CORN PREMIUM
+
+</p>
+
+<h1>
+
+Compare
+
+<span>Any Two Movies</span>
+
+Side by Side
+
+</h1>
+
+<p class="compare-description">
+
+Compare ratings, box office,
+budget, runtime, genres,
+trailers and much more.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+     SEARCH
+========================== -->
+
+<section class="compare-search-section">
+
+<div class="compare-search-wrapper">
+
+<!-- LEFT -->
+
+<div class="movie-search-card">
+
+<h2>
+
+Movie 1
+
+</h2>
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+
+type="text"
+
+id="movie1"
+
+placeholder="Search first movie..."
+
+autocomplete="off"
+
+>
+
+</div>
+
+<div
+
+id="movie1Suggestions"
+
+class="suggestions"
+
+>
+
+</div>
+
+</div>
+
+<!-- VS -->
+
+<div class="vs-circle">
+
+VS
+
+</div>
+
+<!-- RIGHT -->
+
+<div class="movie-search-card">
+
+<h2>
+
+Movie 2
+
+</h2>
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+
+type="text"
+
+id="movie2"
+
+placeholder="Search second movie..."
+
+autocomplete="off"
+
+>
+
+</div>
+
+<div
+
+id="movie2Suggestions"
+
+class="suggestions"
+
+>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="compare-button-area">
+
+<button id="compareBtn">
+
+<i class="fa-solid fa-scale-balanced"></i>
+
+Compare Movies
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =========================
+     COMPARISON STARTS HERE
+========================== -->
+
+<section class="comparison-section">
+
+<div id="comparisonResults">
+
+<!-- Loaded by compare.js -->
+
+</div>
+<div id="comparisonContainer" class="comparison-container">
+
+    <!-- LEFT MOVIE -->
+
+    <div class="movie-panel">
+
+        <div id="movie1Card" class="movie-card-premium">
+
+            <div class="movie-placeholder">
+
+                <i class="fa-solid fa-film"></i>
+
+                <p>Select Movie 1</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- VS -->
+
+    <div class="comparison-vs">
+
+        <div class="vs-badge">
+
+            ⚔️
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT MOVIE -->
+
+    <div class="movie-panel">
+
+        <div id="movie2Card" class="movie-card-premium">
+
+            <div class="movie-placeholder">
+
+                <i class="fa-solid fa-film"></i>
+
+                <p>Select Movie 2</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ===============================
+        FLOP CORN VERDICT
+================================ -->
+
+<section class="verdict-section">
+
+    <div class="verdict-card">
+
+        <h2>
+
+            🍿 FLOP CORN Verdict
+
+        </h2>
+
+        <p>
+
+            Compare two movies to discover which one wins.
+
+        </p>
+
+        <div class="winner-box">
+
+            <h3 id="winnerTitle">
+
+                No Winner Yet
+
+            </h3>
+
+            <p id="winnerReason">
+
+                Select two movies and click
+                Compare Movies.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===============================
+        COMPARISON TABLE
+================================ -->
+
+<section class="stats-section">
+
+<h2 class="stats-heading">
+
+📊 Detailed Comparison
+
+</h2>
+
+<table class="compare-table">
+
+<thead>
+
+<tr>
+
+<th>Category</th>
+
+<th id="leftMovieName">
+
+Movie 1
+
+</th>
+
+<th id="rightMovieName">
+
+Movie 2
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>⭐ Rating</td>
+
+<td id="rating1">-</td>
+
+<td id="rating2">-</td>
+
+</tr>
+
+<tr>
+
+<td>📅 Release</td>
+
+<td id="release1">-</td>
+
+<td id="release2">-</td>
+
+</tr>
+
+<tr>
+
+<td>⏱ Runtime</td>
+
+<td id="runtime1">-</td>
+
+<td id="runtime2">-</td>
+
+</tr>
+
+<tr>
+
+<td>💰 Budget</td>
+
+<td id="budget1">-</td>
+
+<td id="budget2">-</td>
+
+</tr>
+
+<tr>
+
+<td>💵 Revenue</td>
+
+<td id="revenue1">-</td>
+
+<td id="revenue2">-</td>
+
+</tr>
+
+<tr>
+
+<td>🌍 Language</td>
+
+<td id="language1">-</td>
+
+<td id="language2">-</td>
+
+</tr>
+
+<tr>
+
+<td>🎭 Genres</td>
+
+<td id="genre1">-</td>
+
+<td id="genre2">-</td>
+
+</tr>
+
+<tr>
+
+<td>🔥 Popularity</td>
+
+<td id="popularity1">-</td>
+
+<td id="popularity2">-</td>
+
+</tr>
+
+<tr>
+
+<td>🗳 Votes</td>
+
+<td id="votes1">-</td>
+
+<td id="votes2">-</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+<!-- ===============================
+        ACTION BUTTONS
+================================ -->
+
+<section class="compare-actions">
+
+    <a href="#" id="watchTrailerBtn" class="compare-action-button">
+
+        <i class="fa-solid fa-play"></i>
+
+        Watch Trailer
+
+    </a>
+
+    <button id="watchlistBtn" class="compare-action-button">
+
+        <i class="fa-solid fa-heart"></i>
+
+        Add to Watchlist
+
+    </button>
+
+</section>
+
+<!-- ===============================
+        FEATURES
+================================ -->
+
+<section class="compare-features">
+
+<div class="feature-box">
+
+<i class="fa-solid fa-ranking-star"></i>
+
+<h3>Better Ratings</h3>
+
+<p>
+Compare TMDB ratings instantly.
+</p>
+
+</div>
+
+<div class="feature-box">
+
+<i class="fa-solid fa-money-bill-trend-up"></i>
+
+<h3>Box Office</h3>
+
+<p>
+Budget & revenue comparison.
+</p>
+
+</div>
+
+<div class="feature-box">
+
+<i class="fa-solid fa-clock"></i>
+
+<h3>Runtime</h3>
+
+<p>
+See which movie is longer.
+</p>
+
+</div>
+
+<div class="feature-box">
+
+<i class="fa-solid fa-film"></i>
+
+<h3>Genres</h3>
+
+<p>
+Compare genres and language.
+</p>
+
+</div>
+
+</section>
+
+<!-- ===============================
+        FOOTER
+================================ -->
+
+<footer class="compare-footer">
+
+<img
+src="flopcorn-logo.jpeg.jpeg"
+class="small-flopcorn-logo"
+alt="Flop Corn Logo">
+
+<h2>
+
+FLOP<span>CORN</span>
+
+</h2>
+
+<p>
+
+Compare movies like never before.
+
+</p>
+
+<p>
+
+Developed by
+<strong>Suman Patil</strong>
+
+</p>
+
+</footer>
+
 <script src="compare.js"></script>
+
 </body>
 </html>
-
