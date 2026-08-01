@@ -1181,3 +1181,36 @@ opacity:0;
 .compare-search-section{
     overflow: visible;
 }
+/* ===============================
+   Compare Navigation Button
+=============================== */
+
+.nav-links a[href="compare.html"]{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    border-radius: 14px;
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+    transition: .3s ease;
+}
+
+.nav-links a[href="compare.html"]:hover{
+    background: #ffcc00;
+    color: #111;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255,204,0,.35);
+}
+
+.nav-links a[href="compare.html"].active{
+    background: #ffcc00;
+    color: #111;
+    font-weight: 700;
+    box-shadow: 0 10px 25px rgba(255,204,0,.35);
+}
