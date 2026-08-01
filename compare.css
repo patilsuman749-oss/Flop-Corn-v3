@@ -862,3 +862,180 @@ opacity:0;
     font-weight:700;
 
 }
+/* ==========================================
+   PREMIUM FEATURES SECTION
+========================================== */
+
+.compare-features{
+    padding:80px 25px;
+    background:linear-gradient(180deg,#111,#181818);
+}
+
+.feature-box{
+
+    max-width:900px;
+
+    margin:auto;
+
+    background:#1a1a1a;
+
+    padding:45px;
+
+    border-radius:24px;
+
+    border:1px solid rgba(255,204,0,.12);
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.45);
+
+}
+
+.feature-box h3{
+
+    color:#FFD000;
+
+    font-size:30px;
+
+    font-weight:800;
+
+    margin-top:38px;
+
+    margin-bottom:12px;
+
+    letter-spacing:.4px;
+
+    transition:.3s;
+
+}
+
+.feature-box h3:first-of-type{
+
+    margin-top:0;
+
+}
+
+.feature-box h3:hover{
+
+    color:#fff;
+
+    transform:translateX(8px);
+
+}
+
+.feature-box p{
+
+    color:#c9c9c9;
+
+    font-size:18px;
+
+    line-height:1.9;
+
+    margin-bottom:28px;
+
+    margin-left:12px;
+
+    transition:.3s;
+
+}
+
+.feature-box p:hover{
+
+    color:white;
+
+}
+
+.feature-box i{
+
+    color:#FFD000;
+
+    font-size:24px;
+
+    margin-right:12px;
+
+    width:32px;
+
+    text-align:center;
+
+}
+
+.feature-box h3::after{
+
+    content:"";
+
+    display:block;
+
+    width:70px;
+
+    height:3px;
+
+    margin-top:10px;
+
+    border-radius:20px;
+
+    background:#FFD000;
+
+    transition:.3s;
+
+}
+
+.feature-box h3:hover::after{
+
+    width:130px;
+
+}
+
+.feature-box h3:not(:first-of-type){
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding-top:28px;
+
+}
+
+.feature-box{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.feature-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120px;
+
+    right:-120px;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:rgba(255,208,0,.05);
+
+}
+
+.feature-box::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-120px;
+
+    left:-120px;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:rgba(255,208,0,.05);
+
+}
