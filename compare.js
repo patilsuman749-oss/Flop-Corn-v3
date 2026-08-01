@@ -641,6 +641,7 @@ function calculateWinner(){
 
         ${reasons.join("<br>")}
         `;
+       celebrateWinner();
 
     }
 
