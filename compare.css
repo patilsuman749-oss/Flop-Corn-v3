@@ -1174,3 +1174,10 @@ opacity:0;
 
     box-shadow: 0 12px 30px rgba(0,0,0,.45);
 }
+.compare-search-wrapper{
+    overflow: visible;
+}
+
+.compare-search-section{
+    overflow: visible;
+}
