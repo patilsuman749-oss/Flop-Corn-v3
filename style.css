@@ -13415,24 +13415,7 @@ section{
     z-index:100;
 }
 
-.movie-card::after{
-    content:"";
-    position:absolute;
-    inset:-8px;
-    border-radius:24px;
-    background:linear-gradient(
-        135deg,
-        rgba(255,210,28,.15),
-        transparent 60%
-    );
-    opacity:0;
-    transition:.4s;
-    pointer-events:none;
-}
 
-.movie-card:hover::after{
-    opacity:1;
-}
 
 .movie-info{
     transition:.35s;
