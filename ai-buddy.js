@@ -169,25 +169,35 @@ async function sendMessage() {
 
     try {
 
-        const response = await fetch("https://flopcorn-ai.patilsuman749.workers.dev", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        message: userText
-    })
-});
+        const movies =
+            await findMovies(
+                userText
+            );
 
-if (!response.ok) {
-    throw new Error("AI request failed");
-}
 
-const data = await response.json();
+        removeTypingMessage();
 
-removeTypingMessage();
 
-addAiMessage(data.reply);
+        if (
+            !movies ||
+            movies.length === 0
+        ) {
+
+            addAiMessage(
+
+                "Hmm 🤔 I couldn't find the perfect movie for that request. Try something like “funny Telugu movie” or “Kannada action movie”."
+
+            );
+
+            return;
+
+        }
+
+
+        showMovieRecommendations(
+            movies,
+            userText
+        );
 
     }
 
