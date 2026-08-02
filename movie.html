@@ -2009,7 +2009,9 @@ import {
     deleteDoc,
     doc,
     setDoc,
-    getDoc
+    getDoc,
+    getDocs,
+    limit
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
@@ -3154,19 +3156,53 @@ onSnapshot(reviewsQuery, (snapshot) => {
             auth.currentUser &&
             auth.currentUser.email === reviewData.userEmail;
 
-        reviewCard.innerHTML = `
-            <h3>${reviewData.userName}</h3>
-            <strong>⭐ ${reviewData.rating}/10</strong>
-            <p>${reviewData.review}</p>
+       reviewCard.innerHTML = `
+    <div class="review-user-header">
 
-            ${
-                isMyReview
-                ? `<button class="delete-review" data-id="${reviewDocument.id}">
-                        🗑️ Delete Review
-                   </button>`
-                : ""
-            }
-        `;
+        <img
+            src="${reviewData.userPhoto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(reviewData.userName)}"
+            class="review-user-photo"
+            data-userid="${reviewData.userId}"
+            style="
+                width:48px;
+                height:48px;
+                border-radius:50%;
+                object-fit:cover;
+                cursor:pointer;
+                border:2px solid #ffd21c;
+            "
+        >
+
+        <div>
+
+            <h3
+                class="review-user-name"
+                data-userid="${reviewData.userId}"
+                style="
+                    cursor:pointer;
+                    color:#ffd21c;
+                    margin-bottom:5px;
+                "
+            >
+                ${reviewData.userName}
+            </h3>
+
+            <strong>⭐ ${reviewData.rating}/10</strong>
+
+        </div>
+
+    </div>
+
+    <p>${reviewData.review}</p>
+
+    ${
+        isMyReview
+        ? `<button class="delete-review" data-id="${reviewDocument.id}">
+                🗑️ Delete Review
+           </button>`
+        : ""
+    }
+`;
 
         publicReviews.appendChild(reviewCard);
 
@@ -3483,6 +3519,119 @@ async function loadSimilarMovies(movieId){
     }
 
 }
+        const reviewerOverlay =
+document.getElementById("reviewerProfileOverlay");
+
+document.addEventListener("click", async (event)=>{
+
+    const target =
+        event.target.closest(
+            ".review-user-name,.review-user-photo"
+        );
+
+    if(!target) return;
+
+   const userId = target.dataset.userid;
+
+await loadReviewerProfile(userId);
+
+reviewerOverlay.classList.add("show");
+
+});
+
+document
+.getElementById("closeReviewerPopup")
+.addEventListener("click",()=>{
+
+    reviewerOverlay.classList.remove("show");
+
+});
+
+reviewerOverlay.addEventListener("click",(e)=>{
+
+    if(e.target===reviewerOverlay){
+
+        reviewerOverlay.classList.remove("show");
+
+    }
+
+});
+        async function loadReviewerProfile(userId){
+
+    if(!userId) return;
+
+    const reviewsQuery = query(
+        collection(db,"reviews"),
+        where("userId","==",userId)
+    );
+
+    const snapshot = await getDocs(reviewsQuery);
+
+    if(snapshot.empty){
+        return;
+    }
+
+    let totalReviews = 0;
+    let totalRating = 0;
+
+    const recentReviews = [];
+
+    let firstReview = null;
+
+    snapshot.forEach(docSnap=>{
+
+        const review = docSnap.data();
+
+        if(!firstReview){
+            firstReview = review;
+        }
+
+        totalReviews++;
+
+        totalRating += review.rating;
+
+        recentReviews.push(review);
+
+    });
+
+    recentReviews.sort((a,b)=>{
+
+        if(!a.createdAt || !b.createdAt) return 0;
+
+        return b.createdAt.seconds-a.createdAt.seconds;
+
+    });
+
+    document.getElementById("reviewerPhoto").src =
+        firstReview.userPhoto || "";
+
+    document.getElementById("reviewerName").textContent =
+        firstReview.userName;
+
+    document.getElementById("reviewCount").textContent =
+        totalReviews;
+
+    document.getElementById("averageRating").textContent =
+        (totalRating/totalReviews).toFixed(1);
+
+    const recentContainer =
+        document.getElementById("recentReviews");
+
+    recentContainer.innerHTML="";
+
+    recentReviews.slice(0,5).forEach(review=>{
+
+        recentContainer.innerHTML += `
+            <div>
+                ⭐ ${review.rating}/10
+                <br>
+                <strong>${review.movieTitle}</strong>
+            </div>
+        `;
+
+    });
+
+}
 // ===============================
 // TRAILER
 // ===============================
@@ -3526,6 +3675,59 @@ watchTrailerButton.addEventListener("click",()=>{ if(currentMovie) openTrailer(c
 closeTrailer.onclick=()=>{trailerFrame.src=""; trailerModal.style.display="none";};
 trailerModal.onclick=(e)=>{if(e.target===trailerModal){trailerFrame.src=""; trailerModal.style.display="none";}};
 
-    </script></body>
+    </script>
+    <!-- =========================================
+     REVIEWER PROFILE POPUP
+========================================= -->
+
+<div id="reviewerProfileOverlay" class="reviewer-overlay">
+
+    <div class="reviewer-popup">
+
+        <button id="closeReviewerPopup" class="close-reviewer-popup">
+            ✕
+        </button>
+
+        <img
+            id="reviewerPhoto"
+            src=""
+            class="reviewer-photo"
+            alt="Reviewer Photo"
+        >
+
+        <h2 id="reviewerName">Reviewer</h2>
+
+        <p class="reviewer-badge">
+            🍿 FLOP CORN Reviewer
+        </p>
+
+        <div class="reviewer-stats">
+
+            <div>
+                <strong id="reviewCount">0</strong>
+                <span>Reviews</span>
+            </div>
+
+            <div>
+                <strong id="averageRating">0.0</strong>
+                <span>Average Rating</span>
+            </div>
+
+        </div>
+
+        <h3 class="recent-title">
+            Recent Reviews
+        </h3>
+
+        <div id="recentReviews">
+
+            Loading...
+
+        </div>
+
+    </div>
+
+</div>
+</body>
 
 </html>
