@@ -1,241 +1,440 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <title>AI Movie Buddy | FLOP CORN</title>
+<title>FLOP CORN AI Buddy</title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
+<style>
 
-    <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Outfit',sans-serif;
+}
 
-    <!-- AI Buddy CSS -->
-    <link rel="stylesheet" href="ai-buddy.css">
+body{
+
+background:#050505;
+overflow:hidden;
+color:white;
+
+}
+
+/* BACKGROUND */
+
+.background{
+
+position:fixed;
+width:100%;
+height:100%;
+left:0;
+top:0;
+
+background:
+radial-gradient(circle at top,#ffcc0030,transparent 35%),
+radial-gradient(circle at bottom,#ff880010,transparent 45%),
+#050505;
+
+z-index:-2;
+
+}
+
+/* GOLD GLOW */
+
+.glow{
+
+position:absolute;
+width:500px;
+height:500px;
+
+background:#ffb30030;
+
+filter:blur(150px);
+
+border-radius:50%;
+
+top:-150px;
+right:-150px;
+
+}
+
+/* NAVBAR */
+
+nav{
+
+height:75px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 30px;
+
+background:rgba(20,20,20,.6);
+
+backdrop-filter:blur(20px);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+/* LOGO */
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+font-size:26px;
+
+font-weight:800;
+
+color:#FFD54A;
+
+}
+
+.logo img{
+
+width:48px;
+height:48px;
+border-radius:50%;
+
+}
+
+.version{
+
+padding:7px 15px;
+
+background:#FFD54A;
+
+color:black;
+
+border-radius:30px;
+
+font-size:12px;
+
+font-weight:700;
+
+}
+
+/* CHAT AREA */
+
+.chat-area{
+
+height:calc(100vh - 75px);
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+/* CHAT */
+
+.messages{
+
+flex:1;
+
+overflow:auto;
+
+padding:40px;
+
+}
+
+/* WELCOME */
+
+.welcome{
+
+text-align:center;
+
+margin-top:70px;
+
+}
+
+.welcome img{
+
+width:120px;
+
+border-radius:50%;
+
+box-shadow:0 0 40px #ffcc00;
+
+animation:float 4s infinite;
+
+}
+
+@keyframes float{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+.welcome h1{
+
+margin-top:25px;
+
+font-size:42px;
+
+color:#FFD54A;
+
+}
+
+.welcome p{
+
+margin-top:15px;
+
+color:#cfcfcf;
+
+font-size:18px;
+
+}
+
+/* PROMPTS */
+
+.prompts{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+justify-content:center;
+
+margin-top:45px;
+
+}
+
+.prompt{
+
+padding:15px 20px;
+
+border-radius:50px;
+
+background:#111;
+
+cursor:pointer;
+
+transition:.3s;
+
+border:1px solid #2f2f2f;
+
+}
+
+.prompt:hover{
+
+background:#FFD54A;
+
+color:black;
+
+transform:translateY(-3px);
+
+}
+
+/* INPUT */
+
+.input-area{
+
+padding:25px;
+
+display:flex;
+
+gap:15px;
+
+background:#111;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.input-area input{
+
+flex:1;
+
+padding:18px;
+
+font-size:17px;
+
+background:#181818;
+
+border:none;
+
+outline:none;
+
+color:white;
+
+border-radius:16px;
+
+}
+
+.input-area button{
+
+width:60px;
+height:60px;
+
+border:none;
+
+border-radius:16px;
+
+cursor:pointer;
+
+background:#FFD54A;
+
+font-size:22px;
+
+transition:.3s;
+
+}
+
+.input-area button:hover{
+
+transform:scale(1.05);
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.messages{
+
+padding:20px;
+
+}
+
+.welcome h1{
+
+font-size:30px;
+
+}
+
+.input-area{
+
+padding:15px;
+
+}
+
+}
+
+</style>
 
 </head>
 
-
 <body>
 
-    <!-- BACKGROUND -->
+<div class="background">
 
-    <div class="ai-background"></div>
+<div class="glow"></div>
 
+</div>
 
-    <!-- NAVBAR -->
+<nav>
 
-    <header class="ai-navbar">
+<div class="logo">
 
-        <a href="index.html" class="ai-logo">
+<img src="flopcorn-logo.jpeg.jpeg">
 
-            <img
-                src="flopcorn-logo.jpeg.jpeg"
-                alt="Flop Corn Logo"
-            >
+FLOP CORN AI
 
-            <strong>
-                FLOP<span>CORN</span>
-            </strong>
+</div>
 
-        </a>
+<div class="version">
 
+V2
 
-        <a href="index.html" class="back-home">
+</div>
 
-            <i class="fa-solid fa-arrow-left"></i>
+</nav>
 
-            <span>
-                Back to Home
-            </span>
+<div class="chat-area">
 
-        </a>
+<div class="messages">
 
-    </header>
+<div class="welcome">
 
+<img src="flopcorn-logo.jpeg.jpeg">
 
-    <!-- MAIN AI BUDDY -->
+<h1>AI Movie Buddy 🍿</h1>
 
-    <main class="ai-page">
+<p>
 
-        <section class="ai-container">
+Ask me anything about movies,
+actors, TV shows and recommendations.
 
+</p>
 
-            <!-- AI HEADER -->
+<div class="prompts">
 
-            <div class="ai-heading">
+<div class="prompt">
+🎬 Recommend a Movie
+</div>
 
-                <div class="ai-bot-icon">
-                    🤖
-                </div>
+<div class="prompt">
+😂 Comedy
+</div>
 
-                <p class="ai-small-title">
-                    YOUR PERSONAL MOVIE ASSISTANT
-                </p>
+<div class="prompt">
+😱 Horror
+</div>
 
-                <h1>
-                    AI Movie
-                    <span>Buddy</span>
-                </h1>
+<div class="prompt">
+❤️ Romance
+</div>
 
-                <p class="ai-description">
+<div class="prompt">
+🔥 Trending
+</div>
 
-                    Tell me what kind of movie you're
-                    in the mood for and I'll help you
-                    find something to watch. 🍿
+<div class="prompt">
+🎲 Surprise Me
+</div>
 
-                </p>
+</div>
 
-            </div>
+</div>
 
+</div>
 
-            <!-- CHAT BOX -->
+<div class="input-area">
 
-            <div class="ai-chat-card">
+<input
+id="message"
+placeholder="Ask FLOP CORN AI anything...">
 
+<button>
 
-                <!-- CHAT MESSAGES -->
+<i class="fa-solid fa-paper-plane"></i>
 
-                <div
-                    class="ai-messages"
-                    id="aiMessages"
-                >
+</button>
 
-                    <!-- AI WELCOME MESSAGE -->
+</div>
 
-                    <div class="message ai-message">
-
-                        <div class="message-avatar">
-                            🤖
-                        </div>
-
-                        <div class="message-bubble">
-
-                            <strong>
-                                Flop Corn Buddy
-                            </strong>
-
-                            <p>
-                                Hey! 🍿 I'm your AI Movie Buddy.
-                                Tell me what you're in the mood
-                                to watch today!
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- QUICK SUGGESTIONS -->
-
-                <div class="quick-prompts">
-
-                    <button
-                        class="quick-prompt"
-                        data-prompt="Suggest a funny Telugu movie"
-                    >
-                        😂 Funny Telugu
-                    </button>
-
-
-                    <button
-                        class="quick-prompt"
-                        data-prompt="Suggest an action movie"
-                    >
-                        🔥 Action
-                    </button>
-
-
-                    <button
-                        class="quick-prompt"
-                        data-prompt="Suggest a horror movie"
-                    >
-                        👻 Horror
-                    </button>
-
-
-                    <button
-                        class="quick-prompt"
-                        data-prompt="Suggest a romantic movie"
-                    >
-                        ❤️ Romance
-                    </button>
-
-                </div>
-
-
-                <!-- CHAT INPUT -->
-
-                <div class="ai-input-area">
-
-                    <input
-                        type="text"
-                        id="aiInput"
-                        placeholder="Ask your Movie Buddy..."
-                        autocomplete="off"
-                    >
-
-                    <button
-                        id="sendAiMessage"
-                        aria-label="Send message"
-                    >
-
-                        <i class="fa-solid fa-paper-plane"></i>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- EXAMPLE TEXT -->
-
-            <p class="ai-example">
-
-                Try:
-                "I want a funny Kannada movie"
-                or
-                "Suggest a good thriller for tonight"
-
-            </p>
-
-
-        </section>
-
-    </main>
-
-
-    <!-- AI BUDDY JAVASCRIPT -->
-
-    <script
-        type="module"
-        src="ai-buddy.js"
-    ></script>
-
+</div>
 
 </body>
 
