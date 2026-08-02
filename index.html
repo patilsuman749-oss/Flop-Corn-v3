@@ -1323,5 +1323,60 @@ window.addEventListener("load", () => {
 
 });
 </script>
+    <!-- =========================================
+     REVIEWER PROFILE POPUP
+========================================= -->
+
+<div id="reviewerProfileOverlay" class="reviewer-overlay">
+
+    <div class="reviewer-popup">
+
+        <button id="closeReviewerPopup" class="close-reviewer-popup">
+            ✕
+        </button>
+
+        <img
+            id="reviewerPhoto"
+            src=""
+            class="reviewer-photo"
+        >
+
+        <h2 id="reviewerName">Reviewer</h2>
+
+        <p class="reviewer-badge">
+            🍿 FLOP CORN Reviewer
+        </p>
+
+        <div class="reviewer-stats">
+
+            <div>
+                <strong id="reviewCount">
+                    0
+                </strong>
+                <span>Reviews</span>
+            </div>
+
+            <div>
+                <strong id="averageRating">
+                    0
+                </strong>
+                <span>Average</span>
+            </div>
+
+        </div>
+
+        <h3 class="recent-title">
+            Recent Reviews
+        </h3>
+
+        <div id="recentReviews">
+
+            Loading...
+
+        </div>
+
+    </div>
+
+</div>
 </body>
 </html>
