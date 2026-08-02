@@ -3163,6 +3163,7 @@ onSnapshot(reviewsQuery, (snapshot) => {
             src="${reviewData.userPhoto || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(reviewData.userName)}"
             class="review-user-photo"
             data-userid="${reviewData.userId}"
+            data-useremail="${reviewData.userEmail || ''}"
             style="
                 width:48px;
                 height:48px;
@@ -3175,9 +3176,10 @@ onSnapshot(reviewsQuery, (snapshot) => {
 
         <div>
 
-            <h3
-                class="review-user-name"
-                data-userid="${reviewData.userId}"
+           <h3
+    class="review-user-name"
+    data-userid="${reviewData.userId || ''}"
+    data-useremail="${reviewData.userEmail || ''}"
                 style="
                     cursor:pointer;
                     color:#ffd21c;
@@ -3531,10 +3533,10 @@ document.addEventListener("click", async (event)=>{
 
     if(!target) return;
 
-   const userId = target.dataset.userid;
+  const userId = target.dataset.userid;
+const userEmail = target.dataset.useremail;
 
-await loadReviewerProfile(userId);
-
+await loadReviewerProfile(userId, userEmail);
 reviewerOverlay.classList.add("show");
 
 });
@@ -3556,15 +3558,27 @@ reviewerOverlay.addEventListener("click",(e)=>{
     }
 
 });
-        async function loadReviewerProfile(userId){
+       async function loadReviewerProfile(userId, userEmail){
 
-    if(!userId) return;
 
-    const reviewsQuery = query(
-        collection(db,"reviews"),
-        where("userId","==",userId)
+
+   let reviewsQuery;
+
+if (userId) {
+
+    reviewsQuery = query(
+        collection(db, "reviews"),
+        where("userId", "==", userId)
     );
 
+} else {
+
+    reviewsQuery = query(
+        collection(db, "reviews"),
+        where("userEmail", "==", userEmail)
+    );
+
+}
     const snapshot = await getDocs(reviewsQuery);
 
     if(snapshot.empty){
