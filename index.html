@@ -1300,6 +1300,14 @@ window.addEventListener("load", () => {
 
     const curtain = document.getElementById("curtain");
 
+    // Show only once per browser/app session
+    if (sessionStorage.getItem("flopcornSplashShown")) {
+        curtain.style.display = "none";
+        return;
+    }
+
+    sessionStorage.setItem("flopcornSplashShown", "true");
+
     const isMobile = window.innerWidth <= 768;
 
     const openDelay = isMobile ? 1500 : 800;
