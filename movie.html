@@ -2879,19 +2879,23 @@ submitReview.addEventListener("click", async () => {
 
     try {
 
-        await addDoc(collection(db, "reviews"), {
+       await addDoc(collection(db, "reviews"), {
 
-            movieId: currentMovie.id,
-movieTitle: currentMovie.title,
-moviePoster: currentMovie.poster_path,
-            userName: auth.currentUser.displayName,
-            userPhoto: auth.currentUser.photoURL,
-            userEmail: auth.currentUser.email,
-            rating: Number(rating),
-            review: review,
-            createdAt: serverTimestamp()
+    movieId: currentMovie.id,
+    movieTitle: currentMovie.title,
+    moviePoster: currentMovie.poster_path,
 
-        });
+    userId: auth.currentUser.uid,
+    userName: auth.currentUser.displayName,
+    userPhoto: auth.currentUser.photoURL,
+    userEmail: auth.currentUser.email,
+
+    rating: Number(rating),
+    review: review,
+
+    createdAt: serverTimestamp()
+
+});
 
         alert("Review submitted successfully! 🍿");
 
