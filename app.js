@@ -44,6 +44,11 @@ const newMovies =
 
     const southIndianMovies =
     document.getElementById("southIndianMovies");
+const indiaTopMovies =
+    document.getElementById("indiaTopMovies");
+
+const worldTopMovies =
+    document.getElementById("worldTopMovies");
 
 const openSearch =
     document.getElementById("openSearch");
@@ -903,6 +908,19 @@ getMovies(
 
     trendingMovies
 
+);
+/* LOAD TOP 10 INDIA */
+
+getMovies(
+    "/discover/movie?region=IN&sort_by=popularity.desc",
+    indiaTopMovies
+);
+
+/* LOAD TOP 10 WORLD */
+
+getMovies(
+    "/movie/popular",
+    worldTopMovies
 );
 
 /* LOAD BOLLYWOOD MOVIES */
