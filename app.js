@@ -898,10 +898,9 @@ window.addEventListener(
 /* LOAD TRENDING MOVIES */
 
 getMovies(
-
     "/trending/movie/week",
-
     trendingMovies
+);
 
 
 
