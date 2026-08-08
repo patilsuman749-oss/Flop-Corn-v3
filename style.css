@@ -13678,3 +13678,41 @@ color:#aaa;
 padding:20px;
 font-size:18px;
 }
+.mcu-saga-home-button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    width:100%;
+max-width:300px;
+    height:55px;
+
+    margin:15px auto;
+
+    background:linear-gradient(135deg,#ffd43b,#f5c400);
+    color:#000;
+    font-weight:700;
+    font-size:1.1rem;
+    text-decoration:none;
+
+    border-radius:16px;
+    border:1px solid rgba(255,212,59,0.5);
+
+    box-shadow:
+        0 0 15px rgba(255,212,59,0.4),
+        0 0 30px rgba(255,212,59,0.2);
+
+    transition:all 0.3s ease;
+}
+
+.mcu-saga-home-button:hover{
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:
+        0 0 25px rgba(255,212,59,0.8),
+        0 0 50px rgba(255,212,59,0.4);
+}
+
+.mcu-saga-home-button i{
+    font-size:18px;
+}
