@@ -13716,3 +13716,67 @@ max-width:300px;
 .mcu-saga-home-button i{
     font-size:18px;
 }
+.mcu-saga-btn {
+    width: 270px;
+    height: 70px;
+    margin-left: -40px;
+    border-radius: 20px;
+}
+.mcu-saga-btn {
+    width: 270px;
+    height: 70px;
+    transform: translateX(-35px);
+}
+.movie-universe-home-button{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 20px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+}
+.movie-universe-home-button{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 24px;
+    border-radius: 16px;
+
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.movie-universe-home-button:hover{
+    transform: translateY(-3px);
+    background: #ffcc00;
+    color: #000;
+    box-shadow: 0 0 25px rgba(255,204,0,0.6);
+}
+.movie-universe-home-button{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:#ffcc00;
+    color:#111;
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:18px;
+    font-weight:700;
+    box-shadow:0 0 25px rgba(255,204,0,0.6);
+    transition:all .3s ease;
+}
+
+.movie-universe-home-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 35px rgba(255,204,0,0.9);
+}
