@@ -229,21 +229,11 @@ function displayMovies(
 
         function (movie) {
 
-
+const title = movie.title || movie.name;
             const movieYear =
-
-                movie.release_date
-
-                ?
-
-                movie.release_date.substring(
-                    0,
-                    4
-                )
-
-                :
-
-                "Coming Soon";
+    movie.release_date?.substring(0,4) ||
+    movie.first_air_date?.substring(0,4) ||
+    "Coming Soon";
 
 
             const movieGenre =
@@ -306,7 +296,7 @@ function displayMovies(
 
                         src="${IMAGE_URL}${movie.poster_path}"
 
-                        alt="${movie.title} movie poster"
+                       alt="${title} poster"
 
                         loading="lazy"
 
@@ -339,7 +329,7 @@ function displayMovies(
 
                     <h3>
 
-                        ${movie.title}
+                        ${title}
 
                     </h3>
 
@@ -506,7 +496,7 @@ async function searchMovies(
 
         const searchURL =
 
-            `${BASE_URL}/search/movie`
+            `${BASE_URL}/search/multi`
 
             +
 
@@ -1281,7 +1271,7 @@ function displayTopRatedMovies(
 
                         src="${posterImage}"
 
-                        alt="${movie.title}"
+                        alt="${title}"
 
                         loading="lazy"
 
@@ -1320,7 +1310,7 @@ function displayTopRatedMovies(
                     <h3>
 
                         ${index + 1}.
-                        ${movie.title}
+                        ${title}
 
                     </h3>
 
