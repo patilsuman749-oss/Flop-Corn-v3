@@ -10,7 +10,8 @@ import {
 import {
     getAuth,
     GoogleAuthProvider,
-    signInWithPopup,
+    signInWithRedirect,
+getRedirectResult,
     signOut,
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
@@ -69,6 +70,15 @@ const app =
 
 export const auth =
     getAuth(app);
+    getRedirectResult(auth)
+    .then((result) => {
+        if (result) {
+            console.log("Google Login Success");
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 
 
 export const db =
@@ -148,13 +158,10 @@ if (signInButton) {
 
             try {
 
-                await signInWithPopup(
-
-                    auth,
-
-                    provider
-
-                );
+                await signInWithRedirect(
+    auth,
+    provider
+);
 
             }
 
