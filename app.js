@@ -3459,3 +3459,27 @@ function closePopup() {
 
 closeAppPopup.addEventListener("click", closePopup);
 continueWebsite.addEventListener("click", closePopup);
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btn = document.getElementById("moreFeaturesBtn");
+    const features = document.getElementById("mobile-features");
+
+    if (btn && features) {
+
+        btn.addEventListener("click", () => {
+
+            features.classList.toggle("show");
+
+            if (features.classList.contains("show")) {
+                btn.innerHTML =
+                '<i class="fa-solid fa-minus"></i> Less Features';
+            } else {
+                btn.innerHTML =
+                '<i class="fa-solid fa-plus"></i> More Features';
+            }
+
+        });
+
+    }
+
+});

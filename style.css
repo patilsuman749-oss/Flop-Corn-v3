@@ -13780,3 +13780,62 @@ max-width:300px;
     transform:translateY(-3px);
     box-shadow:0 0 35px rgba(255,204,0,0.9);
 }
+/* =========================
+   FLOPCORN DESKTOP FIX
+   ========================= */
+
+@media (min-width: 769px) {
+
+    .hero-buttons{
+        display:flex !important;
+        flex-wrap:wrap !important;
+        gap:15px !important;
+        max-width:720px !important;
+    }
+
+    .primary-button,
+    .download-app-home,
+    .ai-buddy-home-button,
+    .movie-news-home-button,
+    .movie-universe-home-button{
+        width:220px !important;
+        height:60px !important;
+        margin:0 !important;
+    }
+
+    #moreFeaturesBtn{
+        display:none !important;
+    }
+}
+
+/* =========================
+   FLOPCORN MOBILE FIX
+   ========================= */
+
+@media (max-width: 768px) {
+
+    #moreFeaturesBtn{
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        width:100% !important;
+        height:50px !important;
+        margin:10px 0 !important;
+    }
+
+    #mobile-features{
+        display:none;
+        flex-direction:column;
+        gap:12px;
+    }
+
+    #mobile-features.show{
+        display:flex;
+    }
+
+    .ai-buddy-home-button,
+    .movie-news-home-button,
+    .movie-universe-home-button{
+        width:100% !important;
+    }
+}
