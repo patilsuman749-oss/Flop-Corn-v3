@@ -3160,6 +3160,8 @@ return starter;
 const publicReviews =
     document.getElementById("publicReviews");
 
+let reviewsExpanded = false;
+
 const reviewsQuery = query(
     collection(db, "reviews"),
     where("movieId", "==", Number(movieId))
@@ -3311,7 +3313,14 @@ onSnapshot(reviewsQuery, (snapshot) => {
 
         button.className = "view-all-reviews";
 
-        button.textContent = `View All Reviews (${snapshot.size})`;
+        button.textContent =
+            reviewsExpanded
+                ? "Show Less"
+                : `View All Reviews (${snapshot.size})`;
+
+        if (reviewsExpanded) {
+            button.classList.add("open");
+        }
 
         button.onclick = () => {
 
@@ -3330,6 +3339,8 @@ onSnapshot(reviewsQuery, (snapshot) => {
 
             button.classList.toggle("open");
 
+            reviewsExpanded = !open;
+
             button.textContent =
                 open
                     ? `View All Reviews (${snapshot.size})`
@@ -3338,6 +3349,14 @@ onSnapshot(reviewsQuery, (snapshot) => {
         };
 
         publicReviews.appendChild(button);
+
+        if (reviewsExpanded) {
+
+            document.querySelectorAll(".extra-review").forEach(card => {
+                card.style.display = "block";
+            });
+
+        }
 
     }
 
