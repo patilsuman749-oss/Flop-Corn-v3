@@ -269,19 +269,6 @@
             </button>
 
 
-            <div class="search-heading">
-
-                <p>
-                    FIND YOUR NEXT MOVIE
-                </p>
-
-                <h2>
-                    Search movies
-                </h2>
-
-            </div>
-
-
             <div class="large-search-box">
 
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -289,9 +276,74 @@
                 <input
                     type="text"
                     id="movieSearchInput"
-                    placeholder="Search any movie..."
+                    placeholder="Search movies, people, genres..."
                     autocomplete="off"
                 >
+
+                <button
+                    class="clear-search-input"
+                    id="clearSearchInput"
+                    aria-label="Clear search"
+                    type="button"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <button
+                    class="run-search-button"
+                    id="runSearchButton"
+                    type="button"
+                >
+                    Search
+                </button>
+
+            </div>
+
+
+            <!-- ===== QUICK PANEL: shown before/while input is empty ===== -->
+            <div class="quick-search-panel" id="quickSearchPanel">
+
+                <div class="quick-search-grid">
+
+                    <div class="quick-search-col">
+                        <p class="quick-col-label">Popular Searches</p>
+                        <div class="popular-chips" id="popularChips"></div>
+                    </div>
+
+                    <div class="quick-search-col">
+                        <p class="quick-col-label">Recent Searches</p>
+                        <div class="recent-list" id="recentList">
+                            <p class="quick-empty-message">
+                                Your recent searches will show up here.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="quick-search-col">
+                        <p class="quick-col-label">Trending Now</p>
+                        <div class="trending-list" id="trendingQuickList">
+                            <p class="quick-empty-message">
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                                Loading...
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="search-quick-footer">
+
+                    <p class="search-tip">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        Tip: Use quotes for exact matches e.g. "The Dark Knight"
+                    </p>
+
+                    <a href="#trending" class="view-all-link" id="viewAllTrendingLink">
+                        View all results
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
 
             </div>
 
@@ -300,14 +352,6 @@
                 class="search-results"
                 id="searchResults"
             >
-
-                <p class="search-message">
-
-                    Search for a movie to view its
-                    details, ratings and reviews.
-
-                </p>
-
             </div>
 
         </div>

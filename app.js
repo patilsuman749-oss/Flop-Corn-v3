@@ -60,6 +60,27 @@ const movieSearchInput =
 const searchResults =
     document.getElementById("searchResults");
 
+const quickSearchPanel =
+    document.getElementById("quickSearchPanel");
+
+const popularChips =
+    document.getElementById("popularChips");
+
+const recentList =
+    document.getElementById("recentList");
+
+const trendingQuickList =
+    document.getElementById("trendingQuickList");
+
+const clearSearchInput =
+    document.getElementById("clearSearchInput");
+
+const runSearchButton =
+    document.getElementById("runSearchButton");
+
+const viewAllTrendingLink =
+    document.getElementById("viewAllTrendingLink");
+
 const mobileMenuButton =
     document.getElementById("mobileMenuButton");
 
@@ -412,221 +433,559 @@ function openMoviePage(
 
 
 /* =========================================
-   SEARCH INPUT
+   SEARCH: CONSTANTS + STATE
 ========================================= */
 
+const POPULAR_SEARCH_TERMS = [
+    "Avengers",
+    "Interstellar",
+    "Jawan",
+    "Oppenheimer",
+    "KGF Chapter 2",
+    "Leo",
+    "Dune",
+    "3 Idiots"
+];
+
+const RECENT_SEARCH_STORAGE_KEY = "flopcorn_recent_searches";
+const MAX_RECENT_SEARCHES = 6;
+
+let trendingQuickCache = null;
 let searchTimer;
 
 
-movieSearchInput.addEventListener(
+/* =========================================
+   FLOP CORN USER RATINGS (for search cards)
+========================================= */
 
-    "input",
+const flopcornRatingsByMovieId = {};
 
-    function (event) {
+onSnapshot(
+    collection(db, "reviews"),
+    (snapshot) => {
 
-
-        clearTimeout(
-
-            searchTimer
-
-        );
-
-
-        const searchText =
-
-            event.target.value.trim();
-
-
-        if (
-
-            searchText.length < 2
-
-        ) {
-
-            searchResults.innerHTML = `
-
-                <p class="search-message">
-
-                    Type at least two letters
-                    to search for a movie.
-
-                </p>
-
-            `;
-
-
-            return;
-
+        for (const key in flopcornRatingsByMovieId) {
+            delete flopcornRatingsByMovieId[key];
         }
 
+        const totals = {};
 
-        searchResults.innerHTML = `
+        snapshot.forEach((reviewDocument) => {
 
-            <p class="search-message">
+            const review = reviewDocument.data();
 
-                <i class="fa-solid fa-spinner fa-spin"></i>
+            if (!review.movieId || !review.rating) {
+                return;
+            }
 
-                Searching for movies...
+            if (!totals[review.movieId]) {
+                totals[review.movieId] = {
+                    total: 0,
+                    count: 0
+                };
+            }
 
+            totals[review.movieId].total += Number(review.rating);
+            totals[review.movieId].count++;
+
+        });
+
+        for (const movieId in totals) {
+            flopcornRatingsByMovieId[movieId] = {
+                averageRating:
+                    totals[movieId].total / totals[movieId].count,
+                reviewCount: totals[movieId].count
+            };
+        }
+
+    },
+    (error) => {
+        console.error("Flop Corn ratings error:", error);
+    }
+);
+
+
+/* =========================================
+   POPULAR SEARCH CHIPS
+========================================= */
+
+function renderPopularChips() {
+
+    popularChips.innerHTML = POPULAR_SEARCH_TERMS
+        .map(
+            (term) => `
+                <button class="chip-button" data-term="${term}">
+                    ${term}
+                </button>
+            `
+        )
+        .join("");
+
+    popularChips
+        .querySelectorAll(".chip-button")
+        .forEach((chip) => {
+            chip.addEventListener("click", () => {
+                movieSearchInput.value = chip.dataset.term;
+                runSearch(chip.dataset.term);
+            });
+        });
+
+}
+
+
+/* =========================================
+   RECENT SEARCHES (localStorage)
+========================================= */
+
+function getRecentSearches() {
+
+    try {
+        const stored = localStorage.getItem(RECENT_SEARCH_STORAGE_KEY);
+        return stored ? JSON.parse(stored) : [];
+    } catch (error) {
+        return [];
+    }
+
+}
+
+
+function saveRecentSearch(term) {
+
+    const cleanTerm = term.trim();
+
+    if (!cleanTerm) {
+        return;
+    }
+
+    let recent = getRecentSearches().filter(
+        (existing) => existing.toLowerCase() !== cleanTerm.toLowerCase()
+    );
+
+    recent.unshift(cleanTerm);
+    recent = recent.slice(0, MAX_RECENT_SEARCHES);
+
+    localStorage.setItem(RECENT_SEARCH_STORAGE_KEY, JSON.stringify(recent));
+
+    renderRecentSearches();
+
+}
+
+
+function removeRecentSearch(term) {
+
+    const recent = getRecentSearches().filter(
+        (existing) => existing !== term
+    );
+
+    localStorage.setItem(RECENT_SEARCH_STORAGE_KEY, JSON.stringify(recent));
+
+    renderRecentSearches();
+
+}
+
+
+function renderRecentSearches() {
+
+    const recent = getRecentSearches();
+
+    if (recent.length === 0) {
+
+        recentList.innerHTML = `
+            <p class="quick-empty-message">
+                Your recent searches will show up here.
             </p>
-
         `;
 
-
-        searchTimer = setTimeout(
-
-            function () {
-
-                searchMovies(
-
-                    searchText
-
-                );
-
-            },
-
-            500
-
-        );
+        return;
 
     }
 
-);
+    recentList.innerHTML = recent
+        .map(
+            (term) => `
+                <div class="recent-item">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <button class="recent-item-text" data-term="${term}">
+                        ${term}
+                    </button>
+                    <button class="recent-item-remove" data-term="${term}" aria-label="Remove">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            `
+        )
+        .join("");
+
+    recentList.querySelectorAll(".recent-item-text").forEach((button) => {
+        button.addEventListener("click", () => {
+            movieSearchInput.value = button.dataset.term;
+            runSearch(button.dataset.term);
+        });
+    });
+
+    recentList.querySelectorAll(".recent-item-remove").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            removeRecentSearch(button.dataset.term);
+        });
+    });
+
+}
+
+
+/* =========================================
+   TRENDING NOW (quick panel)
+========================================= */
+
+async function loadTrendingQuickList() {
+
+    if (trendingQuickCache) {
+        renderTrendingQuickList(trendingQuickCache);
+        return;
+    }
+
+    try {
+
+        const trendingURL =
+            `${BASE_URL}/trending/movie/week` +
+            `?api_key=${API_KEY}` +
+            `&language=en-US`;
+
+        const response = await fetch(trendingURL);
+
+        if (!response.ok) {
+            throw new Error("Trending request failed");
+        }
+
+        const data = await response.json();
+
+        trendingQuickCache = data.results
+            .filter((movie) => movie.poster_path)
+            .slice(0, 3);
+
+        renderTrendingQuickList(trendingQuickCache);
+
+    } catch (error) {
+
+        console.error("Trending quick list error:", error);
+
+        trendingQuickList.innerHTML = `
+            <p class="quick-empty-message">
+                Trending movies unavailable.
+            </p>
+        `;
+
+    }
+
+}
+
+
+function renderTrendingQuickList(movies) {
+
+    if (!movies || movies.length === 0) {
+
+        trendingQuickList.innerHTML = `
+            <p class="quick-empty-message">
+                Nothing trending right now.
+            </p>
+        `;
+
+        return;
+
+    }
+
+    trendingQuickList.innerHTML = movies
+        .map(
+            (movie) => `
+                <button class="trending-item" data-id="${movie.id}">
+                    <img
+                        src="${IMAGE_URL}${movie.poster_path}"
+                        alt="${movie.title}"
+                        loading="lazy"
+                    >
+                    <div class="trending-info">
+                        <div class="trending-title">${movie.title}</div>
+                        <div class="trending-rating">
+                            <i class="fa-solid fa-star"></i>
+                            ${movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
+                        </div>
+                    </div>
+                </button>
+            `
+        )
+        .join("");
+
+    trendingQuickList.querySelectorAll(".trending-item").forEach((item) => {
+        item.addEventListener("click", () => {
+            openMoviePage(item.dataset.id);
+        });
+    });
+
+}
+
+
+/* =========================================
+   SHOW QUICK PANEL vs RESULTS PANEL
+========================================= */
+
+function showQuickPanel() {
+
+    quickSearchPanel.classList.remove("hide");
+
+    searchResults.classList.remove("show");
+    searchResults.innerHTML = "";
+
+    clearSearchInput.classList.remove("show");
+
+}
+
+
+function showResultsPanel() {
+
+    quickSearchPanel.classList.add("hide");
+
+    searchResults.classList.add("show");
+
+    clearSearchInput.classList.add("show");
+
+}
+
+
+/* =========================================
+   SEARCH INPUT
+========================================= */
+
+movieSearchInput.addEventListener("input", function (event) {
+
+    clearTimeout(searchTimer);
+
+    const searchText = event.target.value.trim();
+
+    if (searchText.length === 0) {
+        showQuickPanel();
+        return;
+    }
+
+    clearSearchInput.classList.add("show");
+
+    if (searchText.length < 2) {
+        return;
+    }
+
+    showResultsPanel();
+
+    searchResults.innerHTML = `
+        <p class="search-message">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Searching for movies...
+        </p>
+    `;
+
+    searchTimer = setTimeout(function () {
+        runSearch(searchText);
+    }, 500);
+
+});
+
+
+movieSearchInput.addEventListener("keydown", function (event) {
+
+    if (event.key === "Enter") {
+
+        clearTimeout(searchTimer);
+
+        const searchText = movieSearchInput.value.trim();
+
+        if (searchText.length >= 2) {
+            runSearch(searchText);
+        }
+
+    }
+
+});
+
+
+function runSearch(term) {
+
+    movieSearchInput.value = term;
+
+    showResultsPanel();
+
+    searchResults.innerHTML = `
+        <p class="search-message">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Searching for movies...
+        </p>
+    `;
+
+    searchMovies(term);
+
+}
+
+
+/* =========================================
+   CLEAR SEARCH INPUT (X button)
+========================================= */
+
+clearSearchInput.addEventListener("click", function () {
+
+    movieSearchInput.value = "";
+    movieSearchInput.focus();
+
+    showQuickPanel();
+
+});
+
+
+/* =========================================
+   RUN SEARCH BUTTON
+========================================= */
+
+runSearchButton.addEventListener("click", function () {
+
+    const searchText = movieSearchInput.value.trim();
+
+    if (searchText.length >= 2) {
+        runSearch(searchText);
+    }
+
+});
 
 
 /* =========================================
    SEARCH MOVIES USING TMDB
 ========================================= */
 
-async function searchMovies(
-    movieName
-) {
+async function searchMovies(movieName) {
 
     try {
 
         const searchURL =
-
-            `${BASE_URL}/search/movie`
-
-            +
-
-            `?api_key=${API_KEY}`
-
-            +
-
-            `&language=en-US`
-
-            +
-
-            `&query=${encodeURIComponent(
-                movieName
-            )}`
-
-            +
-
-            `&page=1`
-
-            +
-
+            `${BASE_URL}/search/movie` +
+            `?api_key=${API_KEY}` +
+            `&language=en-US` +
+            `&query=${encodeURIComponent(movieName)}` +
+            `&page=1` +
             `&include_adult=false`;
 
-
-        const response =
-
-            await fetch(
-
-                searchURL
-
-            );
-
+        const response = await fetch(searchURL);
 
         if (!response.ok) {
-
-            throw new Error(
-
-                "Movie search failed"
-
-            );
-
+            throw new Error("Movie search failed");
         }
 
+        const movieData = await response.json();
 
-        const movieData =
+        const moviesWithPosters = movieData.results.filter(
+            (movie) => movie.poster_path
+        );
 
-            await response.json();
-
-
-        const moviesWithPosters =
-
-            movieData.results.filter(
-
-                movie =>
-
-                    movie.poster_path
-
-            );
-
-
-        if (
-
-            moviesWithPosters.length === 0
-
-        ) {
+        if (moviesWithPosters.length === 0) {
 
             searchResults.innerHTML = `
-
                 <p class="search-message">
-
                     No movies were found.
-
                 </p>
-
             `;
-
 
             return;
 
         }
 
+        saveRecentSearch(movieName);
 
-        displayMovies(
-
-            moviesWithPosters.slice(
-                0,
-                12
-            ),
-
+        displaySearchResultMovies(
+            moviesWithPosters.slice(0, 12),
             searchResults
-
         );
 
-    }
+    } catch (error) {
 
-
-    catch (error) {
-
-        console.error(
-
-            "Movie search error:",
-
-            error
-
-        );
-
+        console.error("Movie search error:", error);
 
         searchResults.innerHTML = `
-
             <p class="search-message">
-
                 Search is unavailable.
-
                 Please try again.
-
             </p>
-
         `;
 
     }
+
+}
+
+
+/* =========================================
+   DISPLAY SEARCH RESULT CARDS
+   (TMDB info + Flop Corn user rating, when available)
+========================================= */
+
+function displaySearchResultMovies(movies, container) {
+
+    container.innerHTML = "";
+
+    movies.forEach((movie) => {
+
+        const movieYear = movie.release_date
+            ? movie.release_date.substring(0, 4)
+            : "Coming Soon";
+
+        const movieGenre =
+            movie.genre_ids && movie.genre_ids.length > 0
+                ? genres[movie.genre_ids[0]] || "Movie"
+                : "Movie";
+
+        const movieRating = movie.vote_average
+            ? movie.vote_average.toFixed(1)
+            : "N/A";
+
+        const flopcornRating = flopcornRatingsByMovieId[movie.id];
+
+        const movieCard = document.createElement("article");
+
+        movieCard.className = "movie-card";
+
+        movieCard.innerHTML = `
+            <div class="movie-poster">
+                <img
+                    src="${IMAGE_URL}${movie.poster_path}"
+                    alt="${movie.title} movie poster"
+                    loading="lazy"
+                >
+                <div class="movie-rating">
+                    <i class="fa-solid fa-star"></i>
+                    ${movieRating}
+                </div>
+                <div class="poster-overlay">
+                    <div class="poster-play-button">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="movie-info">
+                <h3>${movie.title}</h3>
+                <div class="movie-details">
+                    <span>${movieYear}</span>
+                    <span class="movie-genre">${movieGenre}</span>
+                </div>
+                ${
+                    flopcornRating
+                        ? `<div class="movie-details">
+                               <span>🍿 ${flopcornRating.averageRating.toFixed(1)}
+                               Flop Corn (${flopcornRating.reviewCount})</span>
+                           </div>`
+                        : ""
+                }
+            </div>
+        `;
+
+        movieCard.addEventListener("click", () => {
+            openMoviePage(movie.id);
+        });
+
+        container.appendChild(movieCard);
+
+    });
 
 }
 
@@ -635,93 +994,56 @@ async function searchMovies(
    OPEN SEARCH WINDOW
 ========================================= */
 
-openSearch.addEventListener(
+openSearch.addEventListener("click", function () {
 
-    "click",
+    searchOverlay.classList.add("show");
 
-    function () {
+    document.body.style.overflow = "hidden";
 
+    renderPopularChips();
+    renderRecentSearches();
+    loadTrendingQuickList();
 
-        searchOverlay.classList.add(
-
-            "show"
-
-        );
-
-
-        document.body.style.overflow =
-
-            "hidden";
-
-
-        setTimeout(
-
-            function () {
-
-                movieSearchInput.focus();
-
-            },
-
-            300
-
-        );
-
+    if (movieSearchInput.value.trim().length === 0) {
+        showQuickPanel();
     }
 
-);
+    setTimeout(function () {
+        movieSearchInput.focus();
+    }, 300);
+
+});
 
 
 /* =========================================
    CLOSE SEARCH WINDOW
 ========================================= */
 
-closeSearch.addEventListener(
+closeSearch.addEventListener("click", closeMovieSearch);
 
-    "click",
-
-    closeMovieSearch
-
-);
+if (viewAllTrendingLink) {
+    viewAllTrendingLink.addEventListener("click", closeMovieSearch);
+}
 
 
 function closeMovieSearch() {
 
-    searchOverlay.classList.remove(
+    searchOverlay.classList.remove("show");
 
-        "show"
-
-    );
-
-
-    document.body.style.overflow =
-
-        "";
+    document.body.style.overflow = "";
 
 }
 
 
 /* CLOSE SEARCH WITH ESCAPE KEY */
 
-document.addEventListener(
+document.addEventListener("keydown", function (event) {
 
-    "keydown",
-
-    function (event) {
-
-
-        if (
-
-            event.key === "Escape"
-
-        ) {
-
-            closeMovieSearch();
-
-        }
-
+    if (event.key === "Escape") {
+        closeMovieSearch();
     }
 
-);
+});
 
 
 /* =========================================
