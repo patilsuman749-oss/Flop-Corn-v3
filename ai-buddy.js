@@ -1,6 +1,6 @@
 /* =========================================
    FLOP CORN 🍿
-   AI MOVIE BUDDY — now powered by real AI (Gemini)
+   AI MOVIE BUDDY — now powered by real AI (Gemini and claude )
 ========================================= */
 
 const API_KEY = "dd2ac99e60038c2254b111f850b49461";
