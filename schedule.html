@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Schedule | Flop Corn 🍿
+    </title>
+
+
+    <!-- MAIN FLOP CORN CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- SCHEDULE PAGE CSS -->
+
+    <link
+        rel="stylesheet"
+        href="schedule.css"
+    >
+
+
+    <!-- GOOGLE FONTS -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body class="schedule-page">
+
+
+<!-- =========================================
+     SCHEDULE NAVBAR
+========================================= -->
+
+<header class="sched-navbar">
+
+    <a
+        href="index.html"
+        class="sched-logo"
+    >
+
+        <img
+            src="flopcorn-logo.jpeg.jpeg"
+            alt="Flop Corn Logo"
+        >
+
+        <div class="sched-logo-text">
+            FLOP<span>CORN</span>
+        </div>
+
+    </a>
+
+
+    <div class="sched-navbar-center">
+
+        <i class="fa-solid fa-calendar-days"></i>
+
+        Schedule
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="sched-back-home"
+    >
+
+        <i class="fa-solid fa-house"></i>
+
+        <span>Back Home</span>
+
+    </a>
+
+</header>
+
+
+<!-- =========================================
+     SCHEDULE BODY
+========================================= -->
+
+<main class="sched-main">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sched-sidebar">
+
+        <button
+            class="sched-side-tab active"
+            data-status="released"
+        >
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            Released
+
+        </button>
+
+        <button
+            class="sched-side-tab"
+            data-status="upcoming"
+        >
+
+            <i class="fa-regular fa-calendar"></i>
+
+            Upcoming
+
+        </button>
+
+        <button
+            class="sched-side-tab"
+            data-status="announced"
+        >
+
+            <i class="fa-solid fa-bullhorn"></i>
+
+            Announced
+
+        </button>
+
+    </aside>
+
+
+    <!-- CONTENT -->
+
+    <section class="sched-content">
+
+        <div class="sched-toolbar">
+
+            <div class="sched-type-pills">
+
+                <button
+                    class="sched-pill active"
+                    data-type="all"
+                >
+                    All
+                </button>
+
+                <button
+                    class="sched-pill"
+                    data-type="movie"
+                >
+                    Movies
+                </button>
+
+                <button
+                    class="sched-pill"
+                    data-type="tv"
+                >
+                    Shows
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="sched-list"
+            id="schedList"
+        >
+
+            <p class="search-message">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                Loading schedule...
+
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================
+     SCHEDULE JAVASCRIPT
+========================================= -->
+
+<script src="schedule.js"></script>
+
+</body>
+
+</html>
