@@ -1,0 +1,492 @@
+body{
+    background:#000;
+    color:white;
+    margin:0;
+    font-family:'Poppins',sans-serif;
+}
+
+.mcu-banner{
+    text-align:center;
+    padding:80px 20px;
+    background:linear-gradient(135deg,#111,#1a1a1a);
+    border-bottom:1px solid rgba(255,212,59,0.2);
+}
+
+.mcu-banner h1{
+    color:#ffd43b;
+    font-size:4rem;
+    margin-bottom:10px;
+}
+
+.phase-title{
+    color:#ffd43b;
+    font-size:2rem;
+    font-weight:bold;
+    padding:30px 40px 10px;
+}
+
+.movie-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:25px;
+    padding:20px 40px 40px;
+}
+
+.movie-card{
+    background:#0a0a0a;
+    border:1px solid rgba(255,212,59,0.4);
+    border-radius:20px;
+    overflow:hidden;
+    text-align:center;
+    transition:all 0.3s ease;
+}
+
+.movie-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px rgba(255,212,59,0.5);
+}
+
+.movie-card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    display:block;
+}
+
+.movie-card h3{
+    padding:15px;
+    margin:0;
+    color:white;
+}
+
+.movie-link{
+    text-decoration:none;
+}
+
+@media (max-width:768px){
+
+    .mcu-banner h1{
+        font-size:2.5rem;
+    }
+
+    .phase-title{
+        font-size:1.8rem;
+        padding:20px;
+    }
+
+    .movie-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:15px;
+        padding:15px;
+    }
+
+    .movie-card img{
+        height:220px;
+    }
+
+    .movie-card h3{
+        font-size:0.95rem;
+    }
+}
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    background:linear-gradient(135deg,#ffd43b,#f5c518);
+    color:#111;
+    text-decoration:none;
+
+    padding:12px 22px;
+    margin:20px;
+
+    border-radius:14px;
+    font-weight:700;
+    font-size:16px;
+
+    box-shadow:0 0 20px rgba(255,212,59,0.4);
+    transition:all 0.3s ease;
+}
+
+.back-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 30px rgba(255,212,59,0.7);
+}
+
+.back-btn:active{
+    transform:scale(0.98);
+}
+/* Movie Poster Styling */
+
+.movie-card{
+    background:#0d0d0d;
+    border:1px solid rgba(255,212,59,0.3);
+    border-radius:20px;
+    overflow:hidden;
+    transition:all 0.3s ease;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.movie-card:hover{
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 0 25px rgba(255,212,59,0.6);
+    border-color:#ffd43b;
+}
+
+.movie-card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    border-radius:15px;
+    transition:all 0.4s ease;
+}
+
+.movie-card:hover img{
+    transform:scale(1.08);
+}
+
+.movie-card h3{
+    color:white;
+    font-size:1rem;
+    font-weight:600;
+    padding:15px 10px;
+    margin:0;
+}
+
+/* Mobile */
+@media (max-width:768px){
+
+    .movie-card img{
+        height:220px;
+    }
+
+    .movie-card h3{
+        font-size:14px;
+    }
+}
+/* Movie Light Effect */
+
+body{
+    background:
+    radial-gradient(circle at 20% 20%, rgba(255,212,59,0.12), transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(255,212,59,0.08), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(255,80,80,0.06), transparent 35%),
+    #000;
+}
+
+/* Poster Glow */
+.movie-card{
+    position:relative;
+}
+
+.movie-card::before{
+    content:'';
+    position:absolute;
+    top:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:120px;
+    height:120px;
+    background:rgba(255,212,59,0.15);
+    filter:blur(50px);
+    border-radius:50%;
+    z-index:0;
+}
+
+.movie-card img,
+.movie-card h3{
+    position:relative;
+    z-index:1;
+}
+.mcu-banner::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: url("https://m.media-amazon.com/images/M/MV5BYWM5ZTcyZmQtYTFiNi00NDE1LWJlNjUtMDA4ODg5M2ViMjg0XkEyXkFqcGc@._V1_.jpg") center center no-repeat;
+    background-size: 600px;
+
+    opacity: 0.1;
+    z-index: 0;
+}
+.mcu-banner{
+    position:relative;
+    overflow:hidden;
+    padding:80px 20px;
+    text-align:center;
+}
+
+.mcu-banner::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:url("https://m.media-amazon.com/images/M/MV5BYWM5ZTcyZmQtYTFiNi00NDE1LWJlNjUtMDA4ODg5M2ViMjg0XkEyXkFqcGc@._V1_.jpg") center center no-repeat;
+    background-size:350px; /* smaller image */
+
+    opacity:0.08; /* lighter */
+    z-index:0;
+}
+
+.mcu-banner h1,
+.mcu-banner p{
+    position:relative;
+    z-index:1;
+}
+.mcu-banner::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:url("https://m.media-amazon.com/images/M/MV5BYWM5ZTcyZmQtYTFiNi00NDE1LWJlNjUtMDA4ODg5M2ViMjg0XkEyXkFqcGc@._V1_.jpg") center center no-repeat;
+
+    background-size:400px;
+    opacity:0.08;
+    z-index:0;
+}
+.mcu-banner{
+    position: relative;
+    text-align: center;
+    padding: 120px 20px;
+    overflow: hidden;
+}
+
+.mcu-banner::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: url("https://m.media-amazon.com/images/M/MV5BYWM5ZTcyZmQtYTFiNi00NDE1LWJlNjUtMDA4ODg5M2ViMjg0XkEyXkFqcGc@._V1_.jpg")
+                center center / cover no-repeat;
+
+    opacity: 0.35;
+    z-index: 0;
+}
+
+.mcu-banner::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 0;
+}
+
+.mcu-banner h1,
+.mcu-banner p{
+    position: relative;
+    z-index: 1;
+}
+
+.mcu-banner h1{
+    font-size: 5rem;
+    color: #ffd43b;
+    text-shadow: 0 0 25px rgba(255,212,59,0.7);
+}
+.mcu-banner::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:url("https://m.media-amazon.com/images/M/MV5BYWM5ZTcyZmQtYTFiNi00NDE1LWJlNjUtMDA4ODg5M2ViMjg0XkEyXkFqcGc@._V1_.jpg")
+    center center/cover no-repeat;
+
+    opacity:0.7; /* Increased */
+    z-index:0;
+}
+
+.mcu-banner::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.2),
+        rgba(0,0,0,0.3)
+    );
+
+    z-index:0;
+}
+/* MCU Banner Mobile Fix */
+@media (max-width: 768px){
+
+    .mcu-banner{
+        padding: 60px 15px;
+    }
+
+    .mcu-banner h1{
+        font-size: 3rem !important;
+        line-height: 1.1;
+        margin-bottom: 15px;
+    }
+
+    .mcu-banner p{
+        font-size: 1rem;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .mcu-banner::before{
+        background-size: cover;
+        background-position: center;
+        opacity: 0.8;
+    }
+}
+
+@media (max-width: 480px){
+
+    .mcu-banner h1{
+        font-size: 2.4rem !important;
+    }
+
+    .mcu-banner p{
+        font-size: 0.9rem;
+    }
+
+    .mcu-banner{
+        padding: 50px 10px;
+    }
+}
+/* Smooth Scrolling */
+html{
+    scroll-behavior:smooth;
+}
+
+/* Fade In Animation */
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.phase-title,
+.movie-card{
+    animation:fadeUp 0.8s ease forwards;
+}
+
+/* Banner Glow Animation */
+@keyframes glow{
+    0%{
+        text-shadow:0 0 15px rgba(255,212,59,0.5);
+    }
+    50%{
+        text-shadow:0 0 35px rgba(255,212,59,0.9);
+    }
+    100%{
+        text-shadow:0 0 15px rgba(255,212,59,0.5);
+    }
+}
+
+.mcu-banner h1{
+    animation:glow 3s infinite ease-in-out;
+}
+
+/* Movie Card Hover */
+.movie-card{
+    transition:all 0.35s ease;
+}
+
+.movie-card:hover{
+    transform:translateY(-10px) scale(1.03);
+}
+
+/* Poster Zoom */
+.movie-card img{
+    transition:transform 0.4s ease;
+}
+
+.movie-card:hover img{
+    transform:scale(1.08);
+}
+
+/* Golden Line Under Banner */
+.mcu-banner::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:20px;
+    transform:translateX(-50%);
+
+    width:120px;
+    height:3px;
+
+    background:#ffd43b;
+    box-shadow:0 0 20px #ffd43b;
+}
+/* Premium Floating Cards */
+.movie-card{
+    animation: floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+    0%,100%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-8px);
+    }
+}
+
+/* Shimmer Effect on Posters */
+.movie-card::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:50%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.15),
+        transparent
+    );
+    transition:0.8s;
+}
+
+.movie-card:hover::after{
+    left:150%;
+}
+
+/* Animated Golden Glow */
+.movie-card:hover{
+    box-shadow:
+        0 0 20px rgba(255,212,59,0.6),
+        0 0 40px rgba(255,212,59,0.4),
+        0 0 60px rgba(255,212,59,0.2);
+}
+
+/* Banner Entrance */
+.mcu-banner{
+    animation: bannerReveal 1.2s ease;
+}
+
+@keyframes bannerReveal{
+    from{
+        opacity:0;
+        transform:scale(1.05);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* Phase Title Glow */
+.phase-title{
+    animation: phaseGlow 3s infinite alternate;
+}
+
+@keyframes phaseGlow{
+    from{
+        text-shadow:0 0 10px rgba(255,212,59,0.4);
+    }
+    to{
+        text-shadow:0 0 25px rgba(255,212,59,0.9);
+    }
+}

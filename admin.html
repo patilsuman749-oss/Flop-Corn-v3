@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flop Corn Admin</title>
+
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div id="loading">
+Checking Admin...
+</div>
+<div class="card">
+    <h2 id="currentTime"></h2>
+    <p>Current Time</p>
+</div>
+<div id="adminPanel" style="display:none;">
+
+<header>
+
+<h1>🍿 FLOP CORN ADMIN</h1>
+
+</header>
+
+<div class="cards">
+
+<div class="card">
+<h2 id="userCount">0</h2>
+<p>Total Users</p>
+</div>
+
+<div class="card">
+<h2 id="reviewCount">0</h2>
+<p>Total Reviews</p>
+</div>
+
+<div class="card">
+<h2 id="movieCount">0</h2>
+<p>Movies Reviewed</p>
+</div>
+
+</div>
+
+<input
+type="text"
+id="search"
+placeholder="Search users...">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Photo</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Joined</th>
+
+</tr>
+
+</thead>
+
+<tbody id="usersTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>

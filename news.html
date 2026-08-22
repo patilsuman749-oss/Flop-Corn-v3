@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FLOP CORN News</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="news.css?v=1">
+
+</head>
+
+<body>
+
+<!-- ===========================
+        NAVBAR
+============================ -->
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+
+        <img src="flopcorn-logo.jpeg.jpeg" class="flopcorn-logo-img">
+
+        <div class="logo-text">
+            FLOP<span>CORN</span>
+        </div>
+
+    </a>
+
+    <nav class="nav-links">
+
+        <a href="index.html">🏠 Home</a>
+
+        <a href="explore.html">🧭 Explore</a>
+
+        <a href="quiz.html">🎮 Quiz</a>
+
+        <a href="news.html" class="active">📰 News</a>
+
+    </nav>
+
+</header>
+
+
+<!-- ===========================
+        MAIN
+============================ -->
+
+<main class="news-page">
+
+
+<!-- HERO -->
+
+<section class="news-hero">
+
+<div class="hero-overlay">
+
+<span class="news-badge">
+
+🔥 FLOP CORN NEWS
+
+</span>
+
+<h1>
+
+Latest Movie News
+
+</h1>
+
+<p>
+
+Hollywood • Bollywood • South Indian • OTT • Box Office
+
+</p>
+
+<a href="#featuredNews" class="hero-news-btn">
+
+<i class="fa-solid fa-newspaper"></i>
+
+Read Latest News
+
+</a>
+
+</div>
+
+</section>
+
+
+<!-- CATEGORY FILTER -->
+
+<section class="news-filter">
+
+<button class="active" data-category="All">
+
+🍿 All
+
+</button>
+
+<button data-category="Hollywood">
+
+🎬 Hollywood
+
+</button>
+
+<button data-category="Bollywood">
+
+🎥 Bollywood
+
+</button>
+
+<button data-category="South">
+
+🔥 South
+
+</button>
+
+<button data-category="OTT">
+
+📺 OTT
+
+</button>
+
+</section>
+
+
+<!-- BREAKING NEWS -->
+
+<section class="featured-section">
+
+<h2 class="news-title">
+
+🔥 Breaking News
+
+</h2>
+
+<div id="featuredNews" class="featured-news">
+
+<div class="loading-news">
+
+Loading Breaking News...
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LATEST NEWS -->
+
+<section class="latest-news">
+
+<h2 class="news-title">
+
+📰 Latest News
+
+</h2>
+
+<div id="newsContainer" class="news-grid">
+
+<div class="loading-news">
+
+Loading Latest News...
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>
+
+© 2026 FLOP CORN • Created by Suman Patil
+
+</p>
+
+</footer>
+
+
+<script type="module" src="news.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Flop Corn - Discover movies, rate them and share your reviews."
+    >
+
+    <title>Flop Corn | Watch. Rate. Roast.</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="style.css?v=4">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7148348507749090"
+     crossorigin="anonymous"></script>
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-658KPKGSWM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-658KPKGSWM');
+</script>
+</head>
+
+<body>
+<!-- Cinema Curtain -->
+<div id="curtain">
+    <div class="curtain left"></div>
+    <div class="curtain right"></div>
+    <div class="curtain-text">
+        <h1>🍿 FLOP CORN</h1>
+        <p>Welcome to the Cinema</p>
+    </div>
+</div>
+
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="yellow-glow"></div>
+        <div class="red-glow"></div>
+    </div>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo-icon">
+            <img src="flopcorn-logo.jpeg.jpeg" class="flopcorn-logo-img" alt="Flop Corn Logo">
+            </div>
+
+            <div class="logo-text">
+                FLOP<span>CORN</span>
+            </div>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#home" class="active">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="#trending">
+                <i class="fa-solid fa-fire"></i>
+                Trending
+            </a>
+
+            <a href="#new-movies">
+                <i class="fa-solid fa-clapperboard"></i>
+                New Movies
+            </a>
+            <a href="schedule.html">
+    <i class="fa-solid fa-calendar-days"></i>
+    Calendar
+</a>
+<a href="explore.html">
+    🧭 Explore
+</a>
+<a href="quiz.html">
+    <i class="fa-solid fa-gamepad"></i>
+    Quiz
+</a>    
+          
+            <a href="#bollywood">
+    <i class="fa-solid fa-film"></i>
+    Bollywood
+</a>
+<a href="#south-indian">
+    <i class="fa-solid fa-film"></i>
+    South Indian
+</a>
+
+            <a href="#reviews">
+                <i class="fa-solid fa-star"></i>
+                Reviews
+            </a>
+
+        </nav>
+
+
+        <div class="navbar-right">
+            <button
+    id="themeLamp"
+    class="theme-lamp"
+    title="Turn the lights on"
+    aria-label="Switch light and dark mode"
+>
+    <i class="fa-solid fa-lightbulb"></i>
+</button>
+
+            <button
+                class="search-button"
+                id="openSearch"
+                aria-label="Open movie search"
+            >
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </button>
+
+
+            <button class="login-button" id="signInButton">
+
+                <i class="fa-brands fa-google"></i>
+
+                <span>
+                    Sign in
+                </span>
+
+            </button>
+
+            <div class="profile-menu" id="profileMenu">
+
+    <img
+        id="profileMenuPhoto"
+        class="profile-menu-photo"
+        src=""
+        alt="Profile"
+    >
+
+    <h3 id="profileMenuName">Flop Corn User</h3>
+
+    <p id="profileMenuEmail"></p>
+
+    <button id="myProfileButton">
+    <i class="fa-solid fa-user"></i>
+    My Profile
+</button>
+
+<button id="adminButton" style="display:none;">
+    <i class="fa-solid fa-shield-halved"></i>
+    Admin Dashboard
+</button>
+
+<button id="profileSignOutButton">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    Sign Out
+</button>
+
+</div>
+
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Open menu"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= MOBILE MENU ================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="#home">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+<a href="quiz.html">
+    <i class="fa-solid fa-gamepad"></i>
+    Movie Quiz
+</a>
+        <a href="#trending">
+            <i class="fa-solid fa-fire"></i>
+            Trending
+        </a>
+
+        <a href="#new-movies">
+            <i class="fa-solid fa-clapperboard"></i>
+            New Movies
+        </a>
+<a href="schedule.html">
+    <i class="fa-solid fa-calendar-days"></i>
+    <span>Calendar</span>
+</a>
+
+        <a href="#bollywood">
+    <i class="fa-solid fa-film"></i>
+    Bollywood
+</a>
+
+<a href="#south-indian">
+    <i class="fa-solid fa-film"></i>
+    South Indian
+</a>
+
+        <a href="#reviews">
+            <i class="fa-solid fa-star"></i>
+            Reviews
+        </a>
+
+    </div>
+
+
+
+    <!-- ================= SEARCH WINDOW ================= -->
+
+    <section class="search-overlay" id="searchOverlay">
+
+        <div class="search-container">
+
+            <button
+                class="close-search"
+                id="closeSearch"
+                aria-label="Close search"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <div class="large-search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="movieSearchInput"
+                    placeholder="Search movies, people, genres..."
+                    autocomplete="off"
+                >
+
+                <button
+                    class="clear-search-input"
+                    id="clearSearchInput"
+                    aria-label="Clear search"
+                    type="button"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <button
+                    class="run-search-button"
+                    id="runSearchButton"
+                    type="button"
+                >
+                    Search
+                </button>
+
+            </div>
+
+
+            <!-- ===== QUICK PANEL: shown before/while input is empty ===== -->
+            <div class="quick-search-panel" id="quickSearchPanel">
+
+                <div class="quick-search-grid">
+
+                    <div class="quick-search-col">
+                        <p class="quick-col-label">Popular Searches</p>
+                        <div class="popular-chips" id="popularChips"></div>
+                    </div>
+
+                    <div class="quick-search-col">
+                        <p class="quick-col-label">Recent Searches</p>
+                        <div class="recent-list" id="recentList">
+                            <p class="quick-empty-message">
+                                Your recent searches will show up here.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="quick-search-col">
+                        <p class="quick-col-label">Trending Now</p>
+                        <div class="trending-list" id="trendingQuickList">
+                            <p class="quick-empty-message">
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                                Loading...
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="search-quick-footer">
+
+                    <p class="search-tip">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        Tip: Use quotes for exact matches e.g. "The Dark Knight"
+                    </p>
+
+                    <a href="#trending" class="view-all-link" id="viewAllTrendingLink">
+                        View all results
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="search-results"
+                id="searchResults"
+            >
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero" id="home">
+
+            <div class="hero-backdrop"></div>
+
+            <div class="hero-dark-overlay"></div>
+
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+
+                    <i class="fa-solid fa-fire"></i>
+
+                    MOVIES. REVIEWS. REAL OPINIONS.
+
+                </div>
+<!-- MOBILE EXPLORE BUTTON -->
+<a href="explore.html" class="mobile-explore-button">
+    <i class="fa-solid fa-compass"></i>
+    Explore Movies
+    <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+                <h1>
+
+                    Watch it.
+
+                    <span>
+                        Rate it.
+                    </span>
+
+                    <strong>
+                        Roast it.
+                    </strong>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Discover new movies, share what you
+                    really think and connect with people
+                    who love cinema as much as you do.
+
+                </p>
+
+
+               <div class="hero-buttons">
+
+    <a href="#trending" class="primary-button" id="writeReviewButton">
+        <i class="fa-solid fa-star"></i>
+        Write a Review
+    </a>
+
+    <a href="FlopCorn.apk" download class="download-app-home">
+        <i class="fa-brands fa-android"></i>
+        Download Android App
+    </a>
+    <button id="moreFeaturesBtn" class="movie-news-home-button">
+    <i class="fa-solid fa-plus"></i>
+    More Features
+</button>
+<div id="mobile-features">
+<a href="ai-buddy.html" class="ai-buddy-home-button">
+    <i class="fa-solid fa-robot"></i>
+    Ask AI Movie Buddy
+</a>
+                   <a href="news.html" class="movie-news-home-button">
+    <i class="fa-solid fa-newspaper"></i>
+    Movie News
+</a>
+   <a href="universes.html" class="movie-universe-home-button">
+    <i class="fa-solid fa-globe"></i>
+    Cinematic Universes
+</a>        
+ </div>           
+
+
+
+
+                <div class="hero-stats">
+
+                    <div class="stat">
+
+                        <strong>
+                            10K+
+                        </strong>
+
+                        <span>
+                            Movies
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-line"></div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            Public
+                        </strong>
+
+                        <span>
+                            Reviews
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-line"></div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            Free
+                        </strong>
+
+                        <span>
+                            To Join
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="scroll-message">
+
+                <span>
+                    Scroll to explore
+                </span>
+
+                <i class="fa-solid fa-arrow-down"></i>
+
+            </div>
+
+        </section>
+
+<!-- ===========================
+TOP MOVIES
+=========================== -->
+
+
+        <!-- ================= BROWSE BY LANGUAGE ================= -->
+
+<section class="language-section">
+
+    <div class="language-heading">
+
+        <p class="small-heading">
+            <i class="fa-solid fa-language"></i>
+            DISCOVER CINEMA YOUR WAY
+        </p>
+
+        <h2>
+            Browse Movies by Language
+        </h2>
+
+    </div>
+
+    <div class="language-buttons">
+
+        <button class="language-button" data-language="hi">
+            🇮🇳 Hindi
+        </button>
+
+        <button class="language-button" data-language="te">
+            🔥 Telugu
+        </button>
+
+        <button class="language-button" data-language="ta">
+            🎭 Tamil
+        </button>
+
+        <button class="language-button" data-language="kn">
+            ⭐ Kannada
+        </button>
+
+        <button class="language-button" data-language="ml">
+            🎞️ Malayalam
+        </button>
+        </div>
+<div class="language-results">
+
+    <h2 id="selectedLanguageTitle">
+        Select a language to explore movies 🍿
+    </h2>
+
+    <div
+        class="movie-grid"
+        id="languageMovies"
+    >
+    
+    </div>
+</div>
+</section>
+
+<!-- =================================
+     ICONIC MOVIE DIALOGUES 🍿
+================================= -->
+
+<section class="marvel-quotes-section">
+
+    <div class="marvel-quote-card">
+
+        <div class="quote-glow"></div>
+
+        <p class="quote-label">
+            <i class="fa-solid fa-clapperboard"></i>
+            ICONIC MOVIE DIALOGUE
+        </p>
+
+        <i class="fa-solid fa-quote-left quote-icon"></i>
+
+        <h2 id="marvelQuote">
+            “May the Force be with you.”
+        </h2>
+
+        <p id="marvelCharacter">
+            — Star Wars
+        </p>
+
+        <div class="quote-progress">
+            <div class="quote-progress-fill"></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+       
+<!-- ================= TOP RATED ON FLOP CORN ================= -->
+
+<section class="movie-section" id="top-rated">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="small-heading">
+
+                <i class="fa-solid fa-trophy"></i>
+
+                CHOSEN BY THE FLOP CORN COMMUNITY
+
+            </p>
+
+            <h2>
+                Top Rated on Flop Corn
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div
+        class="movie-grid"
+        id="topRatedMovies"
+    >
+
+        <p class="search-message">
+            Loading community favourites... 🍿
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= BOLLYWOOD MOVIES ================= -->
+
+<section class="movie-section" id="bollywood">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="small-heading">
+
+                <i class="fa-solid fa-film"></i>
+
+                LIGHTS. CAMERA. BOLLYWOOD.
+
+            </p>
+
+            <h2>
+                🇮🇳 Bollywood Movies
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="movie-grid"
+        id="bollywoodMovies"
+    >
+
+        <div class="loading-card"></div>
+
+        <div class="loading-card"></div>
+
+        <div class="loading-card"></div>
+
+        <div class="loading-card"></div>
+
+        <div class="loading-card"></div>
+
+    </div>
+
+</section>
+<!-- ================= MOVIE RELEASE CALENDAR ================= -->
+
+<section class="movie-section release-calendar-section" id="release-calendar">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="small-heading">
+                <i class="fa-solid fa-calendar-days"></i>
+                PLAN YOUR NEXT MOVIE
+            </p>
+
+            <h2>
+                📅 Movie Release Calendar
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="calendar-container">
+
+        <div class="calendar-header">
+
+            <button id="previousMonth">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <h3 id="calendarMonth">
+                Loading Calendar...
+            </h3>
+
+            <button id="nextMonth">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+        </div>
+
+
+        <div class="calendar-weekdays">
+
+            <span>Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+
+        </div>
+
+
+        <div
+            class="calendar-grid"
+            id="calendarGrid"
+        >
+            <!-- Calendar dates will load here -->
+        </div>
+
+    </div>
+
+
+    <div class="calendar-movies">
+
+        <h3 id="calendarMoviesTitle">
+            Select a date to view movie releases 🍿
+        </h3>
+
+        <div
+            class="movie-grid"
+            id="calendarMovies"
+        >
+        </div>
+
+    </div>
+
+</section>
+ <!-- ================= TRENDING MOVIES ================= -->
+
+        <section
+            class="movie-section"
+            id="trending"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="small-heading">
+
+                        <i class="fa-solid fa-fire"></i>
+
+                        WHAT EVERYONE IS WATCHING
+
+                    </p>
+
+
+                    <h2>
+                        Trending Movies
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="view-all-button"
+                    data-category="trending"
+                >
+
+                    View all
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="movie-grid"
+                id="trendingMovies"
+            >
+
+                <!-- Movies will automatically load here -->
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+            </div>
+
+        </section>
+
+<!-- ================= SOUTH INDIAN MOVIES ================= -->
+
+<section class="movie-section" id="south-indian">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="small-heading">
+
+                <i class="fa-solid fa-film"></i>
+
+                TELUGU • TAMIL • KANNADA • MALAYALAM
+
+            </p>
+
+            <h2>
+                🎬 South Indian Movies
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div
+        class="movie-grid"
+        id="southIndianMovies"
+    >
+
+        <div class="loading-card"></div>
+
+        <div class="loading-card"></div>
+
+        <div class="loading-card"></div>
+
+        <div class="loading-card"></div>
+
+        <div class="loading-card"></div>
+
+    </div>
+
+</section>
+
+        <!-- ================= NEW MOVIES ================= -->
+
+        <section
+            class="movie-section"
+            id="new-movies"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="small-heading">
+
+                        <i class="fa-solid fa-clapperboard"></i>
+
+                        FRESH ON THE BIG SCREEN
+
+                    </p>
+
+
+                    <h2>
+                        New Releases
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="view-all-button"
+                    data-category="new"
+                >
+
+                    View all
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="movie-grid"
+                id="newMovies"
+            >
+
+                <!-- New movies automatically load here -->
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+                <div class="loading-card"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= REVIEW COMMUNITY ================= -->
+
+        <section
+            class="review-section"
+           id="reviews"
+            >
+
+            <div class="review-banner">
+
+                <div class="review-banner-content">
+
+                    <p class="small-heading">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        JOIN THE COMMUNITY
+
+                    </p>
+
+
+                    <h2>
+
+                        Your opinion deserves
+
+                        <span>
+                            the spotlight.
+                        </span>
+
+                    </h2>
+
+
+                    <p>
+
+                        Loved it? Hated it? Thought it was
+                        just okay? Rate movies and share
+                        your reviews with everyone.
+
+                    </p>
+
+
+                    <button
+                        class="primary-button"
+                        id="joinCommunityButton"
+                    >
+
+                        <i class="fa-brands fa-google"></i>
+
+                        Join with Google
+
+                    </button>
+
+                </div>
+
+
+                <div class="review-preview">
+
+                    <!-- FLOP CORN METER -->
+<div class="flopcorn-meter">
+   <img src="flopcorn-logo.jpeg.jpeg" class="small-flopcorn-logo" alt="Flop Corn Logo">
+
+    <div class="meter-track">
+        <div class="meter-fill" id="meterFill"></div>
+    </div>
+
+    <div class="meter-score">
+        <span id="meterScore">0.0</span>/10
+    </div>
+
+    <div class="meter-verdict" id="meterVerdict">
+        No reviews yet
+    </div>
+
+    <p class="meter-info">Based on user reviews</p>
+</div>
+
+                    <div class="review-card">
+
+                        <div class="review-user">
+
+                            <div class="profile-placeholder">
+
+                                <i class="fa-solid fa-user"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    Movie Fan
+                                </strong>
+
+                                <span>
+                                    Just now
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="review-stars">
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <i class="fa-solid fa-star"></i>
+
+                            <i class="fa-regular fa-star"></i>
+
+                        </div>
+
+
+                        <p>
+
+                            “A beautiful movie with amazing
+                            performances. Definitely worth
+                            watching on the big screen!”
+
+                        </p>
+
+
+                        <div class="review-actions">
+
+                            <span>
+
+                                <i class="fa-regular fa-heart"></i>
+
+                                Like
+
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-regular fa-comment"></i>
+
+                                Reply
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+
+            <div class="footer-logo">
+
+                <img src="flopcorn-logo.jpeg.jpeg" class="small-flopcorn-logo" alt="Flop Corn Logo">
+
+                <strong>
+
+                    FLOP<span>CORN</span>
+
+                </strong>
+
+            </div>
+
+
+            <p>
+
+                Discover movies. Share reviews.
+                Speak your mind.
+
+            </p>
+
+
+            <div class="footer-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#trending">
+                    Trending
+                </a>
+
+                <a href="#new-movies">
+                    New Movies
+                </a>
+
+                <a href="#reviews">
+                    Reviews
+                </a>
+
+            </div>
+
+
+            <div class="footer-bottom"></div>
+                <span>
+
+© 2026 FLOP CORN. All Rights Reserved.
+
+<br>
+
+Developed by <strong>@SumanPatil</strong>
+
+<br>
+
+
+
+Made for Movie Lovers 🍿
+
+                </span>
+
+                <span>
+
+                    Movie information will be provided
+                    using TMDB.
+
+                </span>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+<script type="module" src="app.js"></script>
+<!-- FLOP CORN FULL PROFILE POPUP -->
+
+<div class="full-profile-overlay" id="fullProfileOverlay">
+
+    <div class="full-profile-card">
+
+        <button class="close-profile-button" id="closeProfileButton">
+            ×
+        </button>
+
+        <img
+            id="fullProfilePhoto"
+            class="full-profile-photo"
+            src=""
+            alt="User Profile"
+        >
+
+        <h2 id="fullProfileName">Flop Corn User</h2>
+
+        <p id="fullProfileEmail"></p>
+
+        <button
+    class="change-username-button"
+    id="changeUsernameButton"
+>
+    <i class="fa-solid fa-pen"></i>
+    Change Username
+</button>
+
+        <div class="profile-divider"></div>
+
+        <div class="profile-details">
+
+            <div>
+                <strong>🍿 Flop Corn</strong>
+                <span>Movie Reviewer</span>
+            </div>
+
+            <div>
+                <strong>⭐ Reviews</strong>
+                <span>More details coming soon</span>
+            </div>
+
+        </div>
+
+        <!-- MY WATCHLIST -->
+
+<div class="profile-divider"></div>
+
+<div class="watchlist-heading">
+
+    <div>
+
+        <h3>
+            <i class="fa-solid fa-bookmark"></i>
+            My Watchlist
+        </h3>
+
+        <p>
+            Movies you saved to watch later
+        </p>
+
+    </div>
+
+</div>
+
+
+<div
+    class="profile-watchlist"
+    id="profileWatchlist"
+>
+
+    <p class="watchlist-message">
+
+        Loading your Watchlist... 🍿
+
+    </p>
+
+</div>
+
+
+        <p class="profile-member-text">
+            🎬 Member of the Flop Corn community
+        </p>
+
+    </div>
+
+</div>
+
+<!-- ================= USERNAME POPUP ================= -->
+
+<div class="username-overlay" id="usernameOverlay">
+
+    <div class="username-card">
+
+        <div class="username-icon">
+            🍿
+        </div>
+
+        <h2>
+            Create Your Flop Corn Username
+        </h2>
+
+        <p>
+            Choose a unique username that will appear
+            on your profile and movie reviews.
+        </p>
+
+        <input
+            type="text"
+            id="usernameInput"
+            placeholder="Example: SumanMovies"
+            maxlength="20"
+            autocomplete="off"
+        >
+
+        <p
+            class="username-message"
+            id="usernameMessage"
+        ></p>
+
+        <button id="saveUsernameButton">
+
+            <i class="fa-solid fa-check"></i>
+
+            Create Username
+
+        </button>
+
+    </div>
+
+
+</div>
+
+<!-- APP DOWNLOAD POPUP -->
+
+<div class="app-popup-overlay" id="appPopup">
+
+    <div class="app-popup">
+
+        <button class="close-app-popup" id="closeAppPopup">
+            &times;
+        </button>
+
+       
+
+        
+<img src="flopcorn-logo.jpeg.jpeg" alt="Flop Corn Logo">
+
+<h2>🍿 FLOP CORN App</h2>
+
+<div class="app-stats">
+    <div>
+        <strong>⭐ 4.9</strong>
+        <span>Rating</span>
+    </div>
+
+    <div>
+        <strong>🎬 10K+</strong>
+        <span>Movies</span>
+    </div>
+
+    <div>
+        <strong>📱 Android</strong>
+        <span>APK</span>
+    </div>
+</div>
+
+
+        <p>
+            Enjoy a faster and better movie experience with the official Android app.
+        </p>
+
+       
+
+        <div class="popup-buttons">
+
+    <a href="FlopCorn.apk" download class="download-app-popup-btn">
+        <i class="fa-brands fa-android"></i>
+        Download Android App
+    </a>
+
+    <button class="continue-site-btn" id="continueWebsite">
+        <i class="fa-solid fa-globe"></i>
+        Continue on Website
+    </button>
+
+</div>
+
+    </div>
+
+</div>
+
+    <script>
+window.addEventListener("load", () => {
+
+    const curtain = document.getElementById("curtain");
+
+    // Show only once per browser/app session
+    if (sessionStorage.getItem("flopcornSplashShown")) {
+        curtain.style.display = "none";
+        return;
+    }
+
+    sessionStorage.setItem("flopcornSplashShown", "true");
+
+    const isMobile = window.innerWidth <= 768;
+
+    const openDelay = isMobile ? 1500 : 800;
+    const hideDelay = isMobile ? 4500 : 3000;
+
+    setTimeout(() => {
+        curtain.classList.add("open");
+    }, openDelay);
+
+    setTimeout(() => {
+        curtain.classList.add("hide");
+    }, hideDelay);
+
+});
+</script>
+    <!-- =========================================
+     REVIEWER PROFILE POPUP
+========================================= -->
+
+<div id="reviewerProfileOverlay" class="reviewer-overlay">
+
+    <div class="reviewer-popup">
+
+        <button id="closeReviewerPopup" class="close-reviewer-popup">
+            ✕
+        </button>
+
+        <img
+            id="reviewerPhoto"
+            src=""
+            class="reviewer-photo"
+        >
+
+        <h2 id="reviewerName">Reviewer</h2>
+
+        <p class="reviewer-badge">
+            🍿 FLOP CORN Reviewer
+        </p>
+
+        <div class="reviewer-stats">
+
+            <div>
+                <strong id="reviewCount">
+                    0
+                </strong>
+                <span>Reviews</span>
+            </div>
+
+            <div>
+                <strong id="averageRating">
+                    0
+                </strong>
+                <span>Average</span>
+            </div>
+
+        </div>
+
+        <h3 class="recent-title">
+            Recent Reviews
+        </h3>
+
+        <div id="recentReviews">
+
+            Loading...
+
+        </div>
+
+    </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>

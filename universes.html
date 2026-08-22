@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinematic Universes | FLOP CORN</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050505;
+    color:white;
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    padding:30px;
+}
+
+.back-btn{
+    display:inline-block;
+    color:#ffcc00;
+    text-decoration:none;
+    font-weight:600;
+    padding:12px 18px;
+    border:1px solid rgba(255,204,0,.3);
+    border-radius:12px;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#ffcc00;
+    color:black;
+}
+
+.flopcorn-badge{
+    display:block;
+    width:max-content;
+    margin:25px auto;
+    padding:10px 20px;
+    background:#ffcc00;
+    color:black;
+    border-radius:999px;
+    font-weight:700;
+}
+
+.universes-banner{
+    text-align:center;
+    margin:40px 0 60px;
+    position:relative;
+}
+
+.universes-banner::before{
+    content:'';
+    position:absolute;
+    width:300px;
+    height:300px;
+    background:red;
+    filter:blur(150px);
+    opacity:.15;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    z-index:-1;
+}
+
+.universes-banner h1{
+    font-size:3.5rem;
+    color:#ffcc00;
+    margin-bottom:10px;
+}
+
+.universes-banner p{
+    color:#bdbdbd;
+    font-size:1.1rem;
+}
+
+.movie-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.movie-link{
+    text-decoration:none;
+}
+
+.movie-card{
+    min-height:220px;
+    border-radius:24px;
+    overflow:hidden;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    transition:.3s;
+    border:1px solid rgba(255,204,0,.2);
+}
+
+.movie-card:hover{
+    transform:translateY(-10px) scale(1.03);
+}
+
+.movie-card h3{
+    color:white;
+    font-size:1.5rem;
+}
+
+.movie-card p{
+    color:#ddd;
+    margin-top:8px;
+}
+
+.mcu-card{
+    background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.85)),
+    url('https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg');
+    background-size:cover;
+    background-position:center;
+}
+
+.dcu-card{
+    background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.85)),
+    url('https://images.unsplash.com/photo-1531259683007-016a7b628fc3');
+    background-size:cover;
+    background-position:center;
+}
+
+.lcu-card{
+    background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.85)),
+    #151515;
+}
+
+.yrf-card{
+    background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.85)),
+    #151515;
+}
+</style>
+
+</head>
+<body>
+
+<a href="index.html" class="back-btn">🍿 Back to FLOP CORN</a>
+
+<div class="flopcorn-badge">
+🍿 FLOP CORN UNIVERSES
+</div>
+
+<div class="universes-banner">
+<h1>🎬 Cinematic Universes</h1>
+<p>Explore every connected movie universe</p>
+</div>
+
+<div class="movie-grid">
+
+<a href="mcu.html" class="movie-link">
+<div class="movie-card mcu-card">
+<h3>🦸 Marvel Cinematic Universe</h3>
+<p>40+ Movies</p>
+</div>
+</a>
+
+<a href="dcu.html" class="movie-link">
+    <div class="movie-card dcu-card">
+        <h3>🦇 DC Universe</h3>
+        <p>Explore DC Movies</p>
+    </div>
+</a>
+
+<a href="#" class="movie-link">
+    <div class="movie-card lcu-card"
+         style="background-image:url('https://i.pinimg.com/736x/07/d2/d1/07d2d16a867f19de142ac54cf74dfb5a.jpg');
+                background-size:cover;
+                background-position:center;">
+
+        <div class="card-overlay">
+            <h3>🔥 Lokesh Cinematic Universe</h3>
+            <p>Coming Soon</p>
+        </div>
+
+    </div>
+</a>
+
+<a href="#" class="movie-link">
+    <div class="movie-card yrf-card"
+         style="background-image:url('https://i.redd.it/ft1lyo6j6eld1.jpeg');
+                background-size:cover;
+                background-position:center;">
+
+        <div class="card-overlay">
+            <h3>🕵️ YRF Spy Universe</h3>
+            <p>Coming Soon</p>
+        </div>
+
+    </div>
+</a>
+</body>
+</html>
