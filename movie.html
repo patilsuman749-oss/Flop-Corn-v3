@@ -7,6 +7,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#070707">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 
     <meta charset="UTF-8">
@@ -3947,6 +3949,15 @@ trailerModal.onclick=(e)=>{if(e.target===trailerModal){trailerFrame.src=""; trai
     </div>
 
 </div>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/sw.js").catch((err) => {
+        console.warn("SW registration failed:", err);
+      });
+    });
+  }
+</script>
 </body>
 
 </html>
