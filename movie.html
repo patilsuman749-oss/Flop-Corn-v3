@@ -4066,6 +4066,20 @@ async function loadSimilarMovies(movieId){
         const reviewerOverlay =
 document.getElementById("reviewerProfileOverlay");
 
+/* Tracks the live public-collections listener for whichever
+   reviewer popup is currently open, so we can stop it before
+   starting a new one — otherwise an old listener for a
+   previous reviewer can resolve later and overwrite the
+   currently open popup with the wrong (or empty) data. */
+let unsubscribeReviewerCollections = null;
+
+function stopReviewerCollectionsListener() {
+    if (unsubscribeReviewerCollections) {
+        unsubscribeReviewerCollections();
+        unsubscribeReviewerCollections = null;
+    }
+}
+
 document.addEventListener("click", async (event)=>{
 
    const target =
@@ -4088,6 +4102,7 @@ document
 .addEventListener("click",()=>{
 
     reviewerOverlay.classList.remove("show");
+    stopReviewerCollectionsListener();
 
 });
 
@@ -4096,6 +4111,7 @@ reviewerOverlay.addEventListener("click",(e)=>{
     if(e.target===reviewerOverlay){
 
         reviewerOverlay.classList.remove("show");
+        stopReviewerCollectionsListener();
 
     }
 
@@ -4192,9 +4208,19 @@ if (userId) {
 
     const reviewerUserId = userId || firstReview.userId;
 
+    /* Stop any listener left over from a previously opened
+       reviewer popup before starting this one. */
+    stopReviewerCollectionsListener();
+
     if (reviewerCollectionsContainer && reviewerUserId) {
 
-        listenPublicCollections(
+        reviewerCollectionsContainer.innerHTML = `
+            <p class="collections-message">
+                Loading collections... 🍿
+            </p>
+        `;
+
+        unsubscribeReviewerCollections = listenPublicCollections(
 
             reviewerUserId,
 

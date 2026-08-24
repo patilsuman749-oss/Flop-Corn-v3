@@ -13612,12 +13612,23 @@ section{
     width:420px;
     max-width:92%;
     padding:35px;
+    max-height:88vh;
+    overflow-y:auto;
     border-radius:25px;
     background:linear-gradient(145deg,#171717,#0d0d0d);
     border:1px solid rgba(255,210,28,.25);
     text-align:center;
     color:#fff;
     animation:reviewerPopup .3s ease;
+}
+
+.reviewer-popup::-webkit-scrollbar{
+    width:6px;
+}
+
+.reviewer-popup::-webkit-scrollbar-thumb{
+    background:#ffd21c;
+    border-radius:10px;
 }
 
 @keyframes reviewerPopup{
@@ -13733,6 +13744,8 @@ section{
     width:420px;
     max-width:92%;
     padding:35px;
+    max-height:88vh;
+    overflow-y:auto;
     border-radius:25px;
     background:linear-gradient(145deg,#171717,#0d0d0d);
     border:1px solid rgba(255,210,28,.25);
