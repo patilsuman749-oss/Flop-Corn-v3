@@ -1,0 +1,439 @@
+/* =========================================
+   FLOP CORN 🍿
+   MOVIE COLLECTIONS STYLES
+========================================= */
+
+/* ---------- SECTION HEADING (profile popup) ---------- */
+
+.collections-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.collections-heading h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.new-collection-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--yellow, #ffd21c);
+    color: #0d0d0d;
+    border: none;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+.new-collection-button:hover {
+    background: var(--yellow-light, #ffe66b);
+    transform: translateY(-1px);
+}
+
+/* ---------- COLLECTIONS GRID ---------- */
+
+.profile-collections,
+.reviewer-collections {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.collections-message {
+    color: var(--grey, #a5a5a5);
+    font-size: 14px;
+    grid-column: 1 / -1;
+}
+
+.collection-card {
+    background: var(--card, #151515);
+    border: 1px solid var(--border, rgba(255,255,255,0.09));
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.collection-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--yellow, #ffd21c);
+}
+
+.collection-cover {
+    display: grid;
+    aspect-ratio: 1 / 1;
+    background: #0d0d0d;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.collection-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.collection-cover.cover-count-1 {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+.collection-cover.cover-count-2 img,
+.collection-cover.cover-count-3 img:first-child {
+    grid-row: span 2;
+}
+
+.collection-cover-empty {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--grey, #a5a5a5);
+}
+
+.collection-card-info {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.collection-card-info strong {
+    font-size: 14px;
+    color: var(--white, #fff);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.collection-card-info span {
+    font-size: 12px;
+    color: var(--grey, #a5a5a5);
+}
+
+/* ---------- CREATE / EDIT COLLECTION MODAL ---------- */
+
+.create-collection-overlay,
+.collection-detail-overlay,
+.add-to-collection-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.create-collection-overlay.show,
+.collection-detail-overlay.show,
+.add-to-collection-overlay.show {
+    display: flex;
+}
+
+.create-collection-card,
+.collection-detail-card,
+.add-to-collection-card {
+    background: var(--card, #151515);
+    border: 1px solid var(--border, rgba(255,255,255,0.09));
+    border-radius: 18px;
+    padding: 24px;
+    width: 100%;
+    max-width: 420px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.collection-detail-card {
+    max-width: 520px;
+}
+
+.create-collection-card h2,
+.collection-detail-card h2 {
+    margin-bottom: 4px;
+}
+
+.create-collection-card input[type="text"],
+.create-collection-card textarea {
+    width: 100%;
+    background: #0d0d0d;
+    border: 1px solid var(--border, rgba(255,255,255,0.09));
+    border-radius: 10px;
+    color: var(--white, #fff);
+    padding: 10px 12px;
+    font-size: 14px;
+    margin-top: 12px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.create-collection-card label.public-toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--light-grey, #d8d8d8);
+    cursor: pointer;
+}
+
+.create-collection-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.create-collection-actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.collection-submit-button {
+    background: var(--yellow, #ffd21c);
+    color: #0d0d0d;
+}
+
+.collection-cancel-button {
+    background: #222;
+    color: var(--white, #fff);
+}
+
+.close-modal-button {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--grey, #a5a5a5);
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-modal-button:hover {
+    color: var(--white, #fff);
+}
+
+/* ---------- COLLECTION DETAIL ---------- */
+
+.collection-detail-description {
+    color: var(--grey, #a5a5a5);
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.collection-detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--grey, #a5a5a5);
+}
+
+.collection-detail-movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.collection-detail-movie {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #0d0d0d;
+}
+
+.collection-detail-movie img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.collection-detail-movie .remove-movie-button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.collection-detail-movie .remove-movie-button:hover {
+    background: var(--red, #ff3b30);
+}
+
+.collection-detail-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.collection-detail-actions button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.delete-collection-button {
+    background: rgba(255,59,48,0.15);
+    color: var(--red, #ff3b30);
+}
+
+.delete-collection-button:hover {
+    background: var(--red, #ff3b30);
+    color: #fff;
+}
+
+.toggle-privacy-button {
+    background: #222;
+    color: var(--white, #fff);
+}
+
+/* ---------- ADD TO COLLECTION (movie page) ---------- */
+
+.add-to-collection-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #1c1c1c;
+    color: var(--white, #fff);
+    border: 1px solid var(--border, rgba(255,255,255,0.09));
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: 0.2s ease;
+}
+
+.add-to-collection-button:hover {
+    border-color: var(--yellow, #ffd21c);
+    color: var(--yellow, #ffd21c);
+}
+
+.add-to-collection-list {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.add-to-collection-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0d0d0d;
+    border: 1px solid var(--border, rgba(255,255,255,0.09));
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+}
+
+.add-to-collection-row img {
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: #151515;
+}
+
+.add-to-collection-row .row-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-to-collection-row .row-info strong {
+    font-size: 13px;
+}
+
+.add-to-collection-row .row-info span {
+    font-size: 11px;
+    color: var(--grey, #a5a5a5);
+}
+
+.add-to-collection-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--yellow, #ffd21c);
+}
+
+.add-to-collection-divider {
+    border: none;
+    border-top: 1px solid var(--border, rgba(255,255,255,0.09));
+    margin: 16px 0;
+}
+
+.new-collection-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.new-collection-inline input[type="text"] {
+    background: #0d0d0d;
+    border: 1px solid var(--border, rgba(255,255,255,0.09));
+    border-radius: 10px;
+    color: var(--white, #fff);
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.new-collection-inline button {
+    background: var(--yellow, #ffd21c);
+    color: #0d0d0d;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .profile-collections,
+    .reviewer-collections {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+}

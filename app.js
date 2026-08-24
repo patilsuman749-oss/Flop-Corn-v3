@@ -16,6 +16,17 @@ import {
     deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
+import {
+    createCollection,
+    deleteCollection,
+    updateCollectionMeta,
+    listenUserCollections,
+    collectionMoviesArray,
+    removeMovieFromCollection,
+    renderCollectionCardHTML,
+    POSTER_IMAGE_URL
+} from "./collections.js";
+
 /* =========================================
    FLOP CORN 🍿
    PART 3 — COMPLETE APP.JS
@@ -1377,6 +1388,7 @@ if (myProfileButton && fullProfileOverlay) {
         fullProfileOverlay.classList.add("show");
         
 loadUserWatchlist();
+loadUserCollections();
         profileMenu.classList.remove("show");
 
     });
@@ -1914,6 +1926,440 @@ function loadUserWatchlist() {
         }
 
     );
+
+}
+
+/* =========================================
+   MY COLLECTIONS 🎬
+========================================= */
+
+const profileCollections =
+    document.getElementById("profileCollections");
+
+const newCollectionButton =
+    document.getElementById("newCollectionButton");
+
+const createCollectionOverlay =
+    document.getElementById("createCollectionOverlay");
+
+const newCollectionNameInput =
+    document.getElementById("newCollectionNameInput");
+
+const newCollectionDescInput =
+    document.getElementById("newCollectionDescInput");
+
+const newCollectionPublicCheckbox =
+    document.getElementById("newCollectionPublicCheckbox");
+
+const submitCreateCollectionButton =
+    document.getElementById("submitCreateCollectionButton");
+
+const cancelCreateCollectionButton =
+    document.getElementById("cancelCreateCollectionButton");
+
+const closeCreateCollectionButton =
+    document.getElementById("closeCreateCollectionButton");
+
+const collectionDetailOverlay =
+    document.getElementById("collectionDetailOverlay");
+
+const collectionDetailName =
+    document.getElementById("collectionDetailName");
+
+const collectionDetailDescription =
+    document.getElementById("collectionDetailDescription");
+
+const collectionDetailCount =
+    document.getElementById("collectionDetailCount");
+
+const collectionDetailPrivacy =
+    document.getElementById("collectionDetailPrivacy");
+
+const collectionDetailMovies =
+    document.getElementById("collectionDetailMovies");
+
+const togglePrivacyButton =
+    document.getElementById("togglePrivacyButton");
+
+const deleteCollectionButton =
+    document.getElementById("deleteCollectionButton");
+
+const closeCollectionDetailButton =
+    document.getElementById("closeCollectionDetailButton");
+
+
+let userCollectionsCache = [];
+let unsubscribeUserCollections = null;
+let activeCollectionId = null;
+
+
+function loadUserCollections() {
+
+    const user = auth.currentUser;
+
+    if (!user || !profileCollections) {
+        return;
+    }
+
+    profileCollections.innerHTML = `
+        <p class="collections-message">
+            Loading your collections... 🍿
+        </p>
+    `;
+
+    if (unsubscribeUserCollections) {
+        unsubscribeUserCollections();
+    }
+
+    unsubscribeUserCollections = listenUserCollections(
+
+        user.uid,
+
+        (items) => {
+
+            userCollectionsCache = items;
+
+            if (items.length === 0) {
+
+                profileCollections.innerHTML = `
+                    <p class="collections-message">
+                        No collections yet. Create your first one! 🎬
+                    </p>
+                `;
+
+                return;
+
+            }
+
+            profileCollections.innerHTML = items
+                .map((coll) => renderCollectionCardHTML(coll))
+                .join("");
+
+            profileCollections
+                .querySelectorAll(".collection-card")
+                .forEach((card) => {
+
+                    card.addEventListener("click", () => {
+
+                        const collectionId =
+                            card.getAttribute("data-collection-id");
+
+                        openCollectionDetail(collectionId);
+
+                    });
+
+                });
+
+            /* keep detail popup in sync if it's open */
+
+            if (activeCollectionId) {
+
+                const updated = items.find(
+                    (c) => c.id === activeCollectionId
+                );
+
+                if (updated) {
+                    renderCollectionDetail(updated);
+                } else {
+                    collectionDetailOverlay.classList.remove("show");
+                }
+
+            }
+
+        },
+
+        (error) => {
+
+            console.error("Collections loading error:", error);
+
+            profileCollections.innerHTML = `
+                <p class="collections-message">
+                    Your collections could not load.
+                </p>
+            `;
+
+        }
+
+    );
+
+}
+
+
+/* OPEN "NEW COLLECTION" MODAL */
+
+if (newCollectionButton) {
+
+    newCollectionButton.addEventListener("click", () => {
+
+        if (!auth.currentUser) {
+            alert("Please sign in with Google to create collections 🍿");
+            return;
+        }
+
+        newCollectionNameInput.value = "";
+        newCollectionDescInput.value = "";
+        newCollectionPublicCheckbox.checked = true;
+
+        createCollectionOverlay.classList.add("show");
+
+    });
+
+}
+
+function closeCreateCollectionModal() {
+    createCollectionOverlay.classList.remove("show");
+}
+
+if (cancelCreateCollectionButton) {
+    cancelCreateCollectionButton.addEventListener("click", closeCreateCollectionModal);
+}
+
+if (closeCreateCollectionButton) {
+    closeCreateCollectionButton.addEventListener("click", closeCreateCollectionModal);
+}
+
+if (createCollectionOverlay) {
+
+    createCollectionOverlay.addEventListener("click", (event) => {
+
+        if (event.target === createCollectionOverlay) {
+            closeCreateCollectionModal();
+        }
+
+    });
+
+}
+
+if (submitCreateCollectionButton) {
+
+    submitCreateCollectionButton.addEventListener("click", async () => {
+
+        const name = newCollectionNameInput.value.trim();
+
+        if (!name) {
+            alert("Please give your collection a name 🎬");
+            return;
+        }
+
+        try {
+
+            await createCollection({
+                name,
+                description: newCollectionDescInput.value,
+                isPublic: newCollectionPublicCheckbox.checked
+            });
+
+            closeCreateCollectionModal();
+
+        } catch (error) {
+
+            console.error("Create collection error:", error);
+            alert("Could not create collection. Please try again.");
+
+        }
+
+    });
+
+}
+
+
+/* COLLECTION DETAIL POPUP */
+
+function openCollectionDetail(collectionId) {
+
+    const coll = userCollectionsCache.find((c) => c.id === collectionId);
+
+    if (!coll) {
+        return;
+    }
+
+    activeCollectionId = collectionId;
+
+    renderCollectionDetail(coll);
+
+    collectionDetailOverlay.classList.add("show");
+
+}
+
+function renderCollectionDetail(coll) {
+
+    collectionDetailName.textContent = coll.name;
+
+    collectionDetailDescription.textContent = coll.description || "";
+
+    const movies = collectionMoviesArray(coll);
+
+    collectionDetailCount.textContent =
+        `${movies.length} movie${movies.length === 1 ? "" : "s"}`;
+
+    collectionDetailPrivacy.innerHTML = coll.isPublic
+        ? `<i class="fa-solid fa-globe"></i> Public`
+        : `<i class="fa-solid fa-lock"></i> Private`;
+
+    togglePrivacyButton.innerHTML = coll.isPublic
+        ? `<i class="fa-solid fa-lock"></i> Make Private`
+        : `<i class="fa-solid fa-globe"></i> Make Public`;
+
+    if (movies.length === 0) {
+
+        collectionDetailMovies.innerHTML = `
+            <p class="collections-message">
+                No movies in this collection yet. Add some from any movie page!
+            </p>
+        `;
+
+        return;
+
+    }
+
+    collectionDetailMovies.innerHTML = movies.map((movie) => `
+
+        <div class="collection-detail-movie" data-movie-id="${movie.movieId}">
+
+            <img
+                src="${movie.poster
+                    ? POSTER_IMAGE_URL + movie.poster
+                    : "flopcorn-logo.jpeg.jpeg"}"
+                alt="${movie.title}"
+            >
+
+            <button
+                class="remove-movie-button"
+                data-remove-movie-id="${movie.movieId}"
+                title="Remove from collection"
+            >
+                ×
+            </button>
+
+        </div>
+
+    `).join("");
+
+    collectionDetailMovies
+        .querySelectorAll(".collection-detail-movie")
+        .forEach((card) => {
+
+            card.addEventListener("click", (event) => {
+
+                if (event.target.closest(".remove-movie-button")) {
+                    return;
+                }
+
+                const movieId = card.getAttribute("data-movie-id");
+
+                collectionDetailOverlay.classList.remove("show");
+
+                openMoviePage(movieId);
+
+            });
+
+        });
+
+    collectionDetailMovies
+        .querySelectorAll(".remove-movie-button")
+        .forEach((button) => {
+
+            button.addEventListener("click", async (event) => {
+
+                event.stopPropagation();
+
+                const movieId = button.getAttribute("data-remove-movie-id");
+
+                try {
+                    await removeMovieFromCollection(activeCollectionId, movieId);
+                } catch (error) {
+                    console.error("Remove movie error:", error);
+                    alert("Could not remove movie. Please try again.");
+                }
+
+            });
+
+        });
+
+}
+
+if (closeCollectionDetailButton) {
+
+    closeCollectionDetailButton.addEventListener("click", () => {
+        collectionDetailOverlay.classList.remove("show");
+        activeCollectionId = null;
+    });
+
+}
+
+if (collectionDetailOverlay) {
+
+    collectionDetailOverlay.addEventListener("click", (event) => {
+
+        if (event.target === collectionDetailOverlay) {
+            collectionDetailOverlay.classList.remove("show");
+            activeCollectionId = null;
+        }
+
+    });
+
+}
+
+if (togglePrivacyButton) {
+
+    togglePrivacyButton.addEventListener("click", async () => {
+
+        const coll = userCollectionsCache.find(
+            (c) => c.id === activeCollectionId
+        );
+
+        if (!coll) {
+            return;
+        }
+
+        try {
+
+            await updateCollectionMeta(activeCollectionId, {
+                isPublic: !coll.isPublic
+            });
+
+        } catch (error) {
+
+            console.error("Update privacy error:", error);
+            alert("Could not update privacy. Please try again.");
+
+        }
+
+    });
+
+}
+
+if (deleteCollectionButton) {
+
+    deleteCollectionButton.addEventListener("click", async () => {
+
+        if (!activeCollectionId) {
+            return;
+        }
+
+        const confirmDelete = confirm(
+            "Delete this collection? This can't be undone."
+        );
+
+        if (!confirmDelete) {
+            return;
+        }
+
+        try {
+
+            await deleteCollection(activeCollectionId);
+
+            collectionDetailOverlay.classList.remove("show");
+            activeCollectionId = null;
+
+        } catch (error) {
+
+            console.error("Delete collection error:", error);
+            alert("Could not delete collection. Please try again.");
+
+        }
+
+    });
 
 }
 

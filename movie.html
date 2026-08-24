@@ -1506,6 +1506,7 @@
 
 </style>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="collections.css?v=1">
 </head>
 
 
@@ -1830,6 +1831,20 @@
 
                         </button>
 
+                        <button
+
+                            class="add-to-collection-button"
+
+                            id="addToCollectionButton"
+
+                        >
+
+                            <i class="fa-solid fa-layer-group"></i>
+
+                            Add to Collection
+
+                        </button>
+
 
                     </div>
 
@@ -2067,6 +2082,16 @@ import {
     limit,
     runTransaction
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+import {
+    createCollection,
+    addMovieToCollection,
+    removeMovieFromCollection,
+    listenUserCollections,
+    listenPublicCollections,
+    collectionMoviesArray,
+    POSTER_IMAGE_URL
+} from "./collections.js";
 
 
         /* ===============================
@@ -2881,6 +2906,316 @@ watchlistButton.addEventListener(
     }
 
 );
+
+
+        /* ===============================
+   ADD TO COLLECTION 🎬
+=============================== */
+
+const addToCollectionButton =
+    document.getElementById("addToCollectionButton");
+
+const addToCollectionOverlay =
+    document.getElementById("addToCollectionOverlay");
+
+const addToCollectionList =
+    document.getElementById("addToCollectionList");
+
+const closeAddToCollectionButton =
+    document.getElementById("closeAddToCollectionButton");
+
+const inlineNewCollectionName =
+    document.getElementById("inlineNewCollectionName");
+
+const inlineCreateCollectionButton =
+    document.getElementById("inlineCreateCollectionButton");
+
+let unsubscribeAddToCollectionList = null;
+
+function renderAddToCollectionList(items) {
+
+    if (!currentMovie) {
+        return;
+    }
+
+    if (items.length === 0) {
+
+        addToCollectionList.innerHTML = `
+            <p class="collections-message">
+                You don't have any collections yet. Create one below!
+            </p>
+        `;
+
+        return;
+
+    }
+
+    addToCollectionList.innerHTML = items.map((coll) => {
+
+        const isInCollection = !!(coll.movies && coll.movies[currentMovie.id]);
+
+        return `
+            <label class="add-to-collection-row" data-collection-id="${coll.id}">
+
+                <img
+                    src="${currentMovie.poster_path
+                        ? IMAGE_URL + currentMovie.poster_path
+                        : "flopcorn-logo.jpeg.jpeg"}"
+                    alt=""
+                >
+
+                <div class="row-info">
+                    <strong>${coll.name}</strong>
+                    <span>${Object.keys(coll.movies || {}).length} movies</span>
+                </div>
+
+                <input
+                    type="checkbox"
+                    data-collection-id="${coll.id}"
+                    ${isInCollection ? "checked" : ""}
+                >
+
+            </label>
+        `;
+
+    }).join("");
+
+    addToCollectionList
+        .querySelectorAll('input[type="checkbox"]')
+        .forEach((checkbox) => {
+
+            checkbox.addEventListener("change", async () => {
+
+                const collectionId =
+                    checkbox.getAttribute("data-collection-id");
+
+                try {
+
+                    if (checkbox.checked) {
+                        await addMovieToCollection(collectionId, currentMovie);
+                    } else {
+                        await removeMovieFromCollection(collectionId, currentMovie.id);
+                    }
+
+                } catch (error) {
+
+                    console.error("Add to collection error:", error);
+                    checkbox.checked = !checkbox.checked;
+                    alert("Something went wrong. Please try again.");
+
+                }
+
+            });
+
+        });
+
+}
+
+if (addToCollectionButton) {
+
+    addToCollectionButton.addEventListener("click", () => {
+
+        if (!auth.currentUser) {
+            alert("Please sign in with Google to use Collections 🍿");
+            return;
+        }
+
+        if (!currentMovie) {
+            alert("Please wait for the movie to finish loading.");
+            return;
+        }
+
+        addToCollectionList.innerHTML = `
+            <p class="collections-message">Loading your collections...</p>
+        `;
+
+        inlineNewCollectionName.value = "";
+
+        if (unsubscribeAddToCollectionList) {
+            unsubscribeAddToCollectionList();
+        }
+
+        unsubscribeAddToCollectionList = listenUserCollections(
+
+            auth.currentUser.uid,
+
+            (items) => renderAddToCollectionList(items),
+
+            (error) => {
+
+                console.error("Collections loading error:", error);
+
+                addToCollectionList.innerHTML = `
+                    <p class="collections-message">
+                        Your collections could not load.
+                    </p>
+                `;
+
+            }
+
+        );
+
+        addToCollectionOverlay.classList.add("show");
+
+    });
+
+}
+
+function closeAddToCollectionModal() {
+    addToCollectionOverlay.classList.remove("show");
+}
+
+if (closeAddToCollectionButton) {
+    closeAddToCollectionButton.addEventListener("click", closeAddToCollectionModal);
+}
+
+if (addToCollectionOverlay) {
+
+    addToCollectionOverlay.addEventListener("click", (event) => {
+
+        if (event.target === addToCollectionOverlay) {
+            closeAddToCollectionModal();
+        }
+
+    });
+
+}
+
+if (inlineCreateCollectionButton) {
+
+    inlineCreateCollectionButton.addEventListener("click", async () => {
+
+        const name = inlineNewCollectionName.value.trim();
+
+        if (!name) {
+            alert("Please give your collection a name 🎬");
+            return;
+        }
+
+        if (!currentMovie) {
+            return;
+        }
+
+        try {
+
+            const newCollectionRef = await createCollection({
+                name,
+                description: "",
+                isPublic: true
+            });
+
+            await addMovieToCollection(newCollectionRef.id, currentMovie);
+
+            inlineNewCollectionName.value = "";
+
+            alert(`Added to "${name}"! 🍿`);
+
+        } catch (error) {
+
+            console.error("Create collection error:", error);
+            alert("Could not create collection. Please try again.");
+
+        }
+
+    });
+
+}
+
+
+        /* ===============================
+   READ-ONLY COLLECTION VIEWER
+   (used from Reviewer Profile popup)
+=============================== */
+
+const viewCollectionOverlay =
+    document.getElementById("viewCollectionOverlay");
+
+const viewCollectionName =
+    document.getElementById("viewCollectionName");
+
+const viewCollectionDescription =
+    document.getElementById("viewCollectionDescription");
+
+const viewCollectionCount =
+    document.getElementById("viewCollectionCount");
+
+const viewCollectionMovies =
+    document.getElementById("viewCollectionMovies");
+
+const closeViewCollectionButton =
+    document.getElementById("closeViewCollectionButton");
+
+function openViewCollection(coll) {
+
+    viewCollectionName.textContent = coll.name;
+    viewCollectionDescription.textContent = coll.description || "";
+
+    const movies = collectionMoviesArray(coll);
+
+    viewCollectionCount.textContent =
+        `${movies.length} movie${movies.length === 1 ? "" : "s"}`;
+
+    if (movies.length === 0) {
+
+        viewCollectionMovies.innerHTML = `
+            <p class="collections-message">No movies in this collection yet.</p>
+        `;
+
+    } else {
+
+        viewCollectionMovies.innerHTML = movies.map((movie) => `
+            <div class="collection-detail-movie" data-movie-id="${movie.movieId}">
+                <img
+                    src="${movie.poster
+                        ? POSTER_IMAGE_URL + movie.poster
+                        : "flopcorn-logo.jpeg.jpeg"}"
+                    alt="${movie.title}"
+                >
+            </div>
+        `).join("");
+
+        viewCollectionMovies
+            .querySelectorAll(".collection-detail-movie")
+            .forEach((card) => {
+
+                card.addEventListener("click", () => {
+
+                    const movieId = card.getAttribute("data-movie-id");
+
+                    viewCollectionOverlay.classList.remove("show");
+                    reviewerOverlay.classList.remove("show");
+
+                    openMoviePage(movieId);
+
+                });
+
+            });
+
+    }
+
+    viewCollectionOverlay.classList.add("show");
+
+}
+
+if (closeViewCollectionButton) {
+
+    closeViewCollectionButton.addEventListener("click", () => {
+        viewCollectionOverlay.classList.remove("show");
+    });
+
+}
+
+if (viewCollectionOverlay) {
+
+    viewCollectionOverlay.addEventListener("click", (event) => {
+
+        if (event.target === viewCollectionOverlay) {
+            viewCollectionOverlay.classList.remove("show");
+        }
+
+    });
+
+}
 
 
         /* ===============================
@@ -3852,6 +4187,91 @@ if (userId) {
 
     });
 
+    const reviewerCollectionsContainer =
+        document.getElementById("reviewerCollections");
+
+    const reviewerUserId = userId || firstReview.userId;
+
+    if (reviewerCollectionsContainer && reviewerUserId) {
+
+        listenPublicCollections(
+
+            reviewerUserId,
+
+            (items) => {
+
+                if (items.length === 0) {
+
+                    reviewerCollectionsContainer.innerHTML = `
+                        <p class="collections-message">
+                            No public collections yet.
+                        </p>
+                    `;
+
+                    return;
+
+                }
+
+                reviewerCollectionsContainer.innerHTML = items.map((coll) => {
+
+                    const posters = collectionMoviesArray(coll)
+                        .slice(0, 4)
+                        .map((m) => m.poster);
+
+                    const count = collectionMoviesArray(coll).length;
+
+                    const posterHTML = posters.length
+                        ? posters.map((p) => `
+                            <img
+                                src="${p ? POSTER_IMAGE_URL + p : "flopcorn-logo.jpeg.jpeg"}"
+                                alt=""
+                            >
+                          `).join("")
+                        : `<div class="collection-cover-empty"><i class="fa-solid fa-film"></i></div>`;
+
+                    return `
+                        <div class="collection-card" data-collection-id="${coll.id}">
+                            <div class="collection-cover cover-count-${Math.min(posters.length, 4)}">
+                                ${posterHTML}
+                            </div>
+                            <div class="collection-card-info">
+                                <strong>${coll.name}</strong>
+                                <span>${count} movie${count === 1 ? "" : "s"}</span>
+                            </div>
+                        </div>
+                    `;
+
+                }).join("");
+
+                reviewerCollectionsContainer
+                    .querySelectorAll(".collection-card")
+                    .forEach((card) => {
+
+                        card.addEventListener("click", () => {
+
+                            const collectionId =
+                                card.getAttribute("data-collection-id");
+
+                            const coll = items.find((c) => c.id === collectionId);
+
+                            if (!coll) return;
+
+                            openViewCollection(coll);
+
+                        });
+
+                    });
+
+            },
+
+            (error) => {
+                console.error("Public collections error:", error);
+            }
+
+        );
+
+    }
+
 }
 // ===============================
 // TRAILER
@@ -3946,9 +4366,87 @@ trailerModal.onclick=(e)=>{if(e.target===trailerModal){trailerFrame.src=""; trai
 
         </div>
 
+        <h3 class="recent-title">
+            <i class="fa-solid fa-layer-group"></i>
+            Collections
+        </h3>
+
+        <div class="reviewer-collections" id="reviewerCollections">
+
+            <p class="collections-message">
+                No public collections yet.
+            </p>
+
+        </div>
+
     </div>
 
 </div>
+
+<!-- ================= ADD TO COLLECTION POPUP ================= -->
+
+<div class="add-to-collection-overlay" id="addToCollectionOverlay">
+
+    <div class="add-to-collection-card">
+
+        <button class="close-modal-button" id="closeAddToCollectionButton">
+            ×
+        </button>
+
+        <h2>Add to Collection</h2>
+        <p class="collection-detail-description">
+            Choose a collection or create a new one.
+        </p>
+
+        <div class="add-to-collection-list" id="addToCollectionList">
+            <p class="collections-message">Loading your collections...</p>
+        </div>
+
+        <hr class="add-to-collection-divider">
+
+        <div class="new-collection-inline">
+
+            <input
+                type="text"
+                id="inlineNewCollectionName"
+                placeholder="New collection name"
+                maxlength="60"
+                autocomplete="off"
+            >
+
+            <button id="inlineCreateCollectionButton">
+                <i class="fa-solid fa-plus"></i>
+                Create &amp; Add
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= READ-ONLY COLLECTION VIEWER ================= -->
+
+<div class="collection-detail-overlay" id="viewCollectionOverlay">
+
+    <div class="collection-detail-card">
+
+        <button class="close-modal-button" id="closeViewCollectionButton">
+            ×
+        </button>
+
+        <h2 id="viewCollectionName">Collection</h2>
+        <p class="collection-detail-description" id="viewCollectionDescription"></p>
+        <div class="collection-detail-meta">
+            <span id="viewCollectionCount">0 movies</span>
+        </div>
+
+        <div class="collection-detail-movies" id="viewCollectionMovies"></div>
+
+    </div>
+
+</div>
+
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {

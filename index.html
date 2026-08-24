@@ -42,6 +42,7 @@
 
     <!-- Our CSS -->
     <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="collections.css?v=1">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7148348507749090"
      crossorigin="anonymous"></script>
     
@@ -1253,9 +1254,136 @@ Made for Movie Lovers 🍿
 </div>
 
 
+        <!-- MY COLLECTIONS -->
+
+<div class="profile-divider"></div>
+
+<div class="collections-heading">
+
+    <div>
+
+        <h3>
+            <i class="fa-solid fa-layer-group"></i>
+            My Collections
+        </h3>
+
+        <p>
+            Group your favourite movies into playlists
+        </p>
+
+    </div>
+
+    <button
+        class="new-collection-button"
+        id="newCollectionButton"
+    >
+        <i class="fa-solid fa-plus"></i>
+        New
+    </button>
+
+</div>
+
+<div
+    class="profile-collections"
+    id="profileCollections"
+>
+
+    <p class="collections-message">
+        Sign in to create collections 🍿
+    </p>
+
+</div>
+
+
         <p class="profile-member-text">
             🎬 Member of the Flop Corn community
         </p>
+
+    </div>
+
+</div>
+
+<!-- ================= CREATE / EDIT COLLECTION POPUP ================= -->
+
+<div class="create-collection-overlay" id="createCollectionOverlay">
+
+    <div class="create-collection-card">
+
+        <button class="close-modal-button" id="closeCreateCollectionButton">
+            ×
+        </button>
+
+        <h2>New Collection</h2>
+        <p class="collection-detail-description">
+            Give it a name people will recognise, like a playlist.
+        </p>
+
+        <input
+            type="text"
+            id="newCollectionNameInput"
+            placeholder="e.g. Best Heist Movies"
+            maxlength="60"
+            autocomplete="off"
+        >
+
+        <textarea
+            id="newCollectionDescInput"
+            placeholder="Optional description"
+            maxlength="140"
+            rows="2"
+        ></textarea>
+
+        <label class="public-toggle-label">
+            <input type="checkbox" id="newCollectionPublicCheckbox" checked>
+            Public — anyone can view this collection on your profile
+        </label>
+
+        <div class="create-collection-actions">
+            <button class="collection-cancel-button" id="cancelCreateCollectionButton">
+                Cancel
+            </button>
+            <button class="collection-submit-button" id="submitCreateCollectionButton">
+                Create
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= COLLECTION DETAIL POPUP ================= -->
+
+<div class="collection-detail-overlay" id="collectionDetailOverlay">
+
+    <div class="collection-detail-card">
+
+        <button class="close-modal-button" id="closeCollectionDetailButton">
+            ×
+        </button>
+
+        <h2 id="collectionDetailName">Collection</h2>
+
+        <p class="collection-detail-description" id="collectionDetailDescription"></p>
+
+        <div class="collection-detail-meta">
+            <span id="collectionDetailCount">0 movies</span>
+            <span id="collectionDetailPrivacy"></span>
+        </div>
+
+        <div class="collection-detail-movies" id="collectionDetailMovies">
+            <p class="collections-message">Loading...</p>
+        </div>
+
+        <div class="collection-detail-actions">
+            <button class="toggle-privacy-button" id="togglePrivacyButton">
+                <i class="fa-solid fa-lock"></i>
+                Make Private
+            </button>
+            <button class="delete-collection-button" id="deleteCollectionButton">
+                <i class="fa-solid fa-trash"></i>
+                Delete
+            </button>
+        </div>
 
     </div>
 

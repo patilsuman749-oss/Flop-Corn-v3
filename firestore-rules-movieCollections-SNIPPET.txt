@@ -1,0 +1,31 @@
+/* =========================================
+   FLOP CORN 🍿 — FIRESTORE RULES SNIPPET
+   for the new "movieCollections" feature
+========================================= */
+
+// Add this match block inside your existing
+// `service cloud.firestore { match /databases/{database}/documents { ... } }`
+// alongside your existing rules for "watchlists", "reviews", "users", etc.
+// Do NOT paste the whole file over your existing rules — just add this block.
+
+match /movieCollections/{collectionId} {
+
+  // Anyone signed in can read a collection IF it's public,
+  // or if they are the owner (so owners can see their private ones too).
+  allow read: if resource.data.isPublic == true
+              || (request.auth != null && request.auth.uid == resource.data.userId);
+
+  // Only a signed-in user can create a collection, and only as themselves.
+  allow create: if request.auth != null
+                && request.auth.uid == request.resource.data.userId;
+
+  // Only the owner can update (add/remove movies, rename, toggle privacy)
+  // or delete their own collection. Ownership (userId) can't be changed.
+  allow update: if request.auth != null
+                && request.auth.uid == resource.data.userId
+                && request.resource.data.userId == resource.data.userId;
+
+  allow delete: if request.auth != null
+                && request.auth.uid == resource.data.userId;
+
+}
