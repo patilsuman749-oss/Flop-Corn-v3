@@ -14041,6 +14041,12 @@ max-width:300px;
     #moreFeaturesBtn{
         display:none !important;
     }
+
+    #mobile-features{
+        display:flex !important;
+        flex-wrap:wrap !important;
+        gap:15px !important;
+    }
 }
 
 /* =========================
@@ -14072,5 +14078,7 @@ max-width:300px;
     .movie-news-home-button,
     .movie-universe-home-button{
         width:100% !important;
+        min-height:54px !important;
+        box-sizing:border-box !important;
     }
 }
