@@ -4204,29 +4204,6 @@ document.addEventListener(
     }
 
 );
-// APP DOWNLOAD POPUP
-
-const appPopup = document.getElementById("appPopup");
-const closeAppPopup = document.getElementById("closeAppPopup");
-const continueWebsite = document.getElementById("continueWebsite");
-
-// Show popup once every 24 hours
-const lastPopupTime = localStorage.getItem("flopcornAppPopup");
-const currentTime = Date.now();
-
-if (!lastPopupTime || (currentTime - Number(lastPopupTime)) > 24 * 60 * 60 * 1000) {
-    appPopup.style.display = "flex";
-} else {
-    appPopup.style.display = "none";
-}
-
-function closePopup() {
-    appPopup.style.display = "none";
-    localStorage.setItem("flopcornAppPopup", Date.now());
-}
-
-closeAppPopup.addEventListener("click", closePopup);
-continueWebsite.addEventListener("click", closePopup);
 document.addEventListener("DOMContentLoaded", () => {
 
     const btn = document.getElementById("moreFeaturesBtn");
