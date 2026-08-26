@@ -117,6 +117,11 @@ async function sendMessage() {
 
         const query = aiResult.movie_query || { mode: "none" };
 
+        // Clear last turn's recommendation cards before showing this turn's
+        // result (or lack of one) - otherwise old cards linger on screen and
+        // it looks like every question gives the same movies back.
+        clearMovieCards();
+
         if (query.mode && query.mode !== "none") {
 
             const movies = await findMovies(query);
@@ -136,6 +141,17 @@ async function sendMessage() {
         addAiMessage("Oops! 🍿 I had trouble thinking that through. Please try again.");
 
     }
+
+}
+
+
+/* CLEAR PREVIOUS MOVIE RESULT CARDS */
+
+function clearMovieCards() {
+
+    document.querySelectorAll(".ai-movie-result").forEach(function(card) {
+        card.remove();
+    });
 
 }
 
