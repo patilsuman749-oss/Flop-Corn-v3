@@ -218,6 +218,50 @@
 
     <!-- ================= MOBILE MENU ================= -->
 
+    <!-- ================= iOS "ADD TO HOME SCREEN" MODAL ================= -->
+
+    <div class="ios-install-overlay" id="iosInstallOverlay">
+
+        <div class="ios-install-box">
+
+            <button class="ios-install-close" id="iosInstallClose" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="ios-install-icon">
+                <img src="favicon-192.png" alt="Flop Corn">
+            </div>
+
+            <h3>Add Flop Corn to your Home Screen</h3>
+
+            <p>
+                Flop Corn isn't a downloadable .apk on iPhone — install it as an
+                app straight from Safari instead:
+            </p>
+
+            <ol>
+                <li>
+                    Tap the <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                    <strong>Share</strong> button in Safari's toolbar
+                </li>
+                <li>
+                    Scroll down and tap <strong>Add to Home Screen</strong>
+                </li>
+                <li>
+                    Tap <strong>Add</strong> in the top right corner
+                </li>
+            </ol>
+
+            <p class="ios-install-note">
+                Flop Corn will then open full-screen from your Home Screen, just
+                like a regular app.
+            </p>
+
+        </div>
+
+    </div>
+
+
     <div class="mobile-menu" id="mobileMenu">
 
         <a href="#home">
@@ -423,9 +467,9 @@
         Write a Review
     </a>
 
-    <a href="FlopCorn.apk" download class="download-app-home">
+    <a href="FlopCorn.apk" download class="download-app-home" id="downloadAppButton">
         <i class="fa-brands fa-android"></i>
-        Download Android App
+        <span id="downloadAppButtonText">Download Android App</span>
     </a>
     <button id="moreFeaturesBtn" class="movie-news-home-button">
     <i class="fa-solid fa-plus"></i>

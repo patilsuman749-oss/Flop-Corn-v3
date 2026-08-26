@@ -14082,3 +14082,108 @@ max-width:300px;
         box-sizing:border-box !important;
     }
 }
+
+/* =========================================
+   iOS "ADD TO HOME SCREEN" MODAL
+========================================= */
+
+.ios-install-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.ios-install-overlay.show {
+    display: flex;
+}
+
+.ios-install-box {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+
+    background: #151515;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 18px;
+
+    padding: 28px 24px 24px;
+    text-align: center;
+}
+
+.ios-install-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.06);
+    color: #a5a5a5;
+    cursor: pointer;
+}
+
+.ios-install-icon img {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+}
+
+.ios-install-box h3 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.ios-install-box p {
+    color: #a5a5a5;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.ios-install-box ol {
+    text-align: left;
+    color: #d8d8d8;
+    font-size: 14px;
+    line-height: 1.6;
+
+    margin: 0 0 14px;
+    padding-left: 20px;
+}
+
+.ios-install-box ol li {
+    margin-bottom: 8px;
+}
+
+.ios-install-box ol strong {
+    color: #ffd21c;
+}
+
+.ios-install-box ol i {
+    color: #ffd21c;
+}
+
+.ios-install-note {
+    font-size: 12px !important;
+    color: #6f6f6f !important;
+    margin-bottom: 0 !important;
+}

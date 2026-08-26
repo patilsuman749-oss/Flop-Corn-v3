@@ -4227,4 +4227,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    // ===== iOS: swap the Android .apk download for
+    //       "Add to Home Screen" install instructions =====
+
+    const isIOS =
+        /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+    const downloadBtn = document.getElementById("downloadAppButton");
+    const downloadBtnText = document.getElementById("downloadAppButtonText");
+    const iosOverlay = document.getElementById("iosInstallOverlay");
+    const iosClose = document.getElementById("iosInstallClose");
+
+    if (isIOS && downloadBtn) {
+
+        downloadBtn.removeAttribute("download");
+        downloadBtn.setAttribute("href", "#");
+
+        downloadBtn.querySelector("i").className = "fa-brands fa-apple";
+
+        if (downloadBtnText) {
+            downloadBtnText.textContent = "Add to Home Screen";
+        }
+
+        downloadBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            if (iosOverlay) {
+                iosOverlay.classList.add("show");
+            }
+        });
+
+    }
+
+    if (iosClose && iosOverlay) {
+        iosClose.addEventListener("click", () => {
+            iosOverlay.classList.remove("show");
+        });
+    }
+
+    if (iosOverlay) {
+        iosOverlay.addEventListener("click", (event) => {
+            if (event.target === iosOverlay) {
+                iosOverlay.classList.remove("show");
+            }
+        });
+    }
+
 });
