@@ -189,8 +189,12 @@ async function discoverMovies(query) {
     parameters.append("include_adult", "false");
     parameters.append("vote_count.gte", "50");
 
-    if (query.language && languages[query.language]) {
-        parameters.append("with_original_language", languages[query.language]);
+    const normalizedLanguage = query.language
+        ? String(query.language).toLowerCase().trim()
+        : null;
+
+    if (normalizedLanguage && languages[normalizedLanguage]) {
+        parameters.append("with_original_language", languages[normalizedLanguage]);
     }
 
     if (Array.isArray(query.genres) && query.genres.length > 0) {
