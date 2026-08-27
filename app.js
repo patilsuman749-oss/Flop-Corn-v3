@@ -1248,9 +1248,14 @@ window.addEventListener(
 
 
 /* LOAD TRENDING MOVIES */
+/* NOTE: TMDB's /trending endpoint has no region filter, so it was
+   pulling in mostly US/Hollywood titles. Switched to a discover
+   query scoped to region=IN + release_type (theatrical/digital)
+   so "trending" reflects movies that actually released in India,
+   sorted by popularity — same approach as the release calendar. */
 
 getMovies(
-    "/trending/movie/week",
+    "/discover/movie?region=IN&with_release_type=2|3&sort_by=popularity.desc",
     trendingMovies
 );
 
@@ -1278,10 +1283,12 @@ getMovies(
 
 
 /* LOAD NEW MOVIES */
+/* NOTE: added region=IN so "New Release" shows what's actually
+   releasing in India instead of the default US now-playing list. */
 
 getMovies(
 
-    "/movie/now_playing",
+    "/movie/now_playing?region=IN",
 
     newMovies
 

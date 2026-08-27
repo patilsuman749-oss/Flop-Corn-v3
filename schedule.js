@@ -26,6 +26,59 @@ const cache = {};
 
 
 /* =========================================
+   MANUAL BLOCKLIST
+   Add a TMDB id here to hide a specific title
+   from the calendar (mirrors BLOCKED_MOVIE_IDS
+   in app.js, but kept separate since this page
+   loads standalone).
+========================================= */
+
+const BLOCKED_SCHEDULE_IDS = new Set([
+    // e.g. 123456,
+]);
+
+
+/* =========================================
+   "NOT REALLY RELEASING IN INDIA" HEURISTIC
+   TMDB's include_adult flag mostly only catches
+   hardcore content — it does NOT reliably flag
+   Korean/Japanese softcore erotic dramas, which
+   often show up with a fake/loose region=IN
+   release_date entry even though they never
+   actually release here. Those titles are almost
+   always tagged with ONLY Romance and/or Drama
+   and nothing else, and have very few votes.
+   We filter those out. This is a heuristic, not
+   perfect — add stragglers to BLOCKED_SCHEDULE_IDS
+   above if any slip through.
+========================================= */
+
+const SOFTCORE_ONLY_GENRES = new Set([10749, 18]); // Romance, Drama
+
+function looksLikeMislabeledAdultTitle(item) {
+
+    if (item._mediaType !== "movie") {
+        return false;
+    }
+
+    if (item.original_language !== "ko" && item.original_language !== "ja") {
+        return false;
+    }
+
+    const genres = item.genre_ids || [];
+
+    const onlySoftcoreGenres =
+        genres.length > 0 &&
+        genres.every((g) => SOFTCORE_ONLY_GENRES.has(g));
+
+    const lowVotes = (item.vote_count || 0) < 20;
+
+    return onlySoftcoreGenres && lowVotes;
+
+}
+
+
+/* =========================================
    DATE HELPERS
 ========================================= */
 
@@ -203,6 +256,8 @@ async function fetchSchedule(mediaType, status) {
             && item._releaseDate >= range.gte
             && item._releaseDate <= range.lte
             && item.poster_path
+            && !BLOCKED_SCHEDULE_IDS.has(item.id)
+            && !looksLikeMislabeledAdultTitle(item)
     );
 
 
