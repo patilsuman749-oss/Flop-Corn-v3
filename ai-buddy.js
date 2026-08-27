@@ -233,6 +233,13 @@ async function discoverMovies(query) {
         parameters.append("primary_release_date.lte", `${query.max_year}-12-31`);
     }
 
+    // Without this, every request landed on page 1 of the exact same
+    // popularity-sorted list, so a genre asked twice (or a vague request
+    // with no genre/language at all) always came back with the same
+    // handful of movies. Pull from a wider, randomized pool instead.
+    const randomPage = Math.floor(Math.random() * 5) + 1; // pages 1-5
+    parameters.append("page", String(randomPage));
+
     const movieURL = `${BASE_URL}/discover/movie?${parameters.toString()}`;
 
     const response = await fetch(movieURL);
@@ -243,9 +250,17 @@ async function discoverMovies(query) {
 
     const data = await response.json();
 
-    return (data.results || [])
-        .filter(movie => movie.poster_path && movie.vote_average > 0)
-        .slice(0, 5);
+    const candidates = (data.results || [])
+        .filter(movie => movie.poster_path && movie.vote_average > 0);
+
+    // Shuffle before slicing so repeated asks for the same genre don't
+    // hand back the same 5 movies in the same order every time.
+    for (let i = candidates.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+    }
+
+    return candidates.slice(0, 5);
 
 }
 
