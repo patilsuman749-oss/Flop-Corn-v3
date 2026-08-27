@@ -1723,6 +1723,304 @@ function displayTopRatedMovies(
 }
 
 /* =========================================
+   TOP ROASTED MOVIES 🔥
+========================================= */
+
+const topRoastedMovies =
+    document.getElementById("topRoastedMovies");
+
+if (topRoastedMovies) {
+
+    onSnapshot(
+        collection(db, "reviews"),
+
+        (snapshot) => {
+
+            const movieRatings = {};
+
+            snapshot.forEach((reviewDocument) => {
+
+                const review =
+                    reviewDocument.data();
+
+                if (
+                    !review.movieId ||
+                    !review.movieTitle ||
+                    !review.rating
+                ) {
+                    return;
+                }
+
+                const movieId =
+                    review.movieId;
+
+                if (!movieRatings[movieId]) {
+
+                    movieRatings[movieId] = {
+
+                        id: movieId,
+
+                        title:
+                            review.movieTitle,
+
+                        poster:
+                            review.moviePoster || "",
+
+                        totalRating: 0,
+
+                        reviewCount: 0
+
+                    };
+
+                }
+
+                movieRatings[movieId]
+                    .totalRating +=
+                    Number(review.rating);
+
+                movieRatings[movieId]
+                    .reviewCount++;
+
+            });
+
+
+            const roastedMovies =
+
+                Object.values(movieRatings)
+
+                .map((movie) => {
+
+                    movie.averageRating =
+
+                        movie.totalRating /
+
+                        movie.reviewCount;
+
+                    return movie;
+
+                })
+
+                .sort(
+
+                    (a, b) =>
+
+                        a.averageRating -
+
+                        b.averageRating
+
+                )
+
+                .slice(0, 10);
+
+
+            displayTopRoastedMovies(
+                roastedMovies
+            );
+
+        },
+
+        (error) => {
+
+            console.error(
+                "Top-roasted movies error:",
+                error
+            );
+
+            topRoastedMovies.innerHTML = `
+
+                <p class="search-message">
+
+                    Top-roasted movies could
+                    not load.
+
+                </p>
+
+            `;
+
+        }
+
+    );
+
+}
+
+
+/* DISPLAY TOP-ROASTED MOVIES */
+
+function displayTopRoastedMovies(
+    movies
+) {
+
+    if (!topRoastedMovies) {
+        return;
+    }
+
+
+    if (movies.length === 0) {
+
+        topRoastedMovies.innerHTML = `
+
+            <p class="search-message">
+
+                No Flop Corn ratings yet 🍿
+
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    topRoastedMovies.innerHTML = "";
+
+
+    movies.forEach(
+
+        (movie, index) => {
+
+
+            const movieCard =
+
+                document.createElement(
+                    "article"
+                );
+
+
+            movieCard.className =
+
+                "movie-card";
+
+
+            const posterImage =
+
+                movie.poster
+
+                ?
+
+                `${IMAGE_URL}${movie.poster}`
+
+                :
+
+                "flopcorn-logo.jpeg.jpeg";
+
+
+            movieCard.innerHTML = `
+
+                <div class="movie-poster">
+
+                    <img
+
+                        src="${posterImage}"
+
+                        alt="${movie.title}"
+
+                        loading="lazy"
+
+                    >
+
+
+                    <div class="movie-rating">
+
+                        🔥
+
+                        ${movie.averageRating
+                            .toFixed(1)}
+
+                    </div>
+
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="poster-play-button"
+                        >
+
+                            <i class=
+                            "fa-solid fa-arrow-right">
+                            </i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="movie-info">
+
+                    <h3>
+
+                        ${index + 1}.
+                        ${movie.title}
+
+                    </h3>
+
+
+                    <div class="movie-details">
+
+                        <span>
+
+                            ⭐
+                            ${movie.averageRating
+                                .toFixed(1)}/10
+
+                        </span>
+
+
+                        <span class="movie-genre">
+
+                            ${movie.reviewCount}
+
+                            ${
+                                movie.reviewCount === 1
+
+                                ?
+
+                                "Review"
+
+                                :
+
+                                "Reviews"
+                            }
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            movieCard.addEventListener(
+
+                "click",
+
+                () => {
+
+                    openMoviePage(
+                        movie.id
+                    );
+
+                }
+
+            );
+
+
+            topRoastedMovies.appendChild(
+
+                movieCard
+
+            );
+
+        }
+
+    );
+
+}
+
+/* =========================================
    MY WATCHLIST ❤️
 ========================================= */
 
