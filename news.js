@@ -3,6 +3,7 @@ import {
     collection,
     getDocs,
     query,
+    orderBy,
     limit
 } from "./firebase.js";
 
@@ -34,6 +35,7 @@ async function loadNews(category = "All") {
 
         const newsQuery = query(
             collection(db, "movieNews"),
+            orderBy("publishedAt", "desc"),
             limit(30)
         );
 
