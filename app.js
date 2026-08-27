@@ -141,6 +141,17 @@ const genres = {
 
 
 /* =========================================
+   BLOCKED MOVIES (removed from Flop Corn)
+   Add a TMDB movie ID here to hide it from
+   every section on the site.
+========================================= */
+
+const BLOCKED_MOVIE_IDS = new Set([
+    1141868 // "Tante Siska" (2023) — mislabeled/inappropriate content
+]);
+
+
+/* =========================================
    GET MOVIES FROM TMDB
 ========================================= */
 
@@ -183,9 +194,17 @@ async function getMovies(
             await response.json();
 
 
+        const filteredResults =
+
+            movieData.results.filter(
+                (movie) =>
+                    !BLOCKED_MOVIE_IDS.has(movie.id)
+            );
+
+
         displayMovies(
 
-            movieData.results.slice(
+            filteredResults.slice(
                 0,
                 10
             ),
@@ -888,7 +907,7 @@ async function searchMovies(movieName) {
         const movieData = await response.json();
 
         const moviesWithPosters = movieData.results.filter(
-            (movie) => movie.poster_path
+            (movie) => movie.poster_path && !BLOCKED_MOVIE_IDS.has(movie.id)
         );
 
         if (moviesWithPosters.length === 0) {
@@ -3978,7 +3997,14 @@ async function getCalendarMovieReleases(
 
                 new Map(
 
-                    allMovies.map(
+                    allMovies
+
+                        .filter(
+                            (movie) =>
+                                !BLOCKED_MOVIE_IDS.has(movie.id)
+                        )
+
+                        .map(
 
                         movie => [
 

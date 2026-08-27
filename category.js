@@ -13,6 +13,17 @@ const IMAGE_URL =
 
 
 /* =========================================
+   BLOCKED MOVIES (removed from Flop Corn)
+   Add a TMDB movie ID here to hide it from
+   every section on the site.
+========================================= */
+
+const BLOCKED_MOVIE_IDS = new Set([
+    1141868 // "Tante Siska" (2023) — mislabeled/inappropriate content
+]);
+
+
+/* =========================================
    GET CATEGORY FROM URL
 ========================================= */
 
@@ -677,6 +688,18 @@ async function getCategoryMovies() {
                 movieData.results;
 
         }
+
+
+        /*
+        REMOVE BLOCKED MOVIES
+        */
+
+        allMovies =
+
+            allMovies.filter(
+                (movie) =>
+                    !BLOCKED_MOVIE_IDS.has(movie.id)
+            );
 
 
         /*
