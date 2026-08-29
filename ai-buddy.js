@@ -128,6 +128,13 @@ async function sendMessage() {
 
             if (movies && movies.length > 0) {
                 showMovieRecommendations(movies);
+            } else {
+                // FIX: previously this stayed silent when a query (often a
+                // regional-language + genre combo) matched zero movies -
+                // the reply text would promise recommendations and then
+                // nothing showed up, with no explanation. Now the user at
+                // least gets told, instead of wondering if it's broken.
+                addAiMessage("Hmm, I couldn't find a good match for that one 🍿 Try loosening the filters a bit, like dropping the genre or picking a different language.");
             }
 
         }
@@ -203,11 +210,19 @@ async function discoverMovies(query) {
     parameters.append("language", "en-US");
     parameters.append("sort_by", "popularity.desc");
     parameters.append("include_adult", "false");
-    parameters.append("vote_count.gte", "50");
 
     const normalizedLanguage = query.language
         ? String(query.language).toLowerCase().trim()
         : null;
+
+    // FIX: a flat "at least 50 votes" floor works fine for English/Hindi,
+    // but regional-language films (Kannada, Tamil, Telugu, Malayalam) very
+    // often sit well under that on TMDB - so any genre+regional-language
+    // combo was quietly returning zero results and the chat just went
+    // silent. Use a much lower floor for those languages instead.
+    const regionalLanguages = ["kannada", "tamil", "telugu", "malayalam"];
+    const voteCountFloor = regionalLanguages.includes(normalizedLanguage) ? "5" : "50";
+    parameters.append("vote_count.gte", voteCountFloor);
 
     if (normalizedLanguage && languages[normalizedLanguage]) {
         parameters.append("with_original_language", languages[normalizedLanguage]);
