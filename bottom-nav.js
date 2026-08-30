@@ -1,14 +1,14 @@
 // =========================================
 // MOBILE BOTTOM TASKBAR
 // Injects a 4-shortcut app-style taskbar
-// (Quiz, Movie News, Calendar, Explore)
+// (Home, Movie News, Calendar, Explore)
 // on every page that includes this script.
 // =========================================
 
 (function () {
 
     var ITEMS = [
-        { href: "quiz.html",     icon: "fa-solid fa-gamepad",       label: "Quiz",     match: "quiz.html" },
+        { href: "index.html",    icon: "fa-solid fa-house",         label: "Home",     match: "index.html" },
         { href: "news.html",     icon: "fa-solid fa-newspaper",     label: "News",     match: "news.html" },
         { href: "schedule.html", icon: "fa-solid fa-calendar-days", label: "Calendar", match: "schedule.html" },
         { href: "explore.html",  icon: "fa-solid fa-compass",       label: "Explore",  match: "explore.html" }
