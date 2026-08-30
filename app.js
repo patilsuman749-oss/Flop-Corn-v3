@@ -3805,6 +3805,42 @@ let releaseMoviesByDate = {};
 
 
 /* =========================================
+   "NOT REALLY RELEASING IN INDIA" HEURISTIC
+   Mirrors looksLikeMislabeledAdultTitle in
+   schedule.js. TMDB's include_adult flag mostly
+   only catches hardcore content — it does NOT
+   reliably flag Korean/Japanese softcore erotic
+   dramas, which often show up with a fake/loose
+   region=IN release_date entry even though they
+   never actually release here. Those titles are
+   almost always tagged with ONLY Romance and/or
+   Drama and nothing else, and have very few votes.
+   We filter those out here too so the homepage
+   calendar matches the Schedule page.
+========================================= */
+
+const CALENDAR_SOFTCORE_ONLY_GENRES = new Set([10749, 18]); // Romance, Drama
+
+function calendarLooksLikeMislabeledAdultTitle(movie) {
+
+    if (movie.original_language !== "ko" && movie.original_language !== "ja") {
+        return false;
+    }
+
+    const genres = movie.genre_ids || [];
+
+    const onlySoftcoreGenres =
+        genres.length > 0 &&
+        genres.every((g) => CALENDAR_SOFTCORE_ONLY_GENRES.has(g));
+
+    const lowVotes = (movie.vote_count || 0) < 20;
+
+    return onlySoftcoreGenres && lowVotes;
+
+}
+
+
+/* =========================================
    CREATE CALENDAR
 ========================================= */
 
@@ -3931,6 +3967,10 @@ async function getCalendarMovieReleases(
 
                 +
 
+                `&with_release_type=2|3`
+
+                +
+
                 `&release_date.gte=${firstDate}`
 
                 +
@@ -4009,6 +4049,7 @@ async function getCalendarMovieReleases(
                         .filter(
                             (movie) =>
                                 !BLOCKED_MOVIE_IDS.has(movie.id)
+                                && !calendarLooksLikeMislabeledAdultTitle(movie)
                         )
 
                         .map(

@@ -55,13 +55,15 @@ const BLOCKED_SCHEDULE_IDS = new Set([
 
 const SOFTCORE_ONLY_GENRES = new Set([10749, 18]); // Romance, Drama
 
+const MISLABELED_LANGUAGES = new Set(["ko", "ja", "th", "zh"]);
+
 function looksLikeMislabeledAdultTitle(item) {
 
     if (item._mediaType !== "movie") {
         return false;
     }
 
-    if (item.original_language !== "ko" && item.original_language !== "ja") {
+    if (!MISLABELED_LANGUAGES.has(item.original_language)) {
         return false;
     }
 
@@ -167,8 +169,20 @@ function getRangeForStatus(status) {
 /* =========================================
    FETCH FROM TMDB (VIA WORKER)
    Same approach as the homepage release
-   calendar in app.js: discover + region=IN,
-   filtered on the plain release_date field.
+   calendar in app.js: discover, filtered on
+   the plain release/air date field.
+
+   NOTE: TMDB's `region` param only affects
+   /discover/movie (it filters on India theatrical
+   release dates). It does nothing on /discover/tv —
+   there is no "region" concept for TV air dates, so
+   without a real filter every TV show/drama airing
+   anywhere in the world (e.g. Thai BL dramas with
+   zero India distribution) was showing up here as
+   "Coming Soon". For TV we instead use
+   watch_region + with_watch_monetization_types,
+   which filters to shows actually available to
+   watch (stream/rent/buy) in India.
 ========================================= */
 
 async function fetchSchedule(mediaType, status) {
@@ -197,7 +211,11 @@ async function fetchSchedule(mediaType, status) {
                 `${BASE_URL}/discover/${mediaType}`
                 + `?api_key=${API_KEY}`
                 + `&language=en-US`
-                + `&region=IN`
+                + (
+                    mediaType === "tv"
+                        ? `&watch_region=IN&with_watch_monetization_types=flatrate|free|ads|rent|buy`
+                        : `&region=IN&with_release_type=2|3`
+                )
                 + `&${dateField}.gte=${range.gte}`
                 + `&${dateField}.lte=${range.lte}`
                 + `&sort_by=popularity.desc`
