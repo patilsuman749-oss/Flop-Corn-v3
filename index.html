@@ -59,16 +59,6 @@
 </head>
 
 <body>
-<!-- Cinema Curtain -->
-<div id="curtain">
-    <div class="curtain left"></div>
-    <div class="curtain right"></div>
-    <div class="curtain-text">
-        <h1>🍿 FLOP CORN</h1>
-        <p>Welcome to the Cinema</p>
-    </div>
-</div>
-
     <!-- Background Effects -->
     <div class="background-effects">
         <div class="yellow-glow"></div>
@@ -1514,34 +1504,6 @@ Made for Movie Lovers 🍿
 
 </div>
 
-    <script>
-window.addEventListener("load", () => {
-
-    const curtain = document.getElementById("curtain");
-
-    // Show only once per browser/app session
-    if (sessionStorage.getItem("flopcornSplashShown")) {
-        curtain.style.display = "none";
-        return;
-    }
-
-    sessionStorage.setItem("flopcornSplashShown", "true");
-
-    const isMobile = window.innerWidth <= 768;
-
-    const openDelay = isMobile ? 1500 : 800;
-    const hideDelay = isMobile ? 4500 : 3000;
-
-    setTimeout(() => {
-        curtain.classList.add("open");
-    }, openDelay);
-
-    setTimeout(() => {
-        curtain.classList.add("hide");
-    }, hideDelay);
-
-});
-</script>
     <!-- =========================================
      REVIEWER PROFILE POPUP
 ========================================= -->
