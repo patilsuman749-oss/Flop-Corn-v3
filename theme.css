@@ -1,0 +1,501 @@
+/* =========================================
+   FLOP CORN 🍿
+   GLOBAL LIGHT / DARK MODE STYLES
+========================================= */
+
+html {
+    color-scheme: dark;
+}
+
+html.light-mode {
+    color-scheme: light;
+
+    --black: #f5f3ed;
+    --dark: #ffffff;
+    --card: #ffffff;
+    --card-light: #f1efe7;
+    --white: #181818;
+    --grey: #707070;
+    --light-grey: #444444;
+    --border: rgba(0, 0, 0, 0.10);
+}
+
+/* ---------- SHARED LAMP ---------- */
+.theme-lamp {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    color: #777;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 19px;
+    cursor: pointer;
+    transition: color .35s ease, background .35s ease, border-color .35s ease,
+        box-shadow .35s ease, transform .35s ease;
+}
+
+.theme-lamp:hover {
+    color: #ffd21c;
+    border-color: rgba(255, 210, 28, 0.40);
+    transform: translateY(-2px);
+}
+
+.theme-lamp.lamp-on {
+    color: #ffd21c;
+    border-color: rgba(255, 210, 28, 0.65);
+    background: rgba(255, 210, 28, 0.13);
+    box-shadow: 0 0 12px rgba(255, 210, 28, 0.50), 0 0 30px rgba(255, 210, 28, 0.25);
+}
+
+.theme-lamp.lamp-on i {
+    animation: flopCornLampGlow 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes flopCornLampGlow {
+    from { filter: drop-shadow(0 0 3px rgba(255, 210, 28, 0.5)); }
+    to { filter: drop-shadow(0 0 9px rgba(255, 210, 28, 1)); }
+}
+
+.theme-lamp:active { transform: scale(.88); }
+
+/* Pages without a dedicated navbar get a safe floating switch. */
+.theme-lamp-global {
+    position: fixed;
+    top: 16px;
+    right: 18px;
+    z-index: 100000;
+}
+
+/* ---------- GLOBAL LIGHT BASE ---------- */
+html.light-mode body {
+    background: #f5f3ed;
+    color: #181818;
+}
+
+html.light-mode body::before,
+html.light-mode body::after {
+    opacity: .35;
+}
+
+html.light-mode input,
+html.light-mode textarea,
+html.light-mode select {
+    color: #181818;
+}
+
+html.light-mode ::selection {
+    background: rgba(255, 210, 28, 0.35);
+}
+
+/* ---------- SHARED STYLE.CSS PAGES ---------- */
+html.light-mode .navbar,
+html.light-mode .explore-navbar,
+html.light-mode .category-navbar,
+html.light-mode .movie-navbar,
+html.light-mode .sched-navbar,
+html.light-mode .ai-navbar {
+    background: rgba(255, 255, 255, 0.90);
+    border-bottom-color: rgba(0, 0, 0, 0.09);
+}
+
+html.light-mode .logo-text,
+html.light-mode .movie-logo,
+html.light-mode .explore-logo h1,
+html.light-mode .category-logo h1,
+html.light-mode .sched-logo-text {
+    color: #151515;
+}
+
+html.light-mode .nav-links a,
+html.light-mode .back-home,
+html.light-mode .back-home-button,
+html.light-mode .back-explore-button,
+html.light-mode .sched-back-home {
+    color: #444;
+}
+
+html.light-mode .nav-links a:hover,
+html.light-mode .back-home:hover,
+html.light-mode .back-home-button:hover,
+html.light-mode .back-explore-button:hover,
+html.light-mode .sched-back-home:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #111;
+}
+
+html.light-mode .search-button,
+html.light-mode .mobile-menu-button,
+html.light-mode .back-home,
+html.light-mode .back-home-button,
+html.light-mode .back-explore-button,
+html.light-mode .sched-back-home {
+    border-color: rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.04);
+}
+
+html.light-mode .movie-section,
+html.light-mode .review-section,
+html.light-mode .explore-movie-section,
+html.light-mode .category-movies-section {
+    background: #f5f3ed;
+}
+
+html.light-mode .explore-movie-card,
+html.light-mode .category-movie-card,
+html.light-mode .movie-card,
+html.light-mode .collection-card,
+html.light-mode .public-review-card,
+html.light-mode .review-box {
+    color: #181818;
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.10);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .explore-movie-card:hover,
+html.light-mode .category-movie-card:hover,
+html.light-mode .movie-card:hover,
+html.light-mode .collection-card:hover {
+    border-color: rgba(210, 165, 0, 0.55);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+}
+
+html.light-mode .explore-movie-info h3,
+html.light-mode .category-card-info h3,
+html.light-mode .movie-info h3,
+html.light-mode .collection-card-info strong,
+html.light-mode .section-heading h2,
+html.light-mode .language-heading h2,
+html.light-mode .category-results-heading,
+html.light-mode .explore-group-heading {
+    color: #181818;
+}
+
+html.light-mode .explore-rating,
+html.light-mode .category-rating,
+html.light-mode .movie-details,
+html.light-mode .collection-card-info span,
+html.light-mode .collections-message,
+html.light-mode .explore-error,
+html.light-mode .category-error {
+    color: #707070;
+}
+
+html.light-mode .mobile-menu {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(0, 0, 0, 0.10);
+}
+
+html.light-mode .mobile-menu a { color: #333; }
+
+html.light-mode footer {
+    color: #181818;
+    background: #ebe8df;
+    border-color: rgba(0, 0, 0, 0.10);
+}
+
+/* ---------- QUIZ ---------- */
+html.light-mode body:has(.quiz-navbar) {
+    background: #f5f3ed;
+    color: #181818;
+}
+
+html.light-mode .quiz-navbar {
+    background: rgba(255, 255, 255, 0.93);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+html.light-mode .quiz-logo,
+html.light-mode .quiz-hero h1,
+html.light-mode .game-section > h2,
+html.light-mode .question-card h2,
+html.light-mode .quiz-results h2 {
+    color: #181818;
+}
+
+html.light-mode .quiz-hero p,
+html.light-mode .game-subtitle,
+html.light-mode .game-card p,
+html.light-mode .quiz-results > p,
+html.light-mode .result-home,
+html.light-mode .quiz-game {
+    color: #656565;
+}
+
+html.light-mode .game-card,
+html.light-mode .question-card,
+html.light-mode .quiz-results {
+    background: #fff;
+    color: #181818;
+    border-color: rgba(0, 0, 0, 0.10);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .game-card:hover,
+html.light-mode .answer-button:hover {
+    background: #fffdf2;
+}
+
+html.light-mode .exit-button,
+html.light-mode .answer-button {
+    background: #f0eee7;
+    color: #222;
+    border-color: rgba(0, 0, 0, 0.10);
+}
+
+html.light-mode .progress-bar { background: #ddd9cf; }
+
+/* ---------- NEWS ---------- */
+html.light-mode body:has(.news-page) {
+    background: #f5f3ed;
+    color: #181818;
+}
+
+html.light-mode .news-page,
+html.light-mode .featured-section,
+html.light-mode .latest-news {
+    color: #181818;
+}
+
+html.light-mode .news-hero,
+html.light-mode .news-filter,
+html.light-mode .featured-card,
+html.light-mode .news-grid .news-card {
+    border-color: rgba(0, 0, 0, 0.10);
+}
+
+html.light-mode .news-filter button {
+    background: #fff;
+    color: #333;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .featured-card,
+html.light-mode .news-grid .news-card {
+    background: #fff;
+    box-shadow: 0 10px 28px rgba(0,0,0,.07);
+}
+
+html.light-mode .featured-card p,
+html.light-mode .news-grid p,
+html.light-mode .news-hero p {
+    color: #555;
+}
+
+html.light-mode .news-source { color: #777; }
+
+/* ---------- SCHEDULE ---------- */
+html.light-mode body.schedule-page {
+    background: #f5f3ed;
+}
+
+html.light-mode .sched-navbar {
+    background: rgba(255,255,255,.92);
+    border-bottom-color: rgba(0,0,0,.09);
+}
+
+html.light-mode .sched-logo-text,
+html.light-mode .sched-navbar-center,
+html.light-mode .sched-side-tab,
+html.light-mode .sched-pill,
+html.light-mode .sched-card-title {
+    color: #202020;
+}
+
+html.light-mode .sched-sidebar,
+html.light-mode .sched-toolbar,
+html.light-mode .sched-type-pills,
+html.light-mode .sched-card {
+    background: #fff;
+    border-color: rgba(0,0,0,.10);
+}
+
+html.light-mode .sched-side-tab:hover,
+html.light-mode .sched-side-tab.active {
+    background: #f0eee7;
+    color: #111;
+}
+
+html.light-mode .sched-pill.active {
+    background: #202020;
+    color: #fff;
+}
+
+html.light-mode .sched-card-sub,
+html.light-mode .sched-side-tab i,
+html.light-mode .sched-pill {
+    color: #707070;
+}
+
+html.light-mode .sched-date-badge {
+    background: #fff;
+    color: #202020;
+    box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+/* ---------- AI BUDDY ---------- */
+html.light-mode body:has(.ai-page) {
+    background: #f5f3ed;
+    color: #181818;
+}
+
+html.light-mode .ai-background { opacity: .16; }
+
+html.light-mode .ai-navbar {
+    background: rgba(255,255,255,.92);
+}
+
+html.light-mode .ai-heading h1,
+html.light-mode .ai-description,
+html.light-mode .ai-example,
+html.light-mode .message-bubble p,
+html.light-mode .quick-prompt,
+html.light-mode .ai-input-area input,
+html.light-mode .ai-movie-info h3 {
+    color: #202020;
+}
+
+html.light-mode .ai-chat-card,
+html.light-mode .ai-movie-result {
+    background: #fff;
+    border-color: rgba(0,0,0,.10);
+    box-shadow: 0 12px 32px rgba(0,0,0,.08);
+}
+
+html.light-mode .message-bubble { background: #f0eee7; }
+html.light-mode .ai-input-area input { background: #f7f5ef; border-color: rgba(0,0,0,.10); }
+html.light-mode .quick-prompt { background: #fff9dc; border-color: rgba(190,145,0,.28); }
+html.light-mode .ai-description,
+html.light-mode .ai-example,
+html.light-mode .ai-movie-info p { color: #666; }
+
+/* ---------- CINEMATIC UNIVERSES / MCU / DCU ---------- */
+html.light-mode body:has(.universes-banner),
+html.light-mode body:has(.mcu-banner) {
+    background: #f5f3ed;
+    color: #181818;
+}
+
+html.light-mode .universes-banner,
+html.light-mode .mcu-banner {
+    filter: brightness(1.08) saturate(.92);
+}
+
+html.light-mode .universes-banner h1,
+html.light-mode .universes-banner p,
+html.light-mode .mcu-banner h1,
+html.light-mode .mcu-banner p,
+html.light-mode .phase-title {
+    color: #181818;
+    text-shadow: none;
+}
+
+html.light-mode .movie-grid .movie-card {
+    background: #fff;
+    color: #181818;
+    border-color: rgba(0,0,0,.12);
+    box-shadow: 0 10px 28px rgba(0,0,0,.09);
+}
+
+html.light-mode .movie-grid .movie-card h3,
+html.light-mode .movie-grid .movie-link,
+html.light-mode .movie-grid .movie-info h3 {
+    color: #181818;
+}
+
+html.light-mode .back-btn {
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+
+/* ---------- ADMIN ---------- */
+html.light-mode body:has(#adminPanel) {
+    background: #f5f3ed;
+    color: #181818;
+}
+
+html.light-mode #adminPanel > header {
+    background: #fff;
+    border-color: rgba(0,0,0,.10);
+}
+
+html.light-mode .card {
+    background: #fff;
+    color: #181818;
+    border-color: rgba(210,165,0,.45);
+    box-shadow: 0 10px 25px rgba(0,0,0,.07);
+}
+
+/* ---------- BOTTOM NAV ---------- */
+html.light-mode .fc-bottom-nav {
+    background: rgba(255,255,255,.95);
+    border-top-color: rgba(0,0,0,.10);
+}
+
+html.light-mode .fc-bottom-nav a,
+html.light-mode .fc-bottom-nav button {
+    color: #666;
+}
+
+html.light-mode .fc-bottom-nav a.active,
+html.light-mode .fc-bottom-nav button.active {
+    color: #b88900;
+}
+
+/* ---------- FORM / MODAL SURFACES ---------- */
+html.light-mode .create-collection-card,
+html.light-mode .collection-detail-card,
+html.light-mode .add-to-collection-card,
+html.light-mode .review-modal,
+html.light-mode .trailer-box {
+    background: #fff;
+    color: #181818;
+    border-color: rgba(0,0,0,.10);
+}
+
+html.light-mode .create-collection-card input[type="text"],
+html.light-mode .create-collection-card textarea,
+html.light-mode .review-modal input,
+html.light-mode .review-modal textarea,
+html.light-mode .review-modal select {
+    background: #f7f5ef;
+    color: #181818;
+    border-color: rgba(0,0,0,.12);
+}
+
+html.light-mode .close-modal-button { color: #666; }
+
+html.light-mode .provider-card,
+html.light-mode .ticket-card,
+html.light-mode .similar-card {
+    background: #fff;
+    color: #181818;
+    border-color: rgba(0,0,0,.10);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 680px) {
+    .theme-lamp,
+    .theme-lamp-global {
+        width: 41px;
+        height: 41px;
+        font-size: 17px;
+    }
+
+    .theme-lamp-global {
+        top: 12px;
+        right: 12px;
+    }
+}
+
+/* ---------- ACCESSIBILITY ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .theme-lamp,
+    .theme-lamp.lamp-on i {
+        transition: none;
+        animation: none;
+    }
+}

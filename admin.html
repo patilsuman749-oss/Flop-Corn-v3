@@ -14,6 +14,12 @@
 <title>Flop Corn Admin</title>
 
 <link rel="stylesheet" href="admin.css">
+
+<script>
+(function(){try{if(localStorage.getItem("flopCornTheme")==="light"){document.documentElement.classList.add("light-mode");}}catch(e){}})();
+</script>
+<link rel="stylesheet" href="theme.css?v=1">
+
 </head>
 
 <body>
@@ -94,5 +100,8 @@ placeholder="Search users...">
     });
   }
 </script>
+
+<script src="theme.js" defer></script>
+
 </body>
 </html>
