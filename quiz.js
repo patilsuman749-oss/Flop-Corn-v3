@@ -55,6 +55,36 @@ const quizData = {
             question: "Which movie follows a boxer named Rocky Balboa?",
             answers: ["Rocky", "Creed", "Raging Bull", "Warrior"],
             correct: "Rocky"
+        },
+{
+            question: "Which film follows Rancho, Farhan and Raju during their college years?",
+            answers: ["3 Idiots", "PK", "Dil Chahta Hai", "Zindagi Na Milegi Dobara"],
+            correct: "3 Idiots"
+        },
+        {
+            question: "Which Hindi film revolves around a village cricket match against British rulers?",
+            answers: ["Lagaan", "Dangal", "Swades", "Chak De! India"],
+            correct: "Lagaan"
+        },
+        {
+            question: "Which film follows Neo as he discovers the truth about a simulated reality?",
+            answers: ["The Matrix", "Minority Report", "The Truman Show", "Inception"],
+            correct: "The Matrix"
+        },
+        {
+            question: "Which Christopher Nolan film follows Cooper on a mission involving a wormhole and distant worlds?",
+            answers: ["Interstellar", "Tenet", "Dunkirk", "Oppenheimer"],
+            correct: "Interstellar"
+        },
+        {
+            question: "Which Kannada film follows Rocky's rise in the world of the Kolar Gold Fields?",
+            answers: ["K.G.F: Chapter 1", "Kantara", "777 Charlie", "Kirik Party"],
+            correct: "K.G.F: Chapter 1"
+        },
+        {
+            question: "Which Kannada film follows Dharma after a dog named Charlie enters his life?",
+            answers: ["777 Charlie", "Kantara", "K.G.F: Chapter 1", "Mungaru Male"],
+            correct: "777 Charlie"
         }
     ],
 
@@ -161,6 +191,37 @@ const quizData = {
             ],
             correct: "Ryan Reynolds"
         }
+  ,
+{
+            question: "Who played Rancho in 3 Idiots?",
+            answers: ["Aamir Khan", "Saif Ali Khan", "Ranbir Kapoor", "Shahid Kapoor"],
+            correct: "Aamir Khan"
+        },
+        {
+            question: "Who played Raj in Dilwale Dulhania Le Jayenge?",
+            answers: ["Shah Rukh Khan", "Aamir Khan", "Akshay Kumar", "Salman Khan"],
+            correct: "Shah Rukh Khan"
+        },
+        {
+            question: "Who played Neo in The Matrix?",
+            answers: ["Keanu Reeves", "Christian Bale", "Brad Pitt", "Matt Damon"],
+            correct: "Keanu Reeves"
+        },
+        {
+            question: "Who played Michael Corleone in The Godfather?",
+            answers: ["Al Pacino", "Robert De Niro", "Jack Nicholson", "Dustin Hoffman"],
+            correct: "Al Pacino"
+        },
+        {
+            question: "Who played Rocky in K.G.F: Chapter 1?",
+            answers: ["Yash", "Sudeep", "Puneeth Rajkumar", "Rakshit Shetty"],
+            correct: "Yash"
+        },
+        {
+            question: "Who played Shiva in Kantara?",
+            answers: ["Rishab Shetty", "Rakshit Shetty", "Upendra", "Sudeep"],
+            correct: "Rishab Shetty"
+        }
     ],
 
 
@@ -220,6 +281,37 @@ const quizData = {
                 "Doctor Strange"
             ],
             correct: "The Lord of the Rings"
+        }
+  ,
+{
+            question: "👨‍🎓 👨‍🎓 👨‍🎓",
+            answers: ["3 Idiots", "Dil Chahta Hai", "Dangal", "Lagaan"],
+            correct: "3 Idiots"
+        },
+        {
+            question: "🤼‍♀️ 👧 👨",
+            answers: ["Dangal", "Mary Kom", "Chak De! India", "Bhaag Milkha Bhaag"],
+            correct: "Dangal"
+        },
+        {
+            question: "🕶️ 💊 🖥️",
+            answers: ["The Matrix", "Inception", "Tron", "Avatar"],
+            correct: "The Matrix"
+        },
+        {
+            question: "🌌 🕳️ 👨‍🚀",
+            answers: ["Interstellar", "Gravity", "The Martian", "Ad Astra"],
+            correct: "Interstellar"
+        },
+        {
+            question: "⛏️ 🥇 👑",
+            answers: ["K.G.F: Chapter 1", "Kantara", "KGF: Chapter 2", "Ugramm"],
+            correct: "K.G.F: Chapter 1"
+        },
+        {
+            question: "🧑 🐕 ❤️",
+            answers: ["777 Charlie", "Kirik Party", "Kantara", "Rakshit Shetty"],
+            correct: "777 Charlie"
         }
     ],
 
@@ -326,6 +418,37 @@ const quizData = {
             ],
             correct: "Dr. No"
         }
+    ,
+{
+            question: "Which Hindi film is associated with the phrase: “Mogambo khush hua”?",
+            answers: ["Mr. India", "Shahenshah", "Don", "Agneepath"],
+            correct: "Mr. India"
+        },
+        {
+            question: "Which Hindi film is associated with the phrase: “Kitne aadmi the?”?",
+            answers: ["Sholay", "Deewaar", "Don", "Zanjeer"],
+            correct: "Sholay"
+        },
+        {
+            question: "Which Hollywood film is associated with the phrase: “You had me at hello”?",
+            answers: ["Jerry Maguire", "Pretty Woman", "Notting Hill", "Forrest Gump"],
+            correct: "Jerry Maguire"
+        },
+        {
+            question: "Which Hollywood film is associated with the phrase: “Wax on, wax off”?",
+            answers: ["The Karate Kid", "Rocky", "Top Gun", "Rambo: First Blood"],
+            correct: "The Karate Kid"
+        },
+        {
+            question: "Which Kannada film is associated with the phrase: “Salaam Rocky Bhai”?",
+            answers: ["K.G.F: Chapter 1", "Kantara", "Ugramm", "K.G.F: Chapter 2"],
+            correct: "K.G.F: Chapter 1"
+        },
+        {
+            question: "Which Kannada film features the memorable line: “Aa Watchnalli Koti Nenapugalide”?",
+            answers: ["Mungaru Male", "Kirik Party", "Googly", "Milana"],
+            correct: "Mungaru Male"
+        }
     ]
 
 };
@@ -344,6 +467,7 @@ const quizGame = document.getElementById("quizGame");
 const quizResults = document.getElementById("quizResults");
 
 const questionNumber = document.getElementById("questionNumber");
+const totalQuestions = document.getElementById("totalQuestions");
 const scoreElement = document.getElementById("score");
 
 const progressFill = document.getElementById("progressFill");
@@ -440,6 +564,7 @@ function startQuiz(mode) {
     score = 0;
 
     scoreElement.textContent = score;
+    totalQuestions.textContent = currentQuestions.length;
 
     gameSection.classList.add("hidden");
     quizHero.classList.add("hidden");
