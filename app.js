@@ -1344,7 +1344,7 @@ loginButton.onclick = function (event) {
         user.email || "";
 
     profileMenuPhoto.src =
-        user.photoURL || "flopcorn-logo.jpeg.jpeg";
+        user.photoURL || "assets/images/flopcorn-logo.png";
 
     profileMenu.classList.toggle("show");
 
@@ -1404,7 +1404,7 @@ if (myProfileButton && fullProfileOverlay) {
         if (!user) return;
 
         fullProfilePhoto.src =
-            user.photoURL || "flopcorn-logo.jpeg.jpeg";
+            user.photoURL || "assets/images/flopcorn-logo.png";
 
         
 
@@ -1630,7 +1630,7 @@ function displayTopRatedMovies(
 
                 :
 
-                "flopcorn-logo.jpeg.jpeg";
+                "assets/images/flopcorn-logo.png";
 
 
             movieCard.innerHTML = `
@@ -1928,7 +1928,7 @@ function displayTopRoastedMovies(
 
                 :
 
-                "flopcorn-logo.jpeg.jpeg";
+                "assets/images/flopcorn-logo.png";
 
 
             movieCard.innerHTML = `
@@ -2158,7 +2158,7 @@ function loadUserWatchlist() {
 
                         :
 
-                        "flopcorn-logo.jpeg.jpeg";
+                        "assets/images/flopcorn-logo.png";
 
 
                     watchlistMovie.innerHTML = `
@@ -2543,7 +2543,7 @@ function renderCollectionDetail(coll) {
             <img
                 src="${movie.poster
                     ? POSTER_IMAGE_URL + movie.poster
-                    : "flopcorn-logo.jpeg.jpeg"}"
+                    : "assets/images/flopcorn-logo.png"}"
                 alt="${movie.title}"
             >
 

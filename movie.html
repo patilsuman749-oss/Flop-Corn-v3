@@ -1485,8 +1485,8 @@
 .flopcorn-logo-img {
     width: 46px;
     height: 46px;
-    object-fit: cover;
-    border-radius: 12px;
+    object-fit: contain;
+    border-radius: 50%;
     display: block;
 }
 
@@ -1494,7 +1494,9 @@
     width: 46px;
     height: 46px;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 50%;
+    border: none;
+    background: none;
     flex-shrink: 0;
 }
     
@@ -1532,7 +1534,7 @@
 
             <div class="logo-icon">
 
-                <img src="flopcorn-logo.jpeg.jpeg" class="flopcorn-logo-img" alt="Flop Corn Logo">
+                <img src="assets/images/flopcorn-logo.png" class="flopcorn-logo-img" alt="Flop Corn Logo">
 
             </div>
 
@@ -2985,7 +2987,7 @@ function renderAddToCollectionList(items) {
                 <img
                     src="${currentMovie.poster_path
                         ? IMAGE_URL + currentMovie.poster_path
-                        : "flopcorn-logo.jpeg.jpeg"}"
+                        : "assets/images/flopcorn-logo.png"}"
                     alt=""
                 >
 
@@ -3193,7 +3195,7 @@ function openViewCollection(coll) {
                 <img
                     src="${movie.poster
                         ? POSTER_IMAGE_URL + movie.poster
-                        : "flopcorn-logo.jpeg.jpeg"}"
+                        : "assets/images/flopcorn-logo.png"}"
                     alt="${movie.title}"
                 >
             </div>
@@ -4274,7 +4276,7 @@ if (userId) {
                     const posterHTML = posters.length
                         ? posters.map((p) => `
                             <img
-                                src="${p ? POSTER_IMAGE_URL + p : "flopcorn-logo.jpeg.jpeg"}"
+                                src="${p ? POSTER_IMAGE_URL + p : "assets/images/flopcorn-logo.png"}"
                                 alt=""
                             >
                           `).join("")

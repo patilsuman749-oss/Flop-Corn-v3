@@ -209,7 +209,7 @@ export function renderCollectionCardHTML(coll) {
     const posterHTML = posters.length
         ? posters.map((p) => `
             <img
-                src="${p ? POSTER_IMAGE_URL + p : "flopcorn-logo.jpeg.jpeg"}"
+                src="${p ? POSTER_IMAGE_URL + p : "assets/images/flopcorn-logo.png"}"
                 alt=""
                 loading="lazy"
             >

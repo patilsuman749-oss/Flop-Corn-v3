@@ -77,8 +77,8 @@ body::after{
 .flopcorn-logo-img{
     width:55px;
     height:55px;
-    border-radius:14px;
-    object-fit:cover;
+    border-radius:50%;
+    object-fit:contain;
 }
 
 .logo-text{
