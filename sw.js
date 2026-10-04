@@ -3,7 +3,7 @@
 // This existing purely to satisfy PWA installability requirements (Chrome needs an
 // active service worker + manifest to offer "Install app" / "Open in app").
 
-const CACHE_NAME = "flopcorn-shell-v3";
+const CACHE_NAME = "flopcorn-shell-v4";
 
 const CORE_ASSETS = [
   "/index.html",
