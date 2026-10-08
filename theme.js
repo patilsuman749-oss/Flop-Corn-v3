@@ -54,24 +54,34 @@
         meta.content = themeColor;
     }
 
-    function isHomepage() {
-        const path = window.location.pathname || "";
-        return path === "/" || path.endsWith("/index.html");
+    function createGlobalLamp() {
+        // Homepage already has its own lamp in the navbar.
+        let lamp = document.getElementById("themeLamp");
+        if (lamp) {
+            return lamp;
+        }
+
+        lamp = document.createElement("button");
+        lamp.type = "button";
+        lamp.id = "themeLamp";
+        lamp.className = "theme-lamp theme-lamp-global";
+        lamp.innerHTML = '<i class="fa-solid fa-lightbulb" aria-hidden="true"></i>';
+        lamp.title = "Turn the lights on";
+        lamp.setAttribute("aria-label", "Switch to light mode");
+        lamp.setAttribute("aria-pressed", "false");
+        lamp.dataset.themeGlobal = "true";
+
+        document.body.appendChild(lamp);
+        return lamp;
     }
 
     function initTheme() {
+        const lamp = createGlobalLamp();
         const savedTheme = getSavedTheme();
-
-        // The theme switcher is intentionally shown only on the homepage.
-        const lamp = isHomepage() ? document.getElementById("themeLamp") : null;
 
         applyTheme(savedTheme === "light" ? "light" : "dark");
 
-        if (!lamp) {
-            return;
-        }
-
-        // Replace any previous handler on the homepage button with one global handler.
+        // Replace any previous handler on the shared button with one global handler.
         if (!lamp.dataset.themeBound) {
             lamp.addEventListener("click", function () {
                 const nextTheme = document.documentElement.classList.contains("light-mode")

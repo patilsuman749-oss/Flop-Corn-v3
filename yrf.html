@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the YRF Spy Universe on FLOP CORN — Tiger, War, Pathaan, War 2, Alpha and more with TMDB-powered movie details.">
+    <meta name="theme-color" content="#070707">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <title>YRF Spy Universe | FLOP CORN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="universe.css">
+    <script>
+        (function () {
+            try { if (localStorage.getItem("flopCornTheme") === "light") document.documentElement.classList.add("light-mode"); }
+            catch (error) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="theme.css?v=1">
+</head>
+<body class="universe-page">
+<header class="universe-topbar">
+    <a href="universes.html" class="universe-back-button"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i><span>Back to Universes</span></a>
+    <div class="universe-topbar-brand" aria-label="FLOP CORN"><span class="universe-brand-mark">🍿</span><span>FLOP CORN</span></div>
+</header>
+<main>
+<section class="universe-hero" id="universeHero" aria-labelledby="universeTitle">
+    <div class="universe-hero-media" aria-hidden="true"></div>
+    <div class="universe-hero-inner">
+        <div class="universe-eyebrow"><span class="universe-pulse"></span><span id="heroEyebrow">CINEMATIC UNIVERSE</span></div>
+        <p class="universe-kicker" id="heroKicker">CONNECTED STORIES</p>
+        <h1 id="universeTitle"><span id="universeTitleShort">YRF SPY</span><small id="universeSubtitle">YRF Spy Universe</small></h1>
+        <p class="universe-hero-copy" id="heroCopy"></p>
+        <div class="universe-hero-actions">
+            <a class="universe-primary-button" href="#universe-movies">Explore the Universe <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a>
+            <a class="universe-secondary-button" href="universes.html"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> All Universes</a>
+        </div>
+        <div class="universe-hero-stats" aria-label="Universe summary">
+            <div><strong id="statsReleased">—</strong><span>Released Films</span></div>
+            <div><strong id="statsUpcoming">—</strong><span>Upcoming Projects</span></div>
+            <div><strong id="statsBegins">—</strong><span>Universe Begins</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="universe-section universe-movie-section" id="universe-movies">
+    <div class="universe-section-heading">
+        <div><p class="universe-section-kicker" id="moviesKicker">THE FILMS</p><h2 id="moviesTitle">Movie Collection</h2></div>
+        <div class="universe-filter-group" role="tablist" aria-label="Filter universe movies">
+            <button class="universe-filter-button is-active" type="button" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="universe-filter-button" type="button" data-filter="released" role="tab" aria-selected="false">Released</button>
+            <button class="universe-filter-button" type="button" data-filter="upcoming" role="tab" aria-selected="false">Upcoming</button>
+        </div>
+    </div>
+    <p class="universe-section-copy" id="moviesCopy"></p>
+    <div id="releasedMovies" class="universe-movie-grid" aria-live="polite"><div class="universe-loading-card"><span class="universe-spinner"></span>Loading movie data from TMDB…</div></div>
+</section>
+
+<section class="universe-section universe-timeline-section" id="universe-timeline">
+    <div class="universe-section-heading centered"><div><p class="universe-section-kicker" id="timelineKicker">THE JOURNEY</p><h2 id="timelineTitle">Universe Timeline</h2></div></div>
+    <div class="universe-timeline" id="universeTimeline" aria-label="Universe timeline"></div>
+</section>
+
+<section class="universe-section universe-connections-section" id="connections">
+    <div class="universe-section-heading centered"><div><p class="universe-section-kicker" id="connectionsKicker">CONNECTED STORIES</p><h2 id="connectionsTitle">How the Universe Connects</h2></div></div>
+    <div class="universe-connection-map" id="universeConnections" aria-label="Universe connection map"></div>
+    <div class="universe-note-card reveal-on-scroll"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><p id="universeConnectionNote"></p></div>
+</section>
+
+<section class="universe-section" id="characters">
+    <div class="universe-section-heading centered"><div><p class="universe-section-kicker" id="charactersKicker">KEY FIGURES</p><h2 id="charactersTitle">Character Connections</h2></div></div>
+    <div class="universe-character-grid" id="universeCharacters"></div>
+</section>
+
+<section class="universe-section universe-upcoming-section" id="upcoming-section">
+    <div class="universe-section-heading"><div><p class="universe-section-kicker" id="upcomingKicker">WHAT'S NEXT</p><h2 id="upcomingTitle">Upcoming / Announced Projects</h2></div></div>
+    <div class="universe-upcoming-grid" id="upcomingProjects"></div>
+</section>
+
+<section class="universe-final-cta reveal-on-scroll">
+    <div><p class="universe-section-kicker">KEEP EXPLORING</p><h2>Back to FLOP CORN</h2><p>Discover more movie universes, reviews, quizzes, news and new releases across the site.</p></div>
+    <a href="index.html" class="universe-primary-button"><i class="fa-solid fa-house" aria-hidden="true"></i> Return Home</a>
+</section>
+</main>
+<script src="yrf.js"></script>
+<script src="universe.js"></script>
+<script>
+if ("serviceWorker" in navigator) window.addEventListener("load", function () { navigator.serviceWorker.register("/sw.js").catch(function (error) { console.warn("Service worker registration failed:", error); }); });
+</script>
+<script src="theme.js" defer></script>
+</body>
+</html>

@@ -1616,6 +1616,17 @@
             <div class="backdrop-bottom"></div>
 
 
+            <!-- Trailer play button (centered on backdrop) -->
+            <button
+                class="hero-play-btn"
+                id="watchTrailerButton"
+                type="button"
+                aria-label="Watch Trailer"
+                title="Watch Trailer">
+                <i class="fa-solid fa-play"></i>
+            </button>
+
+
             <div class="movie-content">
 
 
@@ -1742,14 +1753,6 @@
     Write a Review
 
 
-</button>
-
-
-<button
-    class="watchlist-button"
-    id="watchTrailerButton">
-    <i class="fa-solid fa-play"></i>
-    Watch Trailer
 </button>
 
 
@@ -3247,14 +3250,7 @@ if (viewCollectionOverlay) {
         =============================== */
 
 
-        loadMovie().then(() => {
-            const autoplayTrailer =
-                new URLSearchParams(window.location.search).get("autoplayTrailer") === "1";
-
-            if (autoplayTrailer && currentMovie) {
-                window.setTimeout(() => openTrailer(currentMovie.id), 280);
-            }
-        });
+        loadMovie();
 
 // ===============================
 // REVIEW POPUP
