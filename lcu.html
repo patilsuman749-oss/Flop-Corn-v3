@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Explore the Lokesh Cinematic Universe — Kaithi, Vikram, Leo and upcoming LCU projects on FLOP CORN."
+    >
+
+    <meta name="theme-color" content="#070707">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+
+    <title>LCU – Lokesh Cinematic Universe | FLOP CORN</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="lcu.css">
+
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem("flopCornTheme") === "light") {
+                    document.documentElement.classList.add("light-mode");
+                }
+            } catch (error) {
+                // Theme.js will gracefully fall back to dark mode.
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="theme.css?v=1">
+</head>
+
+<body class="lcu-page">
+
+<header class="lcu-topbar">
+    <a href="universes.html" class="lcu-back-button">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        <span>Back to Universes</span>
+    </a>
+
+    <div class="lcu-topbar-brand" aria-label="FLOP CORN">
+        <span class="lcu-brand-mark">🍿</span>
+        <span>FLOP CORN</span>
+    </div>
+</header>
+
+<main>
+    <section class="lcu-hero" id="lcuHero" aria-labelledby="lcuTitle">
+        <div class="lcu-hero-media" aria-hidden="true"></div>
+
+        <div class="lcu-hero-inner">
+            <div class="lcu-eyebrow">
+                <span class="lcu-pulse"></span>
+                CINEMATIC UNIVERSE
+            </div>
+
+            <p class="lcu-kicker">LOKESH KANAGARAJ'S UNIVERSE</p>
+
+            <h1 id="lcuTitle">
+                <span>LCU</span>
+                <small>Lokesh Cinematic Universe</small>
+            </h1>
+
+            <p class="lcu-hero-copy">
+                Follow the interconnected crime-action saga from
+                <strong>Kaithi</strong> to <strong>Vikram</strong> and
+                <strong>Leo</strong>, with the next LCU chapters still in motion.
+            </p>
+
+            <div class="lcu-hero-actions">
+                <a class="lcu-primary-button" href="#lcu-movies">
+                    Explore the Universe
+                    <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                </a>
+
+                <a class="lcu-secondary-button" href="universes.html">
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                    All Universes
+                </a>
+            </div>
+
+            <div class="lcu-hero-stats" aria-label="LCU summary">
+                <div>
+                    <strong>3</strong>
+                    <span>Released Films</span>
+                </div>
+                <div>
+                    <strong>4</strong>
+                    <span>Upcoming Projects</span>
+                </div>
+                <div>
+                    <strong>2019</strong>
+                    <span>Universe Begins</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lcu-section lcu-movie-section" id="lcu-movies">
+        <div class="lcu-section-heading">
+            <div>
+                <p class="lcu-section-kicker">THE FILMS</p>
+                <h2>LCU Movie Collection</h2>
+            </div>
+
+            <div class="lcu-filter-group" role="tablist" aria-label="Filter LCU movies">
+                <button class="lcu-filter-button is-active" type="button" data-filter="all" role="tab" aria-selected="true">
+                    All
+                </button>
+                <button class="lcu-filter-button" type="button" data-filter="released" role="tab" aria-selected="false">
+                    Released
+                </button>
+                <button class="lcu-filter-button" type="button" data-filter="upcoming" role="tab" aria-selected="false">
+                    Upcoming
+                </button>
+            </div>
+        </div>
+
+        <p class="lcu-section-copy">
+            TMDB supplies artwork and movie metadata dynamically; the existing FLOP CORN movie page remains the destination for details, reviews, watchlist, trailers and Where to Watch.
+        </p>
+
+        <div id="releasedMovies" class="lcu-movie-grid" aria-live="polite">
+            <div class="lcu-loading-card">
+                <span class="lcu-spinner"></span>
+                Loading LCU films from TMDB…
+            </div>
+        </div>
+
+    </section>
+
+    <section class="lcu-section lcu-timeline-section" id="lcu-timeline">
+        <div class="lcu-section-heading centered">
+            <div>
+                <p class="lcu-section-kicker">THE JOURNEY</p>
+                <h2>LCU Timeline</h2>
+            </div>
+        </div>
+
+        <div class="lcu-timeline" aria-label="LCU release timeline">
+            <article class="lcu-timeline-item reveal-on-scroll">
+                <div class="lcu-timeline-node">2019</div>
+                <div class="lcu-timeline-card">
+                    <span class="lcu-status released">Released</span>
+                    <h3>Kaithi</h3>
+                    <p>The beginning of the LCU's released film run.</p>
+                    <a href="movie.html?id=587030">Open movie details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </article>
+
+            <article class="lcu-timeline-item reveal-on-scroll">
+                <div class="lcu-timeline-node">2022</div>
+                <div class="lcu-timeline-card">
+                    <span class="lcu-status released">Released</span>
+                    <h3>Vikram</h3>
+                    <p>The second released LCU chapter, expanding the connected world.</p>
+                    <a href="movie.html?id=762504">Open movie details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </article>
+
+            <article class="lcu-timeline-item reveal-on-scroll">
+                <div class="lcu-timeline-node">2023</div>
+                <div class="lcu-timeline-card">
+                    <span class="lcu-status released">Released</span>
+                    <h3>Leo</h3>
+                    <p>The third released chapter continues the universe's crossover path.</p>
+                    <a href="movie.html?id=949229">Open movie details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </article>
+
+            <article class="lcu-timeline-item future reveal-on-scroll">
+                <div class="lcu-timeline-node">
+                    <i class="fa-solid fa-forward" aria-hidden="true"></i>
+                </div>
+                <div class="lcu-timeline-card">
+                    <span class="lcu-status upcoming">Future</span>
+                    <h3>Upcoming LCU Projects</h3>
+                    <p>Benz, Kaithi 2, Rolex and Vikram 2 / Vikram Returns.</p>
+                    <a href="#upcoming-projects">See upcoming projects <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="lcu-section lcu-connections-section" id="connections">
+        <div class="lcu-section-heading centered">
+            <div>
+                <p class="lcu-section-kicker">CONNECTED STORIES</p>
+                <h2>How the LCU Connects</h2>
+            </div>
+        </div>
+
+        <div class="lcu-connection-map" aria-label="LCU release and connection path">
+            <div class="lcu-connection-step reveal-on-scroll">
+                <span>01</span>
+                <strong>KAITHI</strong>
+                <small>2019</small>
+            </div>
+
+            <div class="lcu-connection-line" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="lcu-connection-step reveal-on-scroll">
+                <span>02</span>
+                <strong>VIKRAM</strong>
+                <small>2022</small>
+            </div>
+
+            <div class="lcu-connection-line" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="lcu-connection-step reveal-on-scroll">
+                <span>03</span>
+                <strong>LEO</strong>
+                <small>2023</small>
+            </div>
+
+            <div class="lcu-connection-line" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="lcu-connection-step future reveal-on-scroll">
+                <span>∞</span>
+                <strong>UPCOMING LCU</strong>
+                <small>In development</small>
+            </div>
+        </div>
+
+        <div class="lcu-note-card reveal-on-scroll">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <p>
+                This guide uses established franchise connections and release order.
+                It does not invent a story chronology or speculate about unreleased plot details.
+            </p>
+        </div>
+    </section>
+
+    <section class="lcu-section" id="characters">
+        <div class="lcu-section-heading centered">
+            <div>
+                <p class="lcu-section-kicker">KEY FIGURES</p>
+                <h2>Character Connections</h2>
+            </div>
+        </div>
+
+        <div class="lcu-character-grid">
+            <article class="lcu-character-card reveal-on-scroll">
+                <div class="lcu-character-icon">D</div>
+                <div>
+                    <span>KAITHI</span>
+                    <h3>Dilli</h3>
+                    <p>The central figure of Kaithi and one of the universe's established anchors.</p>
+                </div>
+            </article>
+
+            <article class="lcu-character-card reveal-on-scroll">
+                <div class="lcu-character-icon">V</div>
+                <div>
+                    <span>VIKRAM</span>
+                    <h3>Vikram</h3>
+                    <p>The veteran operative at the center of the 2022 LCU chapter.</p>
+                </div>
+            </article>
+
+            <article class="lcu-character-card reveal-on-scroll">
+                <div class="lcu-character-icon">A</div>
+                <div>
+                    <span>VIKRAM</span>
+                    <h3>Amar</h3>
+                    <p>The investigator whose story helps bridge the wider LCU.</p>
+                </div>
+            </article>
+
+            <article class="lcu-character-card reveal-on-scroll">
+                <div class="lcu-character-icon">L</div>
+                <div>
+                    <span>LEO</span>
+                    <h3>Leo / Parthiban</h3>
+                    <p>The protagonist at the center of Leo's LCU chapter.</p>
+                </div>
+            </article>
+
+            <article class="lcu-character-card reveal-on-scroll">
+                <div class="lcu-character-icon">R</div>
+                <div>
+                    <span>VIKRAM → FUTURE</span>
+                    <h3>Rolex</h3>
+                    <p>Suriya's crime boss character introduced through Vikram and planned for a standalone LCU film.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="lcu-section lcu-upcoming-section" id="upcoming-projects">
+        <div class="lcu-section-heading">
+            <div>
+                <p class="lcu-section-kicker">WHAT'S NEXT</p>
+                <h2>Upcoming / Announced LCU Projects</h2>
+            </div>
+        </div>
+
+        <div class="lcu-upcoming-grid">
+            <article class="lcu-project-card reveal-on-scroll" data-type="upcoming" data-project="benz">
+                <div class="lcu-project-media">
+                    <div class="lcu-project-art">
+                        <span>BENZ</span>
+                    </div>
+                </div>
+                <div class="lcu-project-body">
+                    <div class="lcu-project-topline">
+                        <span class="lcu-status upcoming">In Production</span>
+                        <span class="lcu-project-date">Release date TBA</span>
+                    </div>
+                    <h3>Benz</h3>
+                    <p>Upcoming LCU film directed by Bakkiyaraj Kannan and produced by Lokesh Kanagaraj's banner.</p>
+                    <div class="lcu-project-meta">
+                        <span>TMDB: <strong data-tmdb-id="benz">1274230</strong></span>
+                        <span data-project-source="benz">TMDB artwork loads when available</span>
+                    </div>
+                    <a href="movie.html?id=1274230" class="lcu-project-link" data-project-link="benz">
+                        Open TMDB details
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="lcu-project-card reveal-on-scroll" data-type="upcoming">
+                <div class="lcu-project-media">
+                    <div class="lcu-project-art">
+                        <span>KAITHI<br>2</span>
+                    </div>
+                </div>
+                <div class="lcu-project-body">
+                    <div class="lcu-project-topline">
+                        <span class="lcu-status upcoming">Announced</span>
+                        <span class="lcu-project-date">Release date TBA</span>
+                    </div>
+                    <h3>Kaithi 2</h3>
+                    <p>The planned sequel to Kaithi remains part of Lokesh Kanagaraj's LCU roadmap.</p>
+                    <div class="lcu-project-meta">
+                        <span>TMDB: <strong>Not selected</strong></span>
+                        <span>Placeholder until an official listing is confirmed</span>
+                    </div>
+                    <span class="lcu-project-disabled">Details link not available yet</span>
+                </div>
+            </article>
+
+            <article class="lcu-project-card reveal-on-scroll" data-type="upcoming">
+                <div class="lcu-project-media">
+                    <div class="lcu-project-art">
+                        <span>ROLEX</span>
+                    </div>
+                </div>
+                <div class="lcu-project-body">
+                    <div class="lcu-project-topline">
+                        <span class="lcu-status upcoming">Planned</span>
+                        <span class="lcu-project-date">Release date TBA</span>
+                    </div>
+                    <h3>Rolex</h3>
+                    <p>A standalone film centered on Suriya's Rolex, the crime-boss character introduced in Vikram.</p>
+                    <div class="lcu-project-meta">
+                        <span>TMDB: <strong>Not selected</strong></span>
+                        <span>Placeholder until an official LCU listing is confirmed</span>
+                    </div>
+                    <span class="lcu-project-disabled">Details link not available yet</span>
+                </div>
+            </article>
+
+            <article class="lcu-project-card reveal-on-scroll" data-type="upcoming">
+                <div class="lcu-project-media">
+                    <div class="lcu-project-art">
+                        <span>VIKRAM<br>2</span>
+                    </div>
+                </div>
+                <div class="lcu-project-body">
+                    <div class="lcu-project-topline">
+                        <span class="lcu-status upcoming">In Development</span>
+                        <span class="lcu-project-date">Release date TBA</span>
+                    </div>
+                    <h3>Vikram 2 / Vikram Returns</h3>
+                    <p>The planned follow-up remains part of the wider LCU roadmap; no release date is presented here.</p>
+                    <div class="lcu-project-meta">
+                        <span>TMDB: <strong>Not selected</strong></span>
+                        <span>Placeholder until an official LCU listing is confirmed</span>
+                    </div>
+                    <span class="lcu-project-disabled">Details link not available yet</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="lcu-final-cta reveal-on-scroll">
+        <div>
+            <p class="lcu-section-kicker">KEEP EXPLORING</p>
+            <h2>Back to FLOP CORN</h2>
+            <p>
+                Discover more movie universes, reviews, quizzes, news and new releases across the site.
+            </p>
+        </div>
+
+        <a href="index.html" class="lcu-primary-button">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            Return Home
+        </a>
+    </section>
+</main>
+
+<script src="lcu.js"></script>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+            navigator.serviceWorker.register("/sw.js").catch(function (error) {
+                console.warn("Service worker registration failed:", error);
+            });
+        });
+    }
+</script>
+
+<script src="theme.js" defer></script>
+
+</body>
+</html>
