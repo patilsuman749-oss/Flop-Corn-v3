@@ -1,0 +1,1401 @@
+/* =========================================================
+   FLOP CORN 🍿 — LCU PAGE
+   Reuses FLOP CORN's black/yellow cinematic language while
+   keeping every selector scoped to the LCU page.
+========================================================= */
+
+:root {
+    --lcu-yellow: #ffd21c;
+    --lcu-yellow-soft: #ffdd57;
+    --lcu-bg: #070707;
+    --lcu-bg-2: #0d0d0d;
+    --lcu-panel: rgba(18, 18, 18, 0.76);
+    --lcu-panel-solid: #111111;
+    --lcu-text: #f7f7f7;
+    --lcu-muted: #a9a9a9;
+    --lcu-border: rgba(255, 210, 28, 0.18);
+    --lcu-border-strong: rgba(255, 210, 28, 0.34);
+    --lcu-shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
+    --lcu-radius: 26px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body.lcu-page {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 8%, rgba(255, 210, 28, 0.07), transparent 30%),
+        radial-gradient(circle at 85% 44%, rgba(255, 210, 28, 0.035), transparent 28%),
+        var(--lcu-bg);
+    color: var(--lcu-text);
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+body.lcu-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(transparent 0 96%, rgba(255, 210, 28, 0.03) 96% 100%),
+        repeating-linear-gradient(90deg, transparent 0 72px, rgba(255,255,255,.012) 72px 73px);
+    opacity: .35;
+    z-index: -1;
+}
+
+.lcu-page a {
+    color: inherit;
+}
+
+.lcu-topbar {
+    width: min(1180px, calc(100% - 36px));
+    margin: 0 auto;
+    padding: 24px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    position: relative;
+    z-index: 20;
+}
+
+.lcu-back-button,
+.lcu-secondary-button,
+.lcu-primary-button {
+    text-decoration: none;
+}
+
+.lcu-back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 15px;
+    border: 1px solid rgba(255, 210, 28, 0.22);
+    border-radius: 14px;
+    color: var(--lcu-yellow);
+    background: rgba(8, 8, 8, 0.66);
+    backdrop-filter: blur(14px);
+    font-weight: 700;
+    font-size: .9rem;
+    transition: transform .25s ease, background .25s ease, border-color .25s ease;
+}
+
+.lcu-back-button:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 210, 28, 0.08);
+    border-color: var(--lcu-border-strong);
+}
+
+.lcu-topbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 800;
+    letter-spacing: .06em;
+    font-size: .9rem;
+    opacity: .9;
+}
+
+.lcu-brand-mark {
+    font-size: 1.1rem;
+}
+
+.lcu-hero {
+    width: min(1260px, calc(100% - 24px));
+    min-height: 710px;
+    margin: 8px auto 0;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    border-radius: 34px;
+    isolation: isolate;
+    border: 1px solid rgba(255, 210, 28, 0.12);
+    box-shadow: var(--lcu-shadow);
+    background:
+        radial-gradient(circle at 50% 30%, rgba(255,210,28,.12), transparent 35%),
+        linear-gradient(180deg, #151515, #080808 76%);
+}
+
+.lcu-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(0,0,0,.93) 0%, rgba(0,0,0,.62) 48%, rgba(0,0,0,.55) 100%),
+        linear-gradient(0deg, rgba(0,0,0,.98) 0%, rgba(0,0,0,.12) 58%, rgba(0,0,0,.28) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.lcu-hero-media {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: .82;
+    transform: scale(1.045);
+    transition: opacity 1s ease, background-image 1s ease;
+    filter: saturate(.92) contrast(1.06);
+    z-index: 0;
+}
+
+.lcu-hero.is-changing .lcu-hero-media {
+    opacity: .24;
+}
+
+.lcu-hero-inner {
+    width: min(1180px, calc(100% - 72px));
+    padding: 112px 0 64px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.lcu-eyebrow,
+.lcu-section-kicker,
+.lcu-kicker {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    font-size: .74rem;
+    font-weight: 800;
+}
+
+.lcu-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--lcu-yellow);
+    margin-bottom: 20px;
+}
+
+.lcu-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--lcu-yellow);
+    box-shadow: 0 0 0 0 rgba(255, 210, 28, .45);
+    animation: lcuPulse 2.1s ease-out infinite;
+}
+
+@keyframes lcuPulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,210,28,.42); }
+    70% { box-shadow: 0 0 0 9px rgba(255,210,28,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,210,28,0); }
+}
+
+.lcu-kicker {
+    color: #e7e7e7;
+    opacity: .78;
+    margin-bottom: 9px;
+}
+
+.lcu-hero h1 {
+    margin: 0;
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(4.2rem, 10vw, 8.2rem);
+    line-height: .87;
+    letter-spacing: -.05em;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 18px 48px rgba(0,0,0,.32);
+}
+
+.lcu-hero h1 > span {
+    display: block;
+    color: var(--lcu-yellow);
+    text-shadow: 0 0 34px rgba(255,210,28,.16);
+}
+
+.lcu-hero h1 small {
+    display: block;
+    margin-top: 18px;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(1.1rem, 2.4vw, 1.8rem);
+    line-height: 1.2;
+    letter-spacing: .01em;
+    text-transform: none;
+    color: #ececec;
+    font-weight: 800;
+}
+
+.lcu-hero-copy {
+    max-width: 670px;
+    margin: 26px 0 0;
+    color: #c4c4c4;
+    font-size: clamp(.96rem, 1.7vw, 1.1rem);
+    line-height: 1.76;
+}
+
+.lcu-hero-copy strong {
+    color: #fff;
+}
+
+.lcu-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.lcu-primary-button,
+.lcu-secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 18px;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: .9rem;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+}
+
+.lcu-primary-button {
+    color: #0a0a0a;
+    background: var(--lcu-yellow);
+    box-shadow: 0 14px 36px rgba(255, 210, 28, .12);
+}
+
+.lcu-primary-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px rgba(255,210,28,.18);
+}
+
+.lcu-secondary-button {
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(12px);
+}
+
+.lcu-secondary-button:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,210,28,.35);
+    color: var(--lcu-yellow);
+}
+
+.lcu-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 50px;
+}
+
+.lcu-hero-stats div {
+    min-width: 102px;
+}
+
+.lcu-hero-stats strong {
+    display: block;
+    font-family: "Outfit", sans-serif;
+    color: #fff;
+    font-size: 1.55rem;
+}
+
+.lcu-hero-stats span {
+    display: block;
+    color: #9f9f9f;
+    font-size: .78rem;
+    margin-top: 2px;
+}
+
+.lcu-section,
+.lcu-final-cta {
+    width: min(1180px, calc(100% - 36px));
+    margin: 0 auto;
+}
+
+.lcu-section {
+    padding: 88px 0 0;
+    scroll-margin-top: 22px;
+}
+
+.lcu-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.lcu-section-heading.centered {
+    justify-content: center;
+    text-align: center;
+}
+
+.lcu-section-kicker {
+    color: var(--lcu-yellow);
+    margin-bottom: 7px;
+}
+
+.lcu-section-heading h2 {
+    margin: 0;
+    font-family: "Outfit", sans-serif;
+    color: #fff;
+    font-size: clamp(2rem, 4.3vw, 3.2rem);
+    line-height: 1;
+}
+
+.lcu-section-copy {
+    max-width: 820px;
+    color: #959595;
+    font-size: .92rem;
+    line-height: 1.7;
+    margin: 0 0 28px;
+}
+
+.lcu-filter-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+    padding: 5px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px;
+}
+
+.lcu-filter-button {
+    appearance: none;
+    border: 0;
+    padding: 9px 13px;
+    border-radius: 10px;
+    color: #9e9e9e;
+    background: transparent;
+    font: inherit;
+    font-size: .82rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.lcu-filter-button:hover {
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.lcu-filter-button.is-active {
+    color: #0b0b0b;
+    background: var(--lcu-yellow);
+}
+
+.lcu-movie-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.lcu-movie-grid:empty {
+    display: none;
+}
+
+.lcu-loading-card {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 170px;
+    border: 1px dashed rgba(255,210,28,.18);
+    border-radius: var(--lcu-radius);
+    background: rgba(255,255,255,.025);
+    color: #a7a7a7;
+    font-size: .9rem;
+}
+
+.lcu-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,210,28,.2);
+    border-top-color: var(--lcu-yellow);
+    border-radius: 50%;
+    animation: lcuSpin .8s linear infinite;
+}
+
+@keyframes lcuSpin {
+    to { transform: rotate(360deg); }
+}
+
+.lcu-movie-card {
+    overflow: hidden;
+    border: 1px solid var(--lcu-border);
+    border-radius: var(--lcu-radius);
+    background: linear-gradient(180deg, rgba(21,21,21,.92), rgba(11,11,11,.96));
+    box-shadow: 0 18px 48px rgba(0,0,0,.18);
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.lcu-movie-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--lcu-border-strong);
+    box-shadow: 0 28px 62px rgba(0,0,0,.28);
+}
+
+.lcu-movie-card.is-hidden,
+.lcu-project-card.is-hidden {
+    display: none !important;
+}
+
+.lcu-card-main-link {
+    text-decoration: none;
+    display: block;
+}
+
+.lcu-card-media {
+    position: relative;
+    aspect-ratio: 2 / 2.95;
+    overflow: hidden;
+    background: linear-gradient(135deg, #222, #0d0d0d);
+}
+
+.lcu-card-media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform .45s ease, filter .35s ease;
+}
+
+.lcu-movie-card:hover .lcu-card-media img {
+    transform: scale(1.045);
+    filter: saturate(1.05);
+}
+
+.lcu-card-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.02) 45%, rgba(0,0,0,.72) 100%);
+    pointer-events: none;
+}
+
+.lcu-card-badge {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    z-index: 2;
+    padding: 6px 9px;
+    border-radius: 9px;
+    color: #090909;
+    background: var(--lcu-yellow);
+    font-size: .7rem;
+    font-weight: 900;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.lcu-card-content {
+    padding: 17px 16px 14px;
+}
+
+.lcu-card-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.lcu-card-title {
+    margin: 0;
+    font-family: "Outfit", sans-serif;
+    font-size: 1.35rem;
+    line-height: 1.04;
+    color: #fff;
+}
+
+.lcu-card-year {
+    flex: 0 0 auto;
+    color: #8f8f8f;
+    font-size: .78rem;
+    font-weight: 800;
+}
+
+.lcu-card-overview {
+    color: #999;
+    margin: 10px 0 0;
+    font-size: .8rem;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.lcu-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.lcu-meta-pill,
+.lcu-tmdb-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 8px;
+    border-radius: 9px;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.07);
+    color: #c5c5c5;
+    font-size: .7rem;
+    font-weight: 700;
+}
+
+.lcu-meta-pill strong,
+.lcu-tmdb-pill strong {
+    color: #fff;
+}
+
+.lcu-card-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 11px;
+}
+
+.lcu-card-genre {
+    font-size: .66rem;
+    color: #8f8f8f;
+    border: 1px solid rgba(255,255,255,.07);
+    padding: 5px 7px;
+    border-radius: 999px;
+}
+
+.lcu-card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    padding: 0 16px 16px;
+    margin-top: auto;
+}
+
+.lcu-card-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: .78rem;
+    font-weight: 900;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease, color .2s ease;
+}
+
+.lcu-card-action.details {
+    color: #0b0b0b;
+    background: var(--lcu-yellow);
+}
+
+.lcu-card-action.trailer {
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.11);
+    background: rgba(255,255,255,.045);
+}
+
+.lcu-card-action:hover {
+    transform: translateY(-2px);
+}
+
+.lcu-card-action.trailer:hover {
+    border-color: rgba(255,210,28,.35);
+    color: var(--lcu-yellow);
+}
+
+.lcu-card-fallback {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 25%, rgba(255,210,28,.16), transparent 35%),
+        linear-gradient(135deg, #222, #0a0a0a);
+}
+
+.lcu-card-fallback span {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+    line-height: .9;
+    font-weight: 800;
+    color: rgba(255,255,255,.94);
+    letter-spacing: .02em;
+}
+
+.lcu-error-card {
+    grid-column: 1 / -1;
+    padding: 24px;
+    border-radius: var(--lcu-radius);
+    border: 1px solid rgba(255,82,82,.15);
+    background: rgba(255,255,255,.025);
+    text-align: center;
+}
+
+.lcu-error-card i {
+    font-size: 1.3rem;
+    color: var(--lcu-yellow);
+}
+
+.lcu-error-card h3 {
+    margin: 10px 0 5px;
+    font-family: "Outfit", sans-serif;
+    color: #fff;
+}
+
+.lcu-error-card p {
+    margin: 0;
+    color: #8f8f8f;
+    font-size: .84rem;
+}
+
+.lcu-timeline-section {
+    padding-top: 102px;
+}
+
+.lcu-timeline {
+    position: relative;
+    max-width: 860px;
+    margin: 38px auto 0;
+    padding: 8px 0 12px;
+}
+
+.lcu-timeline::before {
+    content: "";
+    position: absolute;
+    top: 16px;
+    bottom: 18px;
+    left: 28px;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(255,210,28,.42), rgba(255,210,28,.08));
+}
+
+.lcu-timeline-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 58px minmax(0,1fr);
+    gap: 17px;
+    align-items: start;
+    margin-bottom: 20px;
+}
+
+.lcu-timeline-node {
+    position: relative;
+    z-index: 1;
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    border: 1px solid rgba(255,210,28,.25);
+    background: #111;
+    color: var(--lcu-yellow);
+    font-size: .72rem;
+    font-weight: 900;
+    box-shadow: 0 14px 32px rgba(0,0,0,.22);
+}
+
+.lcu-timeline-node i {
+    font-size: .95rem;
+}
+
+.lcu-timeline-card {
+    padding: 20px 20px 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.035);
+    transition: transform .3s ease, border-color .3s ease, background .3s ease;
+}
+
+.lcu-timeline-item:hover .lcu-timeline-card {
+    transform: translateX(4px);
+    border-color: rgba(255,210,28,.2);
+    background: rgba(255,255,255,.05);
+}
+
+.lcu-timeline-card h3 {
+    margin: 8px 0 6px;
+    font-family: "Outfit", sans-serif;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.lcu-timeline-card p {
+    margin: 0;
+    color: #949494;
+    font-size: .84rem;
+    line-height: 1.6;
+}
+
+.lcu-timeline-card a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    color: var(--lcu-yellow);
+    font-size: .76rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.lcu-status {
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    padding: 5px 8px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: .62rem;
+    font-weight: 900;
+}
+
+.lcu-status.released {
+    color: #d9d9d9;
+    background: rgba(255,255,255,.07);
+}
+
+.lcu-status.upcoming {
+    color: #181818;
+    background: rgba(255,210,28,.92);
+}
+
+.lcu-connection-map {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1.1fr;
+    align-items: center;
+    gap: 10px;
+    margin-top: 34px;
+}
+
+.lcu-connection-step {
+    min-height: 138px;
+    padding: 19px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    box-shadow: 0 16px 44px rgba(0,0,0,.15);
+}
+
+.lcu-connection-step span {
+    color: var(--lcu-yellow);
+    font-size: .68rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.lcu-connection-step strong {
+    font-family: "Outfit", sans-serif;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.lcu-connection-step small {
+    color: #8c8c8c;
+    margin-top: 5px;
+    line-height: 1.3;
+}
+
+.lcu-connection-line {
+    color: rgba(255,210,28,.5);
+    font-size: .85rem;
+}
+
+.lcu-connection-step.future {
+    border-color: rgba(255,210,28,.18);
+    background:
+        radial-gradient(circle at 100% 0, rgba(255,210,28,.1), transparent 36%),
+        rgba(255,255,255,.03);
+}
+
+.lcu-note-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin-top: 20px;
+    padding: 17px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,210,28,.11);
+    background: rgba(255,210,28,.035);
+}
+
+.lcu-note-card i {
+    color: var(--lcu-yellow);
+    margin-top: 2px;
+}
+
+.lcu-note-card p {
+    margin: 0;
+    color: #999;
+    font-size: .78rem;
+    line-height: 1.6;
+}
+
+.lcu-character-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 14px;
+    margin-top: 34px;
+}
+
+.lcu-character-card {
+    display: flex;
+    gap: 13px;
+    padding: 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.03);
+    transition: transform .25s ease, border-color .25s ease;
+}
+
+.lcu-character-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,210,28,.2);
+}
+
+.lcu-character-icon {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    color: #111;
+    background: linear-gradient(135deg, var(--lcu-yellow), #f7b800);
+    font-family: "Outfit", sans-serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+}
+
+.lcu-character-card span {
+    display: block;
+    color: #828282;
+    font-size: .6rem;
+    letter-spacing: .11em;
+    font-weight: 900;
+}
+
+.lcu-character-card h3 {
+    margin: 4px 0 5px;
+    color: #fff;
+    font-family: "Outfit", sans-serif;
+    font-size: 1.03rem;
+}
+
+.lcu-character-card p {
+    margin: 0;
+    color: #929292;
+    font-size: .76rem;
+    line-height: 1.55;
+}
+
+.lcu-upcoming-section {
+    padding-top: 100px;
+}
+
+.lcu-upcoming-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 18px;
+}
+
+.lcu-project-card {
+    display: grid;
+    grid-template-columns: 180px minmax(0,1fr);
+    min-width: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.03);
+    box-shadow: 0 18px 52px rgba(0,0,0,.18);
+    transition: transform .3s ease, border-color .3s ease;
+}
+
+.lcu-project-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255,210,28,.22);
+}
+
+.lcu-project-media {
+    min-height: 250px;
+    position: relative;
+    overflow: hidden;
+    background: #121212;
+}
+
+.lcu-project-media.tmdb-art {
+    background-size: cover;
+    background-position: center;
+}
+
+.lcu-project-art {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 15px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 25%, rgba(255,210,28,.22), transparent 36%),
+        linear-gradient(155deg, #242424, #090909 72%);
+}
+
+.lcu-project-art::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.56));
+}
+
+.lcu-project-art span {
+    position: relative;
+    z-index: 1;
+    font-family: "Outfit", sans-serif;
+    color: rgba(255,255,255,.95);
+    font-weight: 800;
+    font-size: 1.65rem;
+    line-height: .92;
+    letter-spacing: .04em;
+}
+
+.lcu-project-body {
+    padding: 20px 20px 18px;
+}
+
+.lcu-project-topline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lcu-project-date {
+    color: #858585;
+    font-size: .67rem;
+    font-weight: 700;
+}
+
+.lcu-project-body h3 {
+    margin: 12px 0 7px;
+    color: #fff;
+    font-family: "Outfit", sans-serif;
+    font-size: 1.35rem;
+    line-height: 1.05;
+}
+
+.lcu-project-body p {
+    margin: 0;
+    color: #939393;
+    font-size: .8rem;
+    line-height: 1.62;
+}
+
+.lcu-project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 15px;
+}
+
+.lcu-project-meta span {
+    color: #808080;
+    font-size: .64rem;
+}
+
+.lcu-project-meta strong {
+    color: var(--lcu-yellow);
+}
+
+.lcu-project-link,
+.lcu-project-disabled {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    font-size: .72rem;
+    font-weight: 900;
+}
+
+.lcu-project-link {
+    color: var(--lcu-yellow);
+    text-decoration: none;
+}
+
+.lcu-project-disabled {
+    color: #777;
+}
+
+.lcu-final-cta {
+    margin-top: 100px;
+    margin-bottom: 45px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border-radius: 28px;
+    border: 1px solid rgba(255,210,28,.14);
+    background:
+        radial-gradient(circle at 10% 0, rgba(255,210,28,.12), transparent 35%),
+        rgba(255,255,255,.03);
+    box-shadow: var(--lcu-shadow);
+}
+
+.lcu-final-cta h2 {
+    margin: 4px 0 6px;
+    color: #fff;
+    font-family: "Outfit", sans-serif;
+    font-size: 2rem;
+}
+
+.lcu-final-cta p:last-child {
+    margin: 0;
+    color: #919191;
+    font-size: .84rem;
+}
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s ease;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 1000px) {
+    .lcu-hero {
+        min-height: 650px;
+    }
+
+    .lcu-movie-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .lcu-character-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .lcu-connection-map {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .lcu-connection-line {
+        display: none;
+    }
+
+    .lcu-project-card {
+        grid-template-columns: 150px minmax(0,1fr);
+    }
+}
+
+@media (max-width: 720px) {
+    .lcu-topbar {
+        width: min(100% - 24px, 1180px);
+        padding-top: 15px;
+    }
+
+    .lcu-topbar-brand {
+        display: none;
+    }
+
+    .lcu-back-button {
+        padding: 10px 12px;
+        font-size: .8rem;
+    }
+
+    .lcu-hero {
+        width: calc(100% - 14px);
+        min-height: 670px;
+        border-radius: 24px;
+    }
+
+    .lcu-hero::after {
+        background:
+            linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.62)),
+            linear-gradient(0deg, rgba(0,0,0,.97), rgba(0,0,0,.15));
+    }
+
+    .lcu-hero-inner {
+        width: calc(100% - 38px);
+        padding: 120px 0 40px;
+    }
+
+    .lcu-hero h1 {
+        font-size: clamp(4rem, 22vw, 6rem);
+    }
+
+    .lcu-hero h1 small {
+        font-size: 1rem;
+        margin-top: 13px;
+    }
+
+    .lcu-hero-copy {
+        font-size: .86rem;
+        line-height: 1.68;
+    }
+
+    .lcu-hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .lcu-hero-stats {
+        gap: 20px;
+        margin-top: 35px;
+    }
+
+    .lcu-hero-stats strong {
+        font-size: 1.25rem;
+    }
+
+    .lcu-section {
+        width: calc(100% - 24px);
+        padding-top: 72px;
+    }
+
+    .lcu-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .lcu-filter-group {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .lcu-filter-button {
+        width: 100%;
+    }
+
+    .lcu-movie-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lcu-card-title {
+        font-size: 1.2rem;
+    }
+
+    .lcu-card-overview {
+        -webkit-line-clamp: 4;
+    }
+
+    .lcu-timeline {
+        padding-left: 0;
+    }
+
+    .lcu-timeline::before {
+        left: 24px;
+    }
+
+    .lcu-timeline-item {
+        grid-template-columns: 48px minmax(0,1fr);
+        gap: 12px;
+    }
+
+    .lcu-timeline-node {
+        width: 48px;
+        height: 48px;
+        border-radius: 15px;
+    }
+
+    .lcu-timeline-card {
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .lcu-connection-map,
+    .lcu-character-grid,
+    .lcu-upcoming-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lcu-connection-step {
+        min-height: 112px;
+    }
+
+    .lcu-project-card {
+        grid-template-columns: 1fr;
+    }
+
+    .lcu-project-media {
+        min-height: 190px;
+        aspect-ratio: 16 / 10;
+    }
+
+    .lcu-final-cta {
+        width: calc(100% - 24px);
+        margin-top: 74px;
+        margin-bottom: 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 23px;
+        border-radius: 22px;
+    }
+
+    .lcu-final-cta .lcu-primary-button {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+
+    .reveal-on-scroll {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* =========================================================
+   LIGHT MODE — LCU ONLY
+========================================================= */
+
+html.light-mode body.lcu-page {
+    --lcu-bg: #f4f2ec;
+    --lcu-bg-2: #fff;
+    --lcu-panel: rgba(255,255,255,.86);
+    --lcu-panel-solid: #fff;
+    --lcu-text: #171717;
+    --lcu-muted: #666;
+    --lcu-border: rgba(0,0,0,.09);
+    --lcu-border-strong: rgba(185,145,0,.32);
+
+    background:
+        radial-gradient(circle at 15% 8%, rgba(255, 210, 28, 0.12), transparent 30%),
+        #f4f2ec;
+    color: #171717;
+}
+
+html.light-mode body.lcu-page::before {
+    opacity: .18;
+}
+
+html.light-mode .lcu-topbar-brand,
+html.light-mode .lcu-section-heading h2,
+html.light-mode .lcu-card-title,
+html.light-mode .lcu-timeline-card h3,
+html.light-mode .lcu-character-card h3,
+html.light-mode .lcu-project-body h3,
+html.light-mode .lcu-final-cta h2 {
+    color: #181818;
+}
+
+html.light-mode .lcu-back-button {
+    color: #8b6900;
+    background: rgba(255,255,255,.78);
+    border-color: rgba(190,145,0,.22);
+}
+
+html.light-mode .lcu-hero {
+    border-color: rgba(0,0,0,.08);
+    background: linear-gradient(180deg, #e5e1d8, #bdb7ab);
+}
+
+html.light-mode .lcu-hero::after {
+    background:
+        linear-gradient(90deg, rgba(18,18,18,.74), rgba(18,18,18,.34)),
+        linear-gradient(0deg, rgba(15,15,15,.9), rgba(0,0,0,.12));
+}
+
+html.light-mode .lcu-hero-copy,
+html.light-mode .lcu-hero h1 small {
+    color: #eeeeee;
+}
+
+html.light-mode .lcu-filter-group,
+html.light-mode .lcu-timeline-card,
+html.light-mode .lcu-connection-step,
+html.light-mode .lcu-character-card,
+html.light-mode .lcu-project-card,
+html.light-mode .lcu-final-cta,
+html.light-mode .lcu-note-card {
+    background: rgba(255,255,255,.86);
+    border-color: rgba(0,0,0,.08);
+    box-shadow: 0 12px 34px rgba(0,0,0,.06);
+}
+
+html.light-mode .lcu-section-copy,
+html.light-mode .lcu-card-overview,
+html.light-mode .lcu-timeline-card p,
+html.light-mode .lcu-character-card p,
+html.light-mode .lcu-project-body p,
+html.light-mode .lcu-final-cta p:last-child {
+    color: #686868;
+}
+
+html.light-mode .lcu-meta-pill,
+html.light-mode .lcu-tmdb-pill,
+html.light-mode .lcu-card-genre,
+html.light-mode .lcu-card-action.trailer {
+    border-color: rgba(0,0,0,.08);
+    background: rgba(0,0,0,.03);
+    color: #5f5f5f;
+}
+
+html.light-mode .lcu-meta-pill strong,
+html.light-mode .lcu-tmdb-pill strong {
+    color: #252525;
+}
+
+html.light-mode .lcu-card-action.trailer:hover {
+    color: #7c5f00;
+    border-color: rgba(185,145,0,.28);
+}
+
+html.light-mode .lcu-project-art,
+html.light-mode .lcu-card-fallback {
+    background:
+        radial-gradient(circle at 50% 25%, rgba(255,210,28,.16), transparent 36%),
+        linear-gradient(155deg, #d5d0c5, #b6b0a3);
+}
+
+html.light-mode .lcu-project-art span,
+html.light-mode .lcu-card-fallback span {
+    color: #fff;
+}
+
+html.light-mode .lcu-project-date,
+html.light-mode .lcu-project-meta span {
+    color: #777;
+}
+
+html.light-mode .lcu-card-media {
+    background: #ddd8cd;
+}
+
+html.light-mode .lcu-timeline::before {
+    background: linear-gradient(180deg, rgba(190,145,0,.38), rgba(190,145,0,.08));
+}

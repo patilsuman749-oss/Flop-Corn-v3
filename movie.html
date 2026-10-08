@@ -3250,7 +3250,14 @@ if (viewCollectionOverlay) {
         =============================== */
 
 
-        loadMovie();
+        loadMovie().then(() => {
+            const autoplayTrailer =
+                new URLSearchParams(window.location.search).get("autoplayTrailer") === "1";
+
+            if (autoplayTrailer && currentMovie) {
+                window.setTimeout(() => openTrailer(currentMovie.id), 280);
+            }
+        });
 
 // ===============================
 // REVIEW POPUP
