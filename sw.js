@@ -3,18 +3,22 @@
 // This existing purely to satisfy PWA installability requirements (Chrome needs an
 // active service worker + manifest to offer "Install app" / "Open in app").
 
-const CACHE_NAME = "flopcorn-shell-v4";
+const CACHE_NAME = "flopcorn-shell-v9";
 
 const CORE_ASSETS = [
   "/index.html",
-  "/style.css?v=4",
+  "/box-office.html",
+  "/box-office.css?v=2",
+  "/box-office.js?v=2",
+  "/style.css?v=5",
   "/favicon.ico",
   "/favicon-192.png",
   "/favicon-512.png",
   "/assets/images/flopcorn-logo.png",
   "/manifest.json",
   "/theme.css?v=1",
-  "/theme.js"
+  "/theme.js",
+  "/logo-responsive.css?v=4"
 ];
 
 self.addEventListener("install", (event) => {

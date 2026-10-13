@@ -57,3 +57,9 @@ app/
   website, so anything you change on flopcorn.in shows up immediately, no rebuild
   needed. You only need to rebuild the APK if you change app-level things (name,
   icon, permissions, the wrapped URL, etc.).
+## Box Office Tracker
+
+- `box-office.html`, `box-office.css`, and `box-office.js` add a responsive dashboard for reported worldwide grosses and budgets, including a filter by release year.
+- The dashboard can switch to movies listed as currently playing in India. Worldwide revenue is labelled clearly and is not presented as India-only collection data.
+- A five-item mobile quick-navigation includes Box Office, and homepage/news navigation includes desktop links.
+- TMDB attribution and coverage caveats are displayed on the dashboard.

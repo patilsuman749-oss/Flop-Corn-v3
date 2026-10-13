@@ -14155,3 +14155,68 @@ max-width:300px;
     object-fit: contain;
     border-radius: 50%;
 }
+
+
+/* FLOP CORN updated wide brand logo */
+.flopcorn-logo-img,
+.logo-icon img,
+.movie-logo img,
+.ai-logo img,
+.category-logo img,
+.explore-logo img,
+.quiz-logo img,
+.sched-logo img,
+.footer-logo img,
+.small-flopcorn-logo {
+  width: clamp(118px, 15vw, 190px);
+  height: auto;
+  max-height: 72px;
+  object-fit: contain;
+  border-radius: 0;
+  display: block;
+}
+.logo-icon {
+  width: auto !important;
+  height: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  overflow: visible !important;
+  flex-shrink: 0;
+}
+.small-flopcorn-logo { width: 92px; max-height: 38px; }
+@media (max-width: 600px) {
+  .flopcorn-logo-img, .logo-icon img, .movie-logo img, .ai-logo img,
+  .category-logo img, .explore-logo img, .quiz-logo img, .sched-logo img,
+  .footer-logo img { width: clamp(105px, 35vw, 145px); max-height: 54px; }
+}
+
+
+/* FLOP CORN homepage shortcut sizing: Box Office included, responsive on phones. */
+.box-office-home-button {
+  background: linear-gradient(135deg, #ffd21c, #ffbf00) !important;
+  color: #111 !important;
+  border: 1px solid rgba(255, 210, 28, .45) !important;
+  box-shadow: 0 8px 24px rgba(255, 193, 7, .16);
+}
+.box-office-home-button:hover {
+  background: #ffe05a !important;
+  color: #111 !important;
+}
+@media (max-width: 768px) {
+  .hero-content { width: 100%; max-width: 100%; }
+  .hero h1 { font-size: clamp(48px, 13vw, 72px); line-height: .98; letter-spacing: -2.2px; }
+  .hero-description { max-width: 100%; font-size: 14px; line-height: 1.65; margin: 18px 0 22px; }
+  .hero-buttons { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px !important; width: 100%; max-width: 100% !important; }
+  .hero-buttons > .primary-button, .hero-buttons > .download-app-home { width: 100% !important; min-width: 0; min-height: 52px; height: auto !important; padding: 11px 9px; gap: 7px; font-size: 13px; line-height: 1.2; text-align: center; }
+  #moreFeaturesBtn { grid-column: 1 / -1; width: 100% !important; min-height: 48px !important; height: auto !important; margin: 0 !important; font-size: 14px; }
+  #mobile-features { grid-column: 1 / -1; width: 100%; display: none; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  #mobile-features.show { display: grid !important; }
+  #mobile-features > a { width: 100% !important; min-width: 0; min-height: 52px !important; height: auto !important; margin: 0 !important; padding: 11px 9px !important; gap: 7px; font-size: 12px !important; line-height: 1.25; text-align: center; box-sizing: border-box; }
+  .hero-stats { margin-top: 26px; gap: 12px; }
+}
+@media (max-width: 380px) {
+  .hero-buttons { gap: 8px !important; }
+  .hero-buttons > .primary-button, .hero-buttons > .download-app-home { font-size: 12px; padding: 10px 7px; }
+  #mobile-features > a { font-size: 11px !important; }
+}

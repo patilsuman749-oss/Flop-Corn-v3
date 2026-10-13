@@ -1,0 +1,255 @@
+/* FLOP CORN wide-logo responsive layout fix
+   Loaded after page CSS so legacy square-avatar rules cannot crop the logo. */
+
+html body .logo,
+html body .movie-logo,
+html body .ai-logo,
+html body .quiz-logo,
+html body .sched-logo {
+  display: flex !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+  width: clamp(150px, 14vw, 190px) !important;
+  max-width: min(190px, 42vw) !important;
+  min-width: 0 !important;
+  gap: 0 !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+
+/* The logo artwork is already a complete wordmark, so do not repeat its name. */
+html body .logo .logo-text,
+html body .ai-logo strong,
+html body .quiz-logo > span,
+html body .sched-logo-text {
+  display: none !important;
+}
+
+/* Reset the legacy square/circular logo frame. */
+html body .logo-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: 190px !important;
+  aspect-ratio: auto !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html body .logo > img,
+html body .logo-icon > img,
+html body .logo-icon .flopcorn-logo-img,
+html body .movie-logo > img,
+html body .movie-logo .logo-icon > img,
+html body .ai-logo > img,
+html body .quiz-logo > img,
+html body .sched-logo > img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 190px !important;
+  max-height: 72px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  aspect-ratio: auto !important;
+  border-radius: 0 !important;
+  flex: 0 1 auto !important;
+}
+
+/* Collection and explore headers keep their small page label beside the logo. */
+html body .category-logo,
+html body .explore-logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+html body .category-logo > img,
+html body .explore-logo > img {
+  display: block !important;
+  width: clamp(150px, 14vw, 190px) !important;
+  height: auto !important;
+  max-width: 42vw !important;
+  max-height: 72px !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+  flex: 0 1 auto !important;
+}
+
+html body .category-logo > div h1,
+html body .explore-logo > div h1 {
+  display: none !important;
+}
+
+/* The footer/compact logo must stay compact rather than inheriting header sizing. */
+html body .footer-logo .small-flopcorn-logo {
+  width: 92px !important;
+  height: auto !important;
+  max-height: 38px !important;
+  object-fit: contain !important;
+}
+
+/* The movie-details navbar was expanding to the logo frame's old square height. */
+html body .movie-navbar {
+  box-sizing: border-box !important;
+  min-height: 0 !important;
+  padding: 8px 6% !important;
+  align-items: center !important;
+}
+
+@media (max-width: 650px) {
+  html body .logo,
+  html body .movie-logo,
+  html body .ai-logo,
+  html body .quiz-logo,
+  html body .sched-logo {
+    width: clamp(112px, 32vw, 138px) !important;
+    max-width: 40vw !important;
+  }
+
+  html body .logo-icon {
+    max-width: 100% !important;
+  }
+
+  html body .logo > img,
+  html body .logo-icon > img,
+  html body .logo-icon .flopcorn-logo-img,
+  html body .movie-logo > img,
+  html body .movie-logo .logo-icon > img,
+  html body .ai-logo > img,
+  html body .quiz-logo > img,
+  html body .sched-logo > img {
+    max-width: 100% !important;
+    max-height: 52px !important;
+  }
+
+  html body .category-logo > img,
+  html body .explore-logo > img {
+    width: clamp(112px, 32vw, 138px) !important;
+    max-width: 40vw !important;
+    max-height: 52px !important;
+  }
+
+  html body .category-logo > div,
+  html body .explore-logo > div {
+    display: none !important;
+  }
+
+  html body .movie-navbar {
+    padding: 6px 4% !important;
+  }
+}
+
+@media (max-width: 380px) {
+  html body .logo,
+  html body .movie-logo,
+  html body .ai-logo,
+  html body .quiz-logo,
+  html body .sched-logo {
+    width: 112px !important;
+  }
+
+  html body .movie-navbar .back-home {
+    padding: 9px !important;
+  }
+}
+
+/* FLOP CORN BRAND MARK: keep the logo completely static on every page.
+   Overrides older float, glow, pop and hover-motion rules from legacy stylesheets. */
+html body .logo,
+html body .logo-icon,
+html body .logo::before,
+html body .logo::after,
+html body .logo-icon::before,
+html body .logo-icon::after,
+html body .logo img,
+html body .logo-icon img,
+html body .flopcorn-logo-img,
+html body .movie-logo,
+html body .movie-logo img,
+html body .ai-logo,
+html body .ai-logo img,
+html body .quiz-logo,
+html body .quiz-logo img,
+html body .sched-logo,
+html body .sched-logo img,
+html body .category-logo,
+html body .category-logo img,
+html body .explore-logo,
+html body .explore-logo img,
+html body .footer-logo,
+html body .footer-logo img,
+html body .footer-logo .small-flopcorn-logo {
+  animation: none !important;
+  animation-name: none !important;
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Hovering or tapping the logo must not trigger the old pop/rotate effects. */
+html body .logo:hover,
+html body .logo:hover .logo-icon,
+html body .logo:active,
+html body .logo:active .logo-icon,
+html body .movie-logo:hover,
+html body .ai-logo:hover,
+html body .quiz-logo:hover,
+html body .sched-logo:hover,
+html body .category-logo:hover,
+html body .explore-logo:hover,
+html body .footer-logo:hover {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* STATIC BRAND MARK: keep all logo artwork still on every page. */
+html body .logo,
+html body .logo-icon,
+html body .movie-logo,
+html body .ai-logo,
+html body .category-logo,
+html body .explore-logo,
+html body .quiz-logo,
+html body .sched-logo,
+html body .footer-logo,
+html body .logo .flopcorn-logo-img,
+html body .logo-icon .flopcorn-logo-img,
+html body .movie-logo .flopcorn-logo-img,
+html body .ai-logo .flopcorn-logo-img,
+html body .category-logo .flopcorn-logo-img,
+html body .explore-logo .flopcorn-logo-img,
+html body .quiz-logo .flopcorn-logo-img,
+html body .sched-logo .flopcorn-logo-img,
+html body .footer-logo .flopcorn-logo-img {
+  animation: none !important;
+  transition: none !important;
+  filter: none !important;
+}
+html body .logo:hover,
+html body .logo:hover .logo-icon,
+html body .movie-logo:hover,
+html body .ai-logo:hover,
+html body .category-logo:hover,
+html body .explore-logo:hover,
+html body .quiz-logo:hover,
+html body .sched-logo:hover,
+html body .footer-logo:hover {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}

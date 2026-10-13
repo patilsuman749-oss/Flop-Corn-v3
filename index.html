@@ -56,7 +56,7 @@
     >
 
     <!-- Our CSS -->
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
     <link rel="stylesheet" href="collections.css?v=1">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7148348507749090"
      crossorigin="anonymous"></script>
@@ -77,6 +77,14 @@
 </script>
 <link rel="stylesheet" href="theme.css?v=1">
 
+<style id="flopcorn-wide-logo-override">
+.flopcorn-logo-img,.logo-icon img,.movie-logo img,.ai-logo img,.category-logo img,.explore-logo img,.quiz-logo img,.sched-logo img,.footer-logo img{width:clamp(118px,15vw,190px);height:auto;max-height:72px;object-fit:contain;border-radius:0;display:block}
+.logo-icon{width:auto!important;height:auto!important;border:0!important;border-radius:0!important;background:transparent!important;overflow:visible!important;flex-shrink:0}
+@media(max-width:600px){.flopcorn-logo-img,.logo-icon img,.movie-logo img,.ai-logo img,.category-logo img,.explore-logo img,.quiz-logo img,.sched-logo img,.footer-logo img{width:clamp(105px,35vw,145px);max-height:54px}}
+  .nav-box-office-link { gap: 6px; }
+  @media (max-width: 1450px) and (min-width: 1101px) { .nav-box-office-link span { display: none; } .nav-box-office-link { min-width: 34px; justify-content: center; } }
+</style>
+    <link rel="stylesheet" href="logo-responsive.css?v=4">
 </head>
 
 <body>
@@ -124,6 +132,9 @@
     <i class="fa-solid fa-calendar-days"></i>
     Calendar
 </a>
+<a href="box-office.html" class="nav-box-office-link" aria-label="Box Office Tracker" title="Box Office Tracker">
+    <i class="fa-solid fa-chart-column"></i><span>Box Office</span>
+</a>
 <a href="explore.html">
     🧭 Explore
 </a>
@@ -140,13 +151,7 @@
     <i class="fa-solid fa-film"></i>
     South Indian
 </a>
-
-            <a href="#reviews">
-                <i class="fa-solid fa-star"></i>
-                Reviews
-            </a>
-
-        </nav>
+</nav>
 
 
         <div class="navbar-right">
@@ -306,13 +311,7 @@
     <i class="fa-solid fa-film"></i>
     South Indian
 </a>
-
-        <a href="#reviews">
-            <i class="fa-solid fa-star"></i>
-            Reviews
-        </a>
-
-    </div>
+</div>
 
 
 
@@ -498,6 +497,10 @@
                    <a href="news.html" class="movie-news-home-button">
     <i class="fa-solid fa-newspaper"></i>
     Movie News
+</a>
+                   <a href="box-office.html" class="movie-news-home-button box-office-home-button">
+    <i class="fa-solid fa-chart-column"></i>
+    Box Office Tracker
 </a>
    <a href="universes.html" class="movie-universe-home-button">
     <i class="fa-solid fa-globe"></i>
