@@ -76,6 +76,7 @@
 (function(){try{if(localStorage.getItem("flopCornTheme")==="light"){document.documentElement.classList.add("light-mode");}}catch(e){}})();
 </script>
 <link rel="stylesheet" href="theme.css?v=1">
+<link rel="stylesheet" href="home-ai-widget.css?v=2">
 
 <style id="flopcorn-wide-logo-override">
 .flopcorn-logo-img,.logo-icon img,.movie-logo img,.ai-logo img,.category-logo img,.explore-logo img,.quiz-logo img,.sched-logo img,.footer-logo img{width:clamp(118px,15vw,190px);height:auto;max-height:72px;object-fit:contain;border-radius:0;display:block}
@@ -85,6 +86,7 @@
   @media (max-width: 1450px) and (min-width: 1101px) { .nav-box-office-link span { display: none; } .nav-box-office-link { min-width: 34px; justify-content: center; } }
 </style>
     <link rel="stylesheet" href="logo-responsive.css?v=4">
+<link rel="stylesheet" href="home-mobile-fixes.css?v=1">
 </head>
 
 <body>
@@ -1583,7 +1585,7 @@ Made for Movie Lovers 🍿
     </div>
 
 </div>
-<script src="app.js"></script>
+<script type="module" src="app.js"></script>
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
@@ -1596,6 +1598,76 @@ Made for Movie Lovers 🍿
 <script src="bottom-nav.js" defer></script>
 
 <script src="theme.js" defer></script>
+
+
+<!-- =========================================
+     HOMEPAGE MOVIE AI BUDDY WIDGET
+========================================= -->
+<div class="fc-movie-buddy" id="fcMovieBuddy">
+    <button class="fc-buddy-launcher" id="fcBuddyToggle" type="button"
+        aria-label="Open Movie AI Buddy" aria-expanded="false" aria-controls="fcBuddyPanel">
+        <span class="fc-buddy-launcher-icon" aria-hidden="true">
+            <i class="fa-solid fa-robot"></i>
+            <span class="fc-buddy-online-dot"></span>
+        </span>
+        <span class="fc-buddy-launcher-copy">
+            <strong>Movie Buddy</strong>
+            <small>Need a movie? Ask me</small>
+        </span>
+        <span class="fc-buddy-launcher-chevron" aria-hidden="true"><i class="fa-solid fa-chevron-up"></i></span>
+    </button>
+
+    <section class="fc-buddy-panel" id="fcBuddyPanel" aria-label="Movie AI Buddy chat" hidden>
+        <header class="fc-buddy-header">
+            <div class="fc-buddy-brand-icon" aria-hidden="true"><i class="fa-solid fa-clapperboard"></i></div>
+            <div class="fc-buddy-heading">
+                <strong>Movie AI Buddy</strong>
+                <p><span class="fc-buddy-status">Here to help you choose</span></p>
+            </div>
+            <div class="fc-buddy-header-actions">
+                <a class="fc-buddy-full-link" href="ai-buddy.html" aria-label="Open the full Movie AI Buddy page" title="Open full chat">
+                    <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i>
+                </a>
+                <button class="fc-buddy-close" id="fcBuddyClose" type="button" aria-label="Close Movie AI Buddy">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="fc-buddy-messages" id="fcBuddyMessages" role="log" aria-live="polite" aria-relevant="additions text">
+            <div class="fc-buddy-message assistant">
+                <div class="fc-buddy-avatar" aria-hidden="true"><i class="fa-solid fa-robot"></i></div>
+                <div class="fc-buddy-bubble">
+                    <strong>Movie Buddy</strong>
+                    <p>Hey, movie lover! 🍿 Tell me your mood, favourite language, genre, or a movie you already love. I'll help you find your next watch right here.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fc-buddy-suggestions" id="fcBuddySuggestions">
+            <p class="fc-buddy-suggestions-label">Quick start</p>
+            <div class="fc-buddy-suggestion-list">
+                <button class="fc-buddy-suggestion" type="button" data-prompt="Pick a great movie for tonight">🎬 Pick for tonight</button>
+                <button class="fc-buddy-suggestion" type="button" data-prompt="Suggest a Kannada thriller movie">🍿 Kannada thriller</button>
+                <button class="fc-buddy-suggestion" type="button" data-prompt="Suggest movies similar to Interstellar">🚀 Like Interstellar</button>
+                <button class="fc-buddy-suggestion" type="button" data-prompt="Recommend a funny movie for a relaxed evening">😂 Something funny</button>
+            </div>
+        </div>
+
+        <div class="fc-buddy-composer-wrap">
+            <div class="fc-buddy-composer">
+                <input class="fc-buddy-input" id="fcBuddyInput" type="text" maxlength="600"
+                    placeholder="Tell me what you feel like watching..." autocomplete="off"
+                    aria-label="Message Movie AI Buddy">
+                <button class="fc-buddy-send" id="fcBuddySend" type="button" aria-label="Send message">
+                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p class="fc-buddy-disclaimer">Movie ideas, recommendations and more · Powered by FLOP CORN</p>
+        </div>
+    </section>
+</div>
+<script src="home-ai-widget.js?v=2" defer></script>
 
 </body>
 </html>

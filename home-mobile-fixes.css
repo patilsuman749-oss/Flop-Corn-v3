@@ -1,0 +1,112 @@
+/* =========================================
+   FLOP CORN — mobile homepage layout fixes
+   Keeps the hero readable and the AI launcher compact.
+========================================= */
+
+@media (max-width: 768px) {
+    /* Let the hero start near the top of the phone instead of centering
+       the headline behind the fixed chat button. */
+    .hero {
+        min-height: 100vh;
+        min-height: 100svh;
+        align-items: flex-start;
+        padding: clamp(62px, 10svh, 88px) 22px calc(96px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .hero-badge {
+        max-width: 100%;
+        width: fit-content;
+        padding: 8px 10px;
+        margin-bottom: 18px;
+        gap: 7px;
+        font-size: 10px;
+        line-height: 1.25;
+        letter-spacing: .65px;
+    }
+
+    .hero h1 {
+        margin: 0;
+        font-size: clamp(44px, 12vw, 56px);
+        line-height: .99;
+        letter-spacing: -1.8px;
+        overflow-wrap: normal;
+    }
+
+    .hero h1 strong {
+        -webkit-text-stroke-width: 1.5px;
+    }
+
+    .hero-description {
+        max-width: 100%;
+        margin: 16px 0 18px;
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    .hero-stats {
+        margin-top: 20px;
+    }
+
+    /* Global mobile button rules set every button to 100% width. Override
+       that only for this floating launcher so it never becomes a full bar. */
+    .fc-movie-buddy .fc-buddy-launcher {
+        left: auto !important;
+        right: 14px !important;
+        bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+        width: 52px !important;
+        min-width: 52px !important;
+        max-width: 52px !important;
+        height: 52px !important;
+        min-height: 52px !important;
+        padding: 4px !important;
+        gap: 0 !important;
+        justify-content: center;
+        border-radius: 50%;
+        text-align: center;
+    }
+
+    .fc-movie-buddy .fc-buddy-launcher-icon {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        border-radius: 50%;
+        font-size: 18px;
+    }
+
+    .fc-movie-buddy .fc-buddy-launcher-copy,
+    .fc-movie-buddy .fc-buddy-launcher-chevron {
+        display: none !important;
+    }
+
+    .fc-movie-buddy .fc-buddy-panel {
+        right: 8px;
+        bottom: calc(138px + env(safe-area-inset-bottom, 0px));
+        width: calc(100vw - 16px);
+        max-width: 440px;
+        height: min(590px, calc(100dvh - 154px));
+        min-height: min(340px, calc(100dvh - 154px));
+    }
+}
+
+@media (max-width: 380px) {
+    .hero {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    .hero h1 {
+        font-size: clamp(40px, 12vw, 46px);
+        letter-spacing: -1.5px;
+    }
+
+    .hero-badge {
+        font-size: 9px;
+        letter-spacing: .4px;
+    }
+}
