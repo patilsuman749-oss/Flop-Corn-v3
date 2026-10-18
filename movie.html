@@ -2062,11 +2062,15 @@
             allowfullscreen>
         </iframe>
 
-        <p
+        <div
             id="trailerUnavailable"
-            style="display:none;text-align:center;color:#fff;padding:30px;font-size:20px;">
-            Trailer not available.
-        </p>
+            style="display:none;text-align:center;color:#fff;padding:26px 18px;font-size:17px;">
+            <p style="margin:0 0 16px;">No embedded trailer was found. Try searching for the official trailer.</p>
+            <a id="trailerSearchFallback" href="#" target="_blank" rel="noopener noreferrer"
+               style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#ffd21c;color:#111;font-weight:800;text-decoration:none;padding:13px 19px;border-radius:999px;">
+                <i class="fa-brands fa-youtube" aria-hidden="true"></i> Find Trailer on YouTube
+            </a>
+        </div>
 
     </div>
 
@@ -4323,47 +4327,85 @@ if (userId) {
 
 }
 // ===============================
-// TRAILER
+// TRAILER — TMDB first, YouTube search fallback
 // ===============================
-const trailerModal=document.getElementById("trailerModal");
-const trailerFrame=document.getElementById("trailerFrame");
-const trailerUnavailable=document.getElementById("trailerUnavailable");
-const closeTrailer=document.getElementById("closeTrailer");
-const watchTrailerButton=document.getElementById("watchTrailerButton");
+const trailerModal = document.getElementById("trailerModal");
+const trailerFrame = document.getElementById("trailerFrame");
+const trailerUnavailable = document.getElementById("trailerUnavailable");
+const trailerSearchFallback = document.getElementById("trailerSearchFallback");
+const closeTrailer = document.getElementById("closeTrailer");
+const watchTrailerButton = document.getElementById("watchTrailerButton");
 
-async function openTrailer(movieId){
- try{
-   trailerUnavailable.style.display="none";
-   trailerFrame.style.display="block";
-   const res=await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`);
-   const data=await res.json();
- const trailer = (data.results || []).find(video =>
-    video.site === "YouTube" &&
-    (
-        video.type === "Trailer" ||
-        video.type === "Teaser"
-    )
-) || (data.results || []).find(video => video.site === "YouTube");
-   if(!trailer){
-      trailerFrame.removeAttribute("src");
-      trailerFrame.style.display="none";
-      trailerUnavailable.style.display="block";
-      trailerModal.style.display="flex";
-      return;
-   }
-   trailerFrame.src=`https://www.youtube.com/embed/${trailer.key}?autoplay=1`;
-   trailerModal.style.display="flex";
- }catch(e){
-   console.error(e);
-   trailerFrame.removeAttribute("src");
-   trailerFrame.style.display="none";
-   trailerUnavailable.style.display="block";
-   trailerModal.style.display="flex";
- }
+function getTrailerSearchUrl(movie) {
+    const title = movie?.title || movie?.original_title || "movie";
+    const year = movie?.release_date ? movie.release_date.slice(0, 4) : "";
+    const query = `${title} ${year} official trailer`.trim();
+    return `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
 }
-watchTrailerButton.addEventListener("click",()=>{ if(currentMovie) openTrailer(currentMovie.id);});
-closeTrailer.onclick=()=>{trailerFrame.src=""; trailerModal.style.display="none";};
-trailerModal.onclick=(e)=>{if(e.target===trailerModal){trailerFrame.src=""; trailerModal.style.display="none";}};
+
+function showTrailerFallback(movie) {
+    trailerFrame.removeAttribute("src");
+    trailerFrame.style.display = "none";
+    trailerUnavailable.style.display = "block";
+    trailerSearchFallback.href = getTrailerSearchUrl(movie);
+    trailerModal.style.display = "flex";
+}
+
+async function openTrailer(movieId) {
+    const movie = currentMovie && String(currentMovie.id) === String(movieId) ? currentMovie : null;
+    trailerUnavailable.style.display = "none";
+    trailerFrame.style.display = "block";
+    trailerFrame.removeAttribute("src");
+    trailerModal.style.display = "flex";
+
+    try {
+        // TMDB may have videos attached to a different language entry.
+        const languages = [...new Set([
+            "en-US", "hi-IN", "kn-IN", "ta-IN", "te-IN", "ml-IN",
+            movie?.original_language ? `${movie.original_language}-${movie.original_language.toUpperCase()}` : null
+        ].filter(Boolean))];
+        let videos = [];
+
+        for (const language of languages) {
+            const response = await fetch(`${BASE_URL}/movie/${encodeURIComponent(movieId)}/videos?api_key=${API_KEY}&language=${encodeURIComponent(language)}`);
+            if (!response.ok) continue;
+            const data = await response.json();
+            videos.push(...(data.results || []));
+            if (videos.some(video => video.site === "YouTube" && video.type === "Trailer")) break;
+        }
+
+        // Deduplicate results, then prefer official full trailers over teasers or other clips.
+        const uniqueVideos = [...new Map(videos.filter(video => video.site === "YouTube" && video.key).map(video => [video.key, video])).values()];
+        const trailer = uniqueVideos.find(video => video.type === "Trailer" && video.official === true)
+            || uniqueVideos.find(video => video.type === "Trailer")
+            || uniqueVideos.find(video => video.type === "Teaser")
+            || uniqueVideos[0];
+
+        if (!trailer) {
+            showTrailerFallback(movie || { title: "movie" });
+            return;
+        }
+
+        trailerFrame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(trailer.key)}?autoplay=1&rel=0`;
+    } catch (error) {
+        console.error("Unable to load TMDB trailer; showing YouTube fallback.", error);
+        showTrailerFallback(movie || { title: "movie" });
+    }
+}
+
+watchTrailerButton.addEventListener("click", () => {
+    if (currentMovie) openTrailer(currentMovie.id);
+});
+closeTrailer.onclick = () => {
+    trailerFrame.removeAttribute("src");
+    trailerModal.style.display = "none";
+};
+trailerModal.onclick = (event) => {
+    if (event.target === trailerModal) {
+        trailerFrame.removeAttribute("src");
+        trailerModal.style.display = "none";
+    }
+};
 
     </script>
     <!-- =========================================
