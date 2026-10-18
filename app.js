@@ -360,6 +360,7 @@ function displayMovies(
                         alt="${movie.title} movie poster"
 
                         loading="lazy"
+                        decoding="async"
 
                     >
 
@@ -732,6 +733,7 @@ function renderTrendingQuickList(movies) {
                         src="${IMAGE_URL}${movie.poster_path}"
                         alt="${movie.title}"
                         loading="lazy"
+                        decoding="async"
                     >
                     <div class="trending-info">
                         <div class="trending-title">${movie.title}</div>
@@ -981,6 +983,7 @@ function displaySearchResultMovies(movies, container) {
                     src="${IMAGE_URL}${movie.poster_path}"
                     alt="${movie.title} movie poster"
                     loading="lazy"
+                        decoding="async"
                 >
                 <div class="movie-rating">
                     <i class="fa-solid fa-star"></i>
@@ -1644,6 +1647,7 @@ function displayTopRatedMovies(
                         alt="${movie.title}"
 
                         loading="lazy"
+                        decoding="async"
 
                     >
 
@@ -1942,6 +1946,7 @@ function displayTopRoastedMovies(
                         alt="${movie.title}"
 
                         loading="lazy"
+                        decoding="async"
 
                     >
 

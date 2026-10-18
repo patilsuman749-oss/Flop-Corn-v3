@@ -1,0 +1,11 @@
+FLOP CORN — Performance & Mobile Polish
+
+Changes in this build:
+- Added performance-mobile-polish.css to all HTML pages for safer responsive sizing, reduced horizontal overflow, visible keyboard focus, mobile safe-area padding, and reduced-motion support.
+- Added async image decoding to lazily loaded poster images in app.js and static HTML.
+- Updated the service worker cache version and changed HTML/CSS/JS to network-first with cached offline fallback, so deployed fixes are less likely to remain hidden behind stale HTML/code. Static assets remain cache-first for faster repeat visits.
+- Bumped style.css cache query version in HTML pages.
+
+Notes:
+- This is a code-level polish pass; live device testing and Lighthouse/Core Web Vitals measurements still need to be run after deployment.
+- Existing Firebase/TMDB/API configuration and app features were not intentionally changed.

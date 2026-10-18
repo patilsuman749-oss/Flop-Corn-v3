@@ -1,16 +1,16 @@
-// Flop Corn service worker
-// Minimal cache-first strategy for core shell assets, network-first for everything else.
-// This existing purely to satisfy PWA installability requirements (Chrome needs an
-// active service worker + manifest to offer "Install app" / "Open in app").
-
-const CACHE_NAME = "flopcorn-shell-v10";
-
+// FLOP CORN service worker: fresh app shell + offline fallback.
+// HTML and code use network-first so deployed fixes reach users; images and other
+// static assets use cache-first for quicker repeat visits.
+const CACHE_NAME = "flopcorn-shell-v11";
 const CORE_ASSETS = [
   "/index.html",
+  "/movie.html",
+  "/explore.html",
+  "/category.html",
   "/box-office.html",
-  "/box-office.css?v=2",
-  "/box-office.js?v=2",
-  "/style.css?v=5",
+  "/style.css?v=6",
+  "/performance-mobile-polish.css?v=1",
+  "/home-mobile-fixes.css?v=1",
   "/favicon.ico",
   "/favicon-192.png",
   "/favicon-512.png",
@@ -19,63 +19,58 @@ const CORE_ASSETS = [
   "/theme.css?v=1",
   "/theme.js",
   "/logo-responsive.css?v=4",
-  "/home-ai-widget.css?v=1",
-  "/home-ai-widget.js?v=1"
+  "/home-ai-widget.css?v=2",
+  "/home-ai-widget.js?v=2"
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      // Don't let a single failed asset block install
-      return Promise.all(
-        CORE_ASSETS.map((url) =>
-          cache.add(url).catch(() => {
-            /* ignore individual asset failures */
-          })
-        )
-      );
-    })
-  );
-  self.skipWaiting();
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    await Promise.all(CORE_ASSETS.map(async (url) => {
+      try { await cache.add(url); } catch (_) { /* optional shell asset */ }
+    }));
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys
-          .filter((key) => key !== CACHE_NAME)
-          .map((key) => caches.delete(key))
-      )
-    )
-  );
-  self.clients.claim();
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.filter((key) => key.startsWith("flopcorn-shell-") && key !== CACHE_NAME).map((key) => caches.delete(key)));
+    await self.clients.claim();
+  })());
 });
 
 self.addEventListener("fetch", (event) => {
-  const { request } = event;
-
-  // Only handle GET requests
+  const request = event.request;
   if (request.method !== "GET") return;
-
-  // Don't intercept cross-origin requests (Firebase, TMDB, ad scripts, fonts, etc.)
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  event.respondWith(
-    caches.match(request).then((cached) => {
-      const network = fetch(request)
-        .then((response) => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          }
-          return response;
-        })
-        .catch(() => cached);
+  const isPageOrCode = request.mode === "navigate" || /\.(?:html?|css|js|mjs)(?:$|\?)/i.test(url.pathname + url.search);
+  if (isPageOrCode) {
+    // Network-first ensures HTML/CSS/JS updates are not hidden behind stale cache.
+    event.respondWith((async () => {
+      const cache = await caches.open(CACHE_NAME);
+      try {
+        const response = await fetch(request);
+        if (response && response.ok) cache.put(request, response.clone()).catch(() => {});
+        return response;
+      } catch (_) {
+        return (await cache.match(request)) || (request.mode === "navigate" ? await cache.match("/index.html") : Response.error());
+      }
+    })());
+    return;
+  }
 
-      // Cache-first for core shell, network-first fallback for the rest
-      return cached || network;
-    })
-  );
+  // Cache-first for same-origin static assets; update cache when online.
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(request);
+    const networkPromise = fetch(request).then((response) => {
+      if (response && response.ok) cache.put(request, response.clone()).catch(() => {});
+      return response;
+    }).catch(() => cached);
+    return cached || await networkPromise;
+  })());
 });
